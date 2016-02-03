@@ -4,12 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using KeyManagerData;
 
 namespace KeyManagerTestConsole
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            //RunTestDB(); // creates and reads from a stubbed, sample db
+
+            Console.WriteLine("Attempting to create application database");
+            bool successful = DbSetupManager.CreateDatabase();
+            Console.WriteLine("Got return value: " + successful);
+            
+
+            Console.Read();
+            
+        }
+
+        private static void RunTestDB()
         {
             // Only needed the following line once.
             // the database is created in the Console Project /bin/Debug/
