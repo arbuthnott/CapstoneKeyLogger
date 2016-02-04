@@ -53,7 +53,7 @@ namespace KeyManagerData
                     String CREATE_KEY_TABLE = "CREATE TABLE 'key' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT, 'Serial' TEXT, 'Keytype' INTEGER,'Keyring' INTEGER)";
                     String CREATE_PERSONNEL_TABLE = "CREATE TABLE 'personnel' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Username' TEXT,'Password' TEXT,'First Name' TEXT,'Last Name' TEXT,'IsAdministrator' INTEGER DEFAULT (0),'PermitLevel' INTEGER DEFAULT(0))";
                     String CREATE_LOCK_TABLE = "CREATE TABLE 'lock' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT)";
-                    String CREATE_KEYTYPE_TABLE = "CREATE TABLE 'keytype' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'PermitLevel' INTEGER NOT NULL DEFAULT (0))";
+                    String CREATE_KEYTYPE_TABLE = "CREATE TABLE 'keytype' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT, 'Name' TEXT,'PermitLevel' INTEGER NOT NULL DEFAULT (0))";
                     String CREATE_DOOR_TABLE = "CREATE TABLE 'door' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'room_number' TEXT,'lock' INTEGER NOT NULL,'door_image' TEXT)";
                     String CREATE_LOCATION_TABLE = "CREATE TABLE 'location' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Name' TEXT,'image' TEXT)";
                     String CREATE_KEYRING_TABLE = "CREATE TABLE 'keyring' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Name' TEXT)";
@@ -118,7 +118,7 @@ namespace KeyManagerData
                 System.IO.File.Delete(GetDBPath());
                 return true; // deleted.
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false; // couldn't delete
             }
@@ -155,16 +155,16 @@ namespace KeyManagerData
 
                 String[] deleteStatements =
                 {
-                    "DELETE * FROM checkout",
-                    "DELETE * FROM door",
-                    "DELETE * FROM door_to_location",
-                    "DELETE * FROM key",
-                    "DELETE * FROM keyring",
-                    "DELETE * FROM keytype",
-                    "DELETE * FROM keytype_to_lock",
-                    "DELETE * FROM location",
-                    "DELETE * FROM lock",
-                    "DELETE * FROM personnel"
+                    "DELETE FROM checkout",
+                    "DELETE FROM door",
+                    "DELETE FROM door_to_location",
+                    "DELETE FROM key",
+                    "DELETE FROM keyring",
+                    "DELETE FROM keytype",
+                    "DELETE FROM keytype_to_lock",
+                    "DELETE FROM location",
+                    "DELETE FROM lock",
+                    "DELETE FROM personnel"
                 };
 
                 SQLiteCommand command;
@@ -193,9 +193,150 @@ namespace KeyManagerData
                 SQLiteConnection conn = GetConnection();
                 String[] insertStatements =
                 {
-                    "",
-                    "",
-                    "",
+                    // three personnel
+                    "INSERT INTO personnel ('Username', 'Password', 'First Name', 'Last Name', 'IsAdministrator') VALUES ('papa', 'smurf', 'Papa', 'Smurf', 1)", // admin user
+                    "INSERT INTO personnel ('Username', 'Password', 'First Name', 'Last Name', 'IsAdministrator') VALUES ('brainy', 'smurf', 'Brainy', 'Smurf', 0)", // normal user
+                    "INSERT INTO personnel ('First Name', 'Last Name', 'IsAdministrator') VALUES ('Handy', 'Smurf', 0)", // non-user
+                    // 7 locks, only have ID
+                    "INSERT INTO lock DEFAULT VALUES",
+                    "INSERT INTO lock DEFAULT VALUES",
+                    "INSERT INTO lock DEFAULT VALUES",
+                    "INSERT INTO lock DEFAULT VALUES",
+                    "INSERT INTO lock DEFAULT VALUES",
+                    "INSERT INTO lock DEFAULT VALUES",
+                    "INSERT INTO lock DEFAULT VALUES",
+
+                    // doors - three offices share a lock.
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('A100', 1)",
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('A101', 1)",
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('A102', 1)",
+                    // doors - three offices with distinct locks.
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('B100', 2)",
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('B101', 3)",
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('B102', 4)",
+                    // doors - two bathrooms share a lock.
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('A Bathroom', 5)",
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('B Bathroom', 5)",
+                    // doors - two entrances with distinct locks.
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('Front Entrance', 6)",
+                    "INSERT INTO door ('room_number', 'lock') VALUES ('Back Entrance', 7)",
+
+                    // groups, aka locations
+                    "INSERT INTO location ('Name') VALUES ('A Wing')",
+                    "INSERT INTO location ('Name') VALUES ('B Wing')",
+                    "INSERT INTO location ('Name') VALUES ('Offices')",
+                    "INSERT INTO location ('Name') VALUES ('Entrances')",
+                    "INSERT INTO location ('Name') VALUES ('All Doors')",
+
+                    // join doors to groups - A Wing
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (1, 1)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (2, 1)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (3, 1)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (7, 1)",
+                    // join doors to groups - B Wing
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (4, 2)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (5, 2)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (6, 2)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (8, 2)",
+                    // join doors to groups - Offices
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (1, 3)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (2, 3)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (3, 3)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (4, 3)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (5, 3)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (6, 3)",
+                    // join doors to groups - Entrances
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (9, 4)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (10, 4)",
+                    // join doors to groups - All Doors
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (1, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (2, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (3, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (4, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (5, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (6, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (7, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (8, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (9, 5)",
+                    "INSERT INTO door_to_location ('Door', 'Location') VALUES (10, 5)",
+
+                    // keytypes
+                    "INSERT INTO keytype ('Name') VALUES ('A Offices')",
+                    "INSERT INTO keytype ('Name') VALUES ('B Offices')",
+                    "INSERT INTO keytype ('Name') VALUES ('B100')",
+                    "INSERT INTO keytype ('Name') VALUES ('B101')",
+                    "INSERT INTO keytype ('Name') VALUES ('B102')",
+                    "INSERT INTO keytype ('Name') VALUES ('Bathrooms')",
+                    "INSERT INTO keytype ('Name') VALUES ('Entrances')",
+                    "INSERT INTO keytype ('Name') VALUES ('Maintenance')", // can open bathrooms and entrances
+                    "INSERT INTO keytype ('Name') VALUES ('All Offices')",
+                    "INSERT INTO keytype ('Name') VALUES ('Master')",
+
+                    // join keytypes to locks
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (1, 1)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (2, 2)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (2, 3)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (2, 4)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (3, 2)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (4, 3)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (5, 4)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (6, 5)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (7, 6)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (7, 7)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (8, 6)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (8, 7)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (8, 5)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (9, 1)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (9, 2)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (9, 3)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (9, 4)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (10, 1)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (10, 2)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (10, 3)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (10, 4)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (10, 5)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (10, 6)",
+                    "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (10, 7)",
+
+                    // create some keyrings
+                    "INSERT INTO keyring ('Name') VALUES ('Master Set')",
+                    "INSERT INTO keyring ('Name') VALUES ('Janitor Set')",
+                    "INSERT INTO keyring ('Name') VALUES ('Prof Smurf Set')",
+
+                    // three copies of every key, some added to keyrings.
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('A999a', 1, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('A999b', 1)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('A999c', 1)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('B999a', 2, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('B999b', 2)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('B999c', 2)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('B100a', 3, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('B100b', 3, 3)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('B100c', 3)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('B101a', 4, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('B101b', 4)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('B101c', 4)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('B102a', 5, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('B102b', 5)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('B102c', 5)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('BATHa', 6, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('BATHb', 6, 2)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('BATHc', 6)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('ENTRa', 7, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('ENTRb', 7, 3)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('ENTRc', 7, 2)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('MNTa', 8, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('MNTb', 8)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('MNTc', 8)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('OFFCa', 9, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('OFFCb', 9)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('OFFCc', 9)",
+                    "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('MSTRa', 10, 1)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('MSTRb', 10)",
+                    "INSERT INTO key ('Serial', 'Keytype') VALUES ('MSTRc', 10)",
+
+                    // let papa smurf have his keys checked out
+                    "INSERT INTO checkout ('Person', 'Keyring', 'Date') VALUES (1, 3, '2016-01-01')"
                 };
 
                 SQLiteCommand command;

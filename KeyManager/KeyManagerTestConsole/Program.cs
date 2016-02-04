@@ -14,9 +14,9 @@ namespace KeyManagerTestConsole
         {
             //RunTestDB(); // creates and reads from a stubbed, sample db
 
-            Console.WriteLine("Attempting to create application database");
-            bool successful = DbSetupManager.CreateDatabase();
-            Console.WriteLine("Got return value: " + successful);
+            DbSetupManager.RefreshDatabase();
+            bool worked = DbSetupManager.PopulateSampleData();
+            Console.WriteLine("Tried to add sample data: " + worked);
             
 
             Console.Read();
