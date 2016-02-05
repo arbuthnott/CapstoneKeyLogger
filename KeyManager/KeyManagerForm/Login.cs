@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace KeyManagerGUI
+namespace KeyManagerForm
 {
     public partial class Login : Form
     {

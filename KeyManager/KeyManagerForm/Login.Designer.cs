@@ -1,4 +1,4 @@
-﻿namespace KeyManagerGUI
+﻿namespace KeyManagerForm
 {
     partial class Login
     {
