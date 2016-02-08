@@ -13,8 +13,10 @@ namespace KeyManagerForm
     public partial class MainForm : Form
     {
         private bool isAdmin = false;
+        private Login loginForm;
+        private bool loggingOut = false;
 
-        public MainForm(bool admin)
+        public MainForm(Login lgnForm, bool admin)
         {
             InitializeComponent();
             if (admin)
@@ -24,6 +26,7 @@ namespace KeyManagerForm
                 lblAdmin.Text = "Hello, Administrator";
             else
                 lblAdmin.Text = "Hello User";
+            this.loginForm = lgnForm;
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -33,12 +36,22 @@ namespace KeyManagerForm
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // logout functionality here!!
+            loggingOut = true;
+            loginForm.Logout();
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            // logout functionality here!!
+            loggingOut = true;
+            loginForm.Logout();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!loggingOut)
+            {
+                loginForm.Close();
+            }
         }
     }
 }
