@@ -25,7 +25,10 @@ namespace KeyManagerForm
             if (admin)
                 lblAdmin.Text = "Hello, Administrator";
             else
+            {
                 lblAdmin.Text = "Hello User";
+                tabControl.TabPages.Remove(tabPageKeysets);
+            }
             this.loginForm = lgnForm;
         }
 

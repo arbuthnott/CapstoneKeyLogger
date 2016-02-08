@@ -35,7 +35,7 @@
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonLogout = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageFloorplans = new System.Windows.Forms.TabPage();
             this.panelFloorplans = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -50,7 +50,7 @@
             this.panelSearch = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.tabPageFloorplans.SuspendLayout();
             this.panelFloorplans.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -113,18 +113,18 @@
             this.buttonLogout.UseVisualStyleBackColor = true;
             this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPageFloorplans);
-            this.tabControl1.Controls.Add(this.tabPageCheckout);
-            this.tabControl1.Controls.Add(this.tabPageKeysets);
-            this.tabControl1.Controls.Add(this.tabPageSearch);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 24);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(785, 465);
-            this.tabControl1.TabIndex = 2;
+            this.tabControl.Controls.Add(this.tabPageFloorplans);
+            this.tabControl.Controls.Add(this.tabPageCheckout);
+            this.tabControl.Controls.Add(this.tabPageKeysets);
+            this.tabControl.Controls.Add(this.tabPageSearch);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 24);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(785, 465);
+            this.tabControl.TabIndex = 2;
             // 
             // tabPageFloorplans
             // 
@@ -256,7 +256,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(785, 489);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Controls.Add(this.buttonLogout);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -265,7 +265,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tabPageFloorplans.ResumeLayout(false);
             this.panelFloorplans.ResumeLayout(false);
             this.panelFloorplans.PerformLayout();
@@ -292,7 +292,7 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
         private System.Windows.Forms.Button buttonLogout;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageFloorplans;
         private System.Windows.Forms.Panel panelFloorplans;
         private System.Windows.Forms.Label lblAdmin;
