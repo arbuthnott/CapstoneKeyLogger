@@ -10,13 +10,15 @@ namespace KeyManagerClassLib
 {
     public class UserLogin
     {
+        private SQLiteConnection connection;//Not sure if this and the next two will work, since the references and using statments for the corresponding libraries aren't working.  
+        private SQLiteCommand command;
+        private SQLiteDataReader reader;
+
         private string userName;//Submitted username.
         private string password;//Submitted password.         
         private string sql = "SELECT * FROM personnel WHERE Username = _userName AND Password = _password";//Query to check if there are any rows that contain both the username and password. 
         private bool loggedIn;//Set to true if user is logged in, false if they aren't. 
-        private SQLiteConnection connection;//Not sure if this and the next two will work, since the references and using statments for the corresponding libraries aren't working.  
-        private SQLiteCommand command;
-        private SQLiteDataReader reader;
+        private Boolean isAdmin = false;
 
         /// <summary>
         /// Constructor 
@@ -48,6 +50,11 @@ namespace KeyManagerClassLib
             get { return password; }
         }
 
+        public Boolean IsAdmin
+        {
+            get { return isAdmin;  }
+        }
+
         /// <summary>
         /// Returns connection object. I'm assuming that this connection would remain open while the program is used, and will only close when the user logs out or exits. 
         /// </summary>
@@ -71,16 +78,18 @@ namespace KeyManagerClassLib
             reader = command.ExecuteReader();//I'm assuming this sets up a cursor behind the scenes, which the reader uses to cycle through returned rows.            
 
             if (!reader.Read())//Not sure if this is a valid use, since I can't test it. Basically, if the query returns no rows, the login fails.
-            {
+            {               
                 loggedIn = false;
                 LogOut();//Closes the connection, since it's no longer needed. 
             }
 
             else//A row was returned, so login was successful. 
             {
+                isAdmin = reader.GetBoolean(5);
                 loggedIn = true;
             }
-
+            
+            connection.Close(); 
             return loggedIn;
         }
 
@@ -89,7 +98,8 @@ namespace KeyManagerClassLib
         /// </summary>
         public void LogOut()
         {
-            connection.Close();
+            // I moved the close connection to the login method for now. - Jared
+            //connection.Close();
             loggedIn = false;
         }
     }

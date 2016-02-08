@@ -12,9 +12,18 @@ namespace KeyManagerForm
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        private bool isAdmin = false;
+
+        public MainForm(bool admin)
         {
             InitializeComponent();
+            if (admin)
+                isAdmin = true;
+
+            if (admin)
+                lblAdmin.Text = "Hello, Administrator";
+            else
+                lblAdmin.Text = "Hello User";
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
