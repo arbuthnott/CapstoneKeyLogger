@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KeyManagerForm</RootNamespace>
     <AssemblyName>KeyManagerForm</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -90,6 +91,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Keys.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\KeyManagerClassLib\KeyManagerClassLib.csproj">
       <Project>{4e7846d9-f027-44e8-9135-ea0b5c86e9ef}</Project>
       <Name>KeyManagerClassLib</Name>
@@ -98,9 +102,6 @@
       <Project>{e8a0a408-c176-423f-b0ff-af781c31d0b5}</Project>
       <Name>KeyManagerData</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Keys.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
