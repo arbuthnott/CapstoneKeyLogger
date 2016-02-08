@@ -31,31 +31,31 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.keyManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPageFloorplans = new System.Windows.Forms.TabPage();
-            this.tabPageCheckout = new System.Windows.Forms.TabPage();
-            this.tabPageKeysets = new System.Windows.Forms.TabPage();
-            this.tabPageSearch = new System.Windows.Forms.TabPage();
             this.panelFloorplans = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabPageCheckout = new System.Windows.Forms.TabPage();
             this.panelCheckout = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tabPageKeysets = new System.Windows.Forms.TabPage();
             this.panelKeyset = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tabPageSearch = new System.Windows.Forms.TabPage();
             this.panelSearch = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPageFloorplans.SuspendLayout();
-            this.tabPageCheckout.SuspendLayout();
-            this.tabPageKeysets.SuspendLayout();
-            this.tabPageSearch.SuspendLayout();
             this.panelFloorplans.SuspendLayout();
+            this.tabPageCheckout.SuspendLayout();
             this.panelCheckout.SuspendLayout();
+            this.tabPageKeysets.SuspendLayout();
             this.panelKeyset.SuspendLayout();
+            this.tabPageSearch.SuspendLayout();
             this.panelSearch.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,22 +83,22 @@
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
-            // 
-            // logoutToolStripMenuItem
-            // 
-            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.logoutToolStripMenuItem.Text = "Logout";
-            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // buttonLogout
             // 
@@ -134,37 +134,6 @@
             this.tabPageFloorplans.Text = "Floor Plans";
             this.tabPageFloorplans.UseVisualStyleBackColor = true;
             // 
-            // tabPageCheckout
-            // 
-            this.tabPageCheckout.Controls.Add(this.panelCheckout);
-            this.tabPageCheckout.Location = new System.Drawing.Point(4, 22);
-            this.tabPageCheckout.Name = "tabPageCheckout";
-            this.tabPageCheckout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageCheckout.Size = new System.Drawing.Size(777, 439);
-            this.tabPageCheckout.TabIndex = 1;
-            this.tabPageCheckout.Text = "Keyset Checkout";
-            this.tabPageCheckout.UseVisualStyleBackColor = true;
-            // 
-            // tabPageKeysets
-            // 
-            this.tabPageKeysets.Controls.Add(this.panelKeyset);
-            this.tabPageKeysets.Location = new System.Drawing.Point(4, 22);
-            this.tabPageKeysets.Name = "tabPageKeysets";
-            this.tabPageKeysets.Size = new System.Drawing.Size(777, 439);
-            this.tabPageKeysets.TabIndex = 2;
-            this.tabPageKeysets.Text = "Manage Keysets";
-            this.tabPageKeysets.UseVisualStyleBackColor = true;
-            // 
-            // tabPageSearch
-            // 
-            this.tabPageSearch.Controls.Add(this.panelSearch);
-            this.tabPageSearch.Location = new System.Drawing.Point(4, 22);
-            this.tabPageSearch.Name = "tabPageSearch";
-            this.tabPageSearch.Size = new System.Drawing.Size(777, 439);
-            this.tabPageSearch.TabIndex = 3;
-            this.tabPageSearch.Text = "Search";
-            this.tabPageSearch.UseVisualStyleBackColor = true;
-            // 
             // panelFloorplans
             // 
             this.panelFloorplans.Controls.Add(this.label1);
@@ -183,6 +152,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Floor Plans Here!";
             // 
+            // tabPageCheckout
+            // 
+            this.tabPageCheckout.Controls.Add(this.panelCheckout);
+            this.tabPageCheckout.Location = new System.Drawing.Point(4, 22);
+            this.tabPageCheckout.Name = "tabPageCheckout";
+            this.tabPageCheckout.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCheckout.Size = new System.Drawing.Size(777, 439);
+            this.tabPageCheckout.TabIndex = 1;
+            this.tabPageCheckout.Text = "Keyset Checkout";
+            this.tabPageCheckout.UseVisualStyleBackColor = true;
+            // 
             // panelCheckout
             // 
             this.panelCheckout.Controls.Add(this.label3);
@@ -192,6 +172,25 @@
             this.panelCheckout.Size = new System.Drawing.Size(771, 433);
             this.panelCheckout.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(178, 137);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Checkout stuff here!";
+            // 
+            // tabPageKeysets
+            // 
+            this.tabPageKeysets.Controls.Add(this.panelKeyset);
+            this.tabPageKeysets.Location = new System.Drawing.Point(4, 22);
+            this.tabPageKeysets.Name = "tabPageKeysets";
+            this.tabPageKeysets.Size = new System.Drawing.Size(777, 439);
+            this.tabPageKeysets.TabIndex = 2;
+            this.tabPageKeysets.Text = "Manage Keysets";
+            this.tabPageKeysets.UseVisualStyleBackColor = true;
+            // 
             // panelKeyset
             // 
             this.panelKeyset.Controls.Add(this.label4);
@@ -200,6 +199,25 @@
             this.panelKeyset.Name = "panelKeyset";
             this.panelKeyset.Size = new System.Drawing.Size(777, 439);
             this.panelKeyset.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(187, 111);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(131, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Keyset Management here!";
+            // 
+            // tabPageSearch
+            // 
+            this.tabPageSearch.Controls.Add(this.panelSearch);
+            this.tabPageSearch.Location = new System.Drawing.Point(4, 22);
+            this.tabPageSearch.Name = "tabPageSearch";
+            this.tabPageSearch.Size = new System.Drawing.Size(777, 439);
+            this.tabPageSearch.TabIndex = 3;
+            this.tabPageSearch.Text = "Search";
+            this.tabPageSearch.UseVisualStyleBackColor = true;
             // 
             // panelSearch
             // 
@@ -219,24 +237,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Search stuff here!";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(178, 137);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Checkout stuff here!";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(187, 111);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Keyset Management here!";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,15 +252,15 @@
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPageFloorplans.ResumeLayout(false);
-            this.tabPageCheckout.ResumeLayout(false);
-            this.tabPageKeysets.ResumeLayout(false);
-            this.tabPageSearch.ResumeLayout(false);
             this.panelFloorplans.ResumeLayout(false);
             this.panelFloorplans.PerformLayout();
+            this.tabPageCheckout.ResumeLayout(false);
             this.panelCheckout.ResumeLayout(false);
             this.panelCheckout.PerformLayout();
+            this.tabPageKeysets.ResumeLayout(false);
             this.panelKeyset.ResumeLayout(false);
             this.panelKeyset.PerformLayout();
+            this.tabPageSearch.ResumeLayout(false);
             this.panelSearch.ResumeLayout(false);
             this.panelSearch.PerformLayout();
             this.ResumeLayout(false);
