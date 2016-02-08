@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using KeyManagerData;
+using KeyManagerClassLib;
 
 namespace KeyManagerTestConsole
 {
@@ -14,9 +15,17 @@ namespace KeyManagerTestConsole
         {
             //RunTestDB(); // creates and reads from a stubbed, sample db
 
-            DbSetupManager.RefreshDatabase();
-            bool worked = DbSetupManager.PopulateSampleData();
-            Console.WriteLine("Tried to add sample data: " + worked);
+            String username = "papa";
+            String password = "smurf";
+            UserLogin userlogin = new UserLogin(username, password);
+            Console.WriteLine("Trying a good login: " + userlogin.LogIn());
+            userlogin.LogOut();
+
+            password = "woops";
+            userlogin = new UserLogin(username, password);
+            Console.WriteLine("Trying a bad login: " + userlogin.LogIn());
+            userlogin.LogOut();
+
             
 
             Console.Read();
