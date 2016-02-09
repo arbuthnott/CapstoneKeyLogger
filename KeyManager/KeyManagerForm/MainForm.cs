@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
+using KeyManagerData;
 
 namespace KeyManagerForm
 {
@@ -20,7 +22,12 @@ namespace KeyManagerForm
         {
             InitializeComponent();
             if (admin)
+            {
                 isAdmin = true;
+                // the following function uses stop-gap sql, and should be removed
+                // once some OOP ways to do it are available.
+                runTemporaryKeysetCode();
+            }
 
             if (admin)
                 lblAdmin.Text = "Hello, Administrator";
@@ -55,6 +62,78 @@ namespace KeyManagerForm
             {
                 loginForm.Close();
             }
+        }
+
+        /*********************************************
+        * KEYSET TAB STUFF
+        *********************************************/
+
+        private void runTemporaryKeysetCode()
+        {
+            groupBoxKeysetManage.Enabled = false;
+
+            // populate the list of keysets.
+            SQLiteConnection conn = DbSetupManager.GetConnection();
+            String sql = "SELECT Name FROM keyring";
+            SQLiteCommand command = new SQLiteCommand(sql, conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                listBoxKeysets.Items.Add(reader.GetString(0));
+            }
+        }
+
+        private void listBoxKeysets_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // display details of selected keyset for management.
+            // may need to refactor to use OOP Classes.
+
+            // check if discarding changes
+            if (buttonSaveKeysetChanges.Enabled)
+            {
+                DialogResult confirmResult = MessageBox.Show("Do you want to save changes to this keyset?", "Save Changes?", MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // save the changes before proceding!
+                }
+            }
+            groupBoxKeysetManage.Enabled = true;
+            buttonSaveKeysetChanges.Enabled = false;
+            labelKeysetTitle.Text = (String)listBoxKeysets.SelectedItem;
+            // still need to list the keys in the set, and unassigned keys.
+        }
+
+        private void buttonCreateKeyset_Click(object sender, EventArgs e)
+        {
+            // use a dialog to create a new keyset?
+        }
+
+        private void buttonKeysetEdit_Click(object sender, EventArgs e)
+        {
+            // open a dialog to change the name or other details (owner?)
+        }
+
+        private void buttonAddKeysetKey_Click(object sender, EventArgs e)
+        {
+            // move the list items.
+            if (listBoxKeysNotInKeyset.SelectedIndex != -1)
+            {
+                buttonSaveKeysetChanges.Enabled = true;
+            }
+        }
+
+        private void buttonRemoveKeysetKey_Click(object sender, EventArgs e)
+        {
+            // move the list items.
+            if (listBoxKeysInKeyset.SelectedIndex != -1)
+            {
+                buttonSaveKeysetChanges.Enabled = true;
+            }
+        }
+
+        private void buttonSaveKeysetChanges_Click(object sender, EventArgs e)
+        {
+            // apply new key assignments to the keyset.
         }
     }
 }
