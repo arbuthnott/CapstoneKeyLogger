@@ -45,23 +45,31 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tabPageKeysets = new System.Windows.Forms.TabPage();
             this.panelKeyset = new System.Windows.Forms.Panel();
-            this.tabPageSearch = new System.Windows.Forms.TabPage();
-            this.panelSearch = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelKeysetChoice = new System.Windows.Forms.Label();
-            this.buttonCreateKeyset = new System.Windows.Forms.Button();
-            this.listBoxKeysets = new System.Windows.Forms.ListBox();
             this.groupBoxKeysetManage = new System.Windows.Forms.GroupBox();
-            this.labelKeysetTitle = new System.Windows.Forms.Label();
-            this.buttonKeysetEdit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.listBoxKeysInKeyset = new System.Windows.Forms.ListBox();
-            this.buttonSaveKeysetChanges = new System.Windows.Forms.Button();
+            this.buttonAddKeysetKey = new System.Windows.Forms.Button();
+            this.buttonRemoveKeysetKey = new System.Windows.Forms.Button();
             this.listBoxKeysNotInKeyset = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonRemoveKeysetKey = new System.Windows.Forms.Button();
-            this.buttonAddKeysetKey = new System.Windows.Forms.Button();
+            this.buttonSaveKeysetChanges = new System.Windows.Forms.Button();
+            this.listBoxKeysInKeyset = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonKeysetEdit = new System.Windows.Forms.Button();
+            this.labelKeysetTitle = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBoxKeysets = new System.Windows.Forms.ListBox();
+            this.buttonCreateKeyset = new System.Windows.Forms.Button();
+            this.labelKeysetChoice = new System.Windows.Forms.Label();
+            this.tabPageLookup = new System.Windows.Forms.TabPage();
+            this.panelSearch = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.groupBoxLookupSource = new System.Windows.Forms.GroupBox();
+            this.groupBoxLookupResults = new System.Windows.Forms.GroupBox();
+            this.comboBoxDoorLookup = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBoxKeytypeLookup = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBoxKeyserialLookup = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageFloorplans.SuspendLayout();
@@ -71,10 +79,12 @@
             this.panelCheckout.SuspendLayout();
             this.tabPageKeysets.SuspendLayout();
             this.panelKeyset.SuspendLayout();
-            this.tabPageSearch.SuspendLayout();
-            this.panelSearch.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBoxKeysetManage.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabPageLookup.SuspendLayout();
+            this.panelSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.groupBoxLookupSource.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -133,7 +143,7 @@
             this.tabControl.Controls.Add(this.tabPageFloorplans);
             this.tabControl.Controls.Add(this.tabPageCheckout);
             this.tabControl.Controls.Add(this.tabPageKeysets);
-            this.tabControl.Controls.Add(this.tabPageSearch);
+            this.tabControl.Controls.Add(this.tabPageLookup);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 24);
             this.tabControl.Name = "tabControl";
@@ -230,76 +240,6 @@
             this.panelKeyset.Size = new System.Drawing.Size(777, 439);
             this.panelKeyset.TabIndex = 0;
             // 
-            // tabPageSearch
-            // 
-            this.tabPageSearch.Controls.Add(this.panelSearch);
-            this.tabPageSearch.Location = new System.Drawing.Point(4, 22);
-            this.tabPageSearch.Name = "tabPageSearch";
-            this.tabPageSearch.Size = new System.Drawing.Size(777, 439);
-            this.tabPageSearch.TabIndex = 3;
-            this.tabPageSearch.Text = "Search";
-            this.tabPageSearch.UseVisualStyleBackColor = true;
-            // 
-            // panelSearch
-            // 
-            this.panelSearch.Controls.Add(this.label2);
-            this.panelSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSearch.Location = new System.Drawing.Point(0, 0);
-            this.panelSearch.Name = "panelSearch";
-            this.panelSearch.Size = new System.Drawing.Size(777, 439);
-            this.panelSearch.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(138, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Search stuff here!";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.listBoxKeysets);
-            this.groupBox1.Controls.Add(this.buttonCreateKeyset);
-            this.groupBox1.Controls.Add(this.labelKeysetChoice);
-            this.groupBox1.Location = new System.Drawing.Point(8, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(318, 428);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Keysets";
-            // 
-            // labelKeysetChoice
-            // 
-            this.labelKeysetChoice.AutoSize = true;
-            this.labelKeysetChoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKeysetChoice.Location = new System.Drawing.Point(6, 20);
-            this.labelKeysetChoice.Name = "labelKeysetChoice";
-            this.labelKeysetChoice.Size = new System.Drawing.Size(152, 24);
-            this.labelKeysetChoice.TabIndex = 0;
-            this.labelKeysetChoice.Text = "Choose a Keyset";
-            // 
-            // buttonCreateKeyset
-            // 
-            this.buttonCreateKeyset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCreateKeyset.Location = new System.Drawing.Point(237, 23);
-            this.buttonCreateKeyset.Name = "buttonCreateKeyset";
-            this.buttonCreateKeyset.Size = new System.Drawing.Size(75, 23);
-            this.buttonCreateKeyset.TabIndex = 1;
-            this.buttonCreateKeyset.Text = "New Keyset";
-            this.buttonCreateKeyset.UseVisualStyleBackColor = true;
-            this.buttonCreateKeyset.Click += new System.EventHandler(this.buttonCreateKeyset_Click);
-            // 
-            // listBoxKeysets
-            // 
-            this.listBoxKeysets.FormattingEnabled = true;
-            this.listBoxKeysets.Location = new System.Drawing.Point(10, 57);
-            this.listBoxKeysets.Name = "listBoxKeysets";
-            this.listBoxKeysets.Size = new System.Drawing.Size(302, 355);
-            this.listBoxKeysets.TabIndex = 2;
-            this.listBoxKeysets.SelectedIndexChanged += new System.EventHandler(this.listBoxKeysets_SelectedIndexChanged);
-            // 
             // groupBoxKeysetManage
             // 
             this.groupBoxKeysetManage.Controls.Add(this.buttonAddKeysetKey);
@@ -318,55 +258,25 @@
             this.groupBoxKeysetManage.TabStop = false;
             this.groupBoxKeysetManage.Text = "Keys in Keyset";
             // 
-            // labelKeysetTitle
+            // buttonAddKeysetKey
             // 
-            this.labelKeysetTitle.AutoSize = true;
-            this.labelKeysetTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKeysetTitle.Location = new System.Drawing.Point(6, 20);
-            this.labelKeysetTitle.Name = "labelKeysetTitle";
-            this.labelKeysetTitle.Size = new System.Drawing.Size(122, 24);
-            this.labelKeysetTitle.TabIndex = 1;
-            this.labelKeysetTitle.Text = "Keyset Name";
+            this.buttonAddKeysetKey.Location = new System.Drawing.Point(224, 209);
+            this.buttonAddKeysetKey.Name = "buttonAddKeysetKey";
+            this.buttonAddKeysetKey.Size = new System.Drawing.Size(89, 23);
+            this.buttonAddKeysetKey.TabIndex = 9;
+            this.buttonAddKeysetKey.Text = "Add Key";
+            this.buttonAddKeysetKey.UseVisualStyleBackColor = true;
+            this.buttonAddKeysetKey.Click += new System.EventHandler(this.buttonAddKeysetKey_Click);
             // 
-            // buttonKeysetEdit
+            // buttonRemoveKeysetKey
             // 
-            this.buttonKeysetEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonKeysetEdit.Location = new System.Drawing.Point(295, 23);
-            this.buttonKeysetEdit.Name = "buttonKeysetEdit";
-            this.buttonKeysetEdit.Size = new System.Drawing.Size(123, 23);
-            this.buttonKeysetEdit.TabIndex = 2;
-            this.buttonKeysetEdit.Text = "Edit Name / Details";
-            this.buttonKeysetEdit.UseVisualStyleBackColor = true;
-            this.buttonKeysetEdit.Click += new System.EventHandler(this.buttonKeysetEdit_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 57);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Keys currently in set:";
-            // 
-            // listBoxKeysInKeyset
-            // 
-            this.listBoxKeysInKeyset.FormattingEnabled = true;
-            this.listBoxKeysInKeyset.Location = new System.Drawing.Point(10, 73);
-            this.listBoxKeysInKeyset.Name = "listBoxKeysInKeyset";
-            this.listBoxKeysInKeyset.Size = new System.Drawing.Size(408, 108);
-            this.listBoxKeysInKeyset.TabIndex = 4;
-            // 
-            // buttonSaveKeysetChanges
-            // 
-            this.buttonSaveKeysetChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSaveKeysetChanges.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveKeysetChanges.Location = new System.Drawing.Point(286, 384);
-            this.buttonSaveKeysetChanges.Name = "buttonSaveKeysetChanges";
-            this.buttonSaveKeysetChanges.Size = new System.Drawing.Size(132, 28);
-            this.buttonSaveKeysetChanges.TabIndex = 5;
-            this.buttonSaveKeysetChanges.Text = "Save Changes";
-            this.buttonSaveKeysetChanges.UseVisualStyleBackColor = true;
-            this.buttonSaveKeysetChanges.Click += new System.EventHandler(this.buttonSaveKeysetChanges_Click);
+            this.buttonRemoveKeysetKey.Location = new System.Drawing.Point(329, 209);
+            this.buttonRemoveKeysetKey.Name = "buttonRemoveKeysetKey";
+            this.buttonRemoveKeysetKey.Size = new System.Drawing.Size(89, 23);
+            this.buttonRemoveKeysetKey.TabIndex = 8;
+            this.buttonRemoveKeysetKey.Text = "Remove Key";
+            this.buttonRemoveKeysetKey.UseVisualStyleBackColor = true;
+            this.buttonRemoveKeysetKey.Click += new System.EventHandler(this.buttonRemoveKeysetKey_Click);
             // 
             // listBoxKeysNotInKeyset
             // 
@@ -385,25 +295,203 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Available Keys:";
             // 
-            // buttonRemoveKeysetKey
+            // buttonSaveKeysetChanges
             // 
-            this.buttonRemoveKeysetKey.Location = new System.Drawing.Point(329, 209);
-            this.buttonRemoveKeysetKey.Name = "buttonRemoveKeysetKey";
-            this.buttonRemoveKeysetKey.Size = new System.Drawing.Size(89, 23);
-            this.buttonRemoveKeysetKey.TabIndex = 8;
-            this.buttonRemoveKeysetKey.Text = "Remove Key";
-            this.buttonRemoveKeysetKey.UseVisualStyleBackColor = true;
-            this.buttonRemoveKeysetKey.Click += new System.EventHandler(this.buttonRemoveKeysetKey_Click);
+            this.buttonSaveKeysetChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveKeysetChanges.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveKeysetChanges.Location = new System.Drawing.Point(286, 384);
+            this.buttonSaveKeysetChanges.Name = "buttonSaveKeysetChanges";
+            this.buttonSaveKeysetChanges.Size = new System.Drawing.Size(132, 28);
+            this.buttonSaveKeysetChanges.TabIndex = 5;
+            this.buttonSaveKeysetChanges.Text = "Save Changes";
+            this.buttonSaveKeysetChanges.UseVisualStyleBackColor = true;
+            this.buttonSaveKeysetChanges.Click += new System.EventHandler(this.buttonSaveKeysetChanges_Click);
             // 
-            // buttonAddKeysetKey
+            // listBoxKeysInKeyset
             // 
-            this.buttonAddKeysetKey.Location = new System.Drawing.Point(224, 209);
-            this.buttonAddKeysetKey.Name = "buttonAddKeysetKey";
-            this.buttonAddKeysetKey.Size = new System.Drawing.Size(89, 23);
-            this.buttonAddKeysetKey.TabIndex = 9;
-            this.buttonAddKeysetKey.Text = "Add Key";
-            this.buttonAddKeysetKey.UseVisualStyleBackColor = true;
-            this.buttonAddKeysetKey.Click += new System.EventHandler(this.buttonAddKeysetKey_Click);
+            this.listBoxKeysInKeyset.FormattingEnabled = true;
+            this.listBoxKeysInKeyset.Location = new System.Drawing.Point(10, 73);
+            this.listBoxKeysInKeyset.Name = "listBoxKeysInKeyset";
+            this.listBoxKeysInKeyset.Size = new System.Drawing.Size(408, 108);
+            this.listBoxKeysInKeyset.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 57);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Keys currently in set:";
+            // 
+            // buttonKeysetEdit
+            // 
+            this.buttonKeysetEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonKeysetEdit.Location = new System.Drawing.Point(295, 23);
+            this.buttonKeysetEdit.Name = "buttonKeysetEdit";
+            this.buttonKeysetEdit.Size = new System.Drawing.Size(123, 23);
+            this.buttonKeysetEdit.TabIndex = 2;
+            this.buttonKeysetEdit.Text = "Edit Name / Details";
+            this.buttonKeysetEdit.UseVisualStyleBackColor = true;
+            this.buttonKeysetEdit.Click += new System.EventHandler(this.buttonKeysetEdit_Click);
+            // 
+            // labelKeysetTitle
+            // 
+            this.labelKeysetTitle.AutoSize = true;
+            this.labelKeysetTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKeysetTitle.Location = new System.Drawing.Point(6, 20);
+            this.labelKeysetTitle.Name = "labelKeysetTitle";
+            this.labelKeysetTitle.Size = new System.Drawing.Size(122, 24);
+            this.labelKeysetTitle.TabIndex = 1;
+            this.labelKeysetTitle.Text = "Keyset Name";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.listBoxKeysets);
+            this.groupBox1.Controls.Add(this.buttonCreateKeyset);
+            this.groupBox1.Controls.Add(this.labelKeysetChoice);
+            this.groupBox1.Location = new System.Drawing.Point(8, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(318, 428);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Keysets";
+            // 
+            // listBoxKeysets
+            // 
+            this.listBoxKeysets.FormattingEnabled = true;
+            this.listBoxKeysets.Location = new System.Drawing.Point(10, 57);
+            this.listBoxKeysets.Name = "listBoxKeysets";
+            this.listBoxKeysets.Size = new System.Drawing.Size(302, 355);
+            this.listBoxKeysets.TabIndex = 2;
+            this.listBoxKeysets.SelectedIndexChanged += new System.EventHandler(this.listBoxKeysets_SelectedIndexChanged);
+            // 
+            // buttonCreateKeyset
+            // 
+            this.buttonCreateKeyset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCreateKeyset.Location = new System.Drawing.Point(237, 23);
+            this.buttonCreateKeyset.Name = "buttonCreateKeyset";
+            this.buttonCreateKeyset.Size = new System.Drawing.Size(75, 23);
+            this.buttonCreateKeyset.TabIndex = 1;
+            this.buttonCreateKeyset.Text = "New Keyset";
+            this.buttonCreateKeyset.UseVisualStyleBackColor = true;
+            this.buttonCreateKeyset.Click += new System.EventHandler(this.buttonCreateKeyset_Click);
+            // 
+            // labelKeysetChoice
+            // 
+            this.labelKeysetChoice.AutoSize = true;
+            this.labelKeysetChoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKeysetChoice.Location = new System.Drawing.Point(6, 20);
+            this.labelKeysetChoice.Name = "labelKeysetChoice";
+            this.labelKeysetChoice.Size = new System.Drawing.Size(152, 24);
+            this.labelKeysetChoice.TabIndex = 0;
+            this.labelKeysetChoice.Text = "Choose a Keyset";
+            // 
+            // tabPageLookup
+            // 
+            this.tabPageLookup.Controls.Add(this.panelSearch);
+            this.tabPageLookup.Location = new System.Drawing.Point(4, 22);
+            this.tabPageLookup.Name = "tabPageLookup";
+            this.tabPageLookup.Size = new System.Drawing.Size(777, 439);
+            this.tabPageLookup.TabIndex = 3;
+            this.tabPageLookup.Text = "Lookup";
+            this.tabPageLookup.UseVisualStyleBackColor = true;
+            // 
+            // panelSearch
+            // 
+            this.panelSearch.Controls.Add(this.groupBoxLookupResults);
+            this.panelSearch.Controls.Add(this.groupBoxLookupSource);
+            this.panelSearch.Controls.Add(this.pictureBox2);
+            this.panelSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSearch.Location = new System.Drawing.Point(0, 0);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(777, 439);
+            this.panelSearch.TabIndex = 0;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.BackColor = System.Drawing.Color.Black;
+            this.pictureBox2.Location = new System.Drawing.Point(372, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(400, 200);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // groupBoxLookupSource
+            // 
+            this.groupBoxLookupSource.Controls.Add(this.label6);
+            this.groupBoxLookupSource.Controls.Add(this.comboBoxKeyserialLookup);
+            this.groupBoxLookupSource.Controls.Add(this.label5);
+            this.groupBoxLookupSource.Controls.Add(this.comboBoxKeytypeLookup);
+            this.groupBoxLookupSource.Controls.Add(this.label2);
+            this.groupBoxLookupSource.Controls.Add(this.comboBoxDoorLookup);
+            this.groupBoxLookupSource.Location = new System.Drawing.Point(8, 12);
+            this.groupBoxLookupSource.Name = "groupBoxLookupSource";
+            this.groupBoxLookupSource.Size = new System.Drawing.Size(358, 200);
+            this.groupBoxLookupSource.TabIndex = 1;
+            this.groupBoxLookupSource.TabStop = false;
+            this.groupBoxLookupSource.Text = "Choose an item to Look up";
+            // 
+            // groupBoxLookupResults
+            // 
+            this.groupBoxLookupResults.Location = new System.Drawing.Point(8, 218);
+            this.groupBoxLookupResults.Name = "groupBoxLookupResults";
+            this.groupBoxLookupResults.Size = new System.Drawing.Size(761, 213);
+            this.groupBoxLookupResults.TabIndex = 2;
+            this.groupBoxLookupResults.TabStop = false;
+            this.groupBoxLookupResults.Text = "Lookup Results";
+            // 
+            // comboBoxDoorLookup
+            // 
+            this.comboBoxDoorLookup.FormattingEnabled = true;
+            this.comboBoxDoorLookup.Location = new System.Drawing.Point(81, 38);
+            this.comboBoxDoorLookup.Name = "comboBoxDoorLookup";
+            this.comboBoxDoorLookup.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxDoorLookup.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(42, 41);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(33, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Door:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(20, 90);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Key Type:";
+            // 
+            // comboBoxKeytypeLookup
+            // 
+            this.comboBoxKeytypeLookup.FormattingEnabled = true;
+            this.comboBoxKeytypeLookup.Location = new System.Drawing.Point(81, 87);
+            this.comboBoxKeytypeLookup.Name = "comboBoxKeytypeLookup";
+            this.comboBoxKeytypeLookup.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxKeytypeLookup.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(8, 141);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(67, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Key Serial #:";
+            // 
+            // comboBoxKeyserialLookup
+            // 
+            this.comboBoxKeyserialLookup.FormattingEnabled = true;
+            this.comboBoxKeyserialLookup.Location = new System.Drawing.Point(81, 138);
+            this.comboBoxKeyserialLookup.Name = "comboBoxKeyserialLookup";
+            this.comboBoxKeyserialLookup.Size = new System.Drawing.Size(256, 21);
+            this.comboBoxKeyserialLookup.TabIndex = 4;
             // 
             // MainForm
             // 
@@ -429,13 +517,15 @@
             this.panelCheckout.PerformLayout();
             this.tabPageKeysets.ResumeLayout(false);
             this.panelKeyset.ResumeLayout(false);
-            this.tabPageSearch.ResumeLayout(false);
-            this.panelSearch.ResumeLayout(false);
-            this.panelSearch.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBoxKeysetManage.ResumeLayout(false);
             this.groupBoxKeysetManage.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tabPageLookup.ResumeLayout(false);
+            this.panelSearch.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.groupBoxLookupSource.ResumeLayout(false);
+            this.groupBoxLookupSource.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,9 +548,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPageKeysets;
         private System.Windows.Forms.Panel panelKeyset;
-        private System.Windows.Forms.TabPage tabPageSearch;
+        private System.Windows.Forms.TabPage tabPageLookup;
         private System.Windows.Forms.Panel panelSearch;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBoxKeysetManage;
         private System.Windows.Forms.Button buttonAddKeysetKey;
@@ -476,5 +565,14 @@
         private System.Windows.Forms.ListBox listBoxKeysets;
         private System.Windows.Forms.Button buttonCreateKeyset;
         private System.Windows.Forms.Label labelKeysetChoice;
+        private System.Windows.Forms.GroupBox groupBoxLookupResults;
+        private System.Windows.Forms.GroupBox groupBoxLookupSource;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox comboBoxKeyserialLookup;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBoxKeytypeLookup;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxDoorLookup;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

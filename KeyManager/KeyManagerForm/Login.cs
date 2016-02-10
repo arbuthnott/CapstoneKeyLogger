@@ -40,12 +40,17 @@ namespace KeyManagerForm
             }
         }
 
+        /// <summary>
+        /// This method is activated by the Mainform when a user is logging out.
+        /// Kills the Mainform and blanks the entered username and password.
+        /// </summary>
         public void Logout()
         {
             // unset all the data
             lblIncorrect.Visible = false;
             tbUsername.Text = "";
             tbPassword.Text = "";
+            tbUsername.Focus();
             mainForm.Close();
             mainForm = null;
             this.Show();
