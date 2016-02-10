@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using System.IO;
+using System.Security.Cryptography;
 using KeyManagerData;
 
 namespace KeyManagerClassLib
@@ -13,6 +15,8 @@ namespace KeyManagerClassLib
         private SQLiteConnection connection;//Not sure if this and the next two will work, since the references and using statments for the corresponding libraries aren't working.  
         private SQLiteCommand command;
         private SQLiteDataReader reader;
+
+        MemoryStream hashStream;
 
         private string userName;//Submitted username.
         private string password;//Submitted password.         
@@ -28,8 +32,11 @@ namespace KeyManagerClassLib
         public UserLogin(string pUserName, string pPassword)
         {
             userName = pUserName;
-            password = pPassword;
-            // replaced the placeholders in the sql.
+            SHA512 hash = new SHA512Managed();
+            //password = pPassword;
+            hashStream = new MemoryStream(Encoding.UTF8.GetBytes(pPassword));
+            password = hash.ComputeHash(hashStream).ToString();
+          // replaced the placeholders in the sql.
             sql = sql.Replace("_userName", "'" + userName + "'");
             sql = sql.Replace("_password", "'" + password + "'");
         }
