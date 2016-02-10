@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyManagerData", "KeyManage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyManagerTestConsole", "KeyManagerTestConsole\KeyManagerTestConsole.csproj", "{83F03F70-7603-461B-81F5-6D7C92CA49EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyManagerHelper", "KeyManagerHelper\KeyManagerHelper.csproj", "{7527A6F2-F6F6-4244-AEDE-A62D2E86F554}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{83F03F70-7603-461B-81F5-6D7C92CA49EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83F03F70-7603-461B-81F5-6D7C92CA49EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83F03F70-7603-461B-81F5-6D7C92CA49EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7527A6F2-F6F6-4244-AEDE-A62D2E86F554}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7527A6F2-F6F6-4244-AEDE-A62D2E86F554}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7527A6F2-F6F6-4244-AEDE-A62D2E86F554}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7527A6F2-F6F6-4244-AEDE-A62D2E86F554}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

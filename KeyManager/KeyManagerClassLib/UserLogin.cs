@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
-using System.IO;
-using System.Security.Cryptography;
+using KeyManagerHelper;
 using KeyManagerData;
 
 namespace KeyManagerClassLib
@@ -15,9 +14,7 @@ namespace KeyManagerClassLib
         private SQLiteConnection connection;//Not sure if this and the next two will work, since the references and using statments for the corresponding libraries aren't working.  
         private SQLiteCommand command;
         private SQLiteDataReader reader;
-
-        MemoryStream hashStream;
-
+        
         private string userName;//Submitted username.
         private string password;//Submitted password.         
         private string sql = "SELECT * FROM personnel WHERE Username = _userName AND Password = _password";//Query to check if there are any rows that contain both the username and password. 
@@ -31,11 +28,9 @@ namespace KeyManagerClassLib
         /// <param name="pPassword">password</param>
         public UserLogin(string pUserName, string pPassword)
         {
+            KeyManagerHelper.Hash hasher = new KeyManagerHelper.Hash();
             userName = pUserName;
-            SHA512 hash = new SHA512Managed();
-            //password = pPassword;
-            hashStream = new MemoryStream(Encoding.UTF8.GetBytes(pPassword));
-            password = hash.ComputeHash(hashStream).ToString();
+            password = hasher.getHash(pPassword);
           // replaced the placeholders in the sql.
             sql = sql.Replace("_userName", "'" + userName + "'");
             sql = sql.Replace("_password", "'" + password + "'");

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
+using KeyManagerHelper;
 
 namespace KeyManagerData
 {
@@ -190,12 +191,13 @@ namespace KeyManagerData
         public static bool PopulateSampleData()
         {
             try {
+                KeyManagerHelper.Hash hasher = new KeyManagerHelper.Hash();
                 SQLiteConnection conn = GetConnection();
                 String[] insertStatements =
                 {
                     // three personnel
-                    "INSERT INTO personnel ('Username', 'Password', 'First Name', 'Last Name', 'IsAdministrator') VALUES ('papa', 'smurf', 'Papa', 'Smurf', 1)", // admin user
-                    "INSERT INTO personnel ('Username', 'Password', 'First Name', 'Last Name', 'IsAdministrator') VALUES ('brainy', 'smurf', 'Brainy', 'Smurf', 0)", // normal user
+                    "INSERT INTO personnel ('Username', 'Password', 'First Name', 'Last Name', 'IsAdministrator') VALUES ('papa', '" + hasher.getHash("smurf") + "', 'Papa', 'Smurf', 1)", // admin user
+                    "INSERT INTO personnel ('Username', 'Password', 'First Name', 'Last Name', 'IsAdministrator') VALUES ('brainy', '" + hasher.getHash("smurf") + "', 'Brainy', 'Smurf', 0)", // normal user
                     "INSERT INTO personnel ('First Name', 'Last Name', 'IsAdministrator') VALUES ('Handy', 'Smurf', 0)", // non-user
                     // 7 locks, only have ID
                     "INSERT INTO lock DEFAULT VALUES",
