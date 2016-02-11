@@ -12,10 +12,9 @@ namespace KeyManagerClassLib
         int id;
         string name;
 
-        /*
-        SUGGESTIONED PROPERTIES:
+        // list property
         List<Key> keys; // keys in this keyring
-        */
+        
 
         //Properties
         public int Id { get; set; }

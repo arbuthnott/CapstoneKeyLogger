@@ -13,10 +13,8 @@ namespace KeyManagerClassLib
         string name;
         string image;
 
-        /*
-        SUGGESTIONED PROPERTIES:
+        // list property
         List<Door> doors; // list of doors in this group/location
-        */
 
         //Properties
         public int Id { get; set; }
@@ -37,6 +35,15 @@ namespace KeyManagerClassLib
             id = pId;
             name = pName;
             image = pImage;
+        }
+
+        public void ConnectToDoor(Door door)
+        {
+            if (doors == null)
+            {
+                doors = new List<Door>();
+            }
+            doors.Add(door);
         }
     }
 }

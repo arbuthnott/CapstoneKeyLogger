@@ -13,11 +13,10 @@ namespace KeyManagerClassLib
         string name;
         int permitLevel;
 
-        /*
-        SUGGESTIONED PROPERTIES:
+        // list properties
         List<Door> doors; // doors this keytype can open
         List<Key> keys; // list of keys of this type (can also use to tell how many of this type)
-        */
+        
 
         //Properties
         public int Id { get; set; }
@@ -38,6 +37,24 @@ namespace KeyManagerClassLib
             id = 0;
             name = "Name";
             permitLevel = 0;
+        }
+
+        public void ConnectToDoor(Door door)
+        {
+            if (doors == null)
+            {
+                doors = new List<Door>();
+            }
+            doors.Add(door);
+        }
+
+        public void ConnectToKey(Key key)
+        {
+            if (keys == null)
+            {
+                keys = new List<Key>();
+            }
+            keys.Add(key);
         }
     }
 }

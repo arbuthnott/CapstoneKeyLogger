@@ -36,12 +36,10 @@ namespace KeyManagerClassLib
         }
 
         //Constructor
-        public Key(int pId, string pSerial, KeyType pKeyType, KeyRing pKeyRing, bool pBroken, bool pMissing)
+        public Key(int pId, string pSerial, bool pBroken, bool pMissing)
         {
             id = pId;
             serial = pSerial;
-            keyType = pKeyType;
-            keyRing = pKeyRing;
             broken = pBroken;
             missing = pMissing;
         }

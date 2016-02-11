@@ -11,14 +11,12 @@ namespace KeyManagerClassLib
         //Members
         private int id;
         private string roomNumber;
-        private Lock doorLock;
+        private int lockId;
         private string doorImage;
-
-        /*
-        SUGGESTED PROPERTIES
+        
+        // list property
         List<KeyType> keytypes; // of keytypes that can open this door
-        */
-
+        
         //Properties
         public int Id { get; set; }
         public string RoomNumber { get; set; }
@@ -30,17 +28,26 @@ namespace KeyManagerClassLib
         {
             id = 0;
             roomNumber = "Room";
-            doorLock = new Lock();
+            lockId = -1;
             doorImage = "Image";
         }
 
         //Constructor
-        public Door(int pId, string pRoomNumber, Lock pDoorLock, string pDoorImage)
+        public Door(int pId, string pRoomNumber, int pLockId, string pDoorImage)
         {
             id = pId;
             roomNumber = pRoomNumber;
-            doorLock = pDoorLock;
+            lockId = pLockId;
             doorImage = pDoorImage;
+        }
+
+        public void ConnectKeyType(KeyType type)
+        {
+            if (keytypes == null)
+            {
+                keytypes = new List<KeyType>();
+            }
+            keytypes.Add(type);
         }
     }
 }
