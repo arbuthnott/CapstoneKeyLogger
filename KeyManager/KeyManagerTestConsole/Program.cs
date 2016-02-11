@@ -15,18 +15,10 @@ namespace KeyManagerTestConsole
         {
             //RunTestDB(); // creates and reads from a stubbed, sample db
 
-            String username = "papa";
-            String password = "smurf";
-            UserLogin userlogin = new UserLogin(username, password);
-            Console.WriteLine("Trying a good login: " + userlogin.LogIn());
-            userlogin.LogOut();
-
-            password = "woops";
-            userlogin = new UserLogin(username, password);
-            Console.WriteLine("Trying a bad login: " + userlogin.LogIn());
-            userlogin.LogOut();
-
-            
+            bool refresh = DbSetupManager.RefreshDatabase();
+            Console.WriteLine("Refreshing database: " + refresh);
+            bool populate = DbSetupManager.PopulateSampleData();
+            Console.WriteLine("Populating: " + populate);
 
             Console.Read();
             
