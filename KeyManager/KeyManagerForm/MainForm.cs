@@ -135,5 +135,24 @@ namespace KeyManagerForm
         {
             // apply new key assignments to the keyset.
         }
+
+        /*********************************************
+        * KEYSET TAB STUFF
+        *********************************************/
+
+        private void comboBoxDoorLookup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // lookup the door data and populate the lists.
+        }
+
+        private void comboBoxKeytypeLookup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // lookup the keytype data and populate the lists.
+        }
+
+        private void comboBoxKeyserialLookup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // lookup the key data and populate the lists.
+        }
     }
 }
