@@ -9,16 +9,16 @@ namespace KeyManagerClassLib
     public class Checkout
     {
         //Members
-        private int id;
-        private Personnel person;
-        private Key key;
-        private KeyRing keyRing;
-        private bool isReturned;
-        private DateTime date;
+        //private int id;
+        //private Personnel person;
+        //private Key key;
+        //private KeyRing keyRing;
+        //private bool isReturned;
+        //private DateTime date;
 
         //Properties
         public int Id { get; set; }
-        public Personnel MyProperty { get; set; }
+        public Personnel Person { get; set; }
         public Key Key { get; set; }
         public KeyRing KeyRing { get; set; }
         public bool IsReturned { get; set; }
@@ -27,23 +27,23 @@ namespace KeyManagerClassLib
         //Default Constructor
         public Checkout()
         {
-            id = 0;
-            person = new Personnel();
-            key = new Key();
-            keyRing = new KeyRing();
-            isReturned = false;
-            date = DateTime.Now;
+            Id = 0;
+            Person = new Personnel();
+            Key = new Key();
+            KeyRing = new KeyRing();
+            IsReturned = false;
+            Date = DateTime.Now;
         }
 
         //Constructor
         public Checkout(int pId, Personnel pPerson, Key pKey, KeyRing pKeyRing, DateTime pDate)
         {
-            id = pId;
-            person = pPerson;
-            key = pKey;
-            keyRing = pKeyRing;
-            isReturned = false;
-            date = pDate;
+            Id = pId;
+            Person = pPerson;
+            Key = pKey;
+            KeyRing = pKeyRing;
+            IsReturned = false;
+            Date = pDate;
         }
     }
 }

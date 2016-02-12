@@ -9,9 +9,9 @@ namespace KeyManagerClassLib
     public class Location
     {
         //Members
-        int id;
-        string name;
-        string image;
+        //int id;
+        //string name;
+        //string image;
 
         // list property
         List<Door> doors; // list of doors in this group/location
@@ -24,17 +24,17 @@ namespace KeyManagerClassLib
         //Default constructor
         public Location()
         {
-            id = 0;
-            name = "Name";
-            image = "Image";
+            Id = 0;
+            Name = "Name";
+            Image = "Image";
         }
 
         //Constructor
         public Location(int pId, string pName, string pImage)
         {
-            id = pId;
-            name = pName;
-            image = pImage;
+            Id = pId;
+            Name = pName;
+            Image = pImage;
         }
 
         public void ConnectToDoor(Door door)

@@ -9,9 +9,9 @@ namespace KeyManagerClassLib
     public class KeyType
     {
         //Members
-        int id;
-        string name;
-        int permitLevel;
+        //int id;
+        //string name;
+        //int permitLevel;
 
         // list properties
         List<Door> doors; // doors this keytype can open
@@ -26,17 +26,17 @@ namespace KeyManagerClassLib
         //Default constructor
         public KeyType()
         {
-            id = 0;
-            name = "Name";
-            permitLevel = 0;
+            Id = 0;
+            Name = "Name";
+            PermitLevel = 0;
         }
 
         //Constructor
         public KeyType(int pId, string pName, int pPermitLevel)
         {
-            id = 0;
-            name = "Name";
-            permitLevel = 0;
+            Id = pId;
+            Name = pName;
+            PermitLevel = pPermitLevel;
         }
 
         public void ConnectToDoor(Door door)

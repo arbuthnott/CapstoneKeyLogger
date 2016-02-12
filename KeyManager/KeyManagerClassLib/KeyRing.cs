@@ -9,11 +9,11 @@ namespace KeyManagerClassLib
     public class KeyRing
     {
         //Members
-        int id;
-        string name;
+        //int id;
+        //string name;
 
         // list property
-        List<Key> keys; // keys in this keyring
+        public List<Key> keys; // keys in this keyring
         
 
         //Properties
@@ -23,15 +23,24 @@ namespace KeyManagerClassLib
         //Default constructor
         public KeyRing()
         {
-            id = 0;
-            name = "Name";
+            Id = 0;
+            Name = "Name";
         }
 
         //Constructor
         public KeyRing(int pId, string pName)
         {
-            id = pId;
-            name = pName;
+            Id = pId;
+            Name = pName;
+        }
+
+        public void AddKey(Key key)
+        {
+            if (keys == null)
+            {
+                keys = new List<Key>();
+            }
+            keys.Add(key);
         }
     }
 }
