@@ -23,12 +23,12 @@ namespace KeyManagerForm
         public MainForm(Login lgnForm, bool admin)
         {
             InitializeComponent();
+            objects = new ObjectHolder();
             if (admin)
             {
                 isAdmin = true;
-                // the following function uses stop-gap sql, and should be removed
-                // once some OOP ways to do it are available.
-                runTemporaryKeysetCode();
+                
+                initializeKeySetTab();
             }
 
             if (admin)
@@ -39,8 +39,6 @@ namespace KeyManagerForm
                 tabControl.TabPages.Remove(tabPageKeysets);
             }
             this.loginForm = lgnForm;
-
-            objects = new ObjectHolder();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,6 +69,15 @@ namespace KeyManagerForm
         /*********************************************
         * KEYSET TAB STUFF
         *********************************************/
+        
+        private void initializeKeySetTab()
+        {
+            groupBoxKeysetManage.Enabled = false;
+            foreach (KeyRing ring in objects.keyrings)
+            {
+                listBoxKeysets.Items.Add(ring.Name);
+            }
+        }
 
         private void runTemporaryKeysetCode()
         {
@@ -141,7 +148,7 @@ namespace KeyManagerForm
         }
 
         /*********************************************
-        * KEYSET TAB STUFF
+        * LOOKUP TAB STUFF
         *********************************************/
 
         private void comboBoxDoorLookup_SelectedIndexChanged(object sender, EventArgs e)

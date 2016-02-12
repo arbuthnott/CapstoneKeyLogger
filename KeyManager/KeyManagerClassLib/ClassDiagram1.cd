@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="KeyManagerClassLib.Checkout" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACACAAAAEAAAQAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Checkout.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.Door" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAACAAAAAAAAAAAAAAACIAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Door.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.DoorLocation" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACACAABAAgAAQAQAIAAEACQAAAAMAAAACAAAAAAgA=</HashCode>
+      <FileName>DoorLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.Key" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAIAEAAAAAAAAABAAAABAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Key.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="KeyRing" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="KeyManagerClassLib.KeyRing" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAIAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KeyRing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.KeyType" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAAAAIAAAAAIAAAAQAAAAAAAkAAAAAAAAAAAA=</HashCode>
+      <FileName>KeyType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.Location" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAAAAAAAAAAAAAAAQAAAAAABEAAAAAAAAAAAA=</HashCode>
+      <FileName>Location.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.Lock" Collapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Lock.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.ObjectHolder" Collapsed="true">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAACgQEAABIBAEAIAACIAECBEAAAAEAAQAEAAAQCAQ=</HashCode>
+      <FileName>ObjectHolder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.Personnel" Collapsed="true">
+    <Position X="4.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAAAAAAAAAAIAAAAAACAAAAAACAQAAAAAAAAg=</HashCode>
+      <FileName>Personnel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="KeyManagerClassLib.UserLogin" Collapsed="true">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAEAAgABAEAACAQAABgCAQAAAgEQAAA=</HashCode>
+      <FileName>UserLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
