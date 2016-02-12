@@ -8,7 +8,7 @@ using KeyManagerData;
 
 namespace KeyManagerClassLib
 {
-    class ObjectHolder
+    public class ObjectHolder
     {
         public List<Door> doors = new List<Door>();
         public List<Key> keys = new List<Key>();
@@ -36,31 +36,31 @@ namespace KeyManagerClassLib
 
         private void loadPersonnel(SQLiteConnection conn)
         {
-            SQLiteCommand command = new SQLiteCommand("SELECT 'ID', 'Userame', 'Password', 'First Name', 'Last Name', 'isAdministrator', 'PermitLevel' FROM personnel", conn);
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Username, Password, \"First Name\", \"Last Name\", isAdministrator, PermitLevel FROM personnel", conn);
             SQLiteDataReader reader = command.ExecuteReader();
             Personnel per;
             while (reader.Read())
             {
-                per = new Personnel(reader.GetInt16(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetBoolean(5), reader.GetInt16(6));
+                per = new Personnel(reader.GetInt16(0), reader.IsDBNull(1) ? null : reader.GetString(1), reader.IsDBNull(2) ? null : reader.GetString(2), reader.GetString(3), reader.GetString(4), reader.GetBoolean(5), reader.GetInt16(6));
                 personnel.Add(per);
             }
         }
 
         private void loadLocations(SQLiteConnection conn)
         {
-            SQLiteCommand command = new SQLiteCommand("SELECT 'ID', 'Name', 'image' FROM keyring", conn);
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Name, image FROM location", conn);
             SQLiteDataReader reader = command.ExecuteReader();
             Location loc;
             while (reader.Read())
             {
-                loc = new Location(reader.GetInt16(0), reader.GetString(1), reader.GetString(2));
+                loc = new Location(reader.GetInt16(0), reader.GetString(1), reader.IsDBNull(2) ? null : reader.GetString(2));
                 locations.Add(loc);
             }
         }
 
         private void loadKeyTypes(SQLiteConnection conn)
         {
-            SQLiteCommand command = new SQLiteCommand("SELECT 'ID', 'Name', 'PermitLevel' FROM keytype", conn);
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Name, PermitLevel FROM keytype", conn);
             SQLiteDataReader reader = command.ExecuteReader();
             KeyType type;
             while (reader.Read())
@@ -72,7 +72,7 @@ namespace KeyManagerClassLib
 
         private void loadKeyrings(SQLiteConnection conn)
         {
-            SQLiteCommand command = new SQLiteCommand("SELECT 'ID', 'Name' FROM keyring", conn);
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Name FROM keyring", conn);
             SQLiteDataReader reader = command.ExecuteReader();
             KeyRing ring;
             while (reader.Read())
@@ -84,7 +84,7 @@ namespace KeyManagerClassLib
 
         private void loadKeys(SQLiteConnection conn)
         {
-            SQLiteCommand command = new SQLiteCommand("SELECT 'ID', 'Serial' FROM key", conn);
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Serial FROM key", conn);
             SQLiteDataReader reader = command.ExecuteReader();
             Key key;
             while (reader.Read())
@@ -96,12 +96,12 @@ namespace KeyManagerClassLib
 
         private void loadDoors(SQLiteConnection conn)
         {
-            SQLiteCommand command = new SQLiteCommand("SELECT 'ID', 'room_number', 'lock', 'door_image' FROM door", conn);
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, room_number, lock, door_image FROM door", conn);
             SQLiteDataReader reader = command.ExecuteReader();
             Door door;
             while (reader.Read())
             {
-                door = new Door(reader.GetInt16(0), reader.GetString(1), reader.GetInt16(2), reader.GetString(3));
+                door = new Door(reader.GetInt16(0), reader.GetString(1), reader.GetInt16(2), reader.IsDBNull(3) ? null :reader.GetString(3));
                 doors.Add(door);
             }
         }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using KeyManagerData;
+using KeyManagerClassLib;
 
 namespace KeyManagerForm
 {
@@ -17,6 +18,7 @@ namespace KeyManagerForm
         private bool isAdmin = false;
         private Login loginForm;
         private bool loggingOut = false;
+        private ObjectHolder objects;
 
         public MainForm(Login lgnForm, bool admin)
         {
@@ -37,6 +39,8 @@ namespace KeyManagerForm
                 tabControl.TabPages.Remove(tabPageKeysets);
             }
             this.loginForm = lgnForm;
+
+            objects = new ObjectHolder();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

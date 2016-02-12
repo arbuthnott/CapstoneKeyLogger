@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    class DoorLocation
+    public class DoorLocation
     {
         /*
         SUGGESTION: may not need this class!

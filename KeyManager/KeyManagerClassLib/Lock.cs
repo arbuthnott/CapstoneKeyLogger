@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    class Lock
+    public class Lock
     {
         /*
         SUGGESTION: may not need this class!

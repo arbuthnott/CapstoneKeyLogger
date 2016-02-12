@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    class KeyRing
+    public class KeyRing
     {
         //Members
         int id;

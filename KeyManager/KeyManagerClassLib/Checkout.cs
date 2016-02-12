@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    class Checkout
+    public class Checkout
     {
         //Members
         private int id;
