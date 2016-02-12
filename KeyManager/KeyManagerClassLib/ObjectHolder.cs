@@ -71,13 +71,13 @@ namespace KeyManagerClassLib
             Key key;
             while (reader.Read())
             {
+                key = getKeyById(reader.GetInt16(0));
+                key.KeyType = getKeyTypeById(reader.GetInt16(2));
                 if (!reader.IsDBNull(1))
                 {
                     ring = getKeyRingById(reader.GetInt16(1));
-                    key = getKeyById(reader.GetInt16(0));
                     ring.AddKey(key);
                     key.KeyRing = ring;
-                    key.KeyType = getKeyTypeById(reader.GetInt16(2));
                 }
             }
         }
@@ -95,6 +95,21 @@ namespace KeyManagerClassLib
                 door.ConnectKeyType(type);
                 type.ConnectToDoor(door);
             }
+        }
+
+        public KeyRing getKeyRingByName(string name)
+        {
+            if (keyrings != null)
+            {
+                foreach (KeyRing ring in keyrings)
+                {
+                    if (ring.Name.Equals(name))
+                    {
+                        return ring;
+                    }
+                }
+            }
+            return null;
         }
 
         public Location getLocationById(int id)

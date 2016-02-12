@@ -79,21 +79,6 @@ namespace KeyManagerForm
             }
         }
 
-        private void runTemporaryKeysetCode()
-        {
-            groupBoxKeysetManage.Enabled = false;
-
-            // populate the list of keysets.
-            SQLiteConnection conn = DbSetupManager.GetConnection();
-            String sql = "SELECT Name FROM keyring";
-            SQLiteCommand command = new SQLiteCommand(sql, conn);
-            SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                listBoxKeysets.Items.Add(reader.GetString(0));
-            }
-        }
-
         private void listBoxKeysets_SelectedIndexChanged(object sender, EventArgs e)
         {
             // display details of selected keyset for management.
@@ -111,7 +96,26 @@ namespace KeyManagerForm
             groupBoxKeysetManage.Enabled = true;
             buttonSaveKeysetChanges.Enabled = false;
             labelKeysetTitle.Text = (String)listBoxKeysets.SelectedItem;
+
             // still need to list the keys in the set, and unassigned keys.
+            listBoxKeysInKeyset.Items.Clear();
+            KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
+            String line;
+            foreach (Key key in ring.keys)
+            {
+                line = key.KeyType.Name + " - " + key.Serial;
+                listBoxKeysInKeyset.Items.Add(line);
+            }
+
+            listBoxKeysNotInKeyset.Items.Clear();
+            foreach (Key key in objects.keys)
+            {
+                line = key.KeyType.Name + " - " + key.Serial;
+                if (key.KeyRing == null)
+                {
+                    listBoxKeysNotInKeyset.Items.Add(line);
+                }
+            }
         }
 
         private void buttonCreateKeyset_Click(object sender, EventArgs e)
