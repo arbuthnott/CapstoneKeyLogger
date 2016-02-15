@@ -1,80 +1,174 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="KeyManagerClassLib.Checkout" Collapsed="true">
-    <Position X="3" Y="0.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.Checkout">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="Checkout" Hidden="true" />
+    </Members>
+    <AssociationLine Name="KeyRing" Type="KeyManagerClassLib.KeyRing" FixedToPoint="true">
+      <Path>
+        <Point X="0.875" Y="6.5" />
+        <Point X="0.875" Y="4.546" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
       <HashCode>AIACACAAAAEAAAQAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Checkout.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Key" />
+      <Property Name="KeyRing" />
+      <Property Name="Person" />
+    </ShowAsAssociation>
   </Class>
-  <Class Name="KeyManagerClassLib.Door" Collapsed="true">
-    <Position X="4.75" Y="0.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.Door">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <Members>
+      <Method Name="ConnectKeyType" Hidden="true" />
+      <Method Name="Door" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>RAACAAAAAAAAAAAAAAACIAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Door.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="keytypes" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="KeyManagerClassLib.DoorLocation" Collapsed="true">
-    <Position X="6.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACACAABAAgAAQAQAIAAEACQAAAAMAAAACAAAAAAgA=</HashCode>
-      <FileName>DoorLocation.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeyManagerClassLib.Key" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.Key">
+    <Position X="3.5" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="Key" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AAACAAAAIAEAAAAAAAAABAAAABAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Key.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="KeyRing" />
+      <Property Name="KeyType" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="KeyManagerClassLib.KeyRing" Collapsed="true">
-    <Position X="0.5" Y="2.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.KeyRing">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <Members>
+      <Method Name="AddKey" Hidden="true" />
+      <Method Name="KeyRing" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAIAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>KeyRing.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="keys" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="KeyManagerClassLib.KeyType" Collapsed="true">
-    <Position X="3" Y="1.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.KeyType">
+    <Position X="6.5" Y="3" Width="1.5" />
+    <Members>
+      <Method Name="ConnectToDoor" Hidden="true" />
+      <Method Name="ConnectToKey" Hidden="true" />
+      <Method Name="KeyType" Hidden="true" />
+    </Members>
     <TypeIdentifier>
       <HashCode>AAAGAAAAAAAIAAAAAIAAAAQAAAAAAAkAAAAAAAAAAAA=</HashCode>
       <FileName>KeyType.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="doors" />
+      <Field Name="keys" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="KeyManagerClassLib.Location" Collapsed="true">
-    <Position X="4.75" Y="1.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.Location">
+    <Position X="9.5" Y="6" Width="1.5" />
+    <Members>
+      <Method Name="ConnectToDoor" Hidden="true" />
+      <Method Name="Location" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAAGAAAAAAAAAAAAAAAAAAQAAAAAABEAAAAAAAAAAAA=</HashCode>
       <FileName>Location.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="doors" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="KeyManagerClassLib.Lock" Collapsed="true">
-    <Position X="6.5" Y="1.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.ObjectHolder">
+    <Position X="6.5" Y="6.5" Width="1.5" />
+    <Members>
+      <Method Name="connectDoors" Hidden="true" />
+      <Method Name="connectKeyRings" Hidden="true" />
+      <Method Name="connectKeyTypes" Hidden="true" />
+      <Method Name="connectLocations" Hidden="true" />
+      <Method Name="getDoorById" Hidden="true" />
+      <Method Name="getDoorByLockId" Hidden="true" />
+      <Method Name="getKeyById" Hidden="true" />
+      <Method Name="getKeyRingById" Hidden="true" />
+      <Method Name="getKeyRingByName" Hidden="true" />
+      <Method Name="getKeyTypeById" Hidden="true" />
+      <Method Name="getLocationById" Hidden="true" />
+      <Method Name="loadDoors" Hidden="true" />
+      <Method Name="loadKeyrings" Hidden="true" />
+      <Method Name="loadKeys" Hidden="true" />
+      <Method Name="loadKeyTypes" Hidden="true" />
+      <Method Name="loadLocations" Hidden="true" />
+      <Method Name="loadPersonnel" Hidden="true" />
+      <Method Name="ObjectHolder" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="keyrings" Type="KeyManagerClassLib.KeyRing" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="6.95" />
+        <Point X="5.25" Y="6.95" />
+        <Point X="5.25" Y="5.5" />
+        <Point X="2.458" Y="5.5" Type="JumpStart" />
+        <Point X="2.292" Y="5.5" Type="JumpEnd" />
+        <Point X="1.812" Y="5.5" />
+        <Point X="1.812" Y="4.546" />
+      </Path>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
-      <FileName>Lock.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="KeyManagerClassLib.ObjectHolder" Collapsed="true">
-    <Position X="3" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>EAAACgQEAABIBAEAIAACIAECBEAAAAEAAQAEAAAQCAQ=</HashCode>
+      <HashCode>EAAACgQEAEBIBAEAIAACIAECBEAAAAEAAQAEAAAQCAQ=</HashCode>
       <FileName>ObjectHolder.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="doors" />
+      <Field Name="keyrings" />
+      <Field Name="keys" />
+      <Field Name="keytypes" />
+      <Field Name="locations" />
+      <Field Name="personnel" />
+    </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="KeyManagerClassLib.Personnel" Collapsed="true">
-    <Position X="4.75" Y="2.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.Personnel">
+    <Position X="3.5" Y="5.75" Width="1.5" />
+    <Members>
+      <Method Name="Personnel" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAACAEAAAAAAAAAAAIAAAAAACAAAAAACAQAAAAAAAAg=</HashCode>
       <FileName>Personnel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="KeyManagerClassLib.UserLogin" Collapsed="true">
-    <Position X="6.5" Y="2.5" Width="1.5" />
+  <Class Name="KeyManagerClassLib.UserLogin">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <Members>
+      <Method Name="LogIn" Hidden="true" />
+      <Method Name="LogOut" Hidden="true" />
+      <Method Name="UserLogin" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>ABAAAAAAAAAAAAEAAgABAEAACAQAABgCAQAAAgEQAAA=</HashCode>
       <FileName>UserLogin.cs</FileName>
