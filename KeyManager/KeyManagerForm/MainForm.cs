@@ -174,12 +174,14 @@ namespace KeyManagerForm
         }
 
         private void comboBoxDoorLookup_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {           
             // lookup the door data and populate the lists.
             string selectedDoor = (string)comboBoxDoorLookup.SelectedItem;
             listBoxLookupKeysets.Items.Clear();
+            labelLookupResultsTitle.Text = "Results for Door: " + selectedDoor;
 
             // set key types for door
+            textBoxLookupKeysets.Text = "Keytypes that open door " + selectedDoor;
             foreach (KeyType type in objects.keytypes)
             {
                 foreach (Door door in type.doors)
@@ -192,6 +194,7 @@ namespace KeyManagerForm
             }
 
             // set keys for door
+            textBoxLookupKeys.Text = "Keys that open door " + selectedDoor;
             listBoxLookupKeys.Items.Clear();
             foreach (Door door in objects.doors)
             {
@@ -211,6 +214,7 @@ namespace KeyManagerForm
             }
 
             // set keyrings for doors
+            textBoxLookupKeyrings.Text = "Keyrings that can open " + selectedDoor;
             listBoxLookupKeyrings.Items.Clear();
             foreach (Door door in objects.doors)
             {
@@ -234,6 +238,7 @@ namespace KeyManagerForm
             }
 
             // doors related to the door
+            textBoxLookupDoors.Text = "Selected Door";
             listBoxLookupDoors.Items.Clear();
             listBoxLookupDoors.Items.Add(selectedDoor);
 
@@ -241,7 +246,58 @@ namespace KeyManagerForm
 
         private void comboBoxKeytypeLookup_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // lookup the keytype data and populate the lists.
+            // lookup the door data and populate the lists.
+            string selectedKeyType = (string)comboBoxKeytypeLookup.SelectedItem;
+            listBoxLookupKeysets.Items.Clear();
+            labelLookupResultsTitle.Text = "Results for Key Type: " + selectedKeyType;
+
+            // set key types
+            textBoxLookupKeysets.Text = "Selected Key Type";
+            listBoxLookupKeysets.Items.Add(selectedKeyType);
+
+            // keys for this keytype
+            textBoxLookupKeys.Text = "Keys that are of type " + selectedKeyType;
+            listBoxLookupKeys.Items.Clear();
+            foreach (KeyType type in objects.keytypes)
+            {
+                if (type.Name.Equals(selectedKeyType))
+                {
+                    foreach (Key key in type.keys)
+                    {
+                        listBoxLookupKeys.Items.Add(key.Serial);
+                    }
+                }
+            }
+
+            // keyrings of this type
+            textBoxLookupKeyrings.Text = "Keyrings of type " + selectedKeyType;
+            listBoxLookupKeyrings.Items.Clear();
+            foreach (KeyType type in objects.keytypes)
+            {
+                if (type.Name.Equals(selectedKeyType))
+                {
+                    foreach (Key key in type.keys)
+                    {
+                        if (key.KeyRing != null)
+                            listBoxLookupKeyrings.Items.Add(key.KeyRing.Name);
+                    }
+                }
+            }
+
+            // doors that this key type opens
+            textBoxLookupDoors.Text = "Doors that this key type opens";
+            listBoxLookupDoors.Items.Clear();
+            foreach (KeyType type in objects.keytypes)
+            {
+                if (type.Name.Equals(selectedKeyType))
+                {
+                    foreach (Door door in type.doors)
+                    {
+                        listBoxLookupDoors.Items.Add(door.RoomNumber);
+                    }
+                }
+            }
+       
         }
 
         private void comboBoxKeyserialLookup_SelectedIndexChanged(object sender, EventArgs e)
