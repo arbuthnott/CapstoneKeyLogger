@@ -303,6 +303,57 @@ namespace KeyManagerForm
         private void comboBoxKeyserialLookup_SelectedIndexChanged(object sender, EventArgs e)
         {
             // lookup the key data and populate the lists.
+            string selectedSerial = (string)comboBoxKeyserialLookup.SelectedItem;
+            listBoxLookupKeysets.Items.Clear();
+            labelLookupResultsTitle.Text = "Results for Serial #: " + selectedSerial;
+
+            // set key types for door
+            textBoxLookupKeysets.Text = "Keytypes for serial #: " + selectedSerial;
+            foreach (Key key in objects.keys)
+            {
+                if (key.Serial.Equals(selectedSerial))
+                {
+                    listBoxLookupKeysets.Items.Add(key.KeyType.Name);
+                }
+            }
+
+            // keys for this serial
+            textBoxLookupKeys.Text = "Key(s) with serial #: " + selectedSerial;
+            listBoxLookupKeys.Items.Clear();
+            foreach (Key key in objects.keys)
+            {
+                if (key.Serial.Equals(selectedSerial))
+                    listBoxLookupKeys.Items.Add(key.Serial);
+            }
+
+            // keyrings for this serial
+            textBoxLookupKeyrings.Text = "Keyrings that contain serial #: " + selectedSerial;
+            listBoxLookupKeyrings.Items.Clear();
+            foreach (KeyType type in objects.keytypes)
+            {
+                foreach (Key key in type.keys)
+                {
+                    if (key.Serial.Equals(selectedSerial))
+                        listBoxLookupKeyrings.Items.Add(type.Name);
+                }
+            }
+
+            // doors that this key opens
+            textBoxLookupDoors.Text = "Doors that this key opens";
+            listBoxLookupDoors.Items.Clear();
+            foreach (KeyType type in objects.keytypes)
+            {
+                foreach (Key key in type.keys)
+                {
+                    if (key.Serial.Equals(selectedSerial))
+                    {
+                        foreach (Door door in type.doors)
+                        {
+                            listBoxLookupDoors.Items.Add(door.RoomNumber);
+                        }
+                    }
+                }
+            }
         }
     }
 }
