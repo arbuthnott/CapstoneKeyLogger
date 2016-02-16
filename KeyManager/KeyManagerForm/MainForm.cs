@@ -29,6 +29,7 @@ namespace KeyManagerForm
                 isAdmin = true;
                 
                 initializeKeySetTab();
+                initializeLookupTab();
             }
 
             if (admin)
@@ -155,9 +156,87 @@ namespace KeyManagerForm
         * LOOKUP TAB STUFF
         *********************************************/
 
+        private void initializeLookupTab()
+        {
+            //groupBoxKeysetManage.Enabled = false;
+            foreach (Door door in objects.doors)
+            {
+                comboBoxDoorLookup.Items.Add(door.RoomNumber);                
+            }
+            foreach (KeyType type in objects.keytypes)
+            {
+                comboBoxKeytypeLookup.Items.Add(type.Name);
+            }
+            foreach (Key key in objects.keys)
+            {
+                comboBoxKeyserialLookup.Items.Add(key.Serial);
+            }
+        }
+
         private void comboBoxDoorLookup_SelectedIndexChanged(object sender, EventArgs e)
         {
             // lookup the door data and populate the lists.
+            string selectedDoor = (string)comboBoxDoorLookup.SelectedItem;
+            listBoxLookupKeysets.Items.Clear();
+
+            // set key types for door
+            foreach (KeyType type in objects.keytypes)
+            {
+                foreach (Door door in type.doors)
+                {
+                    if (door.RoomNumber.Equals(selectedDoor))
+                    {
+                        listBoxLookupKeysets.Items.Add(type.Name);
+                    }
+                }
+            }
+
+            // set keys for door
+            listBoxLookupKeys.Items.Clear();
+            foreach (Door door in objects.doors)
+            {
+                if (door.RoomNumber.Equals(selectedDoor))
+                {
+                    if (door.keytypes != null)
+                    {
+                        foreach (KeyType type in door.keytypes)
+                        {
+                            foreach (Key key in type.keys)
+                            {
+                                listBoxLookupKeys.Items.Add(key.Serial);
+                            }
+                        }
+                    } 
+                }
+            }
+
+            // set keyrings for doors
+            listBoxLookupKeyrings.Items.Clear();
+            foreach (Door door in objects.doors)
+            {
+                if (door.RoomNumber.Equals(selectedDoor))
+                {
+                    if (door.keytypes != null)
+                    {
+                        foreach (KeyType type in door.keytypes)
+                        {
+                            foreach (Key key in type.keys)
+                            {
+                                if (key.KeyRing != null)
+                                {
+                                    if (!listBoxLookupKeyrings.Items.Contains(key.KeyRing.Name))
+                                        listBoxLookupKeyrings.Items.Add(key.KeyRing.Name);
+                                }                                
+                            }
+                        }
+                    }
+                }
+            }
+
+            // doors related to the door
+            listBoxLookupDoors.Items.Clear();
+            listBoxLookupDoors.Items.Add(selectedDoor);
+
         }
 
         private void comboBoxKeytypeLookup_SelectedIndexChanged(object sender, EventArgs e)

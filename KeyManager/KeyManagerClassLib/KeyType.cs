@@ -14,8 +14,8 @@ namespace KeyManagerClassLib
         //int permitLevel;
 
         // list properties
-        List<Door> doors; // doors this keytype can open
-        List<Key> keys; // list of keys of this type (can also use to tell how many of this type)
+        public List<Door> doors; // doors this keytype can open
+        public List<Key> keys; // list of keys of this type (can also use to tell how many of this type)
         
 
         //Properties
