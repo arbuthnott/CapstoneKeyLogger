@@ -74,6 +74,7 @@ namespace KeyManagerForm
         private void initializeKeySetTab()
         {
             groupBoxKeysetManage.Enabled = false;
+            listBoxKeysets.Items.Clear();
             foreach (KeyRing ring in objects.keyrings)
             {
                 listBoxKeysets.Items.Add(ring.Name);
@@ -103,10 +104,13 @@ namespace KeyManagerForm
             listBoxKeysInKeyset.Items.Clear();
             KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
             String line;
-            foreach (Key key in ring.keys)
+            if (ring.keys != null)
             {
-                line = key.Serial + " (" + key.KeyType.Name + ")";
-                listBoxKeysInKeyset.Items.Add(line);
+                foreach (Key key in ring.keys)
+                {
+                    line = key.Serial + " (" + key.KeyType.Name + ")";
+                    listBoxKeysInKeyset.Items.Add(line);
+                }
             }
 
             // populate keys available
@@ -123,12 +127,34 @@ namespace KeyManagerForm
 
         private void buttonCreateKeyset_Click(object sender, EventArgs e)
         {
-            // use a dialog to create a new keyset?
+            // use a dialog to create a new keyset
+            KeysetDialog ksd = new KeysetDialog();
+            if (ksd.ShowDialog() == DialogResult.OK)
+            {
+                // update the OOP - for now OOP only!
+                KeyRing ring = ksd.ring;
+                objects.keyrings.Add(ring);
+                // redisplay
+                initializeKeySetTab();
+                listBoxKeysets.SelectedItem = ring.Name;
+            }
+            ksd.Close();
         }
 
         private void buttonKeysetEdit_Click(object sender, EventArgs e)
         {
-            // open a dialog to change the name or other details (owner?)
+            // open a dialog to change the name or other details
+            KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
+            KeysetDialog ksd = new KeysetDialog(ring);
+            if (ksd.ShowDialog() == DialogResult.OK)
+            {
+                // update the keyset - for now OOP only!
+                ring.Name = ksd.ring.Name;
+                // redisplay
+                initializeKeySetTab();
+                listBoxKeysets.SelectedItem = ring.Name;
+            }
+            ksd.Close();
         }
 
         private void buttonAddKeysetKey_Click(object sender, EventArgs e)
@@ -162,7 +188,8 @@ namespace KeyManagerForm
             // TEMPORARY HACK to update the OOP only.
             // later implement OOP and database changes together.
             KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
-            ring.keys.Clear();
+            if (ring.keys != null)
+                ring.keys.Clear();
             string entry;
             foreach (Key key in objects.keys)
             {
