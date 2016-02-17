@@ -92,26 +92,28 @@ namespace KeyManagerForm
                 if (confirmResult == DialogResult.Yes)
                 {
                     // save the changes before proceding!
+                    buttonSaveKeysetChanges_Click(null, null);
                 }
             }
             groupBoxKeysetManage.Enabled = true;
             buttonSaveKeysetChanges.Enabled = false;
             labelKeysetTitle.Text = (String)listBoxKeysets.SelectedItem;
 
-            // still need to list the keys in the set, and unassigned keys.
+            // populate keys in this keyring
             listBoxKeysInKeyset.Items.Clear();
             KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
             String line;
             foreach (Key key in ring.keys)
             {
-                line = key.KeyType.Name + " - " + key.Serial;
+                line = key.Serial + " (" + key.KeyType.Name + ")";
                 listBoxKeysInKeyset.Items.Add(line);
             }
 
+            // populate keys available
             listBoxKeysNotInKeyset.Items.Clear();
             foreach (Key key in objects.keys)
             {
-                line = key.KeyType.Name + " - " + key.Serial;
+                line = key.Serial + " (" + key.KeyType.Name + ")";
                 if (key.KeyRing == null)
                 {
                     listBoxKeysNotInKeyset.Items.Add(line);
@@ -134,7 +136,11 @@ namespace KeyManagerForm
             // move the list items.
             if (listBoxKeysNotInKeyset.SelectedIndex != -1)
             {
+                // update the UI - no OOP or Database changes yet.
                 buttonSaveKeysetChanges.Enabled = true;
+                string line = (string)listBoxKeysNotInKeyset.SelectedItem;
+                listBoxKeysNotInKeyset.Items.Remove(line);
+                listBoxKeysInKeyset.Items.Add(line);
             }
         }
 
@@ -143,13 +149,48 @@ namespace KeyManagerForm
             // move the list items.
             if (listBoxKeysInKeyset.SelectedIndex != -1)
             {
+                // update the UI - no OOP or Database changes yet.
                 buttonSaveKeysetChanges.Enabled = true;
+                string line = (string)listBoxKeysInKeyset.SelectedItem;
+                listBoxKeysInKeyset.Items.Remove(line);
+                listBoxKeysNotInKeyset.Items.Add(line);
             }
         }
 
         private void buttonSaveKeysetChanges_Click(object sender, EventArgs e)
         {
-            // apply new key assignments to the keyset.
+            // TEMPORARY HACK to update the OOP only.
+            // later implement OOP and database changes together.
+            KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
+            ring.keys.Clear();
+            string entry;
+            foreach (Key key in objects.keys)
+            {
+                // put keys into the set
+                for (int idx = 0; idx < listBoxKeysInKeyset.Items.Count; idx++)
+                {
+                    entry = (string)listBoxKeysInKeyset.Items[idx];
+                    if (entry.StartsWith(key.Serial))
+                    {
+                        key.KeyRing = ring;
+                        ring.AddKey(key);
+                    }
+                }
+                // ensure excluded keys not in the set
+                for (int idx = 0; idx < listBoxKeysNotInKeyset.Items.Count; idx++)
+                {
+                    entry = (string)listBoxKeysNotInKeyset.Items[idx];
+                    if (entry.StartsWith(key.Serial))
+                    {
+                        key.KeyRing = null;
+                    }
+                }
+            }
+            // END TEMPORARY HACK
+            
+            // update the ui
+            buttonSaveKeysetChanges.Enabled = false;
+            MessageBox.Show("Changes saved.");
         }
 
         /*********************************************
