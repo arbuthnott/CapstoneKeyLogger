@@ -8,8 +8,13 @@ using KeyManagerData;
 
 namespace KeyManagerClassLib
 {
+    /// <summary>
+    /// A class to reference OOP objects.  Also responsible for creating these objects from
+    /// the database.
+    /// </summary>
     public class ObjectHolder
     {
+        // object lists
         public List<Door> doors = new List<Door>();
         public List<Key> keys = new List<Key>();
         public List<KeyRing> keyrings = new List<KeyRing>();
@@ -38,64 +43,9 @@ namespace KeyManagerClassLib
             conn.Close();
         }
 
-        private void connectLocations(SQLiteConnection conn)
-        {
-            SQLiteCommand command = new SQLiteCommand("SELECT Door, Location FROM door_to_location", conn);
-            SQLiteDataReader reader = command.ExecuteReader();
-            Location loc;
-            while (reader.Read())
-            {
-                loc = getLocationById(reader.GetInt16(1));
-                loc.ConnectToDoor(getDoorById(reader.GetInt16(0)));
-            }
-        }
-
-        private void connectKeyTypes(SQLiteConnection conn)
-        {
-            // already connected to doors, just need list of keys.
-            SQLiteCommand command = new SQLiteCommand("SELECT ID, Keytype FROM key", conn);
-            SQLiteDataReader reader = command.ExecuteReader();
-            KeyType type;
-            while (reader.Read())
-            {
-                type = getKeyTypeById(reader.GetInt16(1));
-                type.ConnectToKey(getKeyById(reader.GetInt16(0)));
-            }
-        }
-
-        private void connectKeyRings(SQLiteConnection conn)
-        {
-            SQLiteCommand command = new SQLiteCommand("SELECT ID, Keyring, Keytype FROM key", conn);
-            SQLiteDataReader reader = command.ExecuteReader();
-            KeyRing ring;
-            Key key;
-            while (reader.Read())
-            {
-                key = getKeyById(reader.GetInt16(0));
-                key.KeyType = getKeyTypeById(reader.GetInt16(2));
-                if (!reader.IsDBNull(1))
-                {
-                    ring = getKeyRingById(reader.GetInt16(1));
-                    ring.AddKey(key);
-                    key.KeyRing = ring;
-                }
-            }
-        }
-
-        private void connectDoors(SQLiteConnection conn)
-        {
-            SQLiteCommand command = new SQLiteCommand("SELECT Keytype, Lock FROM keytype_to_lock", conn);
-            SQLiteDataReader reader = command.ExecuteReader();
-            Door door;
-            KeyType type;
-            while (reader.Read())
-            {
-                door = getDoorByLockId(reader.GetInt16(1));
-                type = getKeyTypeById(reader.GetInt16(0));
-                door.ConnectKeyType(type);
-                type.ConnectToDoor(door);
-            }
-        }
+        /*********************************************************
+        * HELPER FUNCTIONS to find objects by certain properties
+        *********************************************************/
 
         public KeyRing getKeyRingByName(string name)
         {
@@ -172,18 +122,19 @@ namespace KeyManagerClassLib
             return null;
         }
 
-        public Door getDoorByLockId(int id)
+        public List<Door> getDoorsByLockId(int id)
         {
-            // PROBLEM: DISCONNECT BETWEEN PRIVATE AND PUBLIC PROPERTIES OF DOOR
             if (doors != null)
             {
+                List<Door> doorsForLock = new List<Door>();
                 foreach (Door door in doors)
                 {
                     if (door.LockId == id)
                     {
-                        return door;
+                        doorsForLock.Add(door);
                     }
                 }
+                return doorsForLock;
             }
             return null;
         }
@@ -202,6 +153,10 @@ namespace KeyManagerClassLib
             }
             return null;
         }
+
+        /*******************************************************************************
+        * LOAD FUNCTIONS to load objects from database with their basic data properties
+        *******************************************************************************/
 
         private void loadPersonnel(SQLiteConnection conn)
         {
@@ -270,9 +225,79 @@ namespace KeyManagerClassLib
             Door door;
             while (reader.Read())
             {
-                door = new Door(reader.GetInt16(0), reader.GetString(1), reader.GetInt16(2), reader.IsDBNull(3) ? null :reader.GetString(3));
+                door = new Door(reader.GetInt16(0), reader.GetString(1), reader.GetInt16(2), reader.IsDBNull(3) ? null : reader.GetString(3));
                 doors.Add(door);
             }
         }
+
+        /*******************************************************************************
+        * CONNECT FUNCTIONS to populate aggregation properties or lists
+        *******************************************************************************/
+
+        private void connectLocations(SQLiteConnection conn)
+        {
+            SQLiteCommand command = new SQLiteCommand("SELECT Door, Location FROM door_to_location", conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            Location loc;
+            while (reader.Read())
+            {
+                loc = getLocationById(reader.GetInt16(1));
+                loc.ConnectToDoor(getDoorById(reader.GetInt16(0)));
+            }
+        }
+
+        private void connectKeyTypes(SQLiteConnection conn)
+        {
+            // already connected to doors, just need list of keys.
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Keytype FROM key", conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            KeyType type;
+            while (reader.Read())
+            {
+                type = getKeyTypeById(reader.GetInt16(1));
+                type.ConnectToKey(getKeyById(reader.GetInt16(0)));
+            }
+        }
+
+        private void connectKeyRings(SQLiteConnection conn)
+        {
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Keyring, Keytype FROM key", conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            KeyRing ring;
+            Key key;
+            while (reader.Read())
+            {
+                key = getKeyById(reader.GetInt16(0));
+                key.KeyType = getKeyTypeById(reader.GetInt16(2));
+                if (!reader.IsDBNull(1))
+                {
+                    ring = getKeyRingById(reader.GetInt16(1));
+                    ring.AddKey(key);
+                    key.KeyRing = ring;
+                }
+            }
+        }
+
+        private void connectDoors(SQLiteConnection conn)
+        {
+            SQLiteCommand command = new SQLiteCommand("SELECT Keytype, Lock FROM keytype_to_lock", conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            List<Door> myDoors;
+            KeyType type;
+            while (reader.Read())
+            {
+                myDoors = getDoorsByLockId(reader.GetInt16(1));
+                type = getKeyTypeById(reader.GetInt16(0));
+                foreach (Door door in myDoors)
+                {
+                    door.ConnectKeyType(type);
+                    type.ConnectToDoor(door);
+                }
+            }
+        }
+
+        
+
+        
     }
 }

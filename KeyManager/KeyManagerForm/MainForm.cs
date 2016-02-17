@@ -24,12 +24,12 @@ namespace KeyManagerForm
         {
             InitializeComponent();
             objects = new ObjectHolder();
+            initializeLookupTab();
             if (admin)
             {
                 isAdmin = true;
                 
                 initializeKeySetTab();
-                initializeLookupTab();
             }
 
             if (admin)
@@ -158,7 +158,6 @@ namespace KeyManagerForm
 
         private void initializeLookupTab()
         {
-            //groupBoxKeysetManage.Enabled = false;
             foreach (Door door in objects.doors)
             {
                 comboBoxDoorLookup.Items.Add(door.RoomNumber);                
@@ -174,7 +173,15 @@ namespace KeyManagerForm
         }
 
         private void comboBoxDoorLookup_SelectedIndexChanged(object sender, EventArgs e)
-        {           
+        {
+            if (comboBoxDoorLookup.SelectedIndex == -1)
+            {
+                return; // the box was just blanked out.
+            }
+            // blank out the other two drop-downs
+            comboBoxKeytypeLookup.SelectedIndex = -1;
+            comboBoxKeyserialLookup.SelectedIndex = -1;
+
             // lookup the door data and populate the lists.
             string selectedDoor = (string)comboBoxDoorLookup.SelectedItem;
             listBoxLookupKeysets.Items.Clear();
@@ -246,6 +253,14 @@ namespace KeyManagerForm
 
         private void comboBoxKeytypeLookup_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBoxKeytypeLookup.SelectedIndex == -1)
+            {
+                return; // the box was just blanked out.
+            }
+            // blank out the other two drop-downs
+            comboBoxDoorLookup.SelectedIndex = -1;
+            comboBoxKeyserialLookup.SelectedIndex = -1;
+
             // lookup the door data and populate the lists.
             string selectedKeyType = (string)comboBoxKeytypeLookup.SelectedItem;
             listBoxLookupKeysets.Items.Clear();
@@ -279,7 +294,8 @@ namespace KeyManagerForm
                     foreach (Key key in type.keys)
                     {
                         if (key.KeyRing != null)
-                            listBoxLookupKeyrings.Items.Add(key.KeyRing.Name);
+                            if (!listBoxLookupKeyrings.Items.Contains(key.KeyRing.Name))
+                                listBoxLookupKeyrings.Items.Add(key.KeyRing.Name);
                     }
                 }
             }
@@ -302,6 +318,14 @@ namespace KeyManagerForm
 
         private void comboBoxKeyserialLookup_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBoxKeyserialLookup.SelectedIndex == -1)
+            {
+                return; // the box was just blanked out.
+            }
+            // blank out the other two drop-downs
+            comboBoxKeytypeLookup.SelectedIndex = -1;
+            comboBoxDoorLookup.SelectedIndex = -1;
+
             // lookup the key data and populate the lists.
             string selectedSerial = (string)comboBoxKeyserialLookup.SelectedItem;
             listBoxLookupKeysets.Items.Clear();
