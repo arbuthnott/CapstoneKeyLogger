@@ -270,7 +270,7 @@ namespace KeyManagerForm
             }
 
             // keyrings of this type
-            textBoxLookupKeyrings.Text = "Keyrings of type " + selectedKeyType;
+            textBoxLookupKeyrings.Text = "Keyrings that have key type " + selectedKeyType;
             listBoxLookupKeyrings.Items.Clear();
             foreach (KeyType type in objects.keytypes)
             {
