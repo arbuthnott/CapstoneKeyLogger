@@ -187,7 +187,8 @@ namespace KeyManagerForm
         {
             // TEMPORARY HACK to update the OOP only.
             // later implement OOP and database changes together.
-            KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
+            KeyRing ring = objects.getKeyRingByName(labelKeysetTitle.Text);
+
             if (ring.keys != null)
                 ring.keys.Clear();
             string entry;
@@ -214,7 +215,7 @@ namespace KeyManagerForm
                 }
             }
             // END TEMPORARY HACK
-            
+
             // update the ui
             buttonSaveKeysetChanges.Enabled = false;
             MessageBox.Show("Changes saved.");
