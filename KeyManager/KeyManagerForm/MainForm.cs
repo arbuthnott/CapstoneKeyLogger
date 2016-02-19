@@ -448,5 +448,15 @@ namespace KeyManagerForm
                 }
             }
         }
+
+        private void lblRoomCode_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblKeyTypesTitle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

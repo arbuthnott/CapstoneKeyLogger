@@ -58,16 +58,6 @@
     <Compile Include="UserLogin.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KeyManagerData\KeyManagerData.csproj">
-      <Project>{e8a0a408-c176-423f-b0ff-af781c31d0b5}</Project>
-      <Name>KeyManagerData</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KeyManagerHelper\KeyManagerHelper.csproj">
-      <Project>{7527a6f2-f6f6-4244-aede-a62d2e86f554}</Project>
-      <Name>KeyManagerHelper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
