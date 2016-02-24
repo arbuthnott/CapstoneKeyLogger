@@ -24,12 +24,12 @@ namespace KeyManagerForm
         {
             InitializeComponent();
             objects = new ObjectHolder();
-            initializeLookupTab();
+            initializeLookupTab();            
             if (admin)
             {
                 isAdmin = true;
                 initializeKeyTab();
-                initializeKeySetTab();
+                initializeKeySetTab();                
             }
 
             if (admin)
@@ -41,6 +41,7 @@ namespace KeyManagerForm
                 tabControl.TabPages.Remove(tabPageKeys);
             }
             this.loginForm = lgnForm;
+            initializeCheckoutTab();//Depends on admin value. Must be placed after it's determined. 
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -67,6 +68,185 @@ namespace KeyManagerForm
                 loginForm.Close();
             }
         }
+
+        /*********************************************
+        * CHECKOUT TAB STUFF
+        *********************************************/
+
+        private void initializeCheckoutTab()
+        {
+            if(isAdmin == false)
+            {                           
+                groupBoxCheckoutsEditCheckout.Visible = false;
+                groupBoxCheckoutViewCheckouts.Visible = false;
+            } 
+
+            listBoxCheckoutCheckouts.Items.Clear();
+            
+            //Populate personnel comboboxes. 
+            listBoxCheckoutPersonnel.Items.Clear();
+            foreach (Personnel person in objects.personnel)
+            {
+                comboBoxCheckoutPersonnelFilter.Items.Add(person.FirstName + ' ' + person.LastName);
+                comboBoxCheckoutAddPersonnel.Items.Add(person.FirstName + ' ' + person.LastName);
+            }
+
+            //Populate keyring comboboxes.
+            listBoxCheckoutKeyRing.Items.Clear();
+            foreach (KeyRing ring in objects.keyrings)
+            {
+                comboBoxCheckoutKeyRingFilter.Items.Add(ring.Name);
+                comboBoxCheckoutAddKeyRing.Items.Add(ring.Name);
+                comboBoxCheckoutNewCheckout.Items.Add(ring.Name);
+            }
+        }
+
+
+        private void buttonCheckoutDeleteCheckout_Click(object sender, EventArgs e)
+        {
+
+            if(listBoxCheckoutCheckouts.SelectedIndex != -1)
+            {
+                int selectedItem = listBoxCheckoutCheckouts.SelectedIndex;
+                listBoxCheckoutCheckouts.Items.RemoveAt(selectedItem);                
+            }   
+      
+            //TODO remove selected items from checkout object when implemented. 
+        }
+
+        private void buttonCheckoutAddCheckout_Click(object sender, EventArgs e)
+        {
+            listBoxCheckoutCheckouts.Items.Add(1);//Testing. 
+            //TODO create dialog that will hold values for new checkout. 
+        }
+
+        private void comboBoxCheckoutNewCheckout_SelectedIndexChanged(object sender, EventArgs e)
+        {                      
+            
+            //TODO 
+        }
+
+        private void buttonCheckoutNewCheckout_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCheckoutNewCheckout.SelectedIndex != -1)
+            {
+                MessageBox.Show("New checkout generated.", "New Checkout Generated");
+            }
+
+            else
+            {
+                MessageBox.Show("Must select Key Ring to generate checkout", "Select Key Ring");
+            }                  
+            
+        }
+
+        private void listBoxCheckoutCheckouts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO populate listBoxCheckoutPersonnel and listBoxCheckoutKeyRing with values depending on currently selected checkout. 
+        }
+
+        private void comboBoxCheckoutPersonnelFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO change contents of listCheckoutCheckouts based on personnel selected. 
+        }
+
+        private void comboBoxCheckoutKeyRingFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //TODO change contents of listCheckoutCheckouts based on keyring selected. 
+        }
+
+        private void buttonCheckoutRemoveFilters_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxCheckoutPersonnel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxCheckoutAddPersonnel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCheckoutAddPersonnel_Click(object sender, EventArgs e)
+        {
+            if (comboBoxCheckoutAddPersonnel.SelectedIndex != -1)
+            {
+                if (listBoxCheckoutPersonnel.FindString(comboBoxCheckoutAddPersonnel.SelectedItem.ToString(), -1) == -1)
+                {
+                    listBoxCheckoutPersonnel.Items.Add(comboBoxCheckoutAddPersonnel.SelectedItem);
+                }
+
+                else
+                {
+                    MessageBox.Show("Selected personnel already in checkout", "Selection Error");
+                }
+
+            }
+
+            else
+            {
+                MessageBox.Show("Must select Personnel to add", "Select Personnel");
+            }   
+        }
+
+        private void listBoxCheckoutKeyRing_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxCheckoutAddKeyRing_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCheckoutAddKeyRing_Click(object sender, EventArgs e)
+        {
+            
+            //If a value is selected from the combo box, check it against the current items in the list. If it doesn't exist, add it. 
+            if(comboBoxCheckoutAddKeyRing.SelectedIndex != -1)
+            {
+                if (listBoxCheckoutKeyRing.FindString(comboBoxCheckoutAddKeyRing.SelectedItem.ToString(), -1) == -1)
+                {
+                    listBoxCheckoutKeyRing.Items.Add(comboBoxCheckoutAddKeyRing.SelectedItem);
+                }
+                else
+                {
+                    MessageBox.Show("Selected keyring already in checkout", "Selection Error");
+                }
+                    
+            }
+
+            else
+            {
+                 MessageBox.Show("Must select Key Ring to add", "Select Key Ring");
+            }                  
+        }
+
+        private void buttonCheckoutSaveChanges_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCheckoutEditCheckout_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonCheckoutRemovePersonnel_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonCheckoutRemoveKeyRing_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
 
         /*********************************************
         * KEYSET TAB STUFF
@@ -596,5 +776,6 @@ namespace KeyManagerForm
         {
             //TODO connect all doors in selected doorgroup to selected keytype and update UI.
         }
+       
     }
 }
