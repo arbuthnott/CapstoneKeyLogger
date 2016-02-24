@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    public class KeyRing
+    public class KeyRing : IComparable<KeyRing>
     {
         //Members
         //int id;
@@ -41,6 +41,11 @@ namespace KeyManagerClassLib
                 keys = new List<Key>();
             }
             keys.Add(key);
+        }
+
+        public int CompareTo(KeyRing other)
+        {
+            return this.Name.CompareTo(other.Name);
         }
     }
 }

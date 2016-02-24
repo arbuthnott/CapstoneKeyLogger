@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    public class Location
+    public class Location : IComparable<Location>
     {
         //Members
         //int id;
@@ -44,6 +44,11 @@ namespace KeyManagerClassLib
                 doors = new List<Door>();
             }
             doors.Add(door);
+        }
+
+        public int CompareTo(Location other)
+        {
+            return this.Name.CompareTo(other.Name);
         }
     }
 }

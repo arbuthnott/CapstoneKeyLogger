@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    public class Door
+    public class Door : IComparable<Door>
     {
         //Members
         //private int id;
@@ -48,6 +48,11 @@ namespace KeyManagerClassLib
                 keytypes = new List<KeyType>();
             }
             keytypes.Add(type);
+        }
+
+        public int CompareTo(Door other)
+        {
+            return this.RoomNumber.CompareTo(other.RoomNumber);
         }
     }
 }

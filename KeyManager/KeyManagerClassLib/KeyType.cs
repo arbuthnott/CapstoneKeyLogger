@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    public class KeyType
+    public class KeyType : IComparable<KeyType>
     {
         //Members
         //int id;
@@ -55,6 +55,11 @@ namespace KeyManagerClassLib
                 keys = new List<Key>();
             }
             keys.Add(key);
+        }
+
+        public int CompareTo(KeyType other)
+        {
+            return this.Name.CompareTo(other.Name);
         }
     }
 }

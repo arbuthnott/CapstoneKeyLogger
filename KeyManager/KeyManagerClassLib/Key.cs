@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    public class Key
+    public class Key : IComparable<Key>
     {
         //Members
         //int id;
@@ -42,6 +42,11 @@ namespace KeyManagerClassLib
             Serial = pSerial;
             Broken = pBroken;
             Missing = pMissing;
+        }
+
+        public int CompareTo(Key other)
+        {
+            return this.Serial.CompareTo(other.Serial);
         }
     }
 }

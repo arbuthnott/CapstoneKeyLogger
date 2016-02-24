@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    public class Personnel
+    public class Personnel : IComparable<Personnel>
     {
         //Members
         //int id;
@@ -50,6 +50,16 @@ namespace KeyManagerClassLib
             PermitLevel = pPermitLevel;
         }
 
-
+        public int CompareTo(Personnel other)
+        {
+            if (this.LastName.CompareTo(other.LastName) != 0)
+            {
+                return this.LastName.CompareTo(other.LastName);
+            }
+            else
+            {
+                return this.FirstName.CompareTo(other.FirstName);
+            }
+        }
     }
 }

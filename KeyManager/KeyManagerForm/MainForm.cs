@@ -28,7 +28,7 @@ namespace KeyManagerForm
             if (admin)
             {
                 isAdmin = true;
-                
+                initializeKeyTab();
                 initializeKeySetTab();
             }
 
@@ -38,6 +38,7 @@ namespace KeyManagerForm
             {
                 lblAdmin.Text = "Hello User";
                 tabControl.TabPages.Remove(tabPageKeysets);
+                tabControl.TabPages.Remove(tabPageKeys);
             }
             this.loginForm = lgnForm;
         }
@@ -449,12 +450,23 @@ namespace KeyManagerForm
             }
         }
 
-        private void lblRoomCode_Click(object sender, EventArgs e)
+
+
+        /*********************************************
+        * KEY/KEYTYPE TAB STUFF
+        *********************************************/
+
+        private void initializeKeyTab()
         {
 
         }
 
-        private void lblKeyTypesTitle_Click(object sender, EventArgs e)
+        private void comboBoxKeyTabKeyType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxKeyTabKey_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

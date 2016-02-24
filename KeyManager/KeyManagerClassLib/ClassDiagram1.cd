@@ -8,7 +8,7 @@
     <AssociationLine Name="KeyRing" Type="KeyManagerClassLib.KeyRing" FixedToPoint="true">
       <Path>
         <Point X="0.875" Y="6.5" />
-        <Point X="0.875" Y="4.546" />
+        <Point X="0.875" Y="4.998" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -16,9 +16,9 @@
       <FileName>Checkout.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Property Name="Person" />
       <Property Name="Key" />
       <Property Name="KeyRing" />
-      <Property Name="Person" />
     </ShowAsAssociation>
   </Class>
   <Class Name="KeyManagerClassLib.Door">
@@ -28,12 +28,13 @@
       <Method Name="Door" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>RAACAAAAAAAAAAAAAAACIAAAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <HashCode>RAACAAAAAAAAAAQAAAACIAAAAAAAAAAAAAACAAAAAAA=</HashCode>
       <FileName>Door.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="keytypes" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeyManagerClassLib.Key">
     <Position X="3.5" Y="3" Width="1.5" />
@@ -41,13 +42,14 @@
       <Method Name="Key" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAACAAAAIAEAAAAAAAAABAAAABAQAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAIAEAAAQAAAAABAAAABAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Key.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="KeyRing" />
       <Property Name="KeyType" />
+      <Property Name="KeyRing" />
     </ShowAsAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeyManagerClassLib.KeyRing">
     <Position X="0.5" Y="3.25" Width="1.5" />
@@ -56,12 +58,13 @@
       <Method Name="KeyRing" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAIAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAACAAAAAAAIAAQAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>KeyRing.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="keys" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeyManagerClassLib.KeyType">
     <Position X="6.5" Y="3" Width="1.5" />
@@ -71,13 +74,14 @@
       <Method Name="KeyType" Hidden="true" />
     </Members>
     <TypeIdentifier>
-      <HashCode>AAAGAAAAAAAIAAAAAIAAAAQAAAAAAAkAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAGAAAAAAAIAAQAAIAAAAQAAAAAAAkAAAAAAAAAAAA=</HashCode>
       <FileName>KeyType.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="doors" />
       <Field Name="keys" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeyManagerClassLib.Location">
     <Position X="9.5" Y="6" Width="1.5" />
@@ -89,12 +93,13 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAGAAAAAAAAAAAAAAAAAAQAAAAAABEAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAGAAAAAAAAAAQAAAAAAAQAAAAAABEAAAAAAAAAAAA=</HashCode>
       <FileName>Location.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="doors" />
     </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeyManagerClassLib.ObjectHolder">
     <Position X="6.5" Y="6.5" Width="1.5" />
@@ -104,7 +109,6 @@
       <Method Name="connectKeyTypes" Hidden="true" />
       <Method Name="connectLocations" Hidden="true" />
       <Method Name="getDoorById" Hidden="true" />
-      <Method Name="getDoorByLockId" Hidden="true" />
       <Method Name="getKeyById" Hidden="true" />
       <Method Name="getKeyRingById" Hidden="true" />
       <Method Name="getKeyRingByName" Hidden="true" />
@@ -124,22 +128,24 @@
     <AssociationLine Name="keyrings" Type="KeyManagerClassLib.KeyRing" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="6.5" Y="6.95" />
+        <Point X="6.208" Y="6.95" Type="JumpStart" />
+        <Point X="6.042" Y="6.95" Type="JumpEnd" />
         <Point X="5.25" Y="6.95" />
         <Point X="5.25" Y="5.5" />
         <Point X="2.458" Y="5.5" Type="JumpStart" />
         <Point X="2.292" Y="5.5" Type="JumpEnd" />
         <Point X="1.812" Y="5.5" />
-        <Point X="1.812" Y="4.546" />
+        <Point X="1.812" Y="4.998" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>EAAACgQEAEBIBAEAIAACIAECBEAAAAEAAQAEAAAQCAQ=</HashCode>
+      <HashCode>EAAACgQAAEBIBAMAIAACIAECBEAAAAEAAQAEAAAQCAQ=</HashCode>
       <FileName>ObjectHolder.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Field Name="doors" />
-      <Field Name="keyrings" />
       <Field Name="keys" />
+      <Field Name="keyrings" />
       <Field Name="keytypes" />
       <Field Name="locations" />
       <Field Name="personnel" />
@@ -154,9 +160,10 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAEAAAAAAAAAAAIAAAAAACAAAAAACAQAAAAAAAAg=</HashCode>
+      <HashCode>AAACAEAAAAAAAAQAAIAAAAAACAAAAAACAQAAAAAAAAg=</HashCode>
       <FileName>Personnel.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="KeyManagerClassLib.UserLogin">
     <Position X="11.5" Y="1.5" Width="1.5" />

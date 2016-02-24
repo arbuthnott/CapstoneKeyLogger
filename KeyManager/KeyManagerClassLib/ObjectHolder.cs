@@ -34,6 +34,14 @@ namespace KeyManagerClassLib
             loadLocations(conn);
             loadPersonnel(conn);
 
+            // sort the lists
+            doors.Sort();
+            keys.Sort();
+            keyrings.Sort();
+            keytypes.Sort();
+            locations.Sort();
+            personnel.Sort();
+
             // populate all the connection lists.
             connectDoors(conn); // also populates doors list of keytypes.
             connectKeyRings(conn); // also sets KeyRing and KeyType properties of Key objects
