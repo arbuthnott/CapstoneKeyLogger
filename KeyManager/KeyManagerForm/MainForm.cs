@@ -458,12 +458,30 @@ namespace KeyManagerForm
 
         private void initializeKeyTab()
         {
-
+            groupBoxKeyManage.Enabled = false;
+            foreach (KeyType type in objects.keytypes)
+            {
+                comboBoxKeyTabKeyType.Items.Add(type.Name);
+            }
         }
 
         private void comboBoxKeyTabKeyType_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (comboBoxKeyTabKeyType.SelectedIndex != -1)
+            {
+                groupBoxKeyManage.Enabled = true;
+                listBoxKeyTabKeys.Items.Clear();
+                foreach (KeyType type in objects.keytypes)
+                {
+                    if (type.Name == (string)comboBoxKeyTabKeyType.SelectedValue)
+                    {
+                        foreach (Key key in type.keys)
+                        {
+                            listBoxKeyTabKeys.Items.Add(key.Serial);
+                        }
+                    }
+                }
+            }
         }
 
         private void comboBoxKeyTabKey_SelectedIndexChanged(object sender, EventArgs e)
