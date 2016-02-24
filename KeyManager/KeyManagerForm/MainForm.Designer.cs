@@ -694,6 +694,7 @@
             this.buttonKeyTabEditKey.TabIndex = 13;
             this.buttonKeyTabEditKey.Text = "Edit Key";
             this.buttonKeyTabEditKey.UseVisualStyleBackColor = true;
+            this.buttonKeyTabEditKey.Click += new System.EventHandler(this.buttonKeyTabEditKey_Click);
             // 
             // buttonKeyTabEditType
             // 
@@ -703,6 +704,7 @@
             this.buttonKeyTabEditType.TabIndex = 12;
             this.buttonKeyTabEditType.Text = "Edit Key Type";
             this.buttonKeyTabEditType.UseVisualStyleBackColor = true;
+            this.buttonKeyTabEditType.Click += new System.EventHandler(this.buttonKeyTabEditType_Click);
             // 
             // buttonKeyTabNewKey
             // 
@@ -712,6 +714,7 @@
             this.buttonKeyTabNewKey.TabIndex = 11;
             this.buttonKeyTabNewKey.Text = "New Key Copy";
             this.buttonKeyTabNewKey.UseVisualStyleBackColor = true;
+            this.buttonKeyTabNewKey.Click += new System.EventHandler(this.buttonKeyTabNewKey_Click);
             // 
             // groupBoxKeyManage
             // 
@@ -734,25 +737,27 @@
             // 
             // comboBoxKeyTabDoorGroups
             // 
-            this.comboBoxKeyTabDoorGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxKeyTabDoorGroups.ForeColor = System.Drawing.Color.Silver;
+            this.comboBoxKeyTabDoorGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxKeyTabDoorGroups.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabDoorGroups.FormattingEnabled = true;
             this.comboBoxKeyTabDoorGroups.Location = new System.Drawing.Point(220, 395);
             this.comboBoxKeyTabDoorGroups.Name = "comboBoxKeyTabDoorGroups";
             this.comboBoxKeyTabDoorGroups.Size = new System.Drawing.Size(117, 21);
             this.comboBoxKeyTabDoorGroups.TabIndex = 11;
-            this.comboBoxKeyTabDoorGroups.Text = "select group";
+            this.comboBoxKeyTabDoorGroups.Text = "...select group...";
+            this.comboBoxKeyTabDoorGroups.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeyTabDoorGroups_SelectedIndexChanged);
             // 
             // comboBoxKeyTabDoors
             // 
-            this.comboBoxKeyTabDoors.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxKeyTabDoors.ForeColor = System.Drawing.Color.Silver;
+            this.comboBoxKeyTabDoors.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxKeyTabDoors.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabDoors.FormattingEnabled = true;
             this.comboBoxKeyTabDoors.Location = new System.Drawing.Point(11, 395);
             this.comboBoxKeyTabDoors.Name = "comboBoxKeyTabDoors";
             this.comboBoxKeyTabDoors.Size = new System.Drawing.Size(121, 21);
             this.comboBoxKeyTabDoors.TabIndex = 10;
-            this.comboBoxKeyTabDoors.Text = "select door";
+            this.comboBoxKeyTabDoors.Text = "...select door...";
+            this.comboBoxKeyTabDoors.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeyTabDoors_SelectedIndexChanged);
             // 
             // label14
             // 
@@ -796,6 +801,7 @@
             this.buttonKeyTabAddGroup.TabIndex = 5;
             this.buttonKeyTabAddGroup.Text = "Add Group";
             this.buttonKeyTabAddGroup.UseVisualStyleBackColor = true;
+            this.buttonKeyTabAddGroup.Click += new System.EventHandler(this.buttonKeyTabAddGroup_Click);
             // 
             // buttonKeyTabAddDoor
             // 
@@ -805,6 +811,7 @@
             this.buttonKeyTabAddDoor.TabIndex = 4;
             this.buttonKeyTabAddDoor.Text = "Add Door";
             this.buttonKeyTabAddDoor.UseVisualStyleBackColor = true;
+            this.buttonKeyTabAddDoor.Click += new System.EventHandler(this.buttonKeyTabAddDoor_Click);
             // 
             // labelKeyTabKeyTypeTitle
             // 
@@ -834,17 +841,18 @@
             this.buttonKeyTabNewType.TabIndex = 9;
             this.buttonKeyTabNewType.Text = "New Key Type";
             this.buttonKeyTabNewType.UseVisualStyleBackColor = true;
+            this.buttonKeyTabNewType.Click += new System.EventHandler(this.buttonKeyTabNewType_Click);
             // 
             // comboBoxKeyTabKey
             // 
-            this.comboBoxKeyTabKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxKeyTabKey.ForeColor = System.Drawing.Color.Silver;
+            this.comboBoxKeyTabKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxKeyTabKey.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabKey.FormattingEnabled = true;
             this.comboBoxKeyTabKey.Location = new System.Drawing.Point(58, 74);
             this.comboBoxKeyTabKey.Name = "comboBoxKeyTabKey";
             this.comboBoxKeyTabKey.Size = new System.Drawing.Size(165, 21);
             this.comboBoxKeyTabKey.TabIndex = 8;
-            this.comboBoxKeyTabKey.Text = "select by serial number";
+            this.comboBoxKeyTabKey.Text = "...select by serial number...";
             this.comboBoxKeyTabKey.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeyTabKey_SelectedIndexChanged);
             // 
             // listBoxKeyTabKeys
@@ -854,6 +862,7 @@
             this.listBoxKeyTabKeys.Name = "listBoxKeyTabKeys";
             this.listBoxKeyTabKeys.Size = new System.Drawing.Size(201, 329);
             this.listBoxKeyTabKeys.TabIndex = 7;
+            this.listBoxKeyTabKeys.SelectedIndexChanged += new System.EventHandler(this.listBoxKeyTabKeys_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -875,14 +884,14 @@
             // 
             // comboBoxKeyTabKeyType
             // 
-            this.comboBoxKeyTabKeyType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxKeyTabKeyType.ForeColor = System.Drawing.Color.Silver;
+            this.comboBoxKeyTabKeyType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxKeyTabKeyType.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabKeyType.FormattingEnabled = true;
             this.comboBoxKeyTabKeyType.Location = new System.Drawing.Point(22, 33);
             this.comboBoxKeyTabKeyType.Name = "comboBoxKeyTabKeyType";
             this.comboBoxKeyTabKeyType.Size = new System.Drawing.Size(201, 21);
             this.comboBoxKeyTabKeyType.TabIndex = 4;
-            this.comboBoxKeyTabKeyType.Text = "choose a type";
+            this.comboBoxKeyTabKeyType.Text = "...choose a type...";
             this.comboBoxKeyTabKeyType.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeyTabKeyType_SelectedIndexChanged);
             // 
             // tabPageDoorgroups

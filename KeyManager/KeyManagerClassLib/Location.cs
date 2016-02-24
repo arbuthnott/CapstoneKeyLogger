@@ -14,7 +14,7 @@ namespace KeyManagerClassLib
         //string image;
 
         // list property
-        List<Door> doors; // list of doors in this group/location
+        public List<Door> doors; // list of doors in this group/location
 
         //Properties
         public int Id { get; set; }
