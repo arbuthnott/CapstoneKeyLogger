@@ -733,7 +733,6 @@
             this.groupBoxKeyManage.Size = new System.Drawing.Size(417, 428);
             this.groupBoxKeyManage.TabIndex = 10;
             this.groupBoxKeyManage.TabStop = false;
-            this.groupBoxKeyManage.Text = "groupBox2";
             // 
             // comboBoxKeyTabDoorGroups
             // 
