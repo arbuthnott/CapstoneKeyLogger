@@ -38,7 +38,36 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageCheckout = new System.Windows.Forms.TabPage();
             this.panelCheckout = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.groupBoxCheckoutsEditCheckout = new System.Windows.Forms.GroupBox();
+            this.buttonCheckoutRemovePersonnel = new System.Windows.Forms.Button();
+            this.buttonCheckoutRemoveKeyRing = new System.Windows.Forms.Button();
+            this.labelCheckoutEditName = new System.Windows.Forms.Label();
+            this.textBoxCheckoutName = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.labelCheckoutNewPersonnel = new System.Windows.Forms.Label();
+            this.buttonCheckoutAddKeyRing = new System.Windows.Forms.Button();
+            this.buttonCheckoutAddPersonnel = new System.Windows.Forms.Button();
+            this.comboBoxCheckoutAddKeyRing = new System.Windows.Forms.ComboBox();
+            this.comboBoxCheckoutAddPersonnel = new System.Windows.Forms.ComboBox();
+            this.listBoxCheckoutPersonnel = new System.Windows.Forms.ListBox();
+            this.labelCheckoutPersonnel = new System.Windows.Forms.Label();
+            this.buttonCheckoutSaveChanges = new System.Windows.Forms.Button();
+            this.labelCheckoutKeyRing = new System.Windows.Forms.Label();
+            this.listBoxCheckoutKeyRing = new System.Windows.Forms.ListBox();
+            this.groupBoxCheckoutRegularUser = new System.Windows.Forms.GroupBox();
+            this.labelCheckoutKeyRingSelf = new System.Windows.Forms.Label();
+            this.comboBoxCheckoutNewCheckout = new System.Windows.Forms.ComboBox();
+            this.buttonCheckoutNewCheckout = new System.Windows.Forms.Button();
+            this.groupBoxCheckoutViewCheckouts = new System.Windows.Forms.GroupBox();
+            this.buttonCheckoutRemoveFilters = new System.Windows.Forms.Button();
+            this.labelCheckoutKeyRingFilter = new System.Windows.Forms.Label();
+            this.labelCheckoutPersonnelFilter = new System.Windows.Forms.Label();
+            this.comboBoxCheckoutKeyRingFilter = new System.Windows.Forms.ComboBox();
+            this.comboBoxCheckoutPersonnelFilter = new System.Windows.Forms.ComboBox();
+            this.buttonCheckoutAddCheckout = new System.Windows.Forms.Button();
+            this.listBoxCheckoutCheckouts = new System.Windows.Forms.ListBox();
+            this.labelCheckoutCheckouts = new System.Windows.Forms.Label();
+            this.buttonCheckoutDeleteCheckout = new System.Windows.Forms.Button();
             this.tabPageLookup = new System.Windows.Forms.TabPage();
             this.panelSearch = new System.Windows.Forms.Panel();
             this.groupBoxLookupResults = new System.Windows.Forms.GroupBox();
@@ -125,6 +154,9 @@
             this.tabControl.SuspendLayout();
             this.tabPageCheckout.SuspendLayout();
             this.panelCheckout.SuspendLayout();
+            this.groupBoxCheckoutsEditCheckout.SuspendLayout();
+            this.groupBoxCheckoutRegularUser.SuspendLayout();
+            this.groupBoxCheckoutViewCheckouts.SuspendLayout();
             this.tabPageLookup.SuspendLayout();
             this.panelSearch.SuspendLayout();
             this.groupBoxLookupResults.SuspendLayout();
@@ -227,21 +259,319 @@
             // 
             // panelCheckout
             // 
-            this.panelCheckout.Controls.Add(this.label3);
+            this.panelCheckout.Controls.Add(this.groupBoxCheckoutsEditCheckout);
+            this.panelCheckout.Controls.Add(this.groupBoxCheckoutRegularUser);
+            this.panelCheckout.Controls.Add(this.groupBoxCheckoutViewCheckouts);
             this.panelCheckout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCheckout.Location = new System.Drawing.Point(3, 3);
             this.panelCheckout.Name = "panelCheckout";
             this.panelCheckout.Size = new System.Drawing.Size(771, 433);
             this.panelCheckout.TabIndex = 0;
             // 
-            // label3
+            // groupBoxCheckoutsEditCheckout
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(178, 137);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Checkout stuff here!";
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.buttonCheckoutRemovePersonnel);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.buttonCheckoutRemoveKeyRing);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.labelCheckoutEditName);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.textBoxCheckoutName);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.label17);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.labelCheckoutNewPersonnel);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.buttonCheckoutAddKeyRing);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.buttonCheckoutAddPersonnel);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.comboBoxCheckoutAddKeyRing);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.comboBoxCheckoutAddPersonnel);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.listBoxCheckoutPersonnel);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.labelCheckoutPersonnel);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.buttonCheckoutSaveChanges);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.labelCheckoutKeyRing);
+            this.groupBoxCheckoutsEditCheckout.Controls.Add(this.listBoxCheckoutKeyRing);
+            this.groupBoxCheckoutsEditCheckout.Location = new System.Drawing.Point(373, 3);
+            this.groupBoxCheckoutsEditCheckout.Name = "groupBoxCheckoutsEditCheckout";
+            this.groupBoxCheckoutsEditCheckout.Size = new System.Drawing.Size(393, 425);
+            this.groupBoxCheckoutsEditCheckout.TabIndex = 12;
+            this.groupBoxCheckoutsEditCheckout.TabStop = false;
+            this.groupBoxCheckoutsEditCheckout.Text = "Edit Selected Checkout";
+            // 
+            // buttonCheckoutRemovePersonnel
+            // 
+            this.buttonCheckoutRemovePersonnel.Location = new System.Drawing.Point(227, 109);
+            this.buttonCheckoutRemovePersonnel.Name = "buttonCheckoutRemovePersonnel";
+            this.buttonCheckoutRemovePersonnel.Size = new System.Drawing.Size(128, 23);
+            this.buttonCheckoutRemovePersonnel.TabIndex = 22;
+            this.buttonCheckoutRemovePersonnel.Text = "Remove Personnel";
+            this.buttonCheckoutRemovePersonnel.UseVisualStyleBackColor = true;
+            this.buttonCheckoutRemovePersonnel.Click += new System.EventHandler(this.buttonCheckoutRemovePersonnel_Click);
+            // 
+            // buttonCheckoutRemoveKeyRing
+            // 
+            this.buttonCheckoutRemoveKeyRing.Location = new System.Drawing.Point(224, 275);
+            this.buttonCheckoutRemoveKeyRing.Name = "buttonCheckoutRemoveKeyRing";
+            this.buttonCheckoutRemoveKeyRing.Size = new System.Drawing.Size(131, 23);
+            this.buttonCheckoutRemoveKeyRing.TabIndex = 21;
+            this.buttonCheckoutRemoveKeyRing.Text = "Remove Key Ring";
+            this.buttonCheckoutRemoveKeyRing.UseVisualStyleBackColor = true;
+            this.buttonCheckoutRemoveKeyRing.Click += new System.EventHandler(this.buttonCheckoutRemoveKeyRing_Click);
+            // 
+            // labelCheckoutEditName
+            // 
+            this.labelCheckoutEditName.AutoSize = true;
+            this.labelCheckoutEditName.Location = new System.Drawing.Point(20, 379);
+            this.labelCheckoutEditName.Name = "labelCheckoutEditName";
+            this.labelCheckoutEditName.Size = new System.Drawing.Size(56, 13);
+            this.labelCheckoutEditName.TabIndex = 20;
+            this.labelCheckoutEditName.Text = "Edit Name";
+            // 
+            // textBoxCheckoutName
+            // 
+            this.textBoxCheckoutName.Location = new System.Drawing.Point(76, 379);
+            this.textBoxCheckoutName.Name = "textBoxCheckoutName";
+            this.textBoxCheckoutName.Size = new System.Drawing.Size(131, 20);
+            this.textBoxCheckoutName.TabIndex = 19;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(224, 188);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(116, 13);
+            this.label17.TabIndex = 18;
+            this.label17.Text = "Select Key Ring to add";
+            // 
+            // labelCheckoutNewPersonnel
+            // 
+            this.labelCheckoutNewPersonnel.AutoSize = true;
+            this.labelCheckoutNewPersonnel.Location = new System.Drawing.Point(224, 22);
+            this.labelCheckoutNewPersonnel.Name = "labelCheckoutNewPersonnel";
+            this.labelCheckoutNewPersonnel.Size = new System.Drawing.Size(120, 13);
+            this.labelCheckoutNewPersonnel.TabIndex = 17;
+            this.labelCheckoutNewPersonnel.Text = "Select Personnel to add";
+            // 
+            // buttonCheckoutAddKeyRing
+            // 
+            this.buttonCheckoutAddKeyRing.Location = new System.Drawing.Point(224, 239);
+            this.buttonCheckoutAddKeyRing.Name = "buttonCheckoutAddKeyRing";
+            this.buttonCheckoutAddKeyRing.Size = new System.Drawing.Size(131, 23);
+            this.buttonCheckoutAddKeyRing.TabIndex = 16;
+            this.buttonCheckoutAddKeyRing.Text = "Add Key Ring";
+            this.buttonCheckoutAddKeyRing.UseVisualStyleBackColor = true;
+            this.buttonCheckoutAddKeyRing.Click += new System.EventHandler(this.buttonCheckoutAddKeyRing_Click);
+            // 
+            // buttonCheckoutAddPersonnel
+            // 
+            this.buttonCheckoutAddPersonnel.Location = new System.Drawing.Point(224, 73);
+            this.buttonCheckoutAddPersonnel.Name = "buttonCheckoutAddPersonnel";
+            this.buttonCheckoutAddPersonnel.Size = new System.Drawing.Size(131, 23);
+            this.buttonCheckoutAddPersonnel.TabIndex = 15;
+            this.buttonCheckoutAddPersonnel.Text = "Add Personnel";
+            this.buttonCheckoutAddPersonnel.UseVisualStyleBackColor = true;
+            this.buttonCheckoutAddPersonnel.Click += new System.EventHandler(this.buttonCheckoutAddPersonnel_Click);
+            // 
+            // comboBoxCheckoutAddKeyRing
+            // 
+            this.comboBoxCheckoutAddKeyRing.FormattingEnabled = true;
+            this.comboBoxCheckoutAddKeyRing.Location = new System.Drawing.Point(224, 204);
+            this.comboBoxCheckoutAddKeyRing.Name = "comboBoxCheckoutAddKeyRing";
+            this.comboBoxCheckoutAddKeyRing.Size = new System.Drawing.Size(131, 21);
+            this.comboBoxCheckoutAddKeyRing.TabIndex = 14;
+            this.comboBoxCheckoutAddKeyRing.SelectedIndexChanged += new System.EventHandler(this.comboBoxCheckoutAddKeyRing_SelectedIndexChanged);
+            // 
+            // comboBoxCheckoutAddPersonnel
+            // 
+            this.comboBoxCheckoutAddPersonnel.FormattingEnabled = true;
+            this.comboBoxCheckoutAddPersonnel.Location = new System.Drawing.Point(224, 38);
+            this.comboBoxCheckoutAddPersonnel.Name = "comboBoxCheckoutAddPersonnel";
+            this.comboBoxCheckoutAddPersonnel.Size = new System.Drawing.Size(131, 21);
+            this.comboBoxCheckoutAddPersonnel.TabIndex = 13;
+            this.comboBoxCheckoutAddPersonnel.SelectedIndexChanged += new System.EventHandler(this.comboBoxCheckoutAddPersonnel_SelectedIndexChanged);
+            // 
+            // listBoxCheckoutPersonnel
+            // 
+            this.listBoxCheckoutPersonnel.FormattingEnabled = true;
+            this.listBoxCheckoutPersonnel.Location = new System.Drawing.Point(23, 38);
+            this.listBoxCheckoutPersonnel.Name = "listBoxCheckoutPersonnel";
+            this.listBoxCheckoutPersonnel.Size = new System.Drawing.Size(184, 134);
+            this.listBoxCheckoutPersonnel.TabIndex = 2;
+            this.listBoxCheckoutPersonnel.SelectedIndexChanged += new System.EventHandler(this.listBoxCheckoutPersonnel_SelectedIndexChanged);
+            // 
+            // labelCheckoutPersonnel
+            // 
+            this.labelCheckoutPersonnel.AutoSize = true;
+            this.labelCheckoutPersonnel.Location = new System.Drawing.Point(20, 22);
+            this.labelCheckoutPersonnel.Name = "labelCheckoutPersonnel";
+            this.labelCheckoutPersonnel.Size = new System.Drawing.Size(113, 13);
+            this.labelCheckoutPersonnel.TabIndex = 5;
+            this.labelCheckoutPersonnel.Text = "Personnel in checkout";
+            // 
+            // buttonCheckoutSaveChanges
+            // 
+            this.buttonCheckoutSaveChanges.Location = new System.Drawing.Point(224, 372);
+            this.buttonCheckoutSaveChanges.Name = "buttonCheckoutSaveChanges";
+            this.buttonCheckoutSaveChanges.Size = new System.Drawing.Size(131, 32);
+            this.buttonCheckoutSaveChanges.TabIndex = 9;
+            this.buttonCheckoutSaveChanges.Text = "Save Changes";
+            this.buttonCheckoutSaveChanges.UseVisualStyleBackColor = true;
+            this.buttonCheckoutSaveChanges.Click += new System.EventHandler(this.buttonCheckoutSaveChanges_Click);
+            // 
+            // labelCheckoutKeyRing
+            // 
+            this.labelCheckoutKeyRing.AutoSize = true;
+            this.labelCheckoutKeyRing.Location = new System.Drawing.Point(20, 188);
+            this.labelCheckoutKeyRing.Name = "labelCheckoutKeyRing";
+            this.labelCheckoutKeyRing.Size = new System.Drawing.Size(114, 13);
+            this.labelCheckoutKeyRing.TabIndex = 6;
+            this.labelCheckoutKeyRing.Text = "Key Rings in checkout";
+            // 
+            // listBoxCheckoutKeyRing
+            // 
+            this.listBoxCheckoutKeyRing.FormattingEnabled = true;
+            this.listBoxCheckoutKeyRing.Location = new System.Drawing.Point(23, 204);
+            this.listBoxCheckoutKeyRing.Name = "listBoxCheckoutKeyRing";
+            this.listBoxCheckoutKeyRing.Size = new System.Drawing.Size(184, 160);
+            this.listBoxCheckoutKeyRing.TabIndex = 3;
+            this.listBoxCheckoutKeyRing.SelectedIndexChanged += new System.EventHandler(this.listBoxCheckoutKeyRing_SelectedIndexChanged);
+            // 
+            // groupBoxCheckoutRegularUser
+            // 
+            this.groupBoxCheckoutRegularUser.Controls.Add(this.labelCheckoutKeyRingSelf);
+            this.groupBoxCheckoutRegularUser.Controls.Add(this.comboBoxCheckoutNewCheckout);
+            this.groupBoxCheckoutRegularUser.Controls.Add(this.buttonCheckoutNewCheckout);
+            this.groupBoxCheckoutRegularUser.Location = new System.Drawing.Point(5, 3);
+            this.groupBoxCheckoutRegularUser.Name = "groupBoxCheckoutRegularUser";
+            this.groupBoxCheckoutRegularUser.Size = new System.Drawing.Size(362, 109);
+            this.groupBoxCheckoutRegularUser.TabIndex = 11;
+            this.groupBoxCheckoutRegularUser.TabStop = false;
+            this.groupBoxCheckoutRegularUser.Text = "New Checkout";
+            // 
+            // labelCheckoutKeyRingSelf
+            // 
+            this.labelCheckoutKeyRingSelf.AutoSize = true;
+            this.labelCheckoutKeyRingSelf.Location = new System.Drawing.Point(169, 33);
+            this.labelCheckoutKeyRingSelf.Name = "labelCheckoutKeyRingSelf";
+            this.labelCheckoutKeyRingSelf.Size = new System.Drawing.Size(179, 13);
+            this.labelCheckoutKeyRingSelf.TabIndex = 10;
+            this.labelCheckoutKeyRingSelf.Text = "Select Key Ring to assign to yourself";
+            // 
+            // comboBoxCheckoutNewCheckout
+            // 
+            this.comboBoxCheckoutNewCheckout.FormattingEnabled = true;
+            this.comboBoxCheckoutNewCheckout.Location = new System.Drawing.Point(42, 30);
+            this.comboBoxCheckoutNewCheckout.Name = "comboBoxCheckoutNewCheckout";
+            this.comboBoxCheckoutNewCheckout.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCheckoutNewCheckout.TabIndex = 9;
+            this.comboBoxCheckoutNewCheckout.SelectedIndexChanged += new System.EventHandler(this.comboBoxCheckoutNewCheckout_SelectedIndexChanged);
+            // 
+            // buttonCheckoutNewCheckout
+            // 
+            this.buttonCheckoutNewCheckout.AllowDrop = true;
+            this.buttonCheckoutNewCheckout.Location = new System.Drawing.Point(42, 66);
+            this.buttonCheckoutNewCheckout.Name = "buttonCheckoutNewCheckout";
+            this.buttonCheckoutNewCheckout.Size = new System.Drawing.Size(106, 23);
+            this.buttonCheckoutNewCheckout.TabIndex = 7;
+            this.buttonCheckoutNewCheckout.Text = "New Checkout";
+            this.buttonCheckoutNewCheckout.UseVisualStyleBackColor = true;
+            this.buttonCheckoutNewCheckout.Click += new System.EventHandler(this.buttonCheckoutNewCheckout_Click);
+            // 
+            // groupBoxCheckoutViewCheckouts
+            // 
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.buttonCheckoutRemoveFilters);
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.labelCheckoutKeyRingFilter);
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.labelCheckoutPersonnelFilter);
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.comboBoxCheckoutKeyRingFilter);
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.comboBoxCheckoutPersonnelFilter);
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.buttonCheckoutAddCheckout);
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.listBoxCheckoutCheckouts);
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.labelCheckoutCheckouts);
+            this.groupBoxCheckoutViewCheckouts.Controls.Add(this.buttonCheckoutDeleteCheckout);
+            this.groupBoxCheckoutViewCheckouts.Location = new System.Drawing.Point(5, 112);
+            this.groupBoxCheckoutViewCheckouts.Name = "groupBoxCheckoutViewCheckouts";
+            this.groupBoxCheckoutViewCheckouts.Size = new System.Drawing.Size(362, 316);
+            this.groupBoxCheckoutViewCheckouts.TabIndex = 10;
+            this.groupBoxCheckoutViewCheckouts.TabStop = false;
+            this.groupBoxCheckoutViewCheckouts.Text = "Current Checkouts";
+            // 
+            // buttonCheckoutRemoveFilters
+            // 
+            this.buttonCheckoutRemoveFilters.Location = new System.Drawing.Point(245, 241);
+            this.buttonCheckoutRemoveFilters.Name = "buttonCheckoutRemoveFilters";
+            this.buttonCheckoutRemoveFilters.Size = new System.Drawing.Size(103, 23);
+            this.buttonCheckoutRemoveFilters.TabIndex = 15;
+            this.buttonCheckoutRemoveFilters.Text = "Remove Filters";
+            this.buttonCheckoutRemoveFilters.UseVisualStyleBackColor = true;
+            this.buttonCheckoutRemoveFilters.Click += new System.EventHandler(this.buttonCheckoutRemoveFilters_Click);
+            // 
+            // labelCheckoutKeyRingFilter
+            // 
+            this.labelCheckoutKeyRingFilter.AutoSize = true;
+            this.labelCheckoutKeyRingFilter.Location = new System.Drawing.Point(16, 246);
+            this.labelCheckoutKeyRingFilter.Name = "labelCheckoutKeyRingFilter";
+            this.labelCheckoutKeyRingFilter.Size = new System.Drawing.Size(89, 13);
+            this.labelCheckoutKeyRingFilter.TabIndex = 14;
+            this.labelCheckoutKeyRingFilter.Text = "Filter by Key Ring";
+            // 
+            // labelCheckoutPersonnelFilter
+            // 
+            this.labelCheckoutPersonnelFilter.AutoSize = true;
+            this.labelCheckoutPersonnelFilter.Location = new System.Drawing.Point(16, 206);
+            this.labelCheckoutPersonnelFilter.Name = "labelCheckoutPersonnelFilter";
+            this.labelCheckoutPersonnelFilter.Size = new System.Drawing.Size(93, 13);
+            this.labelCheckoutPersonnelFilter.TabIndex = 13;
+            this.labelCheckoutPersonnelFilter.Text = "Filter by Personnel";
+            // 
+            // comboBoxCheckoutKeyRingFilter
+            // 
+            this.comboBoxCheckoutKeyRingFilter.FormattingEnabled = true;
+            this.comboBoxCheckoutKeyRingFilter.Location = new System.Drawing.Point(19, 262);
+            this.comboBoxCheckoutKeyRingFilter.Name = "comboBoxCheckoutKeyRingFilter";
+            this.comboBoxCheckoutKeyRingFilter.Size = new System.Drawing.Size(214, 21);
+            this.comboBoxCheckoutKeyRingFilter.TabIndex = 12;
+            this.comboBoxCheckoutKeyRingFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxCheckoutKeyRingFilter_SelectedIndexChanged);
+            // 
+            // comboBoxCheckoutPersonnelFilter
+            // 
+            this.comboBoxCheckoutPersonnelFilter.FormattingEnabled = true;
+            this.comboBoxCheckoutPersonnelFilter.Location = new System.Drawing.Point(19, 222);
+            this.comboBoxCheckoutPersonnelFilter.Name = "comboBoxCheckoutPersonnelFilter";
+            this.comboBoxCheckoutPersonnelFilter.Size = new System.Drawing.Size(214, 21);
+            this.comboBoxCheckoutPersonnelFilter.TabIndex = 11;
+            this.comboBoxCheckoutPersonnelFilter.SelectedIndexChanged += new System.EventHandler(this.comboBoxCheckoutPersonnelFilter_SelectedIndexChanged);
+            // 
+            // buttonCheckoutAddCheckout
+            // 
+            this.buttonCheckoutAddCheckout.Location = new System.Drawing.Point(245, 38);
+            this.buttonCheckoutAddCheckout.Name = "buttonCheckoutAddCheckout";
+            this.buttonCheckoutAddCheckout.Size = new System.Drawing.Size(103, 23);
+            this.buttonCheckoutAddCheckout.TabIndex = 10;
+            this.buttonCheckoutAddCheckout.Text = "New Checkout";
+            this.buttonCheckoutAddCheckout.UseVisualStyleBackColor = true;
+            this.buttonCheckoutAddCheckout.Click += new System.EventHandler(this.buttonCheckoutAddCheckout_Click);
+            // 
+            // listBoxCheckoutCheckouts
+            // 
+            this.listBoxCheckoutCheckouts.FormattingEnabled = true;
+            this.listBoxCheckoutCheckouts.Location = new System.Drawing.Point(19, 38);
+            this.listBoxCheckoutCheckouts.Name = "listBoxCheckoutCheckouts";
+            this.listBoxCheckoutCheckouts.Size = new System.Drawing.Size(214, 147);
+            this.listBoxCheckoutCheckouts.TabIndex = 1;
+            this.listBoxCheckoutCheckouts.SelectedIndexChanged += new System.EventHandler(this.listBoxCheckoutCheckouts_SelectedIndexChanged);
+            // 
+            // labelCheckoutCheckouts
+            // 
+            this.labelCheckoutCheckouts.AutoSize = true;
+            this.labelCheckoutCheckouts.Location = new System.Drawing.Point(16, 22);
+            this.labelCheckoutCheckouts.Name = "labelCheckoutCheckouts";
+            this.labelCheckoutCheckouts.Size = new System.Drawing.Size(86, 13);
+            this.labelCheckoutCheckouts.TabIndex = 4;
+            this.labelCheckoutCheckouts.Text = "Select Checkout";
+            // 
+            // buttonCheckoutDeleteCheckout
+            // 
+            this.buttonCheckoutDeleteCheckout.Location = new System.Drawing.Point(245, 76);
+            this.buttonCheckoutDeleteCheckout.Name = "buttonCheckoutDeleteCheckout";
+            this.buttonCheckoutDeleteCheckout.Size = new System.Drawing.Size(103, 23);
+            this.buttonCheckoutDeleteCheckout.TabIndex = 8;
+            this.buttonCheckoutDeleteCheckout.Text = "Delete Checkout";
+            this.buttonCheckoutDeleteCheckout.UseVisualStyleBackColor = true;
+            this.buttonCheckoutDeleteCheckout.Click += new System.EventHandler(this.buttonCheckoutDeleteCheckout_Click);
             // 
             // tabPageLookup
             // 
@@ -1110,7 +1440,12 @@
             this.tabControl.ResumeLayout(false);
             this.tabPageCheckout.ResumeLayout(false);
             this.panelCheckout.ResumeLayout(false);
-            this.panelCheckout.PerformLayout();
+            this.groupBoxCheckoutsEditCheckout.ResumeLayout(false);
+            this.groupBoxCheckoutsEditCheckout.PerformLayout();
+            this.groupBoxCheckoutRegularUser.ResumeLayout(false);
+            this.groupBoxCheckoutRegularUser.PerformLayout();
+            this.groupBoxCheckoutViewCheckouts.ResumeLayout(false);
+            this.groupBoxCheckoutViewCheckouts.PerformLayout();
             this.tabPageLookup.ResumeLayout(false);
             this.panelSearch.ResumeLayout(false);
             this.groupBoxLookupResults.ResumeLayout(false);
@@ -1159,7 +1494,6 @@
         private System.Windows.Forms.Label lblAdmin;
         private System.Windows.Forms.TabPage tabPageCheckout;
         private System.Windows.Forms.Panel panelCheckout;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage tabPageKeysets;
         private System.Windows.Forms.Panel panelKeyset;
         private System.Windows.Forms.TabPage tabPageLookup;
@@ -1239,5 +1573,35 @@
         private System.Windows.Forms.Button buttonKeyTabAddGroup;
         private System.Windows.Forms.Button buttonKeyTabAddDoor;
         private System.Windows.Forms.Label labelKeyTabKeyTypeTitle;
+        private System.Windows.Forms.Label labelCheckoutKeyRing;
+        private System.Windows.Forms.Label labelCheckoutPersonnel;
+        private System.Windows.Forms.Label labelCheckoutCheckouts;
+        private System.Windows.Forms.ListBox listBoxCheckoutKeyRing;
+        private System.Windows.Forms.ListBox listBoxCheckoutPersonnel;
+        private System.Windows.Forms.ListBox listBoxCheckoutCheckouts;
+        private System.Windows.Forms.GroupBox groupBoxCheckoutRegularUser;
+        private System.Windows.Forms.Label labelCheckoutKeyRingSelf;
+        private System.Windows.Forms.ComboBox comboBoxCheckoutNewCheckout;
+        private System.Windows.Forms.Button buttonCheckoutNewCheckout;
+        private System.Windows.Forms.GroupBox groupBoxCheckoutViewCheckouts;
+        private System.Windows.Forms.Button buttonCheckoutAddCheckout;
+        private System.Windows.Forms.Button buttonCheckoutSaveChanges;
+        private System.Windows.Forms.GroupBox groupBoxCheckoutsEditCheckout;
+        private System.Windows.Forms.Label labelCheckoutKeyRingFilter;
+        private System.Windows.Forms.Label labelCheckoutPersonnelFilter;
+        private System.Windows.Forms.ComboBox comboBoxCheckoutKeyRingFilter;
+        private System.Windows.Forms.ComboBox comboBoxCheckoutPersonnelFilter;
+        private System.Windows.Forms.Button buttonCheckoutAddKeyRing;
+        private System.Windows.Forms.Button buttonCheckoutAddPersonnel;
+        private System.Windows.Forms.ComboBox comboBoxCheckoutAddKeyRing;
+        private System.Windows.Forms.ComboBox comboBoxCheckoutAddPersonnel;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label labelCheckoutNewPersonnel;
+        private System.Windows.Forms.Button buttonCheckoutRemoveFilters;
+        private System.Windows.Forms.Button buttonCheckoutDeleteCheckout;
+        private System.Windows.Forms.Label labelCheckoutEditName;
+        private System.Windows.Forms.TextBox textBoxCheckoutName;
+        private System.Windows.Forms.Button buttonCheckoutRemovePersonnel;
+        private System.Windows.Forms.Button buttonCheckoutRemoveKeyRing;
     }
 }
