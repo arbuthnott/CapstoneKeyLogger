@@ -29,7 +29,7 @@ namespace KeyManagerData
             values.Add(Value);
         }
 
-        public void AddRecord(string Type)
+        public int AddRecord(string Type)
         {
             db = DbSetupManager.GetConnection();
             command = new SQLiteCommand(db);
@@ -54,7 +54,9 @@ namespace KeyManagerData
             }
             command.CommandText += ")";
             int rows = command.ExecuteNonQuery();
+            int newId = (int)db.LastInsertRowId;
             db.Close();
+            return newId;
         }
 
         public void AlterRecord(string Type, int id)
