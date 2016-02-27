@@ -23,8 +23,8 @@ namespace KeyManagerClassLib
             Id = 0;
             UserName = "username";
             Password = "password";
-            FirstName = "firstname";
-            LastName = "lastname";
+            FirstName = "New";
+            LastName = "User";
             IsAdmin = false;
             PermitLevel = 0;
         }
