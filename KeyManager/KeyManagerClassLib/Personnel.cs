@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KeyManagerData;
 
 namespace KeyManagerClassLib
 {
@@ -16,6 +17,25 @@ namespace KeyManagerClassLib
         public string LastName { get; set; }
         public bool IsAdmin { get; set; }
         public int PermitLevel { get; set; }
+
+        public void Save()
+        {
+            DataLayer dl = new DataLayer();
+            dl.AddValue(true, "Username", UserName == null ? "NULL" : UserName);
+            dl.AddValue(true, "Password", Password == null ? "NULL" : Password);
+            dl.AddValue(true, "First Name", FirstName);
+            dl.AddValue(true, "Last Name", LastName);
+            dl.AddValue(false, "IsAdministrator", IsAdmin ? "1" : "0");
+            dl.AddValue(false, "PermitLevel", "" + PermitLevel);
+            if (Id == -1)
+            {
+                Id = dl.AddRecord("personnel");
+            }
+            else
+            {
+                dl.AlterRecord("personnel", Id);
+            }
+        }
 
         //Default constructor
         public Personnel()

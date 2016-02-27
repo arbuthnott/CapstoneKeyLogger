@@ -72,6 +72,7 @@ namespace KeyManagerClassLib
         public void ConnectKeyType(KeyType type)
         {
             keytypes.Add(type);
+            type.doors.Add(this);
             DataLayer dl = new DataLayer();
             dl.AddValue(false, "Keytype", "" + type.Id);
             dl.AddValue(false, "Lock", "" + Id);
@@ -85,6 +86,7 @@ namespace KeyManagerClassLib
         public void DisconnectKeyType(KeyType type)
         {
             keytypes.Remove(type);
+            type.doors.Remove(this);
             // can't use DataLayer for this!
             SQLiteConnection conn = DbSetupManager.GetConnection();
             SQLiteCommand command = new SQLiteCommand(conn);
@@ -97,17 +99,20 @@ namespace KeyManagerClassLib
         /// Note, the list of keytypes in the OOP must be updated separately to match!
         /// Only used for existing lockids.
         /// </summary>
-        /// <param name="lockid">The new lock id of an existing lock</param>
-        /// <param name="newTypes">List of keytypes connected to the new id</param>
-        public void SetLockId(int lockid, List<KeyType> newTypes)
+        /// <param name="otherDoor">The door with the same lock</param>
+        public void SetLockType(Door otherDoor)
         {
-            LockId = lockid;
+            LockId = otherDoor.LockId;
             DataLayer dl = new DataLayer();
-            dl.AddValue(false, "lock", "" + lockid);
+            dl.AddValue(false, "lock", "" + otherDoor.LockId);
             dl.AlterRecord("door", Id);
 
+            foreach (KeyType type in keytypes)
+            {
+                type.doors.Remove(this);
+            }
             keytypes.Clear();
-            foreach (KeyType type in newTypes)
+            foreach (KeyType type in otherDoor.keytypes)
             {
                 keytypes.Add(type);
                 type.doors.Add(this);

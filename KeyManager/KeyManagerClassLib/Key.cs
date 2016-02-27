@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KeyManagerData;
 
 namespace KeyManagerClassLib
 {
@@ -15,6 +16,22 @@ namespace KeyManagerClassLib
         public KeyRing KeyRing { get; set; }
         public bool Broken { get; set; }
         public bool Missing { get; set; }
+
+        public void Save()
+        {
+            DataLayer dl = new DataLayer();
+            dl.AddValue(true, "Serial", Serial);
+            dl.AddValue(false, "Keytype", KeyType == null ? "NULL" : "" + KeyType.Id);
+            dl.AddValue(false, "Keyring", KeyRing == null ? "NULL" : "" + KeyRing.Id);
+            if (Id == -1)
+            {
+                Id = dl.AddRecord("key");
+            }
+            else
+            {
+                dl.AlterRecord("key", Id);
+            }
+        }
 
         //Default constructor
         public Key()
@@ -34,6 +51,20 @@ namespace KeyManagerClassLib
             Serial = pSerial;
             Broken = pBroken;
             Missing = pMissing;
+        }
+
+        public void SetKeyType(KeyType type)
+        {
+            KeyType = type;
+            type.keys.Add(this);
+            Save();
+        }
+
+        public void SetKeyRing(KeyRing ring)
+        {
+            KeyRing = ring;
+            ring.keys.Add(this);
+            Save();
         }
 
         public int CompareTo(Key other)
