@@ -8,14 +8,6 @@ namespace KeyManagerClassLib
 {
     public class Key : IComparable<Key>
     {
-        //Members
-        //int id;
-        //string serial;
-        //KeyType keyType;
-        //KeyRing keyRing;
-        //bool broken;
-        //bool missing;
-
         //Properties
         public int Id { get; set; }
         public string Serial { get; set; }

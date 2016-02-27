@@ -313,6 +313,7 @@ namespace KeyManagerForm
             {
                 // update the OOP - for now OOP only!
                 KeyRing ring = ksd.ring;
+                ring.Save();
                 objects.keyrings.Add(ring);
                 // redisplay
                 initializeKeySetTab();
@@ -330,6 +331,7 @@ namespace KeyManagerForm
             {
                 // update the keyset - for now OOP only!
                 ring.Name = ksd.ring.Name;
+                ring.Save();
                 // redisplay
                 initializeKeySetTab();
                 listBoxKeysets.SelectedItem = ring.Name;
@@ -369,8 +371,11 @@ namespace KeyManagerForm
             // later implement OOP and database changes together.
             KeyRing ring = objects.getKeyRingByName(labelKeysetTitle.Text);
 
-            if (ring.keys != null)
-                ring.keys.Clear();
+            // remove all keys.
+            foreach (Key key in objects.keys)
+            {
+                ring.RemoveKey(key);
+            }
             string entry;
             foreach (Key key in objects.keys)
             {
@@ -382,15 +387,6 @@ namespace KeyManagerForm
                     {
                         key.KeyRing = ring;
                         ring.AddKey(key);
-                    }
-                }
-                // ensure excluded keys not in the set
-                for (int idx = 0; idx < listBoxKeysNotInKeyset.Items.Count; idx++)
-                {
-                    entry = (string)listBoxKeysNotInKeyset.Items[idx];
-                    if (entry.StartsWith(key.Serial))
-                    {
-                        key.KeyRing = null;
                     }
                 }
             }

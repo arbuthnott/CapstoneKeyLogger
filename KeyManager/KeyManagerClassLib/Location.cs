@@ -8,11 +8,6 @@ namespace KeyManagerClassLib
 {
     public class Location : IComparable<Location>
     {
-        //Members
-        //int id;
-        //string name;
-        //string image;
-
         // list property
         public List<Door> doors = new List<Door>(); // list of doors in this group/location
 

@@ -8,7 +8,7 @@ using KeyManagerHelper;
 
 namespace KeyManagerData
 {
-    class DataLayer
+    public class DataLayer
     {
         SQLiteConnection db;
         SQLiteCommand command;
@@ -32,28 +32,31 @@ namespace KeyManagerData
         public int AddRecord(string Type)
         {
             db = DbSetupManager.GetConnection();
-            command = new SQLiteCommand(db);
-            command.CommandText = "INSERT INTO " + Type + " (";
-            for (int count = 0; count < properties.Count; count++)
+            using (command = new SQLiteCommand(db))
             {
-                
-                command.CommandText += "'" + properties[count] + "'";
-                if ((count + 1) < properties.Count) { command.CommandText += ", "; }
-            }
-            command.CommandText += ") VALUES (";
-            for (int count = 0; count < values.Count; count++)
-            {
-                if (isStringList[count])
+                command.CommandText = "INSERT INTO " + Type + " (";
+                for (int count = 0; count < properties.Count; count++)
                 {
-                    command.CommandText += "'" + values[count] + "'";
-                } else
-                {
-                    command.CommandText += values[count]; 
+
+                    command.CommandText += "'" + properties[count] + "'";
+                    if ((count + 1) < properties.Count) { command.CommandText += ", "; }
                 }
-                if ((count + 1) < values.Count) { command.CommandText += ", "; }
+                command.CommandText += ") VALUES (";
+                for (int count = 0; count < values.Count; count++)
+                {
+                    if (isStringList[count])
+                    {
+                        command.CommandText += "'" + values[count] + "'";
+                    }
+                    else
+                    {
+                        command.CommandText += values[count];
+                    }
+                    if ((count + 1) < values.Count) { command.CommandText += ", "; }
+                }
+                command.CommandText += ")";
+                int rows = command.ExecuteNonQuery();
             }
-            command.CommandText += ")";
-            int rows = command.ExecuteNonQuery();
             int newId = (int)db.LastInsertRowId;
             db.Close();
             return newId;
@@ -62,32 +65,36 @@ namespace KeyManagerData
         public void AlterRecord(string Type, int id)
         {
             db = DbSetupManager.GetConnection();
-            command = new SQLiteCommand(db);
-            command.CommandText = "UPDATE " + Type + " SET ";
-            for (int count = 0; count < properties.Count; count++)
+            using (command = new SQLiteCommand(db))
             {
-                command.CommandText += "'" + properties[count] + "' = ";
-                if (isStringList[count])
+                command.CommandText = "UPDATE " + Type + " SET ";
+                for (int count = 0; count < properties.Count; count++)
                 {
-                    command.CommandText += "'" + values[count] + "'";
+                    command.CommandText += "'" + properties[count] + "' = ";
+                    if (isStringList[count])
+                    {
+                        command.CommandText += "'" + values[count] + "'";
+                    }
+                    else
+                    {
+                        command.CommandText += values[count];
+                    }
+                    if ((count + 1) < properties.Count) { command.CommandText += ", "; }
                 }
-                else
-                {
-                    command.CommandText += values[count];
-                }
-                if ((count + 1) < properties.Count) { command.CommandText += ", "; }
+                command.CommandText += " WHERE ID = " + id;
+                int rows = command.ExecuteNonQuery();
             }
-            command.CommandText += " WHERE ID = " + id;
-            int rows = command.ExecuteNonQuery();
             db.Close();
         }
 
         public void DeleteRecord(string Type, int id)
         {
             db = DbSetupManager.GetConnection();
-            command = new SQLiteCommand(db);
-            command.CommandText = "DELETE FROM " + Type + " WHERE ID=" + id;
-            int rows = command.ExecuteNonQuery();
+            using (command = new SQLiteCommand(db))
+            {
+                command.CommandText = "DELETE FROM " + Type + " WHERE ID=" + id;
+                int rows = command.ExecuteNonQuery();
+            }
             db.Close();
         }
     }

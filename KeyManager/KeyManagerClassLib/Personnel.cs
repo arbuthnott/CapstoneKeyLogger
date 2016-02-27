@@ -8,15 +8,6 @@ namespace KeyManagerClassLib
 {
     public class Personnel : IComparable<Personnel>
     {
-        //Members
-        //int id;
-        //string userName;
-        //string password;
-        //string firstName;
-        //string lastName;
-        //bool isAdmin;
-        //int permitLevel;
-
         //Properties
         public int Id { get; set; }
         public string UserName { get; set; }

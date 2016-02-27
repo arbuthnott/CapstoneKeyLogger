@@ -8,14 +8,9 @@ namespace KeyManagerClassLib
 {
     public class KeyType : IComparable<KeyType>
     {
-        //Members
-        //int id;
-        //string name;
-        //int permitLevel;
-
         // list properties
-        public List<Door> doors; // doors this keytype can open
-        public List<Key> keys; // list of keys of this type (can also use to tell how many of this type)
+        public List<Door> doors = new List<Door>(); // doors this keytype can open
+        public List<Key> keys = new List<Key>(); // list of keys of this type (can also use to tell how many of this type)
         
 
         //Properties

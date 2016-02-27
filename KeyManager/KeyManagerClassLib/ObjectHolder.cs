@@ -15,9 +15,9 @@ namespace KeyManagerClassLib
     public class ObjectHolder
     {
         // object lists
-        public List<Door> doors = new List<Door>();
+        public List<Door> doors = new List<Door>(); // worked on updating db
         public List<Key> keys = new List<Key>();
-        public List<KeyRing> keyrings = new List<KeyRing>();
+        public List<KeyRing> keyrings = new List<KeyRing>(); // working on updating db - can test...
         public List<KeyType> keytypes = new List<KeyType>();
         public List<Location> locations = new List<Location>();
         public List<Personnel> personnel = new List<Personnel>();
@@ -250,7 +250,7 @@ namespace KeyManagerClassLib
             while (reader.Read())
             {
                 loc = getLocationById(reader.GetInt16(1));
-                loc.ConnectToDoor(getDoorById(reader.GetInt16(0)));
+                loc.doors.Add(getDoorById(reader.GetInt16(0)));
             }
         }
 
@@ -263,7 +263,7 @@ namespace KeyManagerClassLib
             while (reader.Read())
             {
                 type = getKeyTypeById(reader.GetInt16(1));
-                type.ConnectToKey(getKeyById(reader.GetInt16(0)));
+                type.keys.Add(getKeyById(reader.GetInt16(0)));
             }
         }
 
@@ -280,7 +280,7 @@ namespace KeyManagerClassLib
                 if (!reader.IsDBNull(1))
                 {
                     ring = getKeyRingById(reader.GetInt16(1));
-                    ring.AddKey(key);
+                    ring.keys.Add(key);
                     key.KeyRing = ring;
                 }
             }
@@ -298,8 +298,8 @@ namespace KeyManagerClassLib
                 type = getKeyTypeById(reader.GetInt16(0));
                 foreach (Door door in myDoors)
                 {
-                    door.ConnectKeyType(type);
-                    type.ConnectToDoor(door);
+                    door.keytypes.Add(type);
+                    type.doors.Add(door);
                 }
             }
         }
