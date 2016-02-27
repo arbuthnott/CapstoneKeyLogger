@@ -57,6 +57,12 @@
     <Compile Include="DoorGroupDialog.Designer.cs">
       <DependentUpon>DoorGroupDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FloorPlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FloorPlanForm.Designer.cs">
+      <DependentUpon>FloorPlanForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeysetDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,10 +93,19 @@
     <Compile Include="MDI_ParentForm.Designer.cs">
       <DependentUpon>MDI_ParentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PersonnelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonnelForm.Designer.cs">
+      <DependentUpon>PersonnelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DoorGroupDialog.resx">
       <DependentUpon>DoorGroupDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FloorPlanForm.resx">
+      <DependentUpon>FloorPlanForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeysetDialog.resx">
       <DependentUpon>KeysetDialog.cs</DependentUpon>
@@ -106,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDI_ParentForm.resx">
       <DependentUpon>MDI_ParentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonnelForm.resx">
+      <DependentUpon>PersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

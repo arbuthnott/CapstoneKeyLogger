@@ -39,6 +39,14 @@ namespace KeyManagerForm
 
         }
 
+        // Ribbon Menu Items
+        // TODO - larger buttons with images
+
+            /// <summary>
+            /// Opens the old MainForm windows with all tabs still working
+            /// </summary>
+            /// <param name="sender"></param>
+            /// <param name="e"></param>
         private void ShowNewForm(object sender, EventArgs e)
         {
             MainForm mainForm = new MainForm(loginForm, isAdmin);
@@ -47,12 +55,33 @@ namespace KeyManagerForm
             mainForm.Show();
         }
 
-        private void OpenFile(object sender, EventArgs e)
+        /// <summary>
+        /// Open the form to view maps
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsFloorPlans_Click(object sender, EventArgs e)
         {
-            LookupForm form = new LookupForm(objects);
-            form.MdiParent = this;
-            form.Text = "Window " + childFormNumber++;
-            form.Show();
+            FloorPlanForm mainForm = new FloorPlanForm(objects);
+            mainForm.MdiParent = this;
+            mainForm.Text = "Floor Plans";
+            mainForm.Show();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            LookupForm mainForm = new LookupForm(objects);
+            mainForm.MdiParent = this;
+            mainForm.Text = "Lookup";
+            mainForm.Show();
+        }
+
+        private void tsPersonnel_Click(object sender, EventArgs e)
+        {
+            PersonnelForm mainForm = new PersonnelForm(objects);
+            mainForm.MdiParent = this;
+            mainForm.Text = "Personnel";
+            mainForm.Show();
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -114,5 +143,7 @@ namespace KeyManagerForm
                 childForm.Close();
             }
         }
+
+        
     }
 }

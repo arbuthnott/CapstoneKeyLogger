@@ -234,6 +234,7 @@
             this.comboBoxKeyserialLookup.Name = "comboBoxKeyserialLookup";
             this.comboBoxKeyserialLookup.Size = new System.Drawing.Size(256, 21);
             this.comboBoxKeyserialLookup.TabIndex = 4;
+            this.comboBoxKeyserialLookup.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeyserialLookup_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -251,6 +252,7 @@
             this.comboBoxKeytypeLookup.Name = "comboBoxKeytypeLookup";
             this.comboBoxKeytypeLookup.Size = new System.Drawing.Size(256, 21);
             this.comboBoxKeytypeLookup.TabIndex = 2;
+            this.comboBoxKeytypeLookup.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeytypeLookup_SelectedIndexChanged);
             // 
             // label2
             // 

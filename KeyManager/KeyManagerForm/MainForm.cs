@@ -1084,6 +1084,14 @@ namespace KeyManagerForm
 
         }
 
-       
+        private void pbFloorPlan_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbFloorPlan_MouseMove(object sender, MouseEventArgs e)
+        {
+            Console.Out.WriteLine(e.X + " " + e.Y);
+        }
     }
 }
