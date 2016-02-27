@@ -15,9 +15,9 @@ namespace KeyManagerClassLib
     public class ObjectHolder
     {
         // object lists
-        public List<Door> doors = new List<Door>(); // worked on updating db
-        public List<Key> keys = new List<Key>();
-        public List<KeyRing> keyrings = new List<KeyRing>(); // working on updating db - can test...
+        public List<Door> doors = new List<Door>(); // worked on save and other db methods
+        public List<Key> keys = new List<Key>(); // worked on save method
+        public List<KeyRing> keyrings = new List<KeyRing>(); // worked on db methods - can test in UI
         public List<KeyType> keytypes = new List<KeyType>();
         public List<Location> locations = new List<Location>();
         public List<Personnel> personnel = new List<Personnel>();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KeyManagerData;
 
 namespace KeyManagerClassLib
 {
@@ -12,11 +13,25 @@ namespace KeyManagerClassLib
         public List<Door> doors = new List<Door>(); // doors this keytype can open
         public List<Key> keys = new List<Key>(); // list of keys of this type (can also use to tell how many of this type)
         
-
         //Properties
         public int Id { get; set; }
         public string Name { get; set; }
         public int PermitLevel { get; set; }
+
+        public void Save()
+        {
+            DataLayer dl = new DataLayer();
+            dl.AddValue(true, "Name", Name);
+            dl.AddValue(false, "PermitLevel", "" + PermitLevel);
+            if (Id == -1)
+            {
+                Id = dl.AddRecord("keytype");
+            }
+            else
+            {
+                dl.AlterRecord("keytype", Id);
+            }
+        }
 
         //Default constructor
         public KeyType()
@@ -36,20 +51,17 @@ namespace KeyManagerClassLib
 
         public void ConnectToDoor(Door door)
         {
-            if (doors == null)
-            {
-                doors = new List<Door>();
-            }
-            doors.Add(door);
+            door.ConnectKeyType(this);
+        }
+
+        public void DisconnectDoor(Door door)
+        {
+            door.DisconnectKeyType(this);
         }
 
         public void ConnectToKey(Key key)
         {
-            if (keys == null)
-            {
-                keys = new List<Key>();
-            }
-            keys.Add(key);
+            key.SetKeyType(this);
         }
 
         public int CompareTo(KeyType other)

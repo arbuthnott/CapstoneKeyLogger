@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KeyManagerData;
+using System.Data.SQLite;
 
 namespace KeyManagerClassLib
 {
@@ -15,6 +17,21 @@ namespace KeyManagerClassLib
         public int Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
+
+        public void Save()
+        {
+            DataLayer dl = new DataLayer();
+            dl.AddValue(true, "Name", Name);
+            dl.AddValue(true, "image", Image);
+            if (Id == -1)
+            {
+                Id = dl.AddRecord("location");
+            }
+            else
+            {
+                dl.AlterRecord("location", Id);
+            }
+        }
 
         //Default constructor
         public Location()
@@ -32,13 +49,24 @@ namespace KeyManagerClassLib
             Image = pImage;
         }
 
-        public void ConnectToDoor(Door door)
+        public void AddDoor(Door door)
         {
-            if (doors == null)
-            {
-                doors = new List<Door>();
-            }
             doors.Add(door);
+            DataLayer dl = new DataLayer();
+            dl.AddValue(false, "Door", "" + door.Id);
+            dl.AddValue(false, "Location", "" + Id);
+            dl.AddRecord("door_to_location");
+        }
+
+        public void RemoveDoor(Door door)
+        {
+            doors.Remove(door);
+            // can't use DataLayer for this.
+            SQLiteConnection conn = DbSetupManager.GetConnection();
+            SQLiteCommand command = new SQLiteCommand(conn);
+            command.CommandText = "DELETE FROM door_to_location WHERE Door = " + door.Id + " AND Location = " + Id;
+            command.ExecuteNonQuery();
+            conn.Close();
         }
 
         public int CompareTo(Location other)
