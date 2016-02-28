@@ -85,9 +85,26 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.treeViewSummary = new System.Windows.Forms.TreeView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.treeViewGroups = new System.Windows.Forms.TreeView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.treeViewPeople = new System.Windows.Forms.TreeView();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -102,7 +119,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(767, 24);
+            this.menuStrip.Size = new System.Drawing.Size(972, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -429,7 +446,6 @@
             // 
             this.toolStrip.AutoSize = false;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripButton,
             this.toolStripButton1,
             this.toolStripSeparator9,
             this.tsFloorPlans,
@@ -439,10 +455,12 @@
             this.tsKeys,
             this.toolStripSeparator2,
             this.txDoorGroups,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.toolStripSeparator10,
+            this.newToolStripButton});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(767, 50);
+            this.toolStrip.Size = new System.Drawing.Size(972, 50);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -561,9 +579,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 508);
+            this.statusStrip.Location = new System.Drawing.Point(0, 743);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(767, 22);
+            this.statusStrip.Size = new System.Drawing.Size(972, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -573,13 +591,135 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.treeViewPeople);
+            this.panel1.Controls.Add(this.pictureBox2);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.treeViewGroups);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.treeViewSummary);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 74);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 669);
+            this.panel1.TabIndex = 4;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 50);
+            // 
+            // treeViewSummary
+            // 
+            this.treeViewSummary.Location = new System.Drawing.Point(6, 70);
+            this.treeViewSummary.Name = "treeViewSummary";
+            this.treeViewSummary.Size = new System.Drawing.Size(191, 196);
+            this.treeViewSummary.TabIndex = 0;
+            this.treeViewSummary.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSummary_AfterSelect);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(42, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 24);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Summary";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(43, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Key Rings";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(43, 289);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Door Groups";
+            // 
+            // treeViewGroups
+            // 
+            this.treeViewGroups.Location = new System.Drawing.Point(6, 305);
+            this.treeViewGroups.Name = "treeViewGroups";
+            this.treeViewGroups.Size = new System.Drawing.Size(191, 196);
+            this.treeViewGroups.TabIndex = 3;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(6, 42);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(31, 25);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(6, 277);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(31, 25);
+            this.pictureBox2.TabIndex = 6;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(6, 512);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(31, 25);
+            this.pictureBox3.TabIndex = 9;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(43, 524);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(40, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "People";
+            // 
+            // treeViewPeople
+            // 
+            this.treeViewPeople.Location = new System.Drawing.Point(6, 540);
+            this.treeViewPeople.Name = "treeViewPeople";
+            this.treeViewPeople.Size = new System.Drawing.Size(191, 196);
+            this.treeViewPeople.TabIndex = 7;
+            // 
+            // label5
+            // 
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label5.Location = new System.Drawing.Point(1, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(191, 2);
+            this.label5.TabIndex = 10;
+            // 
             // MDI_ParentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(767, 530);
+            this.ClientSize = new System.Drawing.Size(972, 765);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
@@ -596,6 +736,11 @@
             this.toolStrip.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -658,6 +803,19 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton txDoorGroups;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.TreeView treeViewSummary;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TreeView treeViewGroups;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TreeView treeViewPeople;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

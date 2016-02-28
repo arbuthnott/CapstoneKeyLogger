@@ -47,16 +47,59 @@ namespace KeyManagerForm
             }
             this.loginForm = lgnForm;
 
+            SetupTreeView();
         }
 
-        // Ribbon Menu Items
-        // TODO - larger buttons with images
+        private void SetupTreeView()
+        {
+            treeViewSummary.BeginUpdate();
+            //treeView2.Nodes.Clear();
 
-            /// <summary>
-            /// Opens the old MainForm windows with all tabs still working
-            /// </summary>
-            /// <param name="sender"></param>
-            /// <param name="e"></param>
+            foreach (KeyRing ring in objects.keyrings)
+            {
+                TreeNode n = treeViewSummary.Nodes.Add(ring.Name);
+                foreach (Key key in ring.keys)
+                {
+                    n.Nodes.Add(key.Serial);
+                }
+            }
+            treeViewSummary.EndUpdate();
+
+            treeViewGroups.BeginUpdate();
+            foreach (Location loc in objects.locations)
+            {
+                TreeNode n = treeViewGroups.Nodes.Add(loc.Name);
+                foreach (Door door in loc.doors)
+                {
+                    n.Nodes.Add(door.RoomNumber);
+                }
+            }
+            treeViewGroups.EndUpdate();
+
+            treeViewPeople.BeginUpdate();
+            foreach (Personnel person in objects.personnel)
+            {
+                treeViewPeople.Nodes.Add(person.FirstName + " " + person.LastName);                
+            }
+            treeViewPeople.EndUpdate();
+
+        }
+
+        private void treeViewSummary_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+     
+
+        // Ribbon Menu Items
+
+
+        /// <summary>
+        /// Opens the old MainForm windows with all tabs still working
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShowNewForm(object sender, EventArgs e)
         {
             if (mainForm == null)
@@ -243,6 +286,14 @@ namespace KeyManagerForm
             }
         }
 
-       
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
