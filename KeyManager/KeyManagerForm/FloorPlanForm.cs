@@ -28,5 +28,11 @@ namespace KeyManagerForm
         {
 
         }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            UserControl1 popup = new UserControl1();
+            
+        }
     }
 }
