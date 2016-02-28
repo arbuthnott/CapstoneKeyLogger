@@ -91,7 +91,6 @@
             this.comboBoxKeytypeLookup = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxDoorLookup = new System.Windows.Forms.ComboBox();
-            this.pictureBoxLookupTab = new System.Windows.Forms.PictureBox();
             this.tabPagePersonnel = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.listBoxUsersKeys = new System.Windows.Forms.ListBox();
@@ -107,7 +106,6 @@
             this.tbLastName = new System.Windows.Forms.TextBox();
             this.tbFirstName = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.listBoxPersonnel = new System.Windows.Forms.ListBox();
             this.btnAddPerson = new System.Windows.Forms.Button();
@@ -142,7 +140,6 @@
             this.buttonKeyTabAddGroup = new System.Windows.Forms.Button();
             this.buttonKeyTabAddDoor = new System.Windows.Forms.Button();
             this.labelKeyTabKeyTypeTitle = new System.Windows.Forms.Label();
-            this.pictureBoxKeyTab = new System.Windows.Forms.PictureBox();
             this.buttonKeyTabNewType = new System.Windows.Forms.Button();
             this.comboBoxKeyTabKey = new System.Windows.Forms.ComboBox();
             this.listBoxKeyTabKeys = new System.Windows.Forms.ListBox();
@@ -163,7 +160,6 @@
             this.listBoxDoorGroupTabInGroup = new System.Windows.Forms.ListBox();
             this.buttonDoorGroupTabRemoveDoor = new System.Windows.Forms.Button();
             this.labelDoorGroupTabGroupTitle = new System.Windows.Forms.Label();
-            this.pictureBoxDoorGroupTab = new System.Windows.Forms.PictureBox();
             this.tabPageDoors = new System.Windows.Forms.TabPage();
             this.gbxKeySets = new System.Windows.Forms.GroupBox();
             this.lbxKeySets = new System.Windows.Forms.ListBox();
@@ -181,8 +177,12 @@
             this.lblRoomCode = new System.Windows.Forms.Label();
             this.tabPageFloorplans = new System.Windows.Forms.TabPage();
             this.panelFloorplans = new System.Windows.Forms.Panel();
-            this.pbFloorPlan = new System.Windows.Forms.PictureBox();
             this.lblAdmin = new System.Windows.Forms.Label();
+            this.pictureBoxLookupTab = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxKeyTab = new System.Windows.Forms.PictureBox();
+            this.pictureBoxDoorGroupTab = new System.Windows.Forms.PictureBox();
+            this.pbFloorPlan = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageCheckout.SuspendLayout();
@@ -194,29 +194,29 @@
             this.panelSearch.SuspendLayout();
             this.groupBoxLookupResults.SuspendLayout();
             this.groupBoxLookupSource.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLookupTab)).BeginInit();
             this.tabPagePersonnel.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPageKeysets.SuspendLayout();
             this.panelKeyset.SuspendLayout();
             this.groupBoxKeysetManage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPageKeys.SuspendLayout();
             this.groupBoxKeyManage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).BeginInit();
             this.tabPageDoorgroups.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBoxDoorGroupManage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).BeginInit();
             this.tabPageDoors.SuspendLayout();
             this.gbxKeySets.SuspendLayout();
             this.gbxKeyTypes.SuspendLayout();
             this.gbxKeyAssignment.SuspendLayout();
             this.tabPageFloorplans.SuspendLayout();
             this.panelFloorplans.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLookupTab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFloorPlan)).BeginInit();
             this.SuspendLayout();
             // 
@@ -853,16 +853,6 @@
             this.comboBoxDoorLookup.TabIndex = 0;
             this.comboBoxDoorLookup.SelectedIndexChanged += new System.EventHandler(this.comboBoxDoorLookup_SelectedIndexChanged);
             // 
-            // pictureBoxLookupTab
-            // 
-            this.pictureBoxLookupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxLookupTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxLookupTab.Location = new System.Drawing.Point(372, 12);
-            this.pictureBoxLookupTab.Name = "pictureBoxLookupTab";
-            this.pictureBoxLookupTab.Size = new System.Drawing.Size(400, 200);
-            this.pictureBoxLookupTab.TabIndex = 0;
-            this.pictureBoxLookupTab.TabStop = false;
-            // 
             // tabPagePersonnel
             // 
             this.tabPagePersonnel.Controls.Add(this.groupBox5);
@@ -1025,15 +1015,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Personnel";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(10, 47);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(36, 30);
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
             // 
             // tbSearch
             // 
@@ -1395,16 +1376,6 @@
             this.labelKeyTabKeyTypeTitle.TabIndex = 3;
             this.labelKeyTabKeyTypeTitle.Text = "Key Type:";
             // 
-            // pictureBoxKeyTab
-            // 
-            this.pictureBoxKeyTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxKeyTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxKeyTab.Location = new System.Drawing.Point(11, 19);
-            this.pictureBoxKeyTab.Name = "pictureBoxKeyTab";
-            this.pictureBoxKeyTab.Size = new System.Drawing.Size(400, 200);
-            this.pictureBoxKeyTab.TabIndex = 2;
-            this.pictureBoxKeyTab.TabStop = false;
-            // 
             // buttonKeyTabNewType
             // 
             this.buttonKeyTabNewType.Location = new System.Drawing.Point(229, 31);
@@ -1612,16 +1583,6 @@
             this.labelDoorGroupTabGroupTitle.TabIndex = 3;
             this.labelDoorGroupTabGroupTitle.Text = "Door Group:";
             // 
-            // pictureBoxDoorGroupTab
-            // 
-            this.pictureBoxDoorGroupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxDoorGroupTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxDoorGroupTab.Location = new System.Drawing.Point(11, 19);
-            this.pictureBoxDoorGroupTab.Name = "pictureBoxDoorGroupTab";
-            this.pictureBoxDoorGroupTab.Size = new System.Drawing.Size(400, 200);
-            this.pictureBoxDoorGroupTab.TabIndex = 2;
-            this.pictureBoxDoorGroupTab.TabStop = false;
-            // 
             // tabPageDoors
             // 
             this.tabPageDoors.Controls.Add(this.gbxKeySets);
@@ -1726,6 +1687,7 @@
             this.btnAddKey.TabIndex = 5;
             this.btnAddKey.Text = "<-   Add";
             this.btnAddKey.UseVisualStyleBackColor = true;
+            this.btnAddKey.Click += new System.EventHandler(this.btnAddKey_Click);
             // 
             // lblKeysAvailable
             // 
@@ -1794,6 +1756,55 @@
             this.panelFloorplans.Size = new System.Drawing.Size(771, 433);
             this.panelFloorplans.TabIndex = 0;
             // 
+            // lblAdmin
+            // 
+            this.lblAdmin.AutoSize = true;
+            this.lblAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdmin.Location = new System.Drawing.Point(5, 9);
+            this.lblAdmin.Name = "lblAdmin";
+            this.lblAdmin.Size = new System.Drawing.Size(157, 24);
+            this.lblAdmin.TabIndex = 0;
+            this.lblAdmin.Text = "Floor Plans Here!";
+            // 
+            // pictureBoxLookupTab
+            // 
+            this.pictureBoxLookupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxLookupTab.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxLookupTab.Location = new System.Drawing.Point(372, 12);
+            this.pictureBoxLookupTab.Name = "pictureBoxLookupTab";
+            this.pictureBoxLookupTab.Size = new System.Drawing.Size(400, 200);
+            this.pictureBoxLookupTab.TabIndex = 0;
+            this.pictureBoxLookupTab.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(10, 47);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 30);
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBoxKeyTab
+            // 
+            this.pictureBoxKeyTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxKeyTab.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxKeyTab.Location = new System.Drawing.Point(11, 19);
+            this.pictureBoxKeyTab.Name = "pictureBoxKeyTab";
+            this.pictureBoxKeyTab.Size = new System.Drawing.Size(400, 200);
+            this.pictureBoxKeyTab.TabIndex = 2;
+            this.pictureBoxKeyTab.TabStop = false;
+            // 
+            // pictureBoxDoorGroupTab
+            // 
+            this.pictureBoxDoorGroupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxDoorGroupTab.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxDoorGroupTab.Location = new System.Drawing.Point(11, 19);
+            this.pictureBoxDoorGroupTab.Name = "pictureBoxDoorGroupTab";
+            this.pictureBoxDoorGroupTab.Size = new System.Drawing.Size(400, 200);
+            this.pictureBoxDoorGroupTab.TabIndex = 2;
+            this.pictureBoxDoorGroupTab.TabStop = false;
+            // 
             // pbFloorPlan
             // 
             this.pbFloorPlan.Image = ((System.Drawing.Image)(resources.GetObject("pbFloorPlan.Image")));
@@ -1804,16 +1815,6 @@
             this.pbFloorPlan.TabStop = false;
             this.pbFloorPlan.Click += new System.EventHandler(this.pbFloorPlan_Click);
             this.pbFloorPlan.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbFloorPlan_MouseMove);
-            // 
-            // lblAdmin
-            // 
-            this.lblAdmin.AutoSize = true;
-            this.lblAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdmin.Location = new System.Drawing.Point(5, 9);
-            this.lblAdmin.Name = "lblAdmin";
-            this.lblAdmin.Size = new System.Drawing.Size(157, 24);
-            this.lblAdmin.TabIndex = 0;
-            this.lblAdmin.Text = "Floor Plans Here!";
             // 
             // MainForm
             // 
@@ -1845,7 +1846,6 @@
             this.groupBoxLookupResults.PerformLayout();
             this.groupBoxLookupSource.ResumeLayout(false);
             this.groupBoxLookupSource.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLookupTab)).EndInit();
             this.tabPagePersonnel.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
@@ -1853,7 +1853,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPageKeysets.ResumeLayout(false);
             this.panelKeyset.ResumeLayout(false);
             this.groupBoxKeysetManage.ResumeLayout(false);
@@ -1864,13 +1863,11 @@
             this.tabPageKeys.PerformLayout();
             this.groupBoxKeyManage.ResumeLayout(false);
             this.groupBoxKeyManage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).EndInit();
             this.tabPageDoorgroups.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBoxDoorGroupManage.ResumeLayout(false);
             this.groupBoxDoorGroupManage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).EndInit();
             this.tabPageDoors.ResumeLayout(false);
             this.tabPageDoors.PerformLayout();
             this.gbxKeySets.ResumeLayout(false);
@@ -1881,6 +1878,10 @@
             this.tabPageFloorplans.ResumeLayout(false);
             this.panelFloorplans.ResumeLayout(false);
             this.panelFloorplans.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLookupTab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFloorPlan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

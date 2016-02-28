@@ -20,6 +20,16 @@ namespace KeyManagerForm
         private bool loggingOut = false;
         private ObjectHolder objects;
 
+        // MDI Child Forms
+        private MainForm mainForm;      // to be removed
+        private FloorPlanForm floorPlanForm;
+        private LookupForm lookupForm;
+        private PersonnelForm personnelForm;
+        private KeyRingForm keyRingForm;
+        private Keys keys;  // what are naming conventions?
+        private DoorGroupForm doorGroupForm;
+        private DoorsForm doorsForm;
+
         public MDI_ParentForm(Login lgnForm, bool admin)
         {
             InitializeComponent();
@@ -49,10 +59,18 @@ namespace KeyManagerForm
             /// <param name="e"></param>
         private void ShowNewForm(object sender, EventArgs e)
         {
-            MainForm mainForm = new MainForm(loginForm, isAdmin);
-            mainForm.MdiParent = this;
-            mainForm.Text = "Window " + childFormNumber++;
-            mainForm.Show();
+            if (mainForm == null)
+            {
+                mainForm = new MainForm(loginForm, isAdmin);
+                mainForm.MdiParent = this;
+                mainForm.Text = "Window " + childFormNumber++;
+                mainForm.Show();
+            }
+            else
+            {
+                mainForm.Focus();
+            }
+            
         }
 
         /// <summary>
@@ -62,42 +80,107 @@ namespace KeyManagerForm
         /// <param name="e"></param>
         private void tsFloorPlans_Click(object sender, EventArgs e)
         {
-            FloorPlanForm mainForm = new FloorPlanForm(objects);
-            mainForm.MdiParent = this;
-            mainForm.Text = "Floor Plans";
-            mainForm.Show();
+            if (floorPlanForm == null)
+            {
+                floorPlanForm = new FloorPlanForm(objects);
+                floorPlanForm.MdiParent = this;
+                floorPlanForm.Text = "Floor Plans";
+                floorPlanForm.Show();
+            }
+            else
+            {
+                floorPlanForm.Focus();
+            }  
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            LookupForm mainForm = new LookupForm(objects);
-            mainForm.MdiParent = this;
-            mainForm.Text = "Lookup";
-            mainForm.Show();
+            if (lookupForm == null)
+            {
+                lookupForm = new LookupForm(objects);
+                lookupForm.MdiParent = this;
+                lookupForm.Text = "Lookup";
+                lookupForm.Show();
+            }
+            else
+            {
+                lookupForm.Focus();
+            }
         }
 
         private void tsPersonnel_Click(object sender, EventArgs e)
         {
-            PersonnelForm mainForm = new PersonnelForm(objects);
-            mainForm.MdiParent = this;
-            mainForm.Text = "Personnel";
-            mainForm.Show();
+            if (personnelForm == null)
+            {
+                personnelForm = new PersonnelForm(objects);
+                personnelForm.MdiParent = this;
+                personnelForm.Text = "Personnel";
+                personnelForm.Show();
+            }
+            else
+            {
+                personnelForm.Focus();
+            }            
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            KeyRingForm mainForm = new KeyRingForm(objects);
-            mainForm.MdiParent = this;
-            mainForm.Text = "Key Rings";
-            mainForm.Show();
+            if (keyRingForm == null)
+            {
+                keyRingForm = new KeyRingForm(objects);
+                keyRingForm.MdiParent = this;
+                keyRingForm.Text = "Key Rings";
+                keyRingForm.Show();
+            }
+            else
+            {
+                keyRingForm.Focus();
+            }
         }
 
         private void tsKeys_Click(object sender, EventArgs e)
         {
-            Keys mainForm = new Keys(objects);
-            mainForm.MdiParent = this;
-            mainForm.Text = "Keys";
-            mainForm.Show();
+            if (keys == null)
+            {
+                keys = new Keys(objects);
+                keys.MdiParent = this;
+                keys.Text = "Keys";
+                keys.Show();
+            }
+            else        
+            {
+                keys.Focus();
+            }
+        }
+
+        private void txDoorGroups_Click(object sender, EventArgs e)
+        {
+            if (doorGroupForm == null)
+            {
+                doorGroupForm = new DoorGroupForm(objects);
+                doorGroupForm.MdiParent = this;
+                doorGroupForm.Text = "Door Groups";
+                doorGroupForm.Show();
+            }
+            else
+            {
+                doorGroupForm.Focus();
+            }            
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            if (doorsForm == null)
+            {
+                doorsForm = new DoorsForm(objects);
+                doorsForm.MdiParent = this;
+                doorsForm.Text = "Doors";
+                doorsForm.Show();
+            }
+            else
+            {
+                doorsForm.Focus();
+            }
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -160,6 +243,6 @@ namespace KeyManagerForm
             }
         }
 
-        
+       
     }
 }

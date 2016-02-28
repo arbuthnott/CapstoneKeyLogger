@@ -1098,5 +1098,10 @@ namespace KeyManagerForm
         {
 
         }
+
+        private void btnAddKey_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
