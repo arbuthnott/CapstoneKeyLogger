@@ -446,33 +446,36 @@
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.AutoSize = false;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Black;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(51, 47);
+            this.toolStripButton1.Size = new System.Drawing.Size(60, 50);
             this.toolStripButton1.Text = "Lookup";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // tsFloorPlans
             // 
+            this.tsFloorPlans.AutoSize = false;
             this.tsFloorPlans.Image = ((System.Drawing.Image)(resources.GetObject("tsFloorPlans.Image")));
             this.tsFloorPlans.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsFloorPlans.ImageTransparentColor = System.Drawing.Color.Black;
             this.tsFloorPlans.Name = "tsFloorPlans";
-            this.tsFloorPlans.Size = new System.Drawing.Size(35, 47);
+            this.tsFloorPlans.Size = new System.Drawing.Size(60, 50);
             this.tsFloorPlans.Text = "Map";
             this.tsFloorPlans.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsFloorPlans.Click += new System.EventHandler(this.tsFloorPlans_Click);
             // 
             // tsPersonnel
             // 
+            this.tsPersonnel.AutoSize = false;
             this.tsPersonnel.Image = ((System.Drawing.Image)(resources.GetObject("tsPersonnel.Image")));
             this.tsPersonnel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.tsPersonnel.ImageTransparentColor = System.Drawing.Color.Black;
             this.tsPersonnel.Name = "tsPersonnel";
-            this.tsPersonnel.Size = new System.Drawing.Size(63, 47);
+            this.tsPersonnel.Size = new System.Drawing.Size(60, 50);
             this.tsPersonnel.Text = "Personnel";
             this.tsPersonnel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsPersonnel.Click += new System.EventHandler(this.tsPersonnel_Click);
