@@ -1093,5 +1093,10 @@ namespace KeyManagerForm
         {
             Console.Out.WriteLine(e.X + " " + e.Y);
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

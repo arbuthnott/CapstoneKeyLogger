@@ -84,6 +84,22 @@ namespace KeyManagerForm
             mainForm.Show();
         }
 
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            KeyRingForm mainForm = new KeyRingForm(objects);
+            mainForm.MdiParent = this;
+            mainForm.Text = "Key Rings";
+            mainForm.Show();
+        }
+
+        private void tsKeys_Click(object sender, EventArgs e)
+        {
+            Keys mainForm = new Keys(objects);
+            mainForm.MdiParent = this;
+            mainForm.Text = "Keys";
+            mainForm.Show();
+        }
+
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
            

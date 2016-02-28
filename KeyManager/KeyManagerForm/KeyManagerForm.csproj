@@ -63,6 +63,18 @@
     <Compile Include="FloorPlanForm.Designer.cs">
       <DependentUpon>FloorPlanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="KeyRingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyRingForm.Designer.cs">
+      <DependentUpon>KeyRingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Keys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Keys.Designer.cs">
+      <DependentUpon>Keys.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeysetDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +118,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FloorPlanForm.resx">
       <DependentUpon>FloorPlanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyRingForm.resx">
+      <DependentUpon>KeyRingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Keys.resx">
+      <DependentUpon>Keys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeysetDialog.resx">
       <DependentUpon>KeysetDialog.cs</DependentUpon>
