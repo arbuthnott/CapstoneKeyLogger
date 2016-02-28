@@ -445,6 +445,7 @@
             // toolStrip
             // 
             this.toolStrip.AutoSize = false;
+            this.toolStrip.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripSeparator9,
@@ -593,7 +594,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.pictureBox3);
             this.panel1.Controls.Add(this.label4);
