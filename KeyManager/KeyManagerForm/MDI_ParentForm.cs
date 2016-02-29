@@ -23,7 +23,8 @@ namespace KeyManagerForm
         // MDI Child Forms
         private MainForm mainForm;      // to be removed
         private FloorPlanForm floorPlanForm;
-        private LookupForm lookupForm;
+        //private LookupForm lookupForm;
+        private NewLookupForm lookupForm;
         private PersonnelForm personnelForm;
         private KeyRingForm keyRingForm;
         private Keys keys;  // what are naming conventions?
@@ -144,7 +145,8 @@ namespace KeyManagerForm
         {
             if (lookupForm == null)
             {
-                lookupForm = new LookupForm(objects);
+                //lookupForm = new LookupForm(objects);
+                lookupForm = new NewLookupForm(objects);
                 lookupForm.MdiParent = this;
                 lookupForm.Text = "Lookup";
                 lookupForm.Show();

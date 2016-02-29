@@ -121,6 +121,12 @@
     <Compile Include="MDI_ParentForm.Designer.cs">
       <DependentUpon>MDI_ParentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewLookupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewLookupForm.Designer.cs">
+      <DependentUpon>NewLookupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PersonnelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDI_ParentForm.resx">
       <DependentUpon>MDI_ParentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewLookupForm.resx">
+      <DependentUpon>NewLookupForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PersonnelForm.resx">
       <DependentUpon>PersonnelForm.cs</DependentUpon>
