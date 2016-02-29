@@ -49,39 +49,43 @@ namespace KeyManagerForm
 
             SetupTreeView();
         }
-
+        
         private void SetupTreeView()
         {
             treeViewSummary.BeginUpdate();
             //treeView2.Nodes.Clear();
 
+            TreeNode n1 = treeViewSummary.Nodes.Add("Key Rings");
             foreach (KeyRing ring in objects.keyrings)
             {
-                TreeNode n = treeViewSummary.Nodes.Add(ring.Name);
+                TreeNode n = n1.Nodes.Add(ring.Name);
                 foreach (Key key in ring.keys)
                 {
                     n.Nodes.Add(key.Serial);
-                }
+                }                
             }
-            treeViewSummary.EndUpdate();
+            n1.Expand();
 
-            treeViewGroups.BeginUpdate();
+            TreeNode n2 = treeViewSummary.Nodes.Add("Door Groups");
             foreach (Location loc in objects.locations)
             {
-                TreeNode n = treeViewGroups.Nodes.Add(loc.Name);
+                TreeNode n = n2.Nodes.Add(loc.Name);
                 foreach (Door door in loc.doors)
                 {
                     n.Nodes.Add(door.RoomNumber);
                 }
             }
-            treeViewGroups.EndUpdate();
+            n2.Expand();
 
-            treeViewPeople.BeginUpdate();
+            TreeNode n3 = treeViewSummary.Nodes.Add("People");
             foreach (Personnel person in objects.personnel)
             {
-                treeViewPeople.Nodes.Add(person.FirstName + " " + person.LastName);                
+                n3.Nodes.Add(person.FirstName + " " + person.LastName);
             }
-            treeViewPeople.EndUpdate();
+            n3.Expand();
+
+            treeViewSummary.EndUpdate();
+
 
         }
 
@@ -292,6 +296,11 @@ namespace KeyManagerForm
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
