@@ -23,11 +23,12 @@ namespace KeyManagerForm
             this.objects = objects;
 
             SetupList();
-            PopulateListKeys("");
-            lblTitle.Focus();
-            
+            PopulateListKeys("");                        
         }
 
+        /// <summary>
+        /// Sets up the style and column headers for the results list
+        /// </summary>
         public void SetupList()
         {
             listKeys.View = View.Details;
@@ -46,6 +47,12 @@ namespace KeyManagerForm
             listKeys.SmallImageList = imgList;
         }
 
+        /// <summary>
+        /// Adds keys to the list base on the search term
+        /// If search is "", it will show all keys
+        /// All search terms, seperated by space, and matched againt all key properities 
+        /// </summary>
+        /// <param name="searchString"></param>
         public void PopulateListKeys(String searchString)
         {
             listKeys.Items.Clear();
@@ -75,6 +82,8 @@ namespace KeyManagerForm
                 if (key.KeyRing != null)
                     ring = key.KeyRing.Name;
 
+                // this is an array of key properies 
+                // eg the row in the list
                 String[] args = { key.Serial, key.KeyType.Name, ring, " ", doors };
 
                 if (doSearch)
@@ -105,6 +114,12 @@ namespace KeyManagerForm
             }
         }      
 
+        /// <summary>
+        /// Compare a key to search terms.
+        /// </summary>
+        /// <param name="searchString">The user inputed search</param>
+        /// <param name="args">Array of key properties</param>
+        /// <returns>Boolean. What there a match?</returns>
         public bool DoSearch(String searchString, String[] args)
         {
             String[] terms = searchString.Split(' ');
@@ -123,7 +138,7 @@ namespace KeyManagerForm
                 foreach (String val in keyValues)
                 {
                     if (val.ToLower().Contains(term.ToLower()))
-                        return true;
+                        return true; // return a match if any key property contains a search term.
                 }
             }
 
