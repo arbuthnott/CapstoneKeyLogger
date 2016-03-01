@@ -25,8 +25,6 @@ namespace KeyManagerForm
         {
             InitializeComponent();
             this.objects = objects;
-
-            dataPoints.Add(new MapPoint(200, 250));
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -34,10 +32,10 @@ namespace KeyManagerForm
             if (addingMapPoint)
             {
                 dataPoints.Add(new MapPoint(x, y));
-            }
-
-            this.Cursor = Cursors.Default;
-            pictureBox1.Invalidate();
+                this.Cursor = Cursors.Default;
+                pictureBox1.Invalidate();
+                addingMapPoint = false;
+            } 
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
