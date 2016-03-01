@@ -69,24 +69,37 @@ namespace KeyManagerForm
                 if (x >= point.x && x <= point.x + 10)
                     if (y >= point.y && y <= point.y + 10)
                     {
+                        int POPUP_WIDTH = 200;
+                        int POPUP_HEIGHT = 200;
+                        int horizontalOffset = 0;
+                        int verticalOffset = 0;
+                        int width = pictureBox1.Width;
+                        int height = pictureBox1.Height;
+                        
+                        if (width - x < POPUP_WIDTH)
+                            horizontalOffset = POPUP_WIDTH * -1;
+                        if (height - y < POPUP_HEIGHT)
+                            verticalOffset = POPUP_HEIGHT * -1;
+
+                        // draw door popup
                         using (Brush brush = new SolidBrush(Color.FromArgb(150, 0, 0, 0)))
                         {
-                            Rectangle eee = new Rectangle(x, y, 200, 300);
+                            Rectangle eee = new Rectangle(x+horizontalOffset, y+verticalOffset, POPUP_WIDTH, POPUP_HEIGHT);
                             e.Graphics.FillRectangle(brush, eee); 
                         }
                         using (Brush brush = new SolidBrush(Color.FromArgb(255, 255, 255)))
                         {
                             Font font = new Font("Arial", 16);
-                            e.Graphics.DrawString(point.door.RoomNumber, font, brush, x+10, y+10);
+                            e.Graphics.DrawString(point.door.RoomNumber, font, brush, x+10+horizontalOffset, y+10+verticalOffset);
 
                             Font font2 = new Font("Arial", 12);
-                            e.Graphics.DrawString("Key Types:", font2, brush, x + 10, y + 40);
+                            e.Graphics.DrawString("Key Types:", font2, brush, x + 10 + horizontalOffset, y + 40 + verticalOffset);
 
                             Font font3 = new Font("Arial", 10);
                             int yOffset = y+60;
                             foreach (KeyType type in point.door.keytypes)
                             {
-                                e.Graphics.DrawString(type.Name, font3, brush, x + 10, yOffset);
+                                e.Graphics.DrawString(type.Name, font3, brush, x + 10 + horizontalOffset, yOffset + verticalOffset);
                                 yOffset += 15;
                             }
                             
