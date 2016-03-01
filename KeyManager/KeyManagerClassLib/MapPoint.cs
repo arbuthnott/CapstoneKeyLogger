@@ -18,12 +18,15 @@ namespace KeyManagerClassLib
         public int x;
         public int y;
         public Door door;
+        public int floor;
+        public bool selected = false;
 
-        public MapPoint(int x, int y, Door door)
+        public MapPoint(int x, int y, Door door, int floor)
         {
             this.x = x;
             this.y = y;
             this.door = door;
+            this.floor = floor;
         }
     }
 }
