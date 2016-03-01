@@ -18,6 +18,10 @@ namespace KeyManagerClassLib
         public string Name { get; set; }
         public string Image { get; set; }
 
+        /// <summary>
+        /// Create or update this location in the db.  Does not update doors in the group.
+        /// For that use AddDoor and RemoveDoor methods.
+        /// </summary>
         public void Save()
         {
             DataLayer dl = new DataLayer();
@@ -49,6 +53,10 @@ namespace KeyManagerClassLib
             Image = pImage;
         }
 
+        /// <summary>
+        /// Add a door to this group.  Affects OOP and database.
+        /// </summary>
+        /// <param name="door"></param>
         public void AddDoor(Door door)
         {
             doors.Add(door);
@@ -58,6 +66,10 @@ namespace KeyManagerClassLib
             dl.AddRecord("door_to_location");
         }
 
+        /// <summary>
+        /// Remove a door from this group.  Affects OOP and Database.
+        /// </summary>
+        /// <param name="door"></param>
         public void RemoveDoor(Door door)
         {
             doors.Remove(door);

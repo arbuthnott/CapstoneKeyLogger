@@ -17,6 +17,10 @@ namespace KeyManagerClassLib
         public bool Broken { get; set; }
         public bool Missing { get; set; }
 
+        /// <summary>
+        /// Update or Create this key in the db, including associated keytype and keyring (if any)
+        /// Convenience methods exist for setkeytype and setkeyring
+        /// </summary>
         public void Save()
         {
             DataLayer dl = new DataLayer();

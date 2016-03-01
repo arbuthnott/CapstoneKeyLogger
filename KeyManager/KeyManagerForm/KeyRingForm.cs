@@ -53,31 +53,34 @@ namespace KeyManagerForm
                     buttonSaveKeysetChanges_Click(null, null);
                 }
             }
-            groupBoxKeysetManage.Enabled = true;
-            buttonSaveKeysetChanges.Enabled = false;
-            labelKeysetTitle.Text = (String)listBoxKeysets.SelectedItem;
-
-            // populate keys in this keyring
-            listBoxKeysInKeyset.Items.Clear();
             KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
-            String line;
-            if (ring.keys != null)
+            if (ring != null)
             {
-                foreach (Key key in ring.keys)
+                groupBoxKeysetManage.Enabled = true;
+                buttonSaveKeysetChanges.Enabled = false;
+                labelKeysetTitle.Text = (String)listBoxKeysets.SelectedItem;
+
+                String line;
+                if (ring.keys != null)
+                {
+                    // populate keys in this keyring
+                    listBoxKeysInKeyset.Items.Clear();
+                    foreach (Key key in ring.keys)
+                    {
+                        line = key.Serial + " (" + key.KeyType.Name + ")";
+                        listBoxKeysInKeyset.Items.Add(line);
+                    }
+                }
+
+                // populate keys available
+                listBoxKeysNotInKeyset.Items.Clear();
+                foreach (Key key in objects.keys)
                 {
                     line = key.Serial + " (" + key.KeyType.Name + ")";
-                    listBoxKeysInKeyset.Items.Add(line);
-                }
-            }
-
-            // populate keys available
-            listBoxKeysNotInKeyset.Items.Clear();
-            foreach (Key key in objects.keys)
-            {
-                line = key.Serial + " (" + key.KeyType.Name + ")";
-                if (key.KeyRing == null)
-                {
-                    listBoxKeysNotInKeyset.Items.Add(line);
+                    if (key.KeyRing == null)
+                    {
+                        listBoxKeysNotInKeyset.Items.Add(line);
+                    }
                 }
             }
         }

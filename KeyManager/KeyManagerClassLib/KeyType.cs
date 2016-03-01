@@ -18,6 +18,11 @@ namespace KeyManagerClassLib
         public string Name { get; set; }
         public int PermitLevel { get; set; }
 
+        /// <summary>
+        /// Create or update this keytype in the database.  Does not affect associated doors
+        /// or keys.  To affect these in db, use ConnectToDoor, DisconnectDoor, and
+        /// ConnectToKey methods.
+        /// </summary>
         public void Save()
         {
             DataLayer dl = new DataLayer();
@@ -49,16 +54,28 @@ namespace KeyManagerClassLib
             PermitLevel = pPermitLevel;
         }
 
+        /// <summary>
+        /// Attach to a door in the OOP and the database
+        /// </summary>
+        /// <param name="door"></param>
         public void ConnectToDoor(Door door)
         {
             door.ConnectKeyType(this);
         }
 
+        /// <summary>
+        /// Dissociate from a door in the OOP and the database
+        /// </summary>
+        /// <param name="door"></param>
         public void DisconnectDoor(Door door)
         {
             door.DisconnectKeyType(this);
         }
 
+        /// <summary>
+        /// Connect a key to this type in both OOP and database
+        /// </summary>
+        /// <param name="key"></param>
         public void ConnectToKey(Key key)
         {
             key.SetKeyType(this);

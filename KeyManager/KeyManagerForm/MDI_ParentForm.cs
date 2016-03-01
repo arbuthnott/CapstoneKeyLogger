@@ -139,7 +139,7 @@ namespace KeyManagerForm
             }  
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void toolStripButtonLookup_Click(object sender, EventArgs e)
         {
             if (lookupForm == null)
             {
@@ -170,9 +170,9 @@ namespace KeyManagerForm
             }            
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void toolStripButtonKeyRing_Click(object sender, EventArgs e)
         {
-            if (keyRingForm == null)
+            if (keyRingForm == null || keyRingForm.IsDisposed)
             {
                 keyRingForm = new KeyRingForm(objects);
                 keyRingForm.MdiParent = this;
@@ -215,7 +215,7 @@ namespace KeyManagerForm
             }            
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        private void toolStripButtonDoor_Click(object sender, EventArgs e)
         {
             if (doorsForm == null)
             {

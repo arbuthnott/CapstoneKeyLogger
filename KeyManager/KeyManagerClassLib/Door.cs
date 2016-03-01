@@ -19,6 +19,10 @@ namespace KeyManagerClassLib
         public int LockId { get; set; }
         public string DoorImage { get; set; }
 
+        /// <summary>
+        /// Create or update this door in the database, including reference to lock and all data properties
+        /// DOES NOT update connections to Keytypes.  For that use ConnectKeyType or DisconnectKeytype.
+        /// </summary>
         public void Save()
         {
             DataLayer dl;

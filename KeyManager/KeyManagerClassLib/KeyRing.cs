@@ -16,6 +16,10 @@ namespace KeyManagerClassLib
         public int Id { get; set; }
         public string Name { get; set; }
 
+        /// <summary>
+        /// Create or update this keyring in the db.  Does not update associated keys.
+        /// To associate keys use AddKey and RemoveKey methods.
+        /// </summary>
         public void Save()
         {
             DataLayer dl = new DataLayer();
@@ -44,6 +48,10 @@ namespace KeyManagerClassLib
             Name = pName;
         }
 
+        /// <summary>
+        /// Add a key to this ring.  Affects OOP and db.
+        /// </summary>
+        /// <param name="key"></param>
         public void AddKey(Key key)
         {
             keys.Add(key);
@@ -53,6 +61,10 @@ namespace KeyManagerClassLib
             dl.AlterRecord("key", key.Id);
         }
 
+        /// <summary>
+        /// Remove a key from this ring.  Affects OOP and db.
+        /// </summary>
+        /// <param name="key"></param>
         public void RemoveKey(Key key)
         {
             if (keys.Contains(key))

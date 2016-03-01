@@ -18,6 +18,9 @@ namespace KeyManagerClassLib
         public bool IsAdmin { get; set; }
         public int PermitLevel { get; set; }
 
+        /// <summary>
+        /// Create or update this person in the database.
+        /// </summary>
         public void Save()
         {
             DataLayer dl = new DataLayer();
