@@ -126,7 +126,7 @@ namespace KeyManagerForm
         /// <param name="e"></param>
         private void tsFloorPlans_Click(object sender, EventArgs e)
         {
-            if (floorPlanForm == null)
+            if (floorPlanForm == null || floorPlanForm.IsDisposed)
             {
                 floorPlanForm = new FloorPlanForm(objects);
                 floorPlanForm.MdiParent = this;
@@ -141,7 +141,7 @@ namespace KeyManagerForm
 
         private void toolStripButtonLookup_Click(object sender, EventArgs e)
         {
-            if (lookupForm == null)
+            if (lookupForm == null || lookupForm.IsDisposed)
             {
                 //lookupForm = new LookupForm(objects);
                 lookupForm = new NewLookupForm(objects);
@@ -157,7 +157,7 @@ namespace KeyManagerForm
 
         private void tsPersonnel_Click(object sender, EventArgs e)
         {
-            if (personnelForm == null)
+            if (personnelForm == null || personnelForm.IsDisposed)
             {
                 personnelForm = new PersonnelForm(objects);
                 personnelForm.MdiParent = this;
@@ -187,7 +187,7 @@ namespace KeyManagerForm
 
         private void tsKeys_Click(object sender, EventArgs e)
         {
-            if (keys == null)
+            if (keys == null || keys.IsDisposed)
             {
                 keys = new Keys(objects);
                 keys.MdiParent = this;
@@ -202,7 +202,7 @@ namespace KeyManagerForm
 
         private void txDoorGroups_Click(object sender, EventArgs e)
         {
-            if (doorGroupForm == null)
+            if (doorGroupForm == null || doorGroupForm.IsDisposed)
             {
                 doorGroupForm = new DoorGroupForm(objects);
                 doorGroupForm.MdiParent = this;
@@ -217,7 +217,7 @@ namespace KeyManagerForm
 
         private void toolStripButtonDoor_Click(object sender, EventArgs e)
         {
-            if (doorsForm == null)
+            if (doorsForm == null || doorsForm.IsDisposed)
             {
                 doorsForm = new DoorsForm(objects);
                 doorsForm.MdiParent = this;
