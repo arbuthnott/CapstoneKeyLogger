@@ -58,6 +58,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddMapPointDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMapPointDialog.Designer.cs">
+      <DependentUpon>AddMapPointDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="DoorGroupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddMapPointDialog.resx">
+      <DependentUpon>AddMapPointDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DoorGroupDialog.resx">
       <DependentUpon>DoorGroupDialog.cs</DependentUpon>
     </EmbeddedResource>

@@ -31,7 +31,15 @@ namespace KeyManagerForm
         {
             if (addingMapPoint)
             {
-                dataPoints.Add(new MapPoint(x, y));
+                // use a dialog to create a new keyset
+                AddMapPointDialog ksd = new AddMapPointDialog(objects);
+                if (ksd.ShowDialog() == DialogResult.OK)
+                {
+                    dataPoints.Add(new MapPoint(x, y, ksd.door));
+                }
+                ksd.Close();
+
+                
                 this.Cursor = Cursors.Default;
                 pictureBox1.Invalidate();
                 addingMapPoint = false;
@@ -64,7 +72,24 @@ namespace KeyManagerForm
                         using (Brush brush = new SolidBrush(Color.FromArgb(150, 0, 0, 0)))
                         {
                             Rectangle eee = new Rectangle(x, y, 200, 300);
-                            e.Graphics.FillRectangle(brush, eee);
+                            e.Graphics.FillRectangle(brush, eee); 
+                        }
+                        using (Brush brush = new SolidBrush(Color.FromArgb(255, 255, 255)))
+                        {
+                            Font font = new Font("Arial", 16);
+                            e.Graphics.DrawString(point.door.RoomNumber, font, brush, x+10, y+10);
+
+                            Font font2 = new Font("Arial", 12);
+                            e.Graphics.DrawString("Key Types:", font2, brush, x + 10, y + 40);
+
+                            Font font3 = new Font("Arial", 10);
+                            int yOffset = y+60;
+                            foreach (KeyType type in point.door.keytypes)
+                            {
+                                e.Graphics.DrawString(type.Name, font3, brush, x + 10, yOffset);
+                                yOffset += 15;
+                            }
+                            
                         }
                     }
             }                        
