@@ -21,12 +21,12 @@ namespace KeyManagerClassLib
         public void Save()
         {
             DataLayer dl = new DataLayer();
-            dl.AddValue(true, "Username", UserName == null ? "NULL" : UserName);
-            dl.AddValue(true, "Password", Password == null ? "NULL" : Password);
-            dl.AddValue(true, "First Name", FirstName);
-            dl.AddValue(true, "Last Name", LastName);
-            dl.AddValue(false, "IsAdministrator", IsAdmin ? "1" : "0");
-            dl.AddValue(false, "PermitLevel", "" + PermitLevel);
+            dl.AddValue("Username", UserName == null ? "NULL" : UserName);
+            dl.AddValue("Password", Password == null ? "NULL" : Password);
+            dl.AddValue("First Name", FirstName);
+            dl.AddValue("Last Name", LastName);
+            dl.AddValue("IsAdministrator", IsAdmin ? "1" : "0");
+            dl.AddValue("PermitLevel", "" + PermitLevel);
             if (Id == -1)
             {
                 Id = dl.AddRecord("personnel");

@@ -21,8 +21,8 @@ namespace KeyManagerClassLib
         public void Save()
         {
             DataLayer dl = new DataLayer();
-            dl.AddValue(true, "Name", Name);
-            dl.AddValue(true, "image", Image);
+            dl.AddValue("Name", Name);
+            dl.AddValue("image", Image);
             if (Id == -1)
             {
                 Id = dl.AddRecord("location");
@@ -53,8 +53,8 @@ namespace KeyManagerClassLib
         {
             doors.Add(door);
             DataLayer dl = new DataLayer();
-            dl.AddValue(false, "Door", "" + door.Id);
-            dl.AddValue(false, "Location", "" + Id);
+            dl.AddValue("Door", "" + door.Id);
+            dl.AddValue("Location", "" + Id);
             dl.AddRecord("door_to_location");
         }
 

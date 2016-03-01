@@ -19,7 +19,7 @@ namespace KeyManagerClassLib
         public void Save()
         {
             DataLayer dl = new DataLayer();
-            dl.AddValue(true, "Name", Name);
+            dl.AddValue("Name", Name);
             if (Id == -1)
             {
                 Id = dl.AddRecord("keyring");
@@ -49,7 +49,7 @@ namespace KeyManagerClassLib
             keys.Add(key);
             key.KeyRing = this;
             DataLayer dl = new DataLayer();
-            dl.AddValue(false, "Keyring", "" + Id);
+            dl.AddValue("Keyring", "" + Id);
             dl.AlterRecord("key", key.Id);
         }
 
@@ -60,7 +60,7 @@ namespace KeyManagerClassLib
                 keys.Remove(key);
                 key.KeyRing = null;
                 DataLayer dl = new DataLayer();
-                dl.AddValue(false, "Keyring", "NULL");
+                dl.AddValue("Keyring", "NULL");
                 dl.AlterRecord("key", key.Id);
             }
         }

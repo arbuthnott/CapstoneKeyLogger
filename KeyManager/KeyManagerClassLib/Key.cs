@@ -20,9 +20,9 @@ namespace KeyManagerClassLib
         public void Save()
         {
             DataLayer dl = new DataLayer();
-            dl.AddValue(true, "Serial", Serial);
-            dl.AddValue(false, "Keytype", KeyType == null ? "NULL" : "" + KeyType.Id);
-            dl.AddValue(false, "Keyring", KeyRing == null ? "NULL" : "" + KeyRing.Id);
+            dl.AddValue("Serial", Serial);
+            dl.AddValue("Keytype", KeyType == null ? "NULL" : "" + KeyType.Id);
+            dl.AddValue("Keyring", KeyRing == null ? "NULL" : "" + KeyRing.Id);
             if (Id == -1)
             {
                 Id = dl.AddRecord("key");

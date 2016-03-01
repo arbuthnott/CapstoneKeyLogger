@@ -14,7 +14,8 @@ namespace KeyManagerForm
 {
     public partial class Login : Form
     {
-        private MainForm mainForm;
+        //private MainForm mainForm;
+        private MDI_ParentForm parentForm;
 
         public Login()
         {
@@ -32,7 +33,7 @@ namespace KeyManagerForm
 
                 //mainForm = new MainForm(this, userlogin.IsAdmin);
                 //mainForm.Show();
-                MDI_ParentForm parentForm = new MDI_ParentForm(this, userlogin.IsAdmin);
+                parentForm = new MDI_ParentForm(this, userlogin.IsAdmin);
                 parentForm.Show();
                 this.Hide();
             }
@@ -53,14 +54,9 @@ namespace KeyManagerForm
             tbUsername.Text = "";
             tbPassword.Text = "";
             tbUsername.Focus();
-            mainForm.Close();
-            mainForm = null;
+            parentForm.Close();
+            parentForm = null;
             this.Show();
-        }
-
-        private void lblIncorrect_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

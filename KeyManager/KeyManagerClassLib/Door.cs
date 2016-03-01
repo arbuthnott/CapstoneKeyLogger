@@ -34,9 +34,9 @@ namespace KeyManagerClassLib
             }
 
             dl = new DataLayer();
-            dl.AddValue(true, "room_number", RoomNumber);
-            dl.AddValue(false, "lock", "" + LockId);
-            dl.AddValue(true, "door_image", DoorImage);
+            dl.AddValue("room_number", RoomNumber);
+            dl.AddValue("lock", "" + LockId);
+            dl.AddValue("door_image", DoorImage);
             if (Id == -1)
             {
                 Id = dl.AddRecord("door");
@@ -74,8 +74,8 @@ namespace KeyManagerClassLib
             keytypes.Add(type);
             type.doors.Add(this);
             DataLayer dl = new DataLayer();
-            dl.AddValue(false, "Keytype", "" + type.Id);
-            dl.AddValue(false, "Lock", "" + Id);
+            dl.AddValue("Keytype", "" + type.Id);
+            dl.AddValue("Lock", "" + Id);
             dl.AddRecord("keytype_to_lock");
         }
 
@@ -104,7 +104,7 @@ namespace KeyManagerClassLib
         {
             LockId = otherDoor.LockId;
             DataLayer dl = new DataLayer();
-            dl.AddValue(false, "lock", "" + otherDoor.LockId);
+            dl.AddValue("lock", "" + otherDoor.LockId);
             dl.AlterRecord("door", Id);
 
             foreach (KeyType type in keytypes)

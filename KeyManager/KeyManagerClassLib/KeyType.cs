@@ -21,8 +21,8 @@ namespace KeyManagerClassLib
         public void Save()
         {
             DataLayer dl = new DataLayer();
-            dl.AddValue(true, "Name", Name);
-            dl.AddValue(false, "PermitLevel", "" + PermitLevel);
+            dl.AddValue("Name", Name);
+            dl.AddValue("PermitLevel", "" + PermitLevel);
             if (Id == -1)
             {
                 Id = dl.AddRecord("keytype");

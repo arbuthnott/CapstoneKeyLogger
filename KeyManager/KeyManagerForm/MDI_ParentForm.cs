@@ -34,12 +34,10 @@ namespace KeyManagerForm
         public MDI_ParentForm(Login lgnForm, bool admin)
         {
             InitializeComponent();
-             
             objects = new ObjectHolder();
                       
             if (admin)
             {
-
                 isAdmin = true;
             }  
             else
@@ -305,6 +303,20 @@ namespace KeyManagerForm
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButtonLogout_Click(object sender, EventArgs e)
+        {
+            this.loggingOut = true;
+            loginForm.Logout();
+        }
+
+        private void MDI_ParentForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!this.loggingOut)
+            {
+                loginForm.Close();
+            }
         }
     }
 }
