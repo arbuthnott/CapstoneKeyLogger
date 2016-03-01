@@ -52,6 +52,7 @@
             // 
             // listFloors
             // 
+            this.listFloors.BackColor = System.Drawing.Color.LightGray;
             this.listFloors.Location = new System.Drawing.Point(12, 28);
             this.listFloors.Name = "listFloors";
             this.listFloors.Size = new System.Drawing.Size(133, 148);
@@ -73,6 +74,7 @@
             // 
             // listDoors
             // 
+            this.listDoors.BackColor = System.Drawing.Color.LightGray;
             this.listDoors.Location = new System.Drawing.Point(12, 182);
             this.listDoors.Name = "listDoors";
             this.listDoors.Size = new System.Drawing.Size(133, 611);

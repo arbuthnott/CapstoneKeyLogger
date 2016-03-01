@@ -49,10 +49,9 @@ namespace KeyManagerForm
             floors.Add("Second Floor");
 
             listFloors.View = View.Details;
-            listFloors.GridLines = true;
             listFloors.FullRowSelect = true;
 
-            listFloors.Columns.Add("Floors", 120);
+            listFloors.Columns.Add("Floors", 125);
 
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 20);
@@ -76,10 +75,10 @@ namespace KeyManagerForm
         public void SetupListofDoors()
         {
             listDoors.View = View.Details;
-            listDoors.GridLines = true;
+            //listDoors.GridLines = true;
             listDoors.FullRowSelect = true;
 
-            listDoors.Columns.Add("Doors", 120);
+            listDoors.Columns.Add("Doors", 125);
 
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 20);
@@ -148,8 +147,10 @@ namespace KeyManagerForm
                     e.Graphics.FillRectangle(brush, xLine);
                     Rectangle yLine = new Rectangle(x, 0, 2, pictureBox1.Height);
                     e.Graphics.FillRectangle(brush,yLine);
-                    Rectangle eee = new Rectangle(x-5, y-5, 10, 10);
+
+                    Rectangle eee = new Rectangle(x - 5, y - 5, 10, 10);
                     e.Graphics.FillRectangle(brush, eee);
+
                     Font font2 = new Font("Arial", 12);
                     e.Graphics.DrawString(cbDoors.SelectedItem.ToString(), font2, brush, x + 10, y - 15);
                 }
@@ -201,15 +202,15 @@ namespace KeyManagerForm
                             if (height - y < POPUP_HEIGHT)
                                 verticalOffset = POPUP_HEIGHT * -1;
 
-                            // draw door popup
-                            using (Brush brush = new SolidBrush(Color.FromArgb(0, 0, 255)))
-                            {
-                                Rectangle eee = new Rectangle(x + horizontalOffset, y + verticalOffset, POPUP_WIDTH, 40);
-                                e.Graphics.FillRectangle(brush, eee);
-                            }
+                            // draw door popup                            
                             using (Brush brush = new SolidBrush(Color.FromArgb(200, 0, 0, 0)))
                             {
                                 Rectangle eee = new Rectangle(x + horizontalOffset, y + verticalOffset, POPUP_WIDTH, POPUP_HEIGHT);
+                                e.Graphics.FillRectangle(brush, eee);
+                            }
+                            using (Brush brush = new SolidBrush(Color.FromArgb(100, 0, 0, 255)))
+                            {
+                                Rectangle eee = new Rectangle(x + horizontalOffset, y + verticalOffset, POPUP_WIDTH, 40);
                                 e.Graphics.FillRectangle(brush, eee);
                             }
                             using (Brush brush = new SolidBrush(Color.FromArgb(255, 255, 255)))
@@ -220,12 +221,12 @@ namespace KeyManagerForm
                                 Font font2 = new Font("Arial", 12);
                                 e.Graphics.DrawString("Key Types:", font2, brush, x + 10 + horizontalOffset, y + 45 + verticalOffset);
 
-                                Font font3 = new Font("Arial", 10);
+                                Font font3 = new Font("Arial", 8);
                                 int yOffset = y + 70;
                                 foreach (KeyType type in point.door.keytypes)
                                 {
-                                    e.Graphics.DrawString(type.Name, font3, brush, x + 15 + horizontalOffset, yOffset + verticalOffset);
-                                    yOffset += 25;
+                                    e.Graphics.DrawString(type.Name, font3, brush, x + 25 + horizontalOffset, yOffset + verticalOffset);
+                                    yOffset += 15;
                                 }
 
                             }
