@@ -88,7 +88,7 @@ namespace KeyManagerForm
                         }
                     }
                     // update the OOP - later bring in the database too.
-                    loc.doors.Remove(door);
+                    loc.RemoveDoor(door);
 
                     // update the UI
                     initializeDoorGroupTab();
@@ -112,7 +112,7 @@ namespace KeyManagerForm
                         }
                     }
                     // update the OOP - later bring in the database too.
-                    loc.doors.Add(door);
+                    loc.AddDoor(door);
 
                     // update the UI
                     initializeDoorGroupTab();
@@ -127,8 +127,9 @@ namespace KeyManagerForm
             DoorGroupDialog dgd = new DoorGroupDialog();
             if (dgd.ShowDialog() == DialogResult.OK)
             {
-                // update the OOP - for now OOP only!
+                // update the OOP and the database
                 Location loc = dgd.location;
+                loc.Save();
                 objects.locations.Add(loc);
                 // redisplay
                 initializeDoorGroupTab();
@@ -144,43 +145,26 @@ namespace KeyManagerForm
              Will come back and fix.
              - Jared
             *********************/
-            
 
-            // open a dialog to change the name or other details
-            //foreach (Location loc in objects.locations)
-            //{
-            //    if (loc.Name == (string)listBoxDoorGroupTabGroups.SelectedItem)
-            //    {
-            //        DoorGroupDialog dgd = new DoorGroupDialog(loc);
-            //        if (dgd.ShowDialog() == DialogResult.OK)
-            //        {
-            //            // update the Door Group - for now OOP only!
-            //            loc.Name = dgd.location.Name;
-            //            // redisplay
-            //            initializeDoorGroupTab();
-            //            listBoxKeysets.SelectedItem = loc.Name;
-            //        }
-            //        dgd.Close();
-            //    }
-            //}
 
-            //KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
-            //KeysetDialog ksd = new KeysetDialog(ring);
-            //if (ksd.ShowDialog() == DialogResult.OK)
-            //{
-            //    // update the keyset - for now OOP only!
-            //    ring.Name = ksd.ring.Name;
-            //    // redisplay
-            //    initializeKeySetTab();
-            //    listBoxKeysets.SelectedItem = ring.Name;
-            //}
-            //ksd.Close();
+            //open a dialog to change the name or other details
+            foreach (Location loc in objects.locations)
+            {
+                if (loc.Name == (string)listBoxDoorGroupTabGroups.SelectedItem)
+                {
+                    DoorGroupDialog dgd = new DoorGroupDialog(loc);
+                    if (dgd.ShowDialog() == DialogResult.OK)
+                    {
+                        // update the Door Group - OOP and database.
+                        loc.Name = dgd.location.Name;
+                        loc.Save();
+                        // redisplay
+                        initializeDoorGroupTab();
+                        listBoxDoorGroupTabGroups.SelectedItem = loc.Name;
+                    }
+                    dgd.Close();
+                }
+            }
         }
-
-        private void pictureBoxDoorGroupTab_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

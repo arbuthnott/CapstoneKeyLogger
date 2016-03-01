@@ -142,6 +142,7 @@
             this.buttonDoorGroupTabEditGroup.TabIndex = 12;
             this.buttonDoorGroupTabEditGroup.Text = "Edit Group";
             this.buttonDoorGroupTabEditGroup.UseVisualStyleBackColor = true;
+            this.buttonDoorGroupTabEditGroup.Click += new System.EventHandler(this.buttonDoorGroupTabEditGroup_Click);
             // 
             // label3
             // 
@@ -190,7 +191,6 @@
             this.pictureBoxDoorGroupTab.Size = new System.Drawing.Size(400, 200);
             this.pictureBoxDoorGroupTab.TabIndex = 2;
             this.pictureBoxDoorGroupTab.TabStop = false;
-            this.pictureBoxDoorGroupTab.Click += new System.EventHandler(this.pictureBoxDoorGroupTab_Click);
             // 
             // DoorGroupForm
             // 
