@@ -30,8 +30,10 @@ namespace KeyManagerForm
             if (userlogin.LogIn())
             {
 
-                mainForm = new MainForm(this, userlogin.IsAdmin);
-                mainForm.Show();
+                //mainForm = new MainForm(this, userlogin.IsAdmin);
+                //mainForm.Show();
+                MDI_ParentForm parentForm = new MDI_ParentForm(this, userlogin.IsAdmin);
+                parentForm.Show();
                 this.Hide();
             }
             else

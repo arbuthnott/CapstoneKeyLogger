@@ -52,6 +52,7 @@
     <Compile Include="KeyType.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Lock.cs" />
+    <Compile Include="MapPoint.cs" />
     <Compile Include="ObjectHolder.cs" />
     <Compile Include="Personnel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

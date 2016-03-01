@@ -34,12 +34,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ObjectListView">
+      <HintPath>..\..\..\..\ObjectListViewDemo\ObjectListView\bin\Debug\ObjectListView.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.79.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\System.Data.SQLite.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,13 +55,50 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddMapPointDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddMapPointDialog.Designer.cs">
+      <DependentUpon>AddMapPointDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="DoorGroupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DoorGroupDialog.Designer.cs">
       <DependentUpon>DoorGroupDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DoorGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoorGroupForm.Designer.cs">
+      <DependentUpon>DoorGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DoorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoorsForm.Designer.cs">
+      <DependentUpon>DoorsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FloorPlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FloorPlanForm.Designer.cs">
+      <DependentUpon>FloorPlanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KeyRingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyRingForm.Designer.cs">
+      <DependentUpon>KeyRingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Keys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Keys.Designer.cs">
+      <DependentUpon>Keys.cs</DependentUpon>
     </Compile>
     <Compile Include="KeysetDialog.cs">
       <SubType>Form</SubType>
@@ -69,16 +112,61 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="LookupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LookupForm.Designer.cs">
+      <DependentUpon>LookupForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MDI_ParentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MDI_ParentForm.Designer.cs">
+      <DependentUpon>MDI_ParentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewLookupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewLookupForm.Designer.cs">
+      <DependentUpon>NewLookupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonnelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonnelForm.Designer.cs">
+      <DependentUpon>PersonnelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddMapPointDialog.resx">
+      <DependentUpon>AddMapPointDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DoorGroupDialog.resx">
       <DependentUpon>DoorGroupDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoorGroupForm.resx">
+      <DependentUpon>DoorGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoorsForm.resx">
+      <DependentUpon>DoorsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FloorPlanForm.resx">
+      <DependentUpon>FloorPlanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeyRingForm.resx">
+      <DependentUpon>KeyRingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Keys.resx">
+      <DependentUpon>Keys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeysetDialog.resx">
       <DependentUpon>KeysetDialog.cs</DependentUpon>
@@ -86,8 +174,20 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LookupForm.resx">
+      <DependentUpon>LookupForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MDI_ParentForm.resx">
+      <DependentUpon>MDI_ParentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewLookupForm.resx">
+      <DependentUpon>NewLookupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonnelForm.resx">
+      <DependentUpon>PersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -128,6 +228,15 @@
       <Project>{7527a6f2-f6f6-4244-aede-a62d2e86f554}</Project>
       <Name>KeyManagerHelper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

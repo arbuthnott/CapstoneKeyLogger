@@ -91,8 +91,25 @@
             this.comboBoxKeytypeLookup = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxDoorLookup = new System.Windows.Forms.ComboBox();
-            this.pictureBoxLookupTab = new System.Windows.Forms.PictureBox();
             this.tabPagePersonnel = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.listBoxUsersKeys = new System.Windows.Forms.ListBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cbAccountType = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btnEditUser = new System.Windows.Forms.Button();
+            this.btnPasswordReset = new System.Windows.Forms.Button();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.tbUsername = new System.Windows.Forms.TextBox();
+            this.tbLastName = new System.Windows.Forms.TextBox();
+            this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.listBoxPersonnel = new System.Windows.Forms.ListBox();
+            this.btnAddPerson = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
             this.tabPageKeysets = new System.Windows.Forms.TabPage();
             this.panelKeyset = new System.Windows.Forms.Panel();
             this.groupBoxKeysetManage = new System.Windows.Forms.GroupBox();
@@ -123,7 +140,6 @@
             this.buttonKeyTabAddGroup = new System.Windows.Forms.Button();
             this.buttonKeyTabAddDoor = new System.Windows.Forms.Button();
             this.labelKeyTabKeyTypeTitle = new System.Windows.Forms.Label();
-            this.pictureBoxKeyTab = new System.Windows.Forms.PictureBox();
             this.buttonKeyTabNewType = new System.Windows.Forms.Button();
             this.comboBoxKeyTabKey = new System.Windows.Forms.ComboBox();
             this.listBoxKeyTabKeys = new System.Windows.Forms.ListBox();
@@ -144,7 +160,6 @@
             this.listBoxDoorGroupTabInGroup = new System.Windows.Forms.ListBox();
             this.buttonDoorGroupTabRemoveDoor = new System.Windows.Forms.Button();
             this.labelDoorGroupTabGroupTitle = new System.Windows.Forms.Label();
-            this.pictureBoxDoorGroupTab = new System.Windows.Forms.PictureBox();
             this.tabPageDoors = new System.Windows.Forms.TabPage();
             this.gbxKeySets = new System.Windows.Forms.GroupBox();
             this.lbxKeySets = new System.Windows.Forms.ListBox();
@@ -162,27 +177,12 @@
             this.lblRoomCode = new System.Windows.Forms.Label();
             this.tabPageFloorplans = new System.Windows.Forms.TabPage();
             this.panelFloorplans = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblAdmin = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listBoxPersonnel = new System.Windows.Forms.ListBox();
-            this.btnAddPerson = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.tbSearch = new System.Windows.Forms.TextBox();
+            this.pictureBoxLookupTab = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.tbFirstName = new System.Windows.Forms.TextBox();
-            this.tbLastName = new System.Windows.Forms.TextBox();
-            this.tbUsername = new System.Windows.Forms.TextBox();
-            this.tbPassword = new System.Windows.Forms.TextBox();
-            this.btnPasswordReset = new System.Windows.Forms.Button();
-            this.btnEditUser = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.cbAccountType = new System.Windows.Forms.ComboBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.listBoxUsersKeys = new System.Windows.Forms.ListBox();
+            this.pictureBoxKeyTab = new System.Windows.Forms.PictureBox();
+            this.pictureBoxDoorGroupTab = new System.Windows.Forms.PictureBox();
+            this.pbFloorPlan = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPageCheckout.SuspendLayout();
@@ -194,30 +194,30 @@
             this.panelSearch.SuspendLayout();
             this.groupBoxLookupResults.SuspendLayout();
             this.groupBoxLookupSource.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLookupTab)).BeginInit();
             this.tabPagePersonnel.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.tabPageKeysets.SuspendLayout();
             this.panelKeyset.SuspendLayout();
             this.groupBoxKeysetManage.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPageKeys.SuspendLayout();
             this.groupBoxKeyManage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).BeginInit();
             this.tabPageDoorgroups.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBoxDoorGroupManage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).BeginInit();
             this.tabPageDoors.SuspendLayout();
             this.gbxKeySets.SuspendLayout();
             this.gbxKeyTypes.SuspendLayout();
             this.gbxKeyAssignment.SuspendLayout();
             this.tabPageFloorplans.SuspendLayout();
             this.panelFloorplans.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLookupTab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFloorPlan)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -853,16 +853,6 @@
             this.comboBoxDoorLookup.TabIndex = 0;
             this.comboBoxDoorLookup.SelectedIndexChanged += new System.EventHandler(this.comboBoxDoorLookup_SelectedIndexChanged);
             // 
-            // pictureBoxLookupTab
-            // 
-            this.pictureBoxLookupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxLookupTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxLookupTab.Location = new System.Drawing.Point(372, 12);
-            this.pictureBoxLookupTab.Name = "pictureBoxLookupTab";
-            this.pictureBoxLookupTab.Size = new System.Drawing.Size(400, 200);
-            this.pictureBoxLookupTab.TabIndex = 0;
-            this.pictureBoxLookupTab.TabStop = false;
-            // 
             // tabPagePersonnel
             // 
             this.tabPagePersonnel.Controls.Add(this.groupBox5);
@@ -874,6 +864,195 @@
             this.tabPagePersonnel.TabIndex = 7;
             this.tabPagePersonnel.Text = "Personnel";
             this.tabPagePersonnel.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.listBoxUsersKeys);
+            this.groupBox5.Controls.Add(this.label21);
+            this.groupBox5.Location = new System.Drawing.Point(327, 176);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(442, 255);
+            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Keys";
+            // 
+            // listBoxUsersKeys
+            // 
+            this.listBoxUsersKeys.FormattingEnabled = true;
+            this.listBoxUsersKeys.Location = new System.Drawing.Point(18, 53);
+            this.listBoxUsersKeys.Name = "listBoxUsersKeys";
+            this.listBoxUsersKeys.Size = new System.Drawing.Size(418, 186);
+            this.listBoxUsersKeys.TabIndex = 3;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(14, 26);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(167, 24);
+            this.label21.TabIndex = 1;
+            this.label21.Text = "Checked Out Keys";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.cbAccountType);
+            this.groupBox4.Controls.Add(this.label20);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.btnEditUser);
+            this.groupBox4.Controls.Add(this.btnPasswordReset);
+            this.groupBox4.Controls.Add(this.tbPassword);
+            this.groupBox4.Controls.Add(this.tbUsername);
+            this.groupBox4.Controls.Add(this.tbLastName);
+            this.groupBox4.Controls.Add(this.tbFirstName);
+            this.groupBox4.Location = new System.Drawing.Point(327, 8);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(442, 162);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Details";
+            // 
+            // cbAccountType
+            // 
+            this.cbAccountType.Enabled = false;
+            this.cbAccountType.FormattingEnabled = true;
+            this.cbAccountType.Items.AddRange(new object[] {
+            "User",
+            "Administrator"});
+            this.cbAccountType.Location = new System.Drawing.Point(98, 117);
+            this.cbAccountType.Name = "cbAccountType";
+            this.cbAccountType.Size = new System.Drawing.Size(101, 21);
+            this.cbAccountType.TabIndex = 12;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(15, 117);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(77, 13);
+            this.label20.TabIndex = 11;
+            this.label20.Text = "Account Type ";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(14, 18);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(65, 24);
+            this.label19.TabIndex = 10;
+            this.label19.Text = "Details";
+            this.label19.Click += new System.EventHandler(this.label19_Click);
+            // 
+            // btnEditUser
+            // 
+            this.btnEditUser.Location = new System.Drawing.Point(323, 15);
+            this.btnEditUser.Name = "btnEditUser";
+            this.btnEditUser.Size = new System.Drawing.Size(75, 23);
+            this.btnEditUser.TabIndex = 9;
+            this.btnEditUser.Text = "Edit";
+            this.btnEditUser.UseVisualStyleBackColor = true;
+            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
+            // 
+            // btnPasswordReset
+            // 
+            this.btnPasswordReset.Location = new System.Drawing.Point(348, 81);
+            this.btnPasswordReset.Name = "btnPasswordReset";
+            this.btnPasswordReset.Size = new System.Drawing.Size(50, 23);
+            this.btnPasswordReset.TabIndex = 8;
+            this.btnPasswordReset.Text = "Reset";
+            this.btnPasswordReset.UseVisualStyleBackColor = true;
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.Enabled = false;
+            this.tbPassword.Location = new System.Drawing.Point(217, 83);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
+            this.tbPassword.Size = new System.Drawing.Size(125, 20);
+            this.tbPassword.TabIndex = 7;
+            this.tbPassword.Text = "Password";
+            // 
+            // tbUsername
+            // 
+            this.tbUsername.Enabled = false;
+            this.tbUsername.Location = new System.Drawing.Point(217, 52);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(181, 20);
+            this.tbUsername.TabIndex = 6;
+            this.tbUsername.Text = "Username";
+            // 
+            // tbLastName
+            // 
+            this.tbLastName.Enabled = false;
+            this.tbLastName.Location = new System.Drawing.Point(18, 83);
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(181, 20);
+            this.tbLastName.TabIndex = 5;
+            this.tbLastName.Text = "LastName";
+            this.tbLastName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // tbFirstName
+            // 
+            this.tbFirstName.Enabled = false;
+            this.tbFirstName.Location = new System.Drawing.Point(18, 52);
+            this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Size = new System.Drawing.Size(181, 20);
+            this.tbFirstName.TabIndex = 4;
+            this.tbFirstName.Text = "FirstName";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.pictureBox2);
+            this.groupBox3.Controls.Add(this.tbSearch);
+            this.groupBox3.Controls.Add(this.listBoxPersonnel);
+            this.groupBox3.Controls.Add(this.btnAddPerson);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(318, 428);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Personnel";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // tbSearch
+            // 
+            this.tbSearch.Location = new System.Drawing.Point(52, 57);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(260, 20);
+            this.tbSearch.TabIndex = 3;
+            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            // 
+            // listBoxPersonnel
+            // 
+            this.listBoxPersonnel.FormattingEnabled = true;
+            this.listBoxPersonnel.Location = new System.Drawing.Point(10, 83);
+            this.listBoxPersonnel.Name = "listBoxPersonnel";
+            this.listBoxPersonnel.Size = new System.Drawing.Size(302, 329);
+            this.listBoxPersonnel.TabIndex = 2;
+            this.listBoxPersonnel.SelectedIndexChanged += new System.EventHandler(this.listBoxPersonnel_SelectedIndexChanged);
+            // 
+            // btnAddPerson
+            // 
+            this.btnAddPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddPerson.Location = new System.Drawing.Point(237, 23);
+            this.btnAddPerson.Name = "btnAddPerson";
+            this.btnAddPerson.Size = new System.Drawing.Size(75, 23);
+            this.btnAddPerson.TabIndex = 1;
+            this.btnAddPerson.Text = "Add";
+            this.btnAddPerson.UseVisualStyleBackColor = true;
+            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(6, 20);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(127, 24);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "Select Person";
             // 
             // tabPageKeysets
             // 
@@ -1197,16 +1376,6 @@
             this.labelKeyTabKeyTypeTitle.TabIndex = 3;
             this.labelKeyTabKeyTypeTitle.Text = "Key Type:";
             // 
-            // pictureBoxKeyTab
-            // 
-            this.pictureBoxKeyTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxKeyTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxKeyTab.Location = new System.Drawing.Point(11, 19);
-            this.pictureBoxKeyTab.Name = "pictureBoxKeyTab";
-            this.pictureBoxKeyTab.Size = new System.Drawing.Size(400, 200);
-            this.pictureBoxKeyTab.TabIndex = 2;
-            this.pictureBoxKeyTab.TabStop = false;
-            // 
             // buttonKeyTabNewType
             // 
             this.buttonKeyTabNewType.Location = new System.Drawing.Point(229, 31);
@@ -1414,16 +1583,6 @@
             this.labelDoorGroupTabGroupTitle.TabIndex = 3;
             this.labelDoorGroupTabGroupTitle.Text = "Door Group:";
             // 
-            // pictureBoxDoorGroupTab
-            // 
-            this.pictureBoxDoorGroupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxDoorGroupTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxDoorGroupTab.Location = new System.Drawing.Point(11, 19);
-            this.pictureBoxDoorGroupTab.Name = "pictureBoxDoorGroupTab";
-            this.pictureBoxDoorGroupTab.Size = new System.Drawing.Size(400, 200);
-            this.pictureBoxDoorGroupTab.TabIndex = 2;
-            this.pictureBoxDoorGroupTab.TabStop = false;
-            // 
             // tabPageDoors
             // 
             this.tabPageDoors.Controls.Add(this.gbxKeySets);
@@ -1528,6 +1687,7 @@
             this.btnAddKey.TabIndex = 5;
             this.btnAddKey.Text = "<-   Add";
             this.btnAddKey.UseVisualStyleBackColor = true;
+            this.btnAddKey.Click += new System.EventHandler(this.btnAddKey_Click);
             // 
             // lblKeysAvailable
             // 
@@ -1588,22 +1748,13 @@
             // 
             // panelFloorplans
             // 
-            this.panelFloorplans.Controls.Add(this.pictureBox1);
+            this.panelFloorplans.Controls.Add(this.pbFloorPlan);
             this.panelFloorplans.Controls.Add(this.lblAdmin);
             this.panelFloorplans.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelFloorplans.Location = new System.Drawing.Point(3, 3);
             this.panelFloorplans.Name = "panelFloorplans";
             this.panelFloorplans.Size = new System.Drawing.Size(771, 433);
             this.panelFloorplans.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(9, 37);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(782, 448);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // lblAdmin
             // 
@@ -1615,58 +1766,15 @@
             this.lblAdmin.TabIndex = 0;
             this.lblAdmin.Text = "Floor Plans Here!";
             // 
-            // groupBox3
+            // pictureBoxLookupTab
             // 
-            this.groupBox3.Controls.Add(this.pictureBox2);
-            this.groupBox3.Controls.Add(this.tbSearch);
-            this.groupBox3.Controls.Add(this.listBoxPersonnel);
-            this.groupBox3.Controls.Add(this.btnAddPerson);
-            this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(318, 428);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Personnel";
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
-            // 
-            // listBoxPersonnel
-            // 
-            this.listBoxPersonnel.FormattingEnabled = true;
-            this.listBoxPersonnel.Location = new System.Drawing.Point(10, 83);
-            this.listBoxPersonnel.Name = "listBoxPersonnel";
-            this.listBoxPersonnel.Size = new System.Drawing.Size(302, 329);
-            this.listBoxPersonnel.TabIndex = 2;
-            this.listBoxPersonnel.SelectedIndexChanged += new System.EventHandler(this.listBoxPersonnel_SelectedIndexChanged);
-            // 
-            // btnAddPerson
-            // 
-            this.btnAddPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddPerson.Location = new System.Drawing.Point(237, 23);
-            this.btnAddPerson.Name = "btnAddPerson";
-            this.btnAddPerson.Size = new System.Drawing.Size(75, 23);
-            this.btnAddPerson.TabIndex = 1;
-            this.btnAddPerson.Text = "Add";
-            this.btnAddPerson.UseVisualStyleBackColor = true;
-            this.btnAddPerson.Click += new System.EventHandler(this.btnAddPerson_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(6, 20);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(127, 24);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "Select Person";
-            // 
-            // tbSearch
-            // 
-            this.tbSearch.Location = new System.Drawing.Point(52, 57);
-            this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(260, 20);
-            this.tbSearch.TabIndex = 3;
-            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
+            this.pictureBoxLookupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxLookupTab.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxLookupTab.Location = new System.Drawing.Point(372, 12);
+            this.pictureBoxLookupTab.Name = "pictureBoxLookupTab";
+            this.pictureBoxLookupTab.Size = new System.Drawing.Size(400, 200);
+            this.pictureBoxLookupTab.TabIndex = 0;
+            this.pictureBoxLookupTab.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -1677,141 +1785,36 @@
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
-            // groupBox4
+            // pictureBoxKeyTab
             // 
-            this.groupBox4.Controls.Add(this.cbAccountType);
-            this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Controls.Add(this.btnEditUser);
-            this.groupBox4.Controls.Add(this.btnPasswordReset);
-            this.groupBox4.Controls.Add(this.tbPassword);
-            this.groupBox4.Controls.Add(this.tbUsername);
-            this.groupBox4.Controls.Add(this.tbLastName);
-            this.groupBox4.Controls.Add(this.tbFirstName);
-            this.groupBox4.Location = new System.Drawing.Point(327, 8);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(442, 162);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Details";
+            this.pictureBoxKeyTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxKeyTab.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxKeyTab.Location = new System.Drawing.Point(11, 19);
+            this.pictureBoxKeyTab.Name = "pictureBoxKeyTab";
+            this.pictureBoxKeyTab.Size = new System.Drawing.Size(400, 200);
+            this.pictureBoxKeyTab.TabIndex = 2;
+            this.pictureBoxKeyTab.TabStop = false;
             // 
-            // tbFirstName
+            // pictureBoxDoorGroupTab
             // 
-            this.tbFirstName.Enabled = false;
-            this.tbFirstName.Location = new System.Drawing.Point(18, 52);
-            this.tbFirstName.Name = "tbFirstName";
-            this.tbFirstName.Size = new System.Drawing.Size(181, 20);
-            this.tbFirstName.TabIndex = 4;
-            this.tbFirstName.Text = "FirstName";
+            this.pictureBoxDoorGroupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxDoorGroupTab.BackColor = System.Drawing.Color.Black;
+            this.pictureBoxDoorGroupTab.Location = new System.Drawing.Point(11, 19);
+            this.pictureBoxDoorGroupTab.Name = "pictureBoxDoorGroupTab";
+            this.pictureBoxDoorGroupTab.Size = new System.Drawing.Size(400, 200);
+            this.pictureBoxDoorGroupTab.TabIndex = 2;
+            this.pictureBoxDoorGroupTab.TabStop = false;
             // 
-            // tbLastName
+            // pbFloorPlan
             // 
-            this.tbLastName.Enabled = false;
-            this.tbLastName.Location = new System.Drawing.Point(18, 83);
-            this.tbLastName.Name = "tbLastName";
-            this.tbLastName.Size = new System.Drawing.Size(181, 20);
-            this.tbLastName.TabIndex = 5;
-            this.tbLastName.Text = "LastName";
-            this.tbLastName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // tbUsername
-            // 
-            this.tbUsername.Enabled = false;
-            this.tbUsername.Location = new System.Drawing.Point(217, 52);
-            this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(181, 20);
-            this.tbUsername.TabIndex = 6;
-            this.tbUsername.Text = "Username";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.Enabled = false;
-            this.tbPassword.Location = new System.Drawing.Point(217, 83);
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.PasswordChar = '*';
-            this.tbPassword.Size = new System.Drawing.Size(125, 20);
-            this.tbPassword.TabIndex = 7;
-            this.tbPassword.Text = "Password";
-            // 
-            // btnPasswordReset
-            // 
-            this.btnPasswordReset.Location = new System.Drawing.Point(348, 81);
-            this.btnPasswordReset.Name = "btnPasswordReset";
-            this.btnPasswordReset.Size = new System.Drawing.Size(50, 23);
-            this.btnPasswordReset.TabIndex = 8;
-            this.btnPasswordReset.Text = "Reset";
-            this.btnPasswordReset.UseVisualStyleBackColor = true;
-            // 
-            // btnEditUser
-            // 
-            this.btnEditUser.Location = new System.Drawing.Point(323, 15);
-            this.btnEditUser.Name = "btnEditUser";
-            this.btnEditUser.Size = new System.Drawing.Size(75, 23);
-            this.btnEditUser.TabIndex = 9;
-            this.btnEditUser.Text = "Edit";
-            this.btnEditUser.UseVisualStyleBackColor = true;
-            this.btnEditUser.Click += new System.EventHandler(this.btnEditUser_Click);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(14, 18);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(65, 24);
-            this.label19.TabIndex = 10;
-            this.label19.Text = "Details";
-            this.label19.Click += new System.EventHandler(this.label19_Click);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(15, 117);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(77, 13);
-            this.label20.TabIndex = 11;
-            this.label20.Text = "Account Type ";
-            // 
-            // cbAccountType
-            // 
-            this.cbAccountType.Enabled = false;
-            this.cbAccountType.FormattingEnabled = true;
-            this.cbAccountType.Items.AddRange(new object[] {
-            "User",
-            "Administrator"});
-            this.cbAccountType.Location = new System.Drawing.Point(98, 117);
-            this.cbAccountType.Name = "cbAccountType";
-            this.cbAccountType.Size = new System.Drawing.Size(101, 21);
-            this.cbAccountType.TabIndex = 12;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.listBoxUsersKeys);
-            this.groupBox5.Controls.Add(this.label21);
-            this.groupBox5.Location = new System.Drawing.Point(327, 176);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(442, 255);
-            this.groupBox5.TabIndex = 3;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Keys";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(14, 26);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(167, 24);
-            this.label21.TabIndex = 1;
-            this.label21.Text = "Checked Out Keys";
-            // 
-            // listBoxUsersKeys
-            // 
-            this.listBoxUsersKeys.FormattingEnabled = true;
-            this.listBoxUsersKeys.Location = new System.Drawing.Point(18, 53);
-            this.listBoxUsersKeys.Name = "listBoxUsersKeys";
-            this.listBoxUsersKeys.Size = new System.Drawing.Size(418, 186);
-            this.listBoxUsersKeys.TabIndex = 3;
+            this.pbFloorPlan.Image = ((System.Drawing.Image)(resources.GetObject("pbFloorPlan.Image")));
+            this.pbFloorPlan.Location = new System.Drawing.Point(9, 37);
+            this.pbFloorPlan.Name = "pbFloorPlan";
+            this.pbFloorPlan.Size = new System.Drawing.Size(782, 448);
+            this.pbFloorPlan.TabIndex = 1;
+            this.pbFloorPlan.TabStop = false;
+            this.pbFloorPlan.Click += new System.EventHandler(this.pbFloorPlan_Click);
+            this.pbFloorPlan.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pbFloorPlan_MouseMove);
             // 
             // MainForm
             // 
@@ -1825,6 +1828,7 @@
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl.ResumeLayout(false);
@@ -1842,8 +1846,13 @@
             this.groupBoxLookupResults.PerformLayout();
             this.groupBoxLookupSource.ResumeLayout(false);
             this.groupBoxLookupSource.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLookupTab)).EndInit();
             this.tabPagePersonnel.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.tabPageKeysets.ResumeLayout(false);
             this.panelKeyset.ResumeLayout(false);
             this.groupBoxKeysetManage.ResumeLayout(false);
@@ -1854,13 +1863,11 @@
             this.tabPageKeys.PerformLayout();
             this.groupBoxKeyManage.ResumeLayout(false);
             this.groupBoxKeyManage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).EndInit();
             this.tabPageDoorgroups.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBoxDoorGroupManage.ResumeLayout(false);
             this.groupBoxDoorGroupManage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).EndInit();
             this.tabPageDoors.ResumeLayout(false);
             this.tabPageDoors.PerformLayout();
             this.gbxKeySets.ResumeLayout(false);
@@ -1871,14 +1878,11 @@
             this.tabPageFloorplans.ResumeLayout(false);
             this.panelFloorplans.ResumeLayout(false);
             this.panelFloorplans.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLookupTab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFloorPlan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1902,7 +1906,7 @@
         private System.Windows.Forms.Panel panelKeyset;
         private System.Windows.Forms.TabPage tabPageLookup;
         private System.Windows.Forms.Panel panelSearch;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbFloorPlan;
         private System.Windows.Forms.GroupBox groupBoxKeysetManage;
         private System.Windows.Forms.Button buttonAddKeysetKey;
         private System.Windows.Forms.Button buttonRemoveKeysetKey;

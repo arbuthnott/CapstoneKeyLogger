@@ -124,7 +124,7 @@
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAKNSURBVFhHxZWx
+        DwAACw8BkvkDpQAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAKNSURBVFhHxZWx
         a1pRFMYDbaFCoZilqLSDSIdS0cHqUsFRXYXS6tahk44KDlWhCNpCQUeFls6FQgmkQ/snZE06dE6GLBnS
         QIYkr98X3oWXm+/dZjAvww/xO+ee993z7j1vzfO8G0eKUSPFqJFi1EgxaqQYNVJUJBKJ29Vq9dVgMPg+
         m832wAk4AjvdbvdTsVgsq3VXQYo2eMCzyWSyM5/PPRej0WgjlUo9UDVcSDHIeDx+jt3+9R903Ol0PuTz
@@ -139,10 +139,10 @@
         rkJggg==
 </value>
   </data>
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="pbFloorPlan.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAs4AAAHOCAYAAACIBI+xAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAALrBJREFUeF7t3YFx20qyBdCNywE5HkXjZF4wXrUoWiTUgAChZwaAzqm6Vd8mNWyO
+        vQAADr0BR/uQrQAALrBJREFUeF7t3YFx20qyBdCNywE5HkXjZF4wXrUoWiTUgAChZwaAzqm6Vd8mNWyO
         ru1+tLf+//4CAABfsjgDAMAKFmcAAFjB4gwAh/Tf35df//v7+8/7D4HhLM4AsNttyf3f/x7z++++nXft
         4py99v/+/nr57/3xZf+9/Pr7P9s5rGJxBoDdbsvrx7L6vszuWki3Lc7ffSmLM6xncQaA3aaL8/tC+uvl
         9ZF3/738/fXwifDTrpo+NlmI//x+fezX388fJC8tzvfH/vz9/e/8+xm3x+6vGbnNH899fc5LvF78/Psn
