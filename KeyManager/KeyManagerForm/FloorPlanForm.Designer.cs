@@ -79,6 +79,7 @@
             this.listDoors.TabIndex = 4;
             this.listDoors.UseCompatibleStateImageBehavior = false;
             this.listDoors.SelectedIndexChanged += new System.EventHandler(this.listDoors_SelectedIndexChanged);
+            this.listDoors.Leave += new System.EventHandler(this.listDoors_Leave);
             // 
             // cbDoors
             // 

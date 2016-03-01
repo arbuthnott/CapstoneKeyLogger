@@ -110,17 +110,9 @@ namespace KeyManagerForm
         {
             if (addingMapPoint)
             {
-                // use a dialog to create a new keyset
-                //AddMapPointDialog ksd = new AddMapPointDialog(objects);
-                //if (ksd.ShowDialog() == DialogResult.OK)
-                //{
-                //    dataPoints.Add(new MapPoint(x, y, ksd.door, currentFloor));
-                //}
-                //ksd.Close();
-
                 foreach (Door door in objects.doors)
                     if (door.RoomNumber.Equals(cbDoors.SelectedItem))
-                        dataPoints.Add(new MapPoint(x, y, door, currentFloor));
+                        dataPoints.Add(new MapPoint(x-5, y-5, door, currentFloor));
                 
                 this.Cursor = Cursors.Default;
                 pictureBox1.Invalidate();
@@ -140,6 +132,29 @@ namespace KeyManagerForm
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+            // map overlay when added a new door
+            if (addingMapPoint)
+            {
+                // gray background
+                using (Brush brush = new SolidBrush(Color.FromArgb(100, 0, 0, 0)))
+                {
+                    Rectangle backFill = new Rectangle(0, 0, pictureBox1.Width, pictureBox1.Height);
+                    e.Graphics.FillRectangle(brush, backFill);                    
+                }
+                // white cursor tracking lines
+                using (Brush brush = new SolidBrush(Color.FromArgb(255, 255, 255)))
+                {
+                    Rectangle xLine = new Rectangle(0, y, pictureBox1.Width, 2);
+                    e.Graphics.FillRectangle(brush, xLine);
+                    Rectangle yLine = new Rectangle(x, 0, 2, pictureBox1.Height);
+                    e.Graphics.FillRectangle(brush,yLine);
+                    Rectangle eee = new Rectangle(x-5, y-5, 10, 10);
+                    e.Graphics.FillRectangle(brush, eee);
+                    Font font2 = new Font("Arial", 12);
+                    e.Graphics.DrawString(cbDoors.SelectedItem.ToString(), font2, brush, x + 10, y - 15);
+                }
+            }
+
             foreach (MapPoint point in dataPoints)
             {
                 if (point.floor == currentFloor)
@@ -157,6 +172,19 @@ namespace KeyManagerForm
                         e.Graphics.FillRectangle(brush, eee);
                     }
 
+                    // selection tracking lines
+                    if (point.selected)
+                    {
+                        using (Brush brush = new SolidBrush(Color.FromArgb(150, 255, 0, 0)))
+                        {
+                            Rectangle xLine = new Rectangle(0, point.y+5, pictureBox1.Width, 2);
+                            e.Graphics.FillRectangle(brush, xLine);
+                            Rectangle yLine = new Rectangle(point.x+5, 0, 2, pictureBox1.Height);
+                            e.Graphics.FillRectangle(brush, yLine);
+                        }
+                    }
+
+                    // Should there is a info popup?
                     // look for mouse position
                     if (x >= point.x && x <= point.x + 10)
                         if (y >= point.y && y <= point.y + 10)
@@ -203,7 +231,9 @@ namespace KeyManagerForm
                             }
                         }
                 }               
-            }                        
+            }      
+            
+                         
         }
 
         private void btnAddPoint_Click(object sender, EventArgs e)
@@ -279,6 +309,13 @@ namespace KeyManagerForm
                 this.Cursor = Cursors.Cross;
                 addingMapPoint = true;
             }
+        }
+
+        private void listDoors_Leave(object sender, EventArgs e)
+        {
+            foreach (MapPoint point in dataPoints)
+                point.selected = false;
+                pictureBox1.Invalidate();
         }
     }
 }
