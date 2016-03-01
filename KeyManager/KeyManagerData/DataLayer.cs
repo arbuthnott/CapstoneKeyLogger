@@ -14,17 +14,14 @@ namespace KeyManagerData
         SQLiteCommand command;
         List<String> properties;
         List<String> values;
-        List<bool> isStringList;
         public DataLayer()
         {
             properties = new List<string>();
             values = new List<string>();
-            isStringList = new List<bool>();
         }
 
-        public void AddValue(bool isString, string Type, string Value)
+        public void AddValue(string Type, string Value)
         {
-            isStringList.Add(isString);
             properties.Add(Type);
             values.Add(Value);
         }
@@ -34,27 +31,28 @@ namespace KeyManagerData
             db = DbSetupManager.GetConnection();
             using (command = new SQLiteCommand(db))
             {
+                command.CommandType = System.Data.CommandType.Text;
+
+                // Type is never defined by a user, only by the program
+                // thus this should be safe
                 command.CommandText = "INSERT INTO " + Type + " (";
                 for (int count = 0; count < properties.Count; count++)
                 {
-
+                    // Unfortunately, columns cannot be set as parameters
                     command.CommandText += "'" + properties[count] + "'";
                     if ((count + 1) < properties.Count) { command.CommandText += ", "; }
                 }
                 command.CommandText += ") VALUES (";
                 for (int count = 0; count < values.Count; count++)
                 {
-                    if (isStringList[count])
-                    {
-                        command.CommandText += "'" + values[count] + "'";
-                    }
-                    else
-                    {
-                        command.CommandText += values[count];
-                    }
+                    command.CommandText += "@param" + count.ToString();
                     if ((count + 1) < values.Count) { command.CommandText += ", "; }
                 }
                 command.CommandText += ")";
+                for (int count = 0; count < properties.Count; count++)
+                {
+                    command.Parameters.Add(new SQLiteParameter("@param" + count.ToString(), values[count]));
+                }
                 int rows = command.ExecuteNonQuery();
             }
             int newId = (int)db.LastInsertRowId;
@@ -67,21 +65,27 @@ namespace KeyManagerData
             db = DbSetupManager.GetConnection();
             using (command = new SQLiteCommand(db))
             {
+                command.CommandType = System.Data.CommandType.Text;
+                
+                // Type is never defined by a user, only by the program
+                // thus this should be safe
                 command.CommandText = "UPDATE " + Type + " SET ";
                 for (int count = 0; count < properties.Count; count++)
                 {
+                    // Unfortunately, columns cannot be set as parameters
                     command.CommandText += "'" + properties[count] + "' = ";
-                    if (isStringList[count])
-                    {
-                        command.CommandText += "'" + values[count] + "'";
-                    }
-                    else
-                    {
-                        command.CommandText += values[count];
-                    }
+                    command.CommandText += "@param" + count.ToString();
                     if ((count + 1) < properties.Count) { command.CommandText += ", "; }
                 }
+
+                // While ID is defined by the user, it can only be an integer
                 command.CommandText += " WHERE ID = " + id;
+
+                for (int count = 0; count < properties.Count; count++)
+                {
+                    command.Parameters.Add(new SQLiteParameter("@param" + count, values[count]));
+                }
+
                 int rows = command.ExecuteNonQuery();
             }
             db.Close();
