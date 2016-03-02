@@ -60,6 +60,20 @@ namespace KeyManagerData
             return newId;
         }
 
+        public int AddRecordWithDefault(string Type)
+        {
+            db = DbSetupManager.GetConnection();
+            using (command = new SQLiteCommand(db))
+            {
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "INSERT INTO " + Type + " DEFAULT VALUES";
+                int rows = command.ExecuteNonQuery();
+            }
+            int newId = (int)db.LastInsertRowId;
+            db.Close();
+            return newId;
+        }
+
         public void AlterRecord(string Type, int id)
         {
             db = DbSetupManager.GetConnection();
