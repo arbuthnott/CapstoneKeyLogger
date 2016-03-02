@@ -18,6 +18,18 @@ namespace KeyManagerClassLib
         public bool Missing { get; set; }
 
         /// <summary>
+        /// Remove this key from the database. Does not update OOP.
+        /// </summary>
+        /// <returns>true on success - should always return true.</returns>
+        public bool Delete()
+        {
+            DataLayer dl = new DataLayer();
+            dl.DeleteRecord("key", Id);
+
+            return true;
+        }
+
+        /// <summary>
         /// Update or Create this key in the db, including associated keytype and keyring (if any)
         /// Convenience methods exist for setkeytype and setkeyring
         /// </summary>
@@ -25,8 +37,8 @@ namespace KeyManagerClassLib
         {
             DataLayer dl = new DataLayer();
             dl.AddValue("Serial", Serial);
-            dl.AddValue("Keytype", KeyType == null ? "NULL" : "" + KeyType.Id);
-            dl.AddValue("Keyring", KeyRing == null ? "NULL" : "" + KeyRing.Id);
+            dl.AddValue("Keytype", KeyType == null ? null : "" + KeyType.Id);
+            dl.AddValue("Keyring", KeyRing == null ? null : "" + KeyRing.Id);
             if (Id == -1)
             {
                 Id = dl.AddRecord("key");
