@@ -13,22 +13,59 @@ namespace KeyManagerData
         SQLiteConnection db;
         SQLiteCommand command;
         List<String> properties;
-        List<String> values;
+        List<String> Datatype;
+        List<Object> values;
         public DataLayer()
         {
             properties = new List<string>();
-            values = new List<string>();
+            values = new List<Object>();
         }
 
-        public void AddValue(string Type, string Value)
+        public void Clear()
         {
-            properties.Add(Type);
+            Datatype = new List<String>();
+            properties = new List<String>();
+            values = new List<Object>();
+        }
+        /*
+        public void AddColumn(string Column, string Datatype)
+        {
+            this.properties.Add(Column);
+            this.Datatype.Add(Datatype);
+        }
+        */
+        public void AddValue(string Column, string Value)
+        {
+            properties.Add(Column);
             values.Add(Value);
         }
 
+        // When using this method you will likely need to parse the returned values
+        // contained within the returned list, since they are all in string format.
+        public List<string> GetRecord(string Type, int Id, int ReturnCount)
+        {
+            db = DbSetupManager.GetConnection();
+            db.Open();
+            List<string> returnList = new List<string>();
+            using (command = new SQLiteCommand(db))
+            {
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "SELECT * FROM " + Type + " WHERE ID = " + Id.ToString();
+                SQLiteDataReader reader = command.ExecuteReader();
+                // Should get only one record at a time
+                reader.Read();
+                for (int count = 0; count < ReturnCount; count++)
+                {
+                    returnList.Add(reader.GetString(count));
+                }
+            }
+            db.Close();
+            return returnList;
+        }
         public int AddRecord(string Type)
         {
             db = DbSetupManager.GetConnection();
+            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandType = System.Data.CommandType.Text;
@@ -63,6 +100,7 @@ namespace KeyManagerData
         public int AddRecordWithDefault(string Type)
         {
             db = DbSetupManager.GetConnection();
+            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandType = System.Data.CommandType.Text;
@@ -77,6 +115,7 @@ namespace KeyManagerData
         public void AlterRecord(string Type, int id)
         {
             db = DbSetupManager.GetConnection();
+            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandType = System.Data.CommandType.Text;
@@ -108,6 +147,7 @@ namespace KeyManagerData
         public void DeleteRecord(string Type, int id)
         {
             db = DbSetupManager.GetConnection();
+            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandText = "DELETE FROM " + Type + " WHERE ID=" + id;
