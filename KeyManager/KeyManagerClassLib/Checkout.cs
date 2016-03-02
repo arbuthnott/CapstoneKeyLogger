@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KeyManagerData;
 
 namespace KeyManagerClassLib
 {
@@ -15,6 +16,52 @@ namespace KeyManagerClassLib
         public KeyRing KeyRing { get; set; }
         public bool IsReturned { get; set; }
         public DateTime Date { get; set; }
+
+        /// <summary>
+        /// Deletes the checkout.  Does not update the OOP
+        /// </summary>
+        /// <returns></returns>
+        public bool Delete()
+        {
+            DataLayer dl = new DataLayer();
+            dl.DeleteRecord("checkout", Id);
+            return true;
+        }
+
+        /// <summary>
+        /// Saves this checkout if new, or updates if it already exists.
+        /// </summary>
+        public void Save()
+        {
+            DataLayer dl = new DataLayer();
+            dl.AddValue("IsReturned", IsReturned ? "1" : "0");
+            dl.AddValue("Date", Date.ToLongDateString());
+            if (Person != null) // can happen if checkout references a Personnel that's been erased.
+            {
+                dl.AddValue("Person", "" + Person.Id);
+            }
+            if (Key != null)
+            {
+                dl.AddValue("Key", "" + Key.Id);
+            }
+            if (KeyRing != null)
+            {
+                dl.AddValue("Keyring", "" + KeyRing.Id);
+            }
+
+            if (this.Id == -1)
+            {
+                if (Person == null)
+                {
+                    dl.AddValue("Person", "0");
+                }
+                Id = dl.AddRecord("checkout");
+            }
+            else
+            {
+                dl.AlterRecord("checkout", Id);
+            }
+        }
 
         //Default Constructor
         public Checkout()
