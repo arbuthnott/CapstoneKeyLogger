@@ -6,16 +6,8 @@ using System.Threading.Tasks;
 
 namespace KeyManagerClassLib
 {
-    public class Checkout
+    public class Checkout : IComparable<Checkout>
     {
-        //Members
-        //private int id;
-        //private Personnel person;
-        //private Key key;
-        //private KeyRing keyRing;
-        //private bool isReturned;
-        //private DateTime date;
-
         //Properties
         public int Id { get; set; }
         public Personnel Person { get; set; }
@@ -36,14 +28,19 @@ namespace KeyManagerClassLib
         }
 
         //Constructor
-        public Checkout(int pId, Personnel pPerson, Key pKey, KeyRing pKeyRing, DateTime pDate)
+        public Checkout(int pId, Personnel pPerson, Key pKey, KeyRing pKeyRing, bool isRet, DateTime pDate)
         {
             Id = pId;
             Person = pPerson;
             Key = pKey;
             KeyRing = pKeyRing;
-            IsReturned = false;
+            IsReturned = isRet;
             Date = pDate;
+        }
+
+        public int CompareTo(Checkout other)
+        {
+            return Date.CompareTo(other.Date);
         }
     }
 }
