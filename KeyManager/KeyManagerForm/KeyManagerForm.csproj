@@ -88,23 +88,35 @@
     <Compile Include="FloorPlanForm.Designer.cs">
       <DependentUpon>FloorPlanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="KeyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeyDialog.Designer.cs">
+      <DependentUpon>KeyDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="KeyRingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KeyRingForm.Designer.cs">
       <DependentUpon>KeyRingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Keys.cs">
+    <Compile Include="KeysForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Keys.Designer.cs">
-      <DependentUpon>Keys.cs</DependentUpon>
+    <Compile Include="KeysForm.Designer.cs">
+      <DependentUpon>KeysForm.cs</DependentUpon>
     </Compile>
     <Compile Include="KeysetDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="KeysetDialog.Designer.cs">
       <DependentUpon>KeysetDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KeytypeDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KeytypeDialog.Designer.cs">
+      <DependentUpon>KeytypeDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -162,14 +174,20 @@
     <EmbeddedResource Include="FloorPlanForm.resx">
       <DependentUpon>FloorPlanForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KeyDialog.resx">
+      <DependentUpon>KeyDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KeyRingForm.resx">
       <DependentUpon>KeyRingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Keys.resx">
-      <DependentUpon>Keys.cs</DependentUpon>
+    <EmbeddedResource Include="KeysForm.resx">
+      <DependentUpon>KeysForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KeysetDialog.resx">
       <DependentUpon>KeysetDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KeytypeDialog.resx">
+      <DependentUpon>KeytypeDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

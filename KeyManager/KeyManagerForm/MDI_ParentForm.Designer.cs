@@ -587,7 +587,7 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 699);
+            this.statusStrip.Location = new System.Drawing.Point(0, 691);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(972, 22);
             this.statusStrip.TabIndex = 2;
@@ -608,7 +608,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 74);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(200, 625);
+            this.panel1.Size = new System.Drawing.Size(200, 617);
             this.panel1.TabIndex = 4;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -637,7 +637,7 @@
             this.treeViewSummary.HotTracking = true;
             this.treeViewSummary.Location = new System.Drawing.Point(6, 39);
             this.treeViewSummary.Name = "treeViewSummary";
-            this.treeViewSummary.Size = new System.Drawing.Size(191, 553);
+            this.treeViewSummary.Size = new System.Drawing.Size(191, 545);
             this.treeViewSummary.TabIndex = 0;
             this.treeViewSummary.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSummary_AfterSelect);
             // 
@@ -647,7 +647,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(972, 721);
+            this.ClientSize = new System.Drawing.Size(972, 713);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);

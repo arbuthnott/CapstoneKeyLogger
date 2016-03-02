@@ -12,11 +12,11 @@ using KeyManagerClassLib;
 
 namespace KeyManagerForm
 {
-    public partial class Keys : Form
+    public partial class KeysForm : Form
     {
         ObjectHolder objects;
 
-        public Keys(ObjectHolder objects)
+        public KeysForm(ObjectHolder objects)
         {
             InitializeComponent();
             this.objects = objects;
@@ -25,11 +25,12 @@ namespace KeyManagerForm
 
         private void initializeKeyTab()
         {
-            //groupBoxKeyManage.Enabled = false;  -- Where is this??
+            groupBoxKeyManage.Enabled = false;
             buttonKeyTabEditType.Enabled = false;
             buttonKeyTabEditKey.Enabled = false;
             buttonKeyTabAddDoor.Enabled = false;
             buttonKeyTabAddGroup.Enabled = false;
+            comboBoxKeyTabKeyType.Items.Clear();
             foreach (KeyType type in objects.keytypes)
             {
                 comboBoxKeyTabKeyType.Items.Add(type.Name);
@@ -42,7 +43,7 @@ namespace KeyManagerForm
 
         private void setKeytabKeytype(KeyType type)
         {
-            //groupBoxKeyManage.Enabled = true;  -- Where is this??
+            groupBoxKeyManage.Enabled = true;
             buttonKeyTabEditType.Enabled = true;
             listBoxKeyTabKeys.Items.Clear();
             foreach (Key key in type.keys)
@@ -136,22 +137,108 @@ namespace KeyManagerForm
 
         private void buttonKeyTabNewType_Click(object sender, EventArgs e)
         {
-            //TODO open dialog to create new KeyType
+            KeytypeDialog ktd = new KeytypeDialog();
+            DialogResult result = ktd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                KeyType type = ktd.keytype;
+                objects.keytypes.Add(type); // updates the OOP
+                type.Save(); // updates the database
+
+                // update the UI
+                comboBoxKeyTabKeyType.Items.Add(type.Name);
+                setKeytabKeytype(type);
+            }
         }
 
         private void buttonKeyTabEditType_Click(object sender, EventArgs e)
         {
-            //TODO open dialog to edit selected keytype
+            foreach (KeyType type in objects.keytypes)
+            {
+                if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
+                {
+                    KeytypeDialog ktd = new KeytypeDialog(type);
+                    DialogResult result = ktd.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        type.Save(); // updates the database
+
+                        // update the UI
+                        initializeKeyTab();
+                        setKeytabKeytype(type);
+                    }
+                }
+            }
         }
 
         private void buttonKeyTabNewKey_Click(object sender, EventArgs e)
         {
-            //TODO open dialog to create new key (default to selected keytype if any)
+            Key key = null;
+            if (comboBoxKeyTabKeyType.SelectedIndex != -1)
+            {
+                foreach (KeyType type in objects.keytypes)
+                {
+                    if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
+                    {
+                        key = new Key(-1, "", false, false);
+                        key.KeyType = type;
+                    }
+                }
+            }
+            KeyDialog kd = new KeyDialog(objects, key);
+            DialogResult result = kd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                key = kd.key;
+                // update the OOP
+                objects.keys.Add(key);
+                key.KeyType.keys.Add(key);
+                if (key.KeyRing != null)
+                {
+                    key.KeyRing.keys.Add(key);
+                }
+
+                // update the database
+                key.Save();
+
+                // update the UI
+                comboBoxKeyTabKey.Items.Add(key.Serial);
+                setKeytabKeytype(key.KeyType);
+                listBoxKeyTabKeys.SelectedItem = key.Serial;
+            }
         }
 
         private void buttonKeyTabEditKey_Click(object sender, EventArgs e)
         {
-            //TODO open dialog to edit selected key
+
+            foreach (Key key in objects.keys)
+            {
+                if (key.Serial == (string)listBoxKeyTabKeys.SelectedItem)
+                {
+                    KeyDialog kd = new KeyDialog(objects, key);
+                    DialogResult result = kd.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        // update OOP.
+                        foreach (KeyType type in objects.keytypes)
+                        {
+                            type.keys.Remove(key);
+                        }
+                        foreach (KeyRing ring in objects.keyrings)
+                        {
+                            ring.keys.Remove(key);
+                        }
+                        key.KeyType.keys.Add(key);
+                        if (key.KeyRing != null)
+                        {
+                            key.KeyRing.keys.Add(key);
+                        }
+
+                        // update the database
+                        key.Save();
+                    }
+                }
+            }
         }
 
         private void buttonKeyTabAddDoor_Click(object sender, EventArgs e)

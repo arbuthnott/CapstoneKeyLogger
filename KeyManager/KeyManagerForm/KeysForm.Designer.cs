@@ -1,6 +1,6 @@
 ﻿namespace KeyManagerForm
 {
-    partial class Keys
+    partial class KeysForm
     {
         /// <summary>
         /// Required designer variable.
@@ -47,8 +47,9 @@
             this.pictureBoxKeyTab = new System.Windows.Forms.PictureBox();
             this.listBoxKeyTabKeys = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.groupBoxKeyManage = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).BeginInit();
+            this.groupBoxKeyManage.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBoxKeyTabDoorGroups
@@ -56,7 +57,7 @@
             this.comboBoxKeyTabDoorGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxKeyTabDoorGroups.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabDoorGroups.FormattingEnabled = true;
-            this.comboBoxKeyTabDoorGroups.Location = new System.Drawing.Point(607, 412);
+            this.comboBoxKeyTabDoorGroups.Location = new System.Drawing.Point(243, 397);
             this.comboBoxKeyTabDoorGroups.Name = "comboBoxKeyTabDoorGroups";
             this.comboBoxKeyTabDoorGroups.Size = new System.Drawing.Size(117, 21);
             this.comboBoxKeyTabDoorGroups.TabIndex = 30;
@@ -68,7 +69,7 @@
             this.comboBoxKeyTabDoors.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxKeyTabDoors.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabDoors.FormattingEnabled = true;
-            this.comboBoxKeyTabDoors.Location = new System.Drawing.Point(382, 412);
+            this.comboBoxKeyTabDoors.Location = new System.Drawing.Point(18, 397);
             this.comboBoxKeyTabDoors.Name = "comboBoxKeyTabDoors";
             this.comboBoxKeyTabDoors.Size = new System.Drawing.Size(121, 21);
             this.comboBoxKeyTabDoors.TabIndex = 28;
@@ -78,7 +79,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(604, 267);
+            this.label14.Location = new System.Drawing.Point(240, 252);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(127, 13);
             this.label14.TabIndex = 27;
@@ -87,7 +88,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(380, 267);
+            this.label13.Location = new System.Drawing.Point(16, 252);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(95, 13);
             this.label13.TabIndex = 25;
@@ -96,7 +97,7 @@
             // listBoxKeyTabDoorGroups
             // 
             this.listBoxKeyTabDoorGroups.FormattingEnabled = true;
-            this.listBoxKeyTabDoorGroups.Location = new System.Drawing.Point(605, 285);
+            this.listBoxKeyTabDoorGroups.Location = new System.Drawing.Point(241, 270);
             this.listBoxKeyTabDoorGroups.Name = "listBoxKeyTabDoorGroups";
             this.listBoxKeyTabDoorGroups.Size = new System.Drawing.Size(192, 121);
             this.listBoxKeyTabDoorGroups.TabIndex = 22;
@@ -125,7 +126,7 @@
             // listBoxKeyTabDoors
             // 
             this.listBoxKeyTabDoors.FormattingEnabled = true;
-            this.listBoxKeyTabDoors.Location = new System.Drawing.Point(382, 285);
+            this.listBoxKeyTabDoors.Location = new System.Drawing.Point(18, 270);
             this.listBoxKeyTabDoors.Name = "listBoxKeyTabDoors";
             this.listBoxKeyTabDoors.Size = new System.Drawing.Size(192, 121);
             this.listBoxKeyTabDoors.TabIndex = 20;
@@ -164,7 +165,7 @@
             // 
             // buttonKeyTabAddDoor
             // 
-            this.buttonKeyTabAddDoor.Location = new System.Drawing.Point(646, 625);
+            this.buttonKeyTabAddDoor.Location = new System.Drawing.Point(145, 395);
             this.buttonKeyTabAddDoor.Name = "buttonKeyTabAddDoor";
             this.buttonKeyTabAddDoor.Size = new System.Drawing.Size(65, 23);
             this.buttonKeyTabAddDoor.TabIndex = 17;
@@ -195,7 +196,7 @@
             // 
             // buttonKeyTabAddGroup
             // 
-            this.buttonKeyTabAddGroup.Location = new System.Drawing.Point(728, 410);
+            this.buttonKeyTabAddGroup.Location = new System.Drawing.Point(366, 395);
             this.buttonKeyTabAddGroup.Name = "buttonKeyTabAddGroup";
             this.buttonKeyTabAddGroup.Size = new System.Drawing.Size(69, 23);
             this.buttonKeyTabAddGroup.TabIndex = 19;
@@ -207,7 +208,7 @@
             // 
             this.labelKeyTabKeyTypeTitle.AutoSize = true;
             this.labelKeyTabKeyTypeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKeyTabKeyTypeTitle.Location = new System.Drawing.Point(379, 239);
+            this.labelKeyTabKeyTypeTitle.Location = new System.Drawing.Point(15, 224);
             this.labelKeyTabKeyTypeTitle.Name = "labelKeyTabKeyTypeTitle";
             this.labelKeyTabKeyTypeTitle.Size = new System.Drawing.Size(95, 24);
             this.labelKeyTabKeyTypeTitle.TabIndex = 15;
@@ -217,9 +218,9 @@
             // 
             this.pictureBoxKeyTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxKeyTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxKeyTab.Location = new System.Drawing.Point(382, 23);
+            this.pictureBoxKeyTab.Location = new System.Drawing.Point(19, 19);
             this.pictureBoxKeyTab.Name = "pictureBoxKeyTab";
-            this.pictureBoxKeyTab.Size = new System.Drawing.Size(400, 200);
+            this.pictureBoxKeyTab.Size = new System.Drawing.Size(414, 200);
             this.pictureBoxKeyTab.TabIndex = 14;
             this.pictureBoxKeyTab.TabStop = false;
             this.pictureBoxKeyTab.Click += new System.EventHandler(this.pictureBoxKeyTab_Click);
@@ -242,44 +243,44 @@
             this.label11.TabIndex = 18;
             this.label11.Text = "Choose a Key Type:";
             // 
-            // button1
+            // groupBoxKeyManage
             // 
-            this.button1.Location = new System.Drawing.Point(509, 412);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(65, 23);
-            this.button1.TabIndex = 33;
-            this.button1.Text = "Add Door";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.groupBoxKeyManage.Controls.Add(this.pictureBoxKeyTab);
+            this.groupBoxKeyManage.Controls.Add(this.labelKeyTabKeyTypeTitle);
+            this.groupBoxKeyManage.Controls.Add(this.comboBoxKeyTabDoorGroups);
+            this.groupBoxKeyManage.Controls.Add(this.buttonKeyTabAddGroup);
+            this.groupBoxKeyManage.Controls.Add(this.comboBoxKeyTabDoors);
+            this.groupBoxKeyManage.Controls.Add(this.listBoxKeyTabDoors);
+            this.groupBoxKeyManage.Controls.Add(this.buttonKeyTabAddDoor);
+            this.groupBoxKeyManage.Controls.Add(this.label14);
+            this.groupBoxKeyManage.Controls.Add(this.listBoxKeyTabDoorGroups);
+            this.groupBoxKeyManage.Controls.Add(this.label13);
+            this.groupBoxKeyManage.Location = new System.Drawing.Point(345, 9);
+            this.groupBoxKeyManage.Name = "groupBoxKeyManage";
+            this.groupBoxKeyManage.Size = new System.Drawing.Size(445, 426);
+            this.groupBoxKeyManage.TabIndex = 34;
+            this.groupBoxKeyManage.TabStop = false;
             // 
-            // Keys
+            // KeysForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(809, 442);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBoxKeyTabDoorGroups);
-            this.Controls.Add(this.comboBoxKeyTabDoors);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.listBoxKeyTabDoorGroups);
+            this.ClientSize = new System.Drawing.Size(800, 442);
+            this.Controls.Add(this.groupBoxKeyManage);
             this.Controls.Add(this.buttonKeyTabEditKey);
             this.Controls.Add(this.buttonKeyTabNewKey);
-            this.Controls.Add(this.listBoxKeyTabDoors);
             this.Controls.Add(this.buttonKeyTabEditType);
             this.Controls.Add(this.comboBoxKeyTabKey);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.buttonKeyTabAddDoor);
             this.Controls.Add(this.buttonKeyTabNewType);
             this.Controls.Add(this.comboBoxKeyTabKeyType);
-            this.Controls.Add(this.buttonKeyTabAddGroup);
-            this.Controls.Add(this.labelKeyTabKeyTypeTitle);
-            this.Controls.Add(this.pictureBoxKeyTab);
             this.Controls.Add(this.listBoxKeyTabKeys);
             this.Controls.Add(this.label11);
-            this.Name = "Keys";
+            this.Name = "KeysForm";
             this.Text = "Keys";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).EndInit();
+            this.groupBoxKeyManage.ResumeLayout(false);
+            this.groupBoxKeyManage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,6 +307,6 @@
         private System.Windows.Forms.PictureBox pictureBoxKeyTab;
         private System.Windows.Forms.ListBox listBoxKeyTabKeys;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBoxKeyManage;
     }
 }

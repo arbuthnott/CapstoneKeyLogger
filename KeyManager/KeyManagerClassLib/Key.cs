@@ -60,14 +60,20 @@ namespace KeyManagerClassLib
         public void SetKeyType(KeyType type)
         {
             KeyType = type;
-            type.keys.Add(this);
+            if (type != null)
+            {
+                type.keys.Add(this);
+            }
             Save();
         }
 
         public void SetKeyRing(KeyRing ring)
         {
             KeyRing = ring;
-            ring.keys.Add(this);
+            if (ring != null)
+            {
+                ring.keys.Add(this);
+            }
             Save();
         }
 
