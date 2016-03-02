@@ -15,12 +15,13 @@ namespace KeyManagerClassLib
     public class ObjectHolder
     {
         // object lists
-        public List<Door> doors = new List<Door>(); // worked on save and other db methods
-        public List<Key> keys = new List<Key>(); // worked on save method
-        public List<KeyRing> keyrings = new List<KeyRing>(); // worked on db methods - can test in UI
+        public List<Door> doors = new List<Door>();
+        public List<Key> keys = new List<Key>();
+        public List<KeyRing> keyrings = new List<KeyRing>();
         public List<KeyType> keytypes = new List<KeyType>();
         public List<Location> locations = new List<Location>();
         public List<Personnel> personnel = new List<Personnel>();
+        public List<Checkout> checkouts = new List<Checkout>();
 
         public ObjectHolder()
         {
@@ -33,6 +34,7 @@ namespace KeyManagerClassLib
             loadKeyrings(conn);
             loadLocations(conn);
             loadPersonnel(conn);
+            loadCheckouts(conn);
 
             // sort the lists
             doors.Sort();
@@ -41,6 +43,7 @@ namespace KeyManagerClassLib
             keytypes.Sort();
             locations.Sort();
             personnel.Sort();
+            checkouts.Sort();
 
             // populate all the connection lists.
             connectDoors(conn); // also populates doors list of keytypes.
@@ -162,6 +165,18 @@ namespace KeyManagerClassLib
             return null;
         }
 
+        public Personnel GetPersonnelById(int id)
+        {
+            foreach (Personnel person in personnel)
+            {
+                if (person.Id == id)
+                {
+                    return person;
+                }
+            }
+            return null;
+        }
+
         /*******************************************************************************
         * LOAD FUNCTIONS to load objects from database with their basic data properties
         *******************************************************************************/
@@ -235,6 +250,25 @@ namespace KeyManagerClassLib
             {
                 door = new Door(reader.GetInt16(0), reader.GetString(1), reader.GetInt16(2), reader.IsDBNull(3) ? null : reader.GetString(3));
                 doors.Add(door);
+            }
+        }
+
+        private void loadCheckouts(SQLiteConnection conn)
+        {
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Person, Key, Keyring, IsReturned, Date from checkout", conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            Checkout checkout;
+            while (reader.Read())
+            {
+                checkout = new Checkout(
+                    reader.GetInt16(0),
+                    GetPersonnelById(reader.GetInt16(1)),
+                    reader.IsDBNull(2) ? null : getKeyById(reader.GetInt16(2)),
+                    reader.IsDBNull(3) ? null : getKeyRingById(reader.GetInt16(3)),
+                    reader.IsDBNull(4) ? false : reader.GetInt16(4) > 0,
+                    DateTime.Parse(reader.GetString(5))
+                );
+                checkouts.Add(checkout);
             }
         }
 

@@ -19,6 +19,27 @@ namespace KeyManagerClassLib
         public int PermitLevel { get; set; }
 
         /// <summary>
+        /// Delete the keytype only if it has no associated keys.
+        /// Deletes associations to existing locks
+        /// does not update the OOP.
+        /// </summary>
+        /// <returns>true if successful, false if keys of this type forbid deletion</returns>
+        public bool Delete()
+        {
+            if (keys.Count > 0)
+            {
+                return false;
+            }
+            foreach (Door door in doors)
+            {
+                door.DisconnectKeyType(this);
+            }
+            DataLayer dl = new DataLayer();
+            dl.DeleteRecord("keytype", Id);
+            return true;
+        }
+
+        /// <summary>
         /// Create or update this keytype in the database.  Does not affect associated doors
         /// or keys.  To affect these in db, use ConnectToDoor, DisconnectDoor, and
         /// ConnectToKey methods.

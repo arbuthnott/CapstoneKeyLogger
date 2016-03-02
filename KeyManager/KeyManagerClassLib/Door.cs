@@ -20,6 +20,26 @@ namespace KeyManagerClassLib
         public string DoorImage { get; set; }
 
         /// <summary>
+        /// Deletes this door from the database. Does not update the OOP.
+        /// </summary>
+        /// <returns>true on success - should always return true</returns>
+        public bool Delete()
+        {
+            DataLayer dl = new DataLayer();
+            dl.DeleteRecord("door", Id);
+
+            // remove from all door groups
+            // can't use DataLayer for this!
+            SQLiteConnection conn = DbSetupManager.GetConnection();
+            SQLiteCommand command = new SQLiteCommand(conn);
+            command.CommandText = "DELETE FROM door_to_location WHERE Door=" + Id;
+            command.ExecuteNonQuery();
+            conn.Close();
+
+            return true;
+        }
+
+        /// <summary>
         /// Create or update this door in the database, including reference to lock and all data properties
         /// DOES NOT update connections to Keytypes.  For that use ConnectKeyType or DisconnectKeytype.
         /// </summary>

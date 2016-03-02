@@ -19,6 +19,22 @@ namespace KeyManagerClassLib
         public string Image { get; set; }
 
         /// <summary>
+        /// Deletes this Location, and all references to it in db
+        /// Does not update the OOP.
+        /// </summary>
+        /// <returns></returns>
+        public bool Delete()
+        {
+            foreach (Door door in doors.ToArray()) // used ToArray to avoid modifying the list I'm iterating over.
+            {
+                RemoveDoor(door);
+            }
+            DataLayer dl = new DataLayer();
+            dl.DeleteRecord("location", Id);
+            return true;
+        }
+
+        /// <summary>
         /// Create or update this location in the db.  Does not update doors in the group.
         /// For that use AddDoor and RemoveDoor methods.
         /// </summary>

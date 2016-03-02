@@ -21,7 +21,7 @@ namespace KeyManagerForm
         BindingList<Location> DoorGroups { get; set; }
         Door SelectedDoor { get; set; }
 
-        public DoorsForm(ref ObjectHolder objects)
+        public DoorsForm(ObjectHolder objects)
         {
             InitializeComponent();
             this.objects = objects;

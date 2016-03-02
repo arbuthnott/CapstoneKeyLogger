@@ -19,6 +19,21 @@ namespace KeyManagerClassLib
         public int PermitLevel { get; set; }
 
         /// <summary>
+        /// Deletes this person from the db. No effect on OOP.
+        /// </summary>
+        /// <returns></returns>
+        public bool Delete()
+        {
+            // TODO - consider whether people with active checkouts can be deleted!
+
+            // TODO - consider whether the last user can be deleted!
+
+            DataLayer dl = new DataLayer();
+            dl.DeleteRecord("personnel", Id);
+            return true;
+        }
+
+        /// <summary>
         /// Create or update this person in the database.
         /// </summary>
         public void Save()
