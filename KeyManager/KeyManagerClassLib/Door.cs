@@ -146,9 +146,7 @@ namespace KeyManagerClassLib
         public int CompareTo(Door other)
         {
             return this.RoomNumber.CompareTo(other.RoomNumber);
-        }
-
-        
+        } 
     }
 }
 

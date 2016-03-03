@@ -87,7 +87,7 @@ namespace KeyManagerForm
                             door = dr;
                         }
                     }
-                    // update the OOP - later bring in the database too.
+                    // update the OOP
                     loc.RemoveDoor(door);
 
                     // update the UI
@@ -111,7 +111,7 @@ namespace KeyManagerForm
                             door = dr;
                         }
                     }
-                    // update the OOP - later bring in the database too.
+                    // update the OOP
                     loc.AddDoor(door);
 
                     // update the UI
