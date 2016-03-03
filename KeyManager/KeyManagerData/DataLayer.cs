@@ -144,6 +144,41 @@ namespace KeyManagerData
             db.Close();
         }
 
+        // When using this method you will likely need to parse the returned values
+        // contained within the returned list, since they are all in string format.
+        public List<int> GetJointRecord(string Type, string foreignId, string mainId, int mainValue)
+        {
+            db = DbSetupManager.GetConnection();
+            db.Open();
+            List<int> returnList = new List<int>();
+            using (command = new SQLiteCommand(db))
+            {
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "SELECT " + foreignId + " FROM " + Type + " WHERE " + mainId + " = " + mainValue.ToString();
+                SQLiteDataReader reader = command.ExecuteReader();
+                // Should get only one record at a time
+                while (reader.Read())
+                {
+                    returnList.Add(reader.GetInt32(0));
+                }
+            }
+            db.Close();
+            return returnList;
+        }
+
+        // Where both columns match, delete record
+        public void DeleteJointRecord(string Type, string mainId, string foreignId, int mainValue, int foreignValue)
+        {
+            db = DbSetupManager.GetConnection();
+            db.Open();
+            using (command = new SQLiteCommand(db))
+            {
+                command.CommandText = "DELETE FROM " + Type + " WHERE " + mainId + "=" + mainValue.ToString() + " AND " + foreignId + "=" + foreignValue.ToString();
+                int rows = command.ExecuteNonQuery();
+            }
+            db.Close();
+        }
+
         public void DeleteRecord(string Type, int id)
         {
             db = DbSetupManager.GetConnection();
