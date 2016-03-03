@@ -45,7 +45,6 @@ namespace KeyManagerData
         public List<string> GetRecord(string Type, int Id, int ReturnCount)
         {
             db = DbSetupManager.GetConnection();
-            db.Open();
             List<string> returnList = new List<string>();
             using (command = new SQLiteCommand(db))
             {
@@ -65,7 +64,6 @@ namespace KeyManagerData
         public int AddRecord(string Type)
         {
             db = DbSetupManager.GetConnection();
-            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandType = System.Data.CommandType.Text;
@@ -100,7 +98,6 @@ namespace KeyManagerData
         public int AddRecordWithDefault(string Type)
         {
             db = DbSetupManager.GetConnection();
-            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandType = System.Data.CommandType.Text;
@@ -115,7 +112,6 @@ namespace KeyManagerData
         public void AlterRecord(string Type, int id)
         {
             db = DbSetupManager.GetConnection();
-            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandType = System.Data.CommandType.Text;
@@ -149,7 +145,6 @@ namespace KeyManagerData
         public List<int> GetJointRecord(string Type, string foreignId, string mainId, int mainValue)
         {
             db = DbSetupManager.GetConnection();
-            db.Open();
             List<int> returnList = new List<int>();
             using (command = new SQLiteCommand(db))
             {
@@ -170,7 +165,6 @@ namespace KeyManagerData
         public void DeleteJointRecord(string Type, string mainId, string foreignId, int mainValue, int foreignValue)
         {
             db = DbSetupManager.GetConnection();
-            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandText = "DELETE FROM " + Type + " WHERE " + mainId + "=" + mainValue.ToString() + " AND " + foreignId + "=" + foreignValue.ToString();
@@ -182,7 +176,6 @@ namespace KeyManagerData
         public void DeleteRecord(string Type, int id)
         {
             db = DbSetupManager.GetConnection();
-            db.Open();
             using (command = new SQLiteCommand(db))
             {
                 command.CommandText = "DELETE FROM " + Type + " WHERE ID=" + id;

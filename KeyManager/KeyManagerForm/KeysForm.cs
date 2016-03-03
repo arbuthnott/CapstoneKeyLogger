@@ -243,12 +243,41 @@ namespace KeyManagerForm
 
         private void buttonKeyTabAddDoor_Click(object sender, EventArgs e)
         {
-            //TODO connect the selected door to selected keytype and update UI
+            foreach (KeyType type in objects.keytypes)
+            {
+                if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
+                {
+                    foreach (Door door in objects.doors)
+                    {
+                        if (door.RoomNumber == (string)comboBoxKeyTabDoors.SelectedItem)
+                        {
+                            door.ConnectKeyType(type);
+                            setKeytabKeytype(type);
+                        }
+                    }
+                }
+            }
         }
 
         private void buttonKeyTabAddGroup_Click(object sender, EventArgs e)
         {
-            //TODO connect all doors in selected doorgroup to selected keytype and update UI.
+            foreach (KeyType type in objects.keytypes)
+            {
+                if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
+                {
+                    foreach (Location loc in objects.locations)
+                    {
+                        if (loc.Name == (string)comboBoxKeyTabDoorGroups.SelectedItem)
+                        {
+                            foreach (Door door in loc.doors)
+                            {
+                                door.ConnectKeyType(type);
+                            }
+                            setKeytabKeytype(type);
+                        }
+                    }
+                }
+            }
         }
 
         private void pictureBoxKeyTab_Click(object sender, EventArgs e)

@@ -99,7 +99,7 @@ namespace KeyManagerClassLib
             type.doors.Add(this);
             DataLayer dl = new DataLayer();
             dl.AddValue("Keytype", "" + type.Id);
-            dl.AddValue("Lock", "" + Id);
+            dl.AddValue("Lock", "" + LockId);
             dl.AddRecord("keytype_to_lock");
         }
 

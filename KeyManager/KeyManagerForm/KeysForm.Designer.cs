@@ -171,6 +171,7 @@
             this.buttonKeyTabAddDoor.TabIndex = 17;
             this.buttonKeyTabAddDoor.Text = "Add Door";
             this.buttonKeyTabAddDoor.UseVisualStyleBackColor = true;
+            this.buttonKeyTabAddDoor.Click += new System.EventHandler(this.buttonKeyTabAddDoor_Click);
             // 
             // buttonKeyTabNewType
             // 
