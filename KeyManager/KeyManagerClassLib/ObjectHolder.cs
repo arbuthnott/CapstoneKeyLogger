@@ -201,6 +201,18 @@ namespace KeyManagerClassLib
             return null;
         }
 
+        public KeyType getKeyTypeByName(string name)
+        {
+            foreach (KeyType type in keytypes)
+            {
+                if (type.Name == name)
+                {
+                    return type;
+                }
+            }
+            return null;
+        }
+
         public Personnel GetPersonnelById(int id)
         {
             foreach (Personnel person in personnel)

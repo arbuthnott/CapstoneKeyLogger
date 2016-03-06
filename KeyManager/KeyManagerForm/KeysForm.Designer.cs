@@ -44,11 +44,15 @@
             this.comboBoxKeyTabKeyType = new System.Windows.Forms.ComboBox();
             this.buttonKeyTabAddGroup = new System.Windows.Forms.Button();
             this.labelKeyTabKeyTypeTitle = new System.Windows.Forms.Label();
-            this.pictureBoxKeyTab = new System.Windows.Forms.PictureBox();
             this.listBoxKeyTabKeys = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBoxKeyManage = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonKeyTabDeleteType = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonKeytabDeleteKey = new System.Windows.Forms.Button();
+            this.buttonKeyTabRemoveDoor = new System.Windows.Forms.Button();
+            this.buttonKeyTabRemoveGroup = new System.Windows.Forms.Button();
             this.groupBoxKeyManage.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,9 +61,9 @@
             this.comboBoxKeyTabDoorGroups.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxKeyTabDoorGroups.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabDoorGroups.FormattingEnabled = true;
-            this.comboBoxKeyTabDoorGroups.Location = new System.Drawing.Point(243, 397);
+            this.comboBoxKeyTabDoorGroups.Location = new System.Drawing.Point(12, 395);
             this.comboBoxKeyTabDoorGroups.Name = "comboBoxKeyTabDoorGroups";
-            this.comboBoxKeyTabDoorGroups.Size = new System.Drawing.Size(117, 21);
+            this.comboBoxKeyTabDoorGroups.Size = new System.Drawing.Size(204, 21);
             this.comboBoxKeyTabDoorGroups.TabIndex = 30;
             this.comboBoxKeyTabDoorGroups.Text = "...select group...";
             this.comboBoxKeyTabDoorGroups.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeyTabDoorGroups_SelectedIndexChanged);
@@ -69,9 +73,9 @@
             this.comboBoxKeyTabDoors.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxKeyTabDoors.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabDoors.FormattingEnabled = true;
-            this.comboBoxKeyTabDoors.Location = new System.Drawing.Point(18, 397);
+            this.comboBoxKeyTabDoors.Location = new System.Drawing.Point(10, 199);
             this.comboBoxKeyTabDoors.Name = "comboBoxKeyTabDoors";
-            this.comboBoxKeyTabDoors.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxKeyTabDoors.Size = new System.Drawing.Size(206, 21);
             this.comboBoxKeyTabDoors.TabIndex = 28;
             this.comboBoxKeyTabDoors.Text = "...select door...";
             this.comboBoxKeyTabDoors.SelectedIndexChanged += new System.EventHandler(this.comboBoxKeyTabDoors_SelectedIndexChanged);
@@ -79,16 +83,16 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(240, 252);
+            this.label14.Location = new System.Drawing.Point(9, 250);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(127, 13);
+            this.label14.Size = new System.Drawing.Size(101, 13);
             this.label14.TabIndex = 27;
-            this.label14.Text = "Unlockable Door Groups:";
+            this.label14.Text = "Unlockable Groups:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(16, 252);
+            this.label13.Location = new System.Drawing.Point(7, 56);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(95, 13);
             this.label13.TabIndex = 25;
@@ -97,15 +101,15 @@
             // listBoxKeyTabDoorGroups
             // 
             this.listBoxKeyTabDoorGroups.FormattingEnabled = true;
-            this.listBoxKeyTabDoorGroups.Location = new System.Drawing.Point(241, 270);
+            this.listBoxKeyTabDoorGroups.Location = new System.Drawing.Point(10, 268);
             this.listBoxKeyTabDoorGroups.Name = "listBoxKeyTabDoorGroups";
-            this.listBoxKeyTabDoorGroups.Size = new System.Drawing.Size(192, 121);
+            this.listBoxKeyTabDoorGroups.Size = new System.Drawing.Size(281, 121);
             this.listBoxKeyTabDoorGroups.TabIndex = 22;
             this.listBoxKeyTabDoorGroups.SelectedIndexChanged += new System.EventHandler(this.listBoxKeyTabDoorGroups_SelectedIndexChanged);
             // 
             // buttonKeyTabEditKey
             // 
-            this.buttonKeyTabEditKey.Location = new System.Drawing.Point(222, 412);
+            this.buttonKeyTabEditKey.Location = new System.Drawing.Point(222, 171);
             this.buttonKeyTabEditKey.Name = "buttonKeyTabEditKey";
             this.buttonKeyTabEditKey.Size = new System.Drawing.Size(117, 23);
             this.buttonKeyTabEditKey.TabIndex = 32;
@@ -115,7 +119,7 @@
             // 
             // buttonKeyTabNewKey
             // 
-            this.buttonKeyTabNewKey.Location = new System.Drawing.Point(222, 383);
+            this.buttonKeyTabNewKey.Location = new System.Drawing.Point(222, 142);
             this.buttonKeyTabNewKey.Name = "buttonKeyTabNewKey";
             this.buttonKeyTabNewKey.Size = new System.Drawing.Size(117, 23);
             this.buttonKeyTabNewKey.TabIndex = 29;
@@ -126,9 +130,9 @@
             // listBoxKeyTabDoors
             // 
             this.listBoxKeyTabDoors.FormattingEnabled = true;
-            this.listBoxKeyTabDoors.Location = new System.Drawing.Point(18, 270);
+            this.listBoxKeyTabDoors.Location = new System.Drawing.Point(10, 72);
             this.listBoxKeyTabDoors.Name = "listBoxKeyTabDoors";
-            this.listBoxKeyTabDoors.Size = new System.Drawing.Size(192, 121);
+            this.listBoxKeyTabDoors.Size = new System.Drawing.Size(281, 121);
             this.listBoxKeyTabDoors.TabIndex = 20;
             this.listBoxKeyTabDoors.SelectedIndexChanged += new System.EventHandler(this.listBoxKeyTabDoors_SelectedIndexChanged);
             // 
@@ -147,7 +151,7 @@
             this.comboBoxKeyTabKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxKeyTabKey.ForeColor = System.Drawing.Color.Black;
             this.comboBoxKeyTabKey.FormattingEnabled = true;
-            this.comboBoxKeyTabKey.Location = new System.Drawing.Point(51, 52);
+            this.comboBoxKeyTabKey.Location = new System.Drawing.Point(51, 68);
             this.comboBoxKeyTabKey.Name = "comboBoxKeyTabKey";
             this.comboBoxKeyTabKey.Size = new System.Drawing.Size(165, 21);
             this.comboBoxKeyTabKey.TabIndex = 24;
@@ -157,7 +161,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(12, 55);
+            this.label12.Location = new System.Drawing.Point(12, 71);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(33, 13);
             this.label12.TabIndex = 21;
@@ -165,9 +169,9 @@
             // 
             // buttonKeyTabAddDoor
             // 
-            this.buttonKeyTabAddDoor.Location = new System.Drawing.Point(145, 395);
+            this.buttonKeyTabAddDoor.Location = new System.Drawing.Point(222, 197);
             this.buttonKeyTabAddDoor.Name = "buttonKeyTabAddDoor";
-            this.buttonKeyTabAddDoor.Size = new System.Drawing.Size(65, 23);
+            this.buttonKeyTabAddDoor.Size = new System.Drawing.Size(69, 23);
             this.buttonKeyTabAddDoor.TabIndex = 17;
             this.buttonKeyTabAddDoor.Text = "Add Door";
             this.buttonKeyTabAddDoor.UseVisualStyleBackColor = true;
@@ -197,7 +201,7 @@
             // 
             // buttonKeyTabAddGroup
             // 
-            this.buttonKeyTabAddGroup.Location = new System.Drawing.Point(366, 395);
+            this.buttonKeyTabAddGroup.Location = new System.Drawing.Point(222, 393);
             this.buttonKeyTabAddGroup.Name = "buttonKeyTabAddGroup";
             this.buttonKeyTabAddGroup.Size = new System.Drawing.Size(69, 23);
             this.buttonKeyTabAddGroup.TabIndex = 19;
@@ -209,29 +213,18 @@
             // 
             this.labelKeyTabKeyTypeTitle.AutoSize = true;
             this.labelKeyTabKeyTypeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKeyTabKeyTypeTitle.Location = new System.Drawing.Point(15, 224);
+            this.labelKeyTabKeyTypeTitle.Location = new System.Drawing.Point(6, 16);
             this.labelKeyTabKeyTypeTitle.Name = "labelKeyTabKeyTypeTitle";
             this.labelKeyTabKeyTypeTitle.Size = new System.Drawing.Size(95, 24);
             this.labelKeyTabKeyTypeTitle.TabIndex = 15;
             this.labelKeyTabKeyTypeTitle.Text = "Key Type:";
             // 
-            // pictureBoxKeyTab
-            // 
-            this.pictureBoxKeyTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxKeyTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxKeyTab.Location = new System.Drawing.Point(19, 19);
-            this.pictureBoxKeyTab.Name = "pictureBoxKeyTab";
-            this.pictureBoxKeyTab.Size = new System.Drawing.Size(414, 200);
-            this.pictureBoxKeyTab.TabIndex = 14;
-            this.pictureBoxKeyTab.TabStop = false;
-            this.pictureBoxKeyTab.Click += new System.EventHandler(this.pictureBoxKeyTab_Click);
-            // 
             // listBoxKeyTabKeys
             // 
             this.listBoxKeyTabKeys.FormattingEnabled = true;
-            this.listBoxKeyTabKeys.Location = new System.Drawing.Point(15, 103);
+            this.listBoxKeyTabKeys.Location = new System.Drawing.Point(15, 142);
             this.listBoxKeyTabKeys.Name = "listBoxKeyTabKeys";
-            this.listBoxKeyTabKeys.Size = new System.Drawing.Size(201, 329);
+            this.listBoxKeyTabKeys.Size = new System.Drawing.Size(201, 290);
             this.listBoxKeyTabKeys.TabIndex = 23;
             this.listBoxKeyTabKeys.SelectedIndexChanged += new System.EventHandler(this.listBoxKeyTabKeys_SelectedIndexChanged);
             // 
@@ -246,7 +239,8 @@
             // 
             // groupBoxKeyManage
             // 
-            this.groupBoxKeyManage.Controls.Add(this.pictureBoxKeyTab);
+            this.groupBoxKeyManage.Controls.Add(this.buttonKeyTabRemoveGroup);
+            this.groupBoxKeyManage.Controls.Add(this.buttonKeyTabRemoveDoor);
             this.groupBoxKeyManage.Controls.Add(this.labelKeyTabKeyTypeTitle);
             this.groupBoxKeyManage.Controls.Add(this.comboBoxKeyTabDoorGroups);
             this.groupBoxKeyManage.Controls.Add(this.buttonKeyTabAddGroup);
@@ -258,15 +252,77 @@
             this.groupBoxKeyManage.Controls.Add(this.label13);
             this.groupBoxKeyManage.Location = new System.Drawing.Point(345, 9);
             this.groupBoxKeyManage.Name = "groupBoxKeyManage";
-            this.groupBoxKeyManage.Size = new System.Drawing.Size(445, 426);
+            this.groupBoxKeyManage.Size = new System.Drawing.Size(297, 426);
             this.groupBoxKeyManage.TabIndex = 34;
             this.groupBoxKeyManage.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "Keys of this type:";
+            // 
+            // buttonKeyTabDeleteType
+            // 
+            this.buttonKeyTabDeleteType.Location = new System.Drawing.Point(222, 81);
+            this.buttonKeyTabDeleteType.Name = "buttonKeyTabDeleteType";
+            this.buttonKeyTabDeleteType.Size = new System.Drawing.Size(117, 23);
+            this.buttonKeyTabDeleteType.TabIndex = 36;
+            this.buttonKeyTabDeleteType.Text = "Delete Key Type";
+            this.buttonKeyTabDeleteType.UseVisualStyleBackColor = true;
+            this.buttonKeyTabDeleteType.Click += new System.EventHandler(this.buttonKeyTabDeleteType_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "- OR -";
+            // 
+            // buttonKeytabDeleteKey
+            // 
+            this.buttonKeytabDeleteKey.Location = new System.Drawing.Point(222, 200);
+            this.buttonKeytabDeleteKey.Name = "buttonKeytabDeleteKey";
+            this.buttonKeytabDeleteKey.Size = new System.Drawing.Size(117, 23);
+            this.buttonKeytabDeleteKey.TabIndex = 38;
+            this.buttonKeytabDeleteKey.Text = "Delete Key";
+            this.buttonKeytabDeleteKey.UseVisualStyleBackColor = true;
+            this.buttonKeytabDeleteKey.Click += new System.EventHandler(this.buttonKeytabDeleteKey_Click);
+            // 
+            // buttonKeyTabRemoveDoor
+            // 
+            this.buttonKeyTabRemoveDoor.Location = new System.Drawing.Point(156, 46);
+            this.buttonKeyTabRemoveDoor.Name = "buttonKeyTabRemoveDoor";
+            this.buttonKeyTabRemoveDoor.Size = new System.Drawing.Size(135, 23);
+            this.buttonKeyTabRemoveDoor.TabIndex = 31;
+            this.buttonKeyTabRemoveDoor.Text = "Remove Selected Door";
+            this.buttonKeyTabRemoveDoor.UseVisualStyleBackColor = true;
+            this.buttonKeyTabRemoveDoor.Click += new System.EventHandler(this.buttonKeyTabRemoveDoor_Click);
+            // 
+            // buttonKeyTabRemoveGroup
+            // 
+            this.buttonKeyTabRemoveGroup.Location = new System.Drawing.Point(156, 240);
+            this.buttonKeyTabRemoveGroup.Name = "buttonKeyTabRemoveGroup";
+            this.buttonKeyTabRemoveGroup.Size = new System.Drawing.Size(135, 23);
+            this.buttonKeyTabRemoveGroup.TabIndex = 32;
+            this.buttonKeyTabRemoveGroup.Text = "Remove Selected Group";
+            this.buttonKeyTabRemoveGroup.UseVisualStyleBackColor = true;
+            this.buttonKeyTabRemoveGroup.Click += new System.EventHandler(this.buttonKeyTabRemoveGroup_Click);
             // 
             // KeysForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 442);
+            this.ClientSize = new System.Drawing.Size(654, 442);
+            this.Controls.Add(this.buttonKeytabDeleteKey);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.buttonKeyTabDeleteType);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBoxKeyManage);
             this.Controls.Add(this.buttonKeyTabEditKey);
             this.Controls.Add(this.buttonKeyTabNewKey);
@@ -279,7 +335,6 @@
             this.Controls.Add(this.label11);
             this.Name = "KeysForm";
             this.Text = "Keys";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxKeyTab)).EndInit();
             this.groupBoxKeyManage.ResumeLayout(false);
             this.groupBoxKeyManage.PerformLayout();
             this.ResumeLayout(false);
@@ -305,9 +360,14 @@
         private System.Windows.Forms.ComboBox comboBoxKeyTabKeyType;
         private System.Windows.Forms.Button buttonKeyTabAddGroup;
         private System.Windows.Forms.Label labelKeyTabKeyTypeTitle;
-        private System.Windows.Forms.PictureBox pictureBoxKeyTab;
         private System.Windows.Forms.ListBox listBoxKeyTabKeys;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBoxKeyManage;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonKeyTabDeleteType;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonKeytabDeleteKey;
+        private System.Windows.Forms.Button buttonKeyTabRemoveGroup;
+        private System.Windows.Forms.Button buttonKeyTabRemoveDoor;
     }
 }

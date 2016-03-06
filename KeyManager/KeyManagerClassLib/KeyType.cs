@@ -30,7 +30,7 @@ namespace KeyManagerClassLib
             {
                 return false;
             }
-            foreach (Door door in doors)
+            foreach (Door door in doors.ToArray()) // used ToArray() to avoid modifying the list I'm iterating over.
             {
                 door.DisconnectKeyType(this);
             }

@@ -28,8 +28,12 @@ namespace KeyManagerForm
             groupBoxKeyManage.Enabled = false;
             buttonKeyTabEditType.Enabled = false;
             buttonKeyTabEditKey.Enabled = false;
+            buttonKeyTabDeleteType.Enabled = false;
+            buttonKeytabDeleteKey.Enabled = false;
             buttonKeyTabAddDoor.Enabled = false;
             buttonKeyTabAddGroup.Enabled = false;
+            buttonKeyTabRemoveDoor.Enabled = false;
+            buttonKeyTabRemoveGroup.Enabled = false;
             comboBoxKeyTabKeyType.Items.Clear();
             foreach (KeyType type in objects.keytypes)
             {
@@ -44,13 +48,20 @@ namespace KeyManagerForm
         private void setKeytabKeytype(KeyType type)
         {
             groupBoxKeyManage.Enabled = true;
+            labelKeyTabKeyTypeTitle.Text = "Key Type: " + type.Name;
             buttonKeyTabEditType.Enabled = true;
+            buttonKeyTabDeleteType.Enabled = true;
+
+            // list of keys ui
             listBoxKeyTabKeys.Items.Clear();
             foreach (Key key in type.keys)
             {
                 listBoxKeyTabKeys.Items.Add(key.Serial);
             }
-            labelKeyTabKeyTypeTitle.Text = "Key Type: " + type.Name;
+            listBoxKeyTabKeys.SelectedIndex = -1;
+
+            // list of doors in ui
+            listBoxKeyTabDoors.SelectedIndex = -1;
             listBoxKeyTabDoors.Items.Clear();
             comboBoxKeyTabDoors.SelectedIndex = -1;
             comboBoxKeyTabDoors.Items.Clear();
@@ -65,6 +76,9 @@ namespace KeyManagerForm
                     comboBoxKeyTabDoors.Items.Add(door.RoomNumber);
                 }
             }
+
+            // list of door groups in ui
+            listBoxKeyTabDoorGroups.SelectedIndex = -1;
             listBoxKeyTabDoorGroups.Items.Clear();
             comboBoxKeyTabDoorGroups.SelectedIndex = -1;
             comboBoxKeyTabDoorGroups.Items.Clear();
@@ -87,42 +101,34 @@ namespace KeyManagerForm
             if (comboBoxKeyTabKeyType.SelectedIndex != -1)
             {
                 buttonKeyTabEditKey.Enabled = false;
+                buttonKeytabDeleteKey.Enabled = false;
 
-                foreach (KeyType type in objects.keytypes)
+                KeyType type = objects.getKeyTypeByName((string)comboBoxKeyTabKeyType.SelectedItem);
+                if (type != null)
                 {
-                    if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
-                    {
-                        setKeytabKeytype(type);
-                    }
+                    setKeytabKeytype(type);
                 }
             }
         }
 
         private void comboBoxKeyTabKey_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxKeyTabKey.SelectedIndex != -1)
+            Key key = objects.getKeyBySerial((string)comboBoxKeyTabKey.SelectedItem);
+            if (key != null)
             {
-                foreach (Key key in objects.keys)
-                {
-                    if (key.Serial == (string)comboBoxKeyTabKey.SelectedItem)
-                    {
-                        KeyType type = key.KeyType;
-                        comboBoxKeyTabKeyType.SelectedIndex = comboBoxKeyTabKeyType.Items.IndexOf(type.Name);
-                        //setKeytabKeytype(type);
+                KeyType type = key.KeyType;
+                comboBoxKeyTabKeyType.SelectedIndex = comboBoxKeyTabKeyType.Items.IndexOf(type.Name);
 
-                        listBoxKeyTabKeys.SelectedIndex = listBoxKeyTabKeys.Items.IndexOf(key.Serial);
-                        buttonKeyTabEditKey.Enabled = true;
-                    }
-                }
+                listBoxKeyTabKeys.SelectedIndex = listBoxKeyTabKeys.Items.IndexOf(key.Serial);
+                buttonKeyTabEditKey.Enabled = true;
+                buttonKeytabDeleteKey.Enabled = true;
             }
         }
 
         private void listBoxKeyTabKeys_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBoxKeyTabKeys.SelectedIndex != 1)
-            {
-                buttonKeyTabEditKey.Enabled = true;
-            }
+            buttonKeyTabEditKey.Enabled = listBoxKeyTabKeys.SelectedIndex != -1;
+            buttonKeytabDeleteKey.Enabled = listBoxKeyTabKeys.SelectedIndex != -1;
         }
 
         private void comboBoxKeyTabDoors_SelectedIndexChanged(object sender, EventArgs e)
@@ -153,20 +159,18 @@ namespace KeyManagerForm
 
         private void buttonKeyTabEditType_Click(object sender, EventArgs e)
         {
-            foreach (KeyType type in objects.keytypes)
+            KeyType type = objects.getKeyTypeByName((string)comboBoxKeyTabKeyType.SelectedItem);
+            if (type != null)
             {
-                if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
+                KeytypeDialog ktd = new KeytypeDialog(type);
+                DialogResult result = ktd.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    KeytypeDialog ktd = new KeytypeDialog(type);
-                    DialogResult result = ktd.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        type.Save(); // updates the database
+                    type.Save(); // updates the database
 
-                        // update the UI
-                        initializeKeyTab();
-                        setKeytabKeytype(type);
-                    }
+                    // update the UI
+                    initializeKeyTab();
+                    setKeytabKeytype(type);
                 }
             }
         }
@@ -174,17 +178,13 @@ namespace KeyManagerForm
         private void buttonKeyTabNewKey_Click(object sender, EventArgs e)
         {
             Key key = null;
-            if (comboBoxKeyTabKeyType.SelectedIndex != -1)
+            KeyType type = objects.getKeyTypeByName((string)comboBoxKeyTabKeyType.SelectedItem);
+            if (type != null)
             {
-                foreach (KeyType type in objects.keytypes)
-                {
-                    if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
-                    {
-                        key = new Key(-1, "", false, false);
-                        key.KeyType = type;
-                    }
-                }
+                key = new Key(-1, "", false, false);
+                key.KeyType = type;
             }
+
             KeyDialog kd = new KeyDialog(objects, key);
             DialogResult result = kd.ShowDialog();
             if (result == DialogResult.OK)
@@ -210,95 +210,160 @@ namespace KeyManagerForm
 
         private void buttonKeyTabEditKey_Click(object sender, EventArgs e)
         {
-
-            foreach (Key key in objects.keys)
+            Key key = objects.getKeyBySerial((string)listBoxKeyTabKeys.SelectedItem);
+            if (key != null)
             {
-                if (key.Serial == (string)listBoxKeyTabKeys.SelectedItem)
+                KeyDialog kd = new KeyDialog(objects, key);
+                DialogResult result = kd.ShowDialog();
+                if (result == DialogResult.OK)
                 {
-                    KeyDialog kd = new KeyDialog(objects, key);
-                    DialogResult result = kd.ShowDialog();
-                    if (result == DialogResult.OK)
+                    // update OOP.
+                    foreach (KeyType type in objects.keytypes)
                     {
-                        // update OOP.
-                        foreach (KeyType type in objects.keytypes)
-                        {
-                            type.keys.Remove(key);
-                        }
-                        foreach (KeyRing ring in objects.keyrings)
-                        {
-                            ring.keys.Remove(key);
-                        }
-                        key.KeyType.keys.Add(key);
-                        if (key.KeyRing != null)
-                        {
-                            key.KeyRing.keys.Add(key);
-                        }
-
-                        // update the database
-                        key.Save();
+                        type.keys.Remove(key);
                     }
+                    foreach (KeyRing ring in objects.keyrings)
+                    {
+                        ring.keys.Remove(key);
+                    }
+                    key.KeyType.keys.Add(key);
+                    if (key.KeyRing != null)
+                    {
+                        key.KeyRing.keys.Add(key);
+                    }
+
+                    // update the database
+                    key.Save();
+
+                    // update the ui
+                    initializeKeyTab();
+                    setKeytabKeytype(key.KeyType);
+                    listBoxKeyTabKeys.SelectedItem = key.Serial;
                 }
             }
         }
 
         private void buttonKeyTabAddDoor_Click(object sender, EventArgs e)
         {
-            foreach (KeyType type in objects.keytypes)
+            KeyType type = objects.getKeyTypeByName((string)comboBoxKeyTabKeyType.SelectedItem);
+            Door door = objects.getDoorByRoomNumber((string)comboBoxKeyTabDoors.SelectedItem);
+            if (type != null && door != null)
             {
-                if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
-                {
-                    foreach (Door door in objects.doors)
-                    {
-                        if (door.RoomNumber == (string)comboBoxKeyTabDoors.SelectedItem)
-                        {
-                            door.ConnectKeyType(type);
-                            setKeytabKeytype(type);
-                        }
-                    }
-                }
+                // update OOP and db
+                door.ConnectKeyType(type);
+
+                // update ui
+                setKeytabKeytype(type);
             }
         }
 
         private void buttonKeyTabAddGroup_Click(object sender, EventArgs e)
         {
-            foreach (KeyType type in objects.keytypes)
+            KeyType type = objects.getKeyTypeByName((string)comboBoxKeyTabKeyType.SelectedItem);
+            Location loc = objects.getLocationByName((string)comboBoxKeyTabDoorGroups.SelectedItem);
+            if (type != null && loc != null)
             {
-                if (type.Name == (string)comboBoxKeyTabKeyType.SelectedItem)
+                // update the db and OOP
+                foreach (Door door in loc.doors)
                 {
-                    foreach (Location loc in objects.locations)
+                    door.ConnectKeyType(type);
+                }
+
+                // update the ui
+                setKeytabKeytype(type);
+            }
+        }
+
+        private void listBoxKeyTabDoors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonKeyTabRemoveDoor.Enabled = listBoxKeyTabDoors.SelectedIndex != -1;
+        }
+
+        private void listBoxKeyTabDoorGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonKeyTabRemoveGroup.Enabled = listBoxKeyTabDoorGroups.SelectedIndex != -1;
+        }
+
+        private void buttonKeyTabDeleteType_Click(object sender, EventArgs e)
+        {
+            KeyType type = objects.getKeyTypeByName((string)comboBoxKeyTabKeyType.SelectedItem);
+            if (type != null)
+            {
+                // confirm the delete
+                DialogResult result = MessageBox.Show("Really delete the key type " + type.Name + "?", "Confirm Delete", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    // check if db delete is possible, and if so update db and OOP
+                    if (type.Delete())
                     {
-                        if (loc.Name == (string)comboBoxKeyTabDoorGroups.SelectedItem)
-                        {
-                            foreach (Door door in loc.doors)
-                            {
-                                door.ConnectKeyType(type);
-                            }
-                            setKeytabKeytype(type);
-                        }
+                        // remove from OOP
+                        objects.keytypes.Remove(type);
+
+                        // update ui
+                        comboBoxKeyTabKeyType.Text = "";
+                        initializeKeyTab();
+                    }
+                    else
+                    {
+                        // delete not possible.  Inform the user.
+                        MessageBox.Show("Key Manager has keys of this type on record.\nBefore deleting this keytype you must delete or those keys, or assign them to a new type.", "Cannot Delete");
                     }
                 }
             }
         }
 
-        private void pictureBoxKeyTab_Click(object sender, EventArgs e)
+        private void buttonKeytabDeleteKey_Click(object sender, EventArgs e)
         {
+            Key key = objects.getKeyBySerial((string)listBoxKeyTabKeys.SelectedItem);
+            if (key != null)
+            {
+                // confirm the delete
+                DialogResult result = MessageBox.Show("Really delete the key " + key.Serial + "?", "Confirm Delete", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    // update OOP and database
+                    key.KeyType.keys.Remove(key);
+                    if (key.KeyRing != null)
+                    {
+                        key.KeyRing.keys.Remove(key);
+                    }
+                    key.Delete();
 
+                    // redisplay
+                    setKeytabKeytype(key.KeyType);
+                }
+            }
         }
 
-        private void listBoxKeyTabDoors_SelectedIndexChanged(object sender, EventArgs e)
+        private void buttonKeyTabRemoveDoor_Click(object sender, EventArgs e)
         {
+            KeyType type = objects.getKeyTypeByName((string)comboBoxKeyTabKeyType.SelectedItem);
+            Door door = objects.getDoorByRoomNumber((string)listBoxKeyTabDoors.SelectedItem);
+            if (type != null && door != null)
+            {
+                // update OOP and db
+                door.DisconnectKeyType(type);
 
+                // update ui
+                setKeytabKeytype(type);
+            }
         }
 
-        private void listBoxKeyTabDoorGroups_SelectedIndexChanged(object sender, EventArgs e)
+        private void buttonKeyTabRemoveGroup_Click(object sender, EventArgs e)
         {
+            KeyType type = objects.getKeyTypeByName((string)comboBoxKeyTabKeyType.SelectedItem);
+            Location loc = objects.getLocationByName((string)listBoxKeyTabDoorGroups.SelectedItem);
+            if (type != null && loc != null)
+            {
+                // update the db and OOP
+                foreach (Door door in loc.doors)
+                {
+                    door.DisconnectKeyType(type);
+                }
 
+                // update the ui
+                setKeytabKeytype(type);
+            }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }
