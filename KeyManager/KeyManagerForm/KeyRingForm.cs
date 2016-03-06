@@ -23,11 +23,6 @@ namespace KeyManagerForm
             initializeKeySetTab();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void initializeKeySetTab()
         {
             groupBoxKeysetManage.Enabled = false;
@@ -36,39 +31,29 @@ namespace KeyManagerForm
             {
                 listBoxKeysets.Items.Add(ring.Name);
             }
+            buttonAddKeysetKey.Enabled = false;
+            buttonRemoveKeysetKey.Enabled = false;
         }
 
         private void listBoxKeysets_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // display details of selected keyset for management.
-            // may need to refactor to use OOP Classes.
+            listBoxKeysInKeyset.SelectedIndex = -1;
+            listBoxKeysNotInKeyset.SelectedIndex = -1;
 
-            // check if discarding changes
-            if (buttonSaveKeysetChanges.Enabled)
-            {
-                DialogResult confirmResult = MessageBox.Show("Do you want to save changes to this keyset?", "Save Changes?", MessageBoxButtons.YesNo);
-                if (confirmResult == DialogResult.Yes)
-                {
-                    // save the changes before proceding!
-                    buttonSaveKeysetChanges_Click(null, null);
-                }
-            }
             KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
             if (ring != null)
             {
                 groupBoxKeysetManage.Enabled = true;
-                buttonSaveKeysetChanges.Enabled = false;
+                //buttonSaveKeysetChanges.Enabled = false;
                 labelKeysetTitle.Text = (String)listBoxKeysets.SelectedItem;
 
-                String line;
                 if (ring.keys != null)
                 {
                     // populate keys in this keyring
                     listBoxKeysInKeyset.Items.Clear();
                     foreach (Key key in ring.keys)
                     {
-                        line = key.Serial + " (" + key.KeyType.Name + ")";
-                        listBoxKeysInKeyset.Items.Add(line);
+                        listBoxKeysInKeyset.Items.Add(key.Serial);
                     }
                 }
 
@@ -76,10 +61,9 @@ namespace KeyManagerForm
                 listBoxKeysNotInKeyset.Items.Clear();
                 foreach (Key key in objects.keys)
                 {
-                    line = key.Serial + " (" + key.KeyType.Name + ")";
                     if (key.KeyRing == null)
                     {
-                        listBoxKeysNotInKeyset.Items.Add(line);
+                        listBoxKeysNotInKeyset.Items.Add(key.Serial);
                     }
                 }
             }
@@ -91,7 +75,7 @@ namespace KeyManagerForm
             KeysetDialog ksd = new KeysetDialog();
             if (ksd.ShowDialog() == DialogResult.OK)
             {
-                // update the OOP - for now OOP only!
+                // update the OOP and the database
                 KeyRing ring = ksd.ring;
                 ring.Save();
                 objects.keyrings.Add(ring);
@@ -109,7 +93,7 @@ namespace KeyManagerForm
             KeysetDialog ksd = new KeysetDialog(ring);
             if (ksd.ShowDialog() == DialogResult.OK)
             {
-                // update the keyset - for now OOP only!
+                // update the oop and the db
                 ring.Name = ksd.ring.Name;
                 ring.Save();
                 // redisplay
@@ -121,72 +105,54 @@ namespace KeyManagerForm
 
         private void buttonAddKeysetKey_Click(object sender, EventArgs e)
         {
-            // move the list items.
-            if (listBoxKeysNotInKeyset.SelectedIndex != -1)
+            KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
+            Key key = objects.getKeyBySerial((string)listBoxKeysNotInKeyset.SelectedItem);
+            if (ring != null && key != null)
             {
-                // update the UI - no OOP or Database changes yet.
-                buttonSaveKeysetChanges.Enabled = true;
-                string line = (string)listBoxKeysNotInKeyset.SelectedItem;
-                listBoxKeysNotInKeyset.Items.Remove(line);
-                listBoxKeysInKeyset.Items.Add(line);
+                // the following updates the oop and the database
+                ring.AddKey(key);
+
+                // update the ui
+                listBoxKeysNotInKeyset.Items.Remove(key.Serial);
+                listBoxKeysInKeyset.Items.Add(key.Serial);
             }
         }
 
         private void buttonRemoveKeysetKey_Click(object sender, EventArgs e)
         {
-            // move the list items.
-            if (listBoxKeysInKeyset.SelectedIndex != -1)
+            KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
+            Key key = objects.getKeyBySerial((string)listBoxKeysInKeyset.SelectedItem);
+            if (ring != null && key != null)
             {
-                // update the UI - no OOP or Database changes yet.
-                buttonSaveKeysetChanges.Enabled = true;
-                string line = (string)listBoxKeysInKeyset.SelectedItem;
-                listBoxKeysInKeyset.Items.Remove(line);
-                listBoxKeysNotInKeyset.Items.Add(line);
-            }
-        }
-
-        private void buttonSaveKeysetChanges_Click(object sender, EventArgs e)
-        {
-            // TEMPORARY HACK to update the OOP only.
-            // later implement OOP and database changes together.
-            KeyRing ring = objects.getKeyRingByName(labelKeysetTitle.Text);
-
-            // remove all keys.
-            foreach (Key key in objects.keys)
-            {
+                // the following up dates the oop and the database
                 ring.RemoveKey(key);
-            }
-            string entry;
-            foreach (Key key in objects.keys)
-            {
-                // put keys into the set
-                for (int idx = 0; idx < listBoxKeysInKeyset.Items.Count; idx++)
-                {
-                    entry = (string)listBoxKeysInKeyset.Items[idx];
-                    if (entry.StartsWith(key.Serial))
-                    {
-                        key.KeyRing = ring;
-                        ring.AddKey(key);
-                    }
-                }
-            }
-            // END TEMPORARY HACK
 
-            // update the ui
-            buttonSaveKeysetChanges.Enabled = false;
-            MessageBox.Show("Changes saved.");
+                // update the ui
+                listBoxKeysNotInKeyset.Items.Add(key.Serial);
+                listBoxKeysInKeyset.Items.Remove(key.Serial);
+            }
         }
 
         private void listBoxKeysInKeyset_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            buttonRemoveKeysetKey.Enabled = (listBoxKeysInKeyset.SelectedIndex != -1);
         }
 
         private void listBoxKeysNotInKeyset_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            buttonAddKeysetKey.Enabled = (listBoxKeysNotInKeyset.SelectedIndex != -1);
         }
 
-     
+        private void buttonKeysetDelete_Click(object sender, EventArgs e)
+        {
+            KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
+            DialogResult result = MessageBox.Show("Confirm Delete", "Really delete Key Ring " + ring.Name + "?", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                ring.Delete();
+                objects.keyrings.Remove(ring);
+            }
+            initializeKeySetTab();
+        }
     }
 }

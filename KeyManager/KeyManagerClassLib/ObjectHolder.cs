@@ -103,6 +103,18 @@ namespace KeyManagerClassLib
             return null;
         }
 
+        public Key getKeyBySerial(string serial)
+        {
+            foreach (Key key in keys)
+            {
+                if (key.Serial == serial)
+                {
+                    return key;
+                }
+            }
+            return null;
+        }
+
         public KeyRing getKeyRingById(int id)
         {
             if (keyrings != null)
@@ -315,7 +327,7 @@ namespace KeyManagerClassLib
                 {
                     ring = getKeyRingById(reader.GetInt16(1));
                     ring.keys.Add(key);
-                    key.KeyRing = ring;
+                    key.KeyRing = ring;   
                 }
             }
         }

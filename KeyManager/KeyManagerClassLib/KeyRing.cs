@@ -91,7 +91,7 @@ namespace KeyManagerClassLib
                 keys.Remove(key);
                 key.KeyRing = null;
                 DataLayer dl = new DataLayer();
-                dl.AddValue("Keyring", "NULL");
+                dl.AddValue("Keyring", null);
                 dl.AlterRecord("key", key.Id);
             }
         }

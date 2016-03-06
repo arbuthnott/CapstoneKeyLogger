@@ -25,9 +25,6 @@ namespace KeyManagerClassLib
         /// <returns>true on success - should always return true</returns>
         public bool Delete()
         {
-            DataLayer dl = new DataLayer();
-            dl.DeleteRecord("door", Id);
-
             // remove from all door groups
             // can't use DataLayer for this!
             SQLiteConnection conn = DbSetupManager.GetConnection();
@@ -35,6 +32,9 @@ namespace KeyManagerClassLib
             command.CommandText = "DELETE FROM door_to_location WHERE Door=" + Id;
             command.ExecuteNonQuery();
             conn.Close();
+
+            DataLayer dl = new DataLayer();
+            dl.DeleteRecord("door", Id);
 
             return true;
         }
