@@ -41,10 +41,9 @@
             this.listBoxDoorGroupTabInGroup = new System.Windows.Forms.ListBox();
             this.buttonDoorGroupTabRemoveDoor = new System.Windows.Forms.Button();
             this.labelDoorGroupTabGroupTitle = new System.Windows.Forms.Label();
-            this.pictureBoxDoorGroupTab = new System.Windows.Forms.PictureBox();
+            this.buttonDoorGroupTabDelete = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBoxDoorGroupManage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox2
@@ -54,7 +53,7 @@
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Location = new System.Drawing.Point(12, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(338, 428);
+            this.groupBox2.Size = new System.Drawing.Size(305, 396);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Door Groups";
@@ -62,16 +61,16 @@
             // listBoxDoorGroupTabGroups
             // 
             this.listBoxDoorGroupTabGroups.FormattingEnabled = true;
-            this.listBoxDoorGroupTabGroups.Location = new System.Drawing.Point(10, 51);
+            this.listBoxDoorGroupTabGroups.Location = new System.Drawing.Point(10, 58);
             this.listBoxDoorGroupTabGroups.Name = "listBoxDoorGroupTabGroups";
-            this.listBoxDoorGroupTabGroups.Size = new System.Drawing.Size(322, 355);
+            this.listBoxDoorGroupTabGroups.Size = new System.Drawing.Size(284, 329);
             this.listBoxDoorGroupTabGroups.TabIndex = 5;
             this.listBoxDoorGroupTabGroups.SelectedIndexChanged += new System.EventHandler(this.listBoxDoorGroupTabGroups_SelectedIndexChanged);
             // 
             // buttonDoorGroupTabNewGroup
             // 
             this.buttonDoorGroupTabNewGroup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDoorGroupTabNewGroup.Location = new System.Drawing.Point(257, 22);
+            this.buttonDoorGroupTabNewGroup.Location = new System.Drawing.Point(219, 22);
             this.buttonDoorGroupTabNewGroup.Name = "buttonDoorGroupTabNewGroup";
             this.buttonDoorGroupTabNewGroup.Size = new System.Drawing.Size(75, 23);
             this.buttonDoorGroupTabNewGroup.TabIndex = 4;
@@ -91,6 +90,7 @@
             // 
             // groupBoxDoorGroupManage
             // 
+            this.groupBoxDoorGroupManage.Controls.Add(this.buttonDoorGroupTabDelete);
             this.groupBoxDoorGroupManage.Controls.Add(this.label15);
             this.groupBoxDoorGroupManage.Controls.Add(this.listBoxDoorGroupTabNotInGroup);
             this.groupBoxDoorGroupManage.Controls.Add(this.buttonDoorGroupTabAddDoor);
@@ -99,17 +99,17 @@
             this.groupBoxDoorGroupManage.Controls.Add(this.listBoxDoorGroupTabInGroup);
             this.groupBoxDoorGroupManage.Controls.Add(this.buttonDoorGroupTabRemoveDoor);
             this.groupBoxDoorGroupManage.Controls.Add(this.labelDoorGroupTabGroupTitle);
-            this.groupBoxDoorGroupManage.Controls.Add(this.pictureBoxDoorGroupTab);
-            this.groupBoxDoorGroupManage.Location = new System.Drawing.Point(356, 12);
+            this.groupBoxDoorGroupManage.Location = new System.Drawing.Point(323, 12);
             this.groupBoxDoorGroupManage.Name = "groupBoxDoorGroupManage";
-            this.groupBoxDoorGroupManage.Size = new System.Drawing.Size(417, 428);
+            this.groupBoxDoorGroupManage.Size = new System.Drawing.Size(348, 396);
             this.groupBoxDoorGroupManage.TabIndex = 13;
             this.groupBoxDoorGroupManage.TabStop = false;
+            this.groupBoxDoorGroupManage.Text = "Doors in Group";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(213, 250);
+            this.label15.Location = new System.Drawing.Point(13, 263);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(99, 13);
             this.label15.TabIndex = 15;
@@ -118,36 +118,36 @@
             // listBoxDoorGroupTabNotInGroup
             // 
             this.listBoxDoorGroupTabNotInGroup.FormattingEnabled = true;
-            this.listBoxDoorGroupTabNotInGroup.Location = new System.Drawing.Point(216, 266);
+            this.listBoxDoorGroupTabNotInGroup.Location = new System.Drawing.Point(16, 279);
             this.listBoxDoorGroupTabNotInGroup.Name = "listBoxDoorGroupTabNotInGroup";
-            this.listBoxDoorGroupTabNotInGroup.Size = new System.Drawing.Size(195, 121);
+            this.listBoxDoorGroupTabNotInGroup.Size = new System.Drawing.Size(320, 108);
             this.listBoxDoorGroupTabNotInGroup.TabIndex = 14;
             this.listBoxDoorGroupTabNotInGroup.SelectedIndexChanged += new System.EventHandler(this.listBoxDoorGroupTabNotInGroup_SelectedIndexChanged);
             // 
             // buttonDoorGroupTabAddDoor
             // 
-            this.buttonDoorGroupTabAddDoor.Location = new System.Drawing.Point(216, 393);
+            this.buttonDoorGroupTabAddDoor.Location = new System.Drawing.Point(205, 250);
             this.buttonDoorGroupTabAddDoor.Name = "buttonDoorGroupTabAddDoor";
             this.buttonDoorGroupTabAddDoor.Size = new System.Drawing.Size(131, 23);
             this.buttonDoorGroupTabAddDoor.TabIndex = 13;
-            this.buttonDoorGroupTabAddDoor.Text = "<< Add Selected Door";
+            this.buttonDoorGroupTabAddDoor.Text = "Add Selected Door";
             this.buttonDoorGroupTabAddDoor.UseVisualStyleBackColor = true;
             this.buttonDoorGroupTabAddDoor.Click += new System.EventHandler(this.buttonDoorGroupTabAddDoor_Click);
             // 
             // buttonDoorGroupTabEditGroup
             // 
-            this.buttonDoorGroupTabEditGroup.Location = new System.Drawing.Point(336, 225);
+            this.buttonDoorGroupTabEditGroup.Location = new System.Drawing.Point(208, 24);
             this.buttonDoorGroupTabEditGroup.Name = "buttonDoorGroupTabEditGroup";
-            this.buttonDoorGroupTabEditGroup.Size = new System.Drawing.Size(75, 23);
+            this.buttonDoorGroupTabEditGroup.Size = new System.Drawing.Size(61, 23);
             this.buttonDoorGroupTabEditGroup.TabIndex = 12;
-            this.buttonDoorGroupTabEditGroup.Text = "Edit Group";
+            this.buttonDoorGroupTabEditGroup.Text = "Edit";
             this.buttonDoorGroupTabEditGroup.UseVisualStyleBackColor = true;
             this.buttonDoorGroupTabEditGroup.Click += new System.EventHandler(this.buttonDoorGroupTabEditGroup_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 250);
+            this.label3.Location = new System.Drawing.Point(10, 79);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 8;
@@ -156,19 +156,19 @@
             // listBoxDoorGroupTabInGroup
             // 
             this.listBoxDoorGroupTabInGroup.FormattingEnabled = true;
-            this.listBoxDoorGroupTabInGroup.Location = new System.Drawing.Point(11, 266);
+            this.listBoxDoorGroupTabInGroup.Location = new System.Drawing.Point(12, 95);
             this.listBoxDoorGroupTabInGroup.Name = "listBoxDoorGroupTabInGroup";
-            this.listBoxDoorGroupTabInGroup.Size = new System.Drawing.Size(199, 121);
+            this.listBoxDoorGroupTabInGroup.Size = new System.Drawing.Size(324, 108);
             this.listBoxDoorGroupTabInGroup.TabIndex = 6;
             this.listBoxDoorGroupTabInGroup.SelectedIndexChanged += new System.EventHandler(this.listBoxDoorGroupTabInGroup_SelectedIndexChanged);
             // 
             // buttonDoorGroupTabRemoveDoor
             // 
-            this.buttonDoorGroupTabRemoveDoor.Location = new System.Drawing.Point(64, 393);
+            this.buttonDoorGroupTabRemoveDoor.Location = new System.Drawing.Point(205, 209);
             this.buttonDoorGroupTabRemoveDoor.Name = "buttonDoorGroupTabRemoveDoor";
-            this.buttonDoorGroupTabRemoveDoor.Size = new System.Drawing.Size(146, 23);
+            this.buttonDoorGroupTabRemoveDoor.Size = new System.Drawing.Size(131, 23);
             this.buttonDoorGroupTabRemoveDoor.TabIndex = 5;
-            this.buttonDoorGroupTabRemoveDoor.Text = "Remove Selected Door >>";
+            this.buttonDoorGroupTabRemoveDoor.Text = "Remove Selected Door";
             this.buttonDoorGroupTabRemoveDoor.UseVisualStyleBackColor = true;
             this.buttonDoorGroupTabRemoveDoor.Click += new System.EventHandler(this.buttonDoorGroupTabRemoveDoor_Click);
             // 
@@ -176,27 +176,27 @@
             // 
             this.labelDoorGroupTabGroupTitle.AutoSize = true;
             this.labelDoorGroupTabGroupTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDoorGroupTabGroupTitle.Location = new System.Drawing.Point(8, 222);
+            this.labelDoorGroupTabGroupTitle.Location = new System.Drawing.Point(8, 21);
             this.labelDoorGroupTabGroupTitle.Name = "labelDoorGroupTabGroupTitle";
             this.labelDoorGroupTabGroupTitle.Size = new System.Drawing.Size(114, 24);
             this.labelDoorGroupTabGroupTitle.TabIndex = 3;
             this.labelDoorGroupTabGroupTitle.Text = "Door Group:";
             // 
-            // pictureBoxDoorGroupTab
+            // buttonDoorGroupTabDelete
             // 
-            this.pictureBoxDoorGroupTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxDoorGroupTab.BackColor = System.Drawing.Color.Black;
-            this.pictureBoxDoorGroupTab.Location = new System.Drawing.Point(11, 19);
-            this.pictureBoxDoorGroupTab.Name = "pictureBoxDoorGroupTab";
-            this.pictureBoxDoorGroupTab.Size = new System.Drawing.Size(400, 200);
-            this.pictureBoxDoorGroupTab.TabIndex = 2;
-            this.pictureBoxDoorGroupTab.TabStop = false;
+            this.buttonDoorGroupTabDelete.Location = new System.Drawing.Point(275, 24);
+            this.buttonDoorGroupTabDelete.Name = "buttonDoorGroupTabDelete";
+            this.buttonDoorGroupTabDelete.Size = new System.Drawing.Size(61, 23);
+            this.buttonDoorGroupTabDelete.TabIndex = 16;
+            this.buttonDoorGroupTabDelete.Text = "Delete";
+            this.buttonDoorGroupTabDelete.UseVisualStyleBackColor = true;
+            this.buttonDoorGroupTabDelete.Click += new System.EventHandler(this.buttonDoorGroupTabDelete_Click);
             // 
             // DoorGroupForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(787, 447);
+            this.ClientSize = new System.Drawing.Size(682, 416);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBoxDoorGroupManage);
             this.Name = "DoorGroupForm";
@@ -205,7 +205,6 @@
             this.groupBox2.PerformLayout();
             this.groupBoxDoorGroupManage.ResumeLayout(false);
             this.groupBoxDoorGroupManage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDoorGroupTab)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -225,6 +224,6 @@
         private System.Windows.Forms.ListBox listBoxDoorGroupTabInGroup;
         private System.Windows.Forms.Button buttonDoorGroupTabRemoveDoor;
         private System.Windows.Forms.Label labelDoorGroupTabGroupTitle;
-        private System.Windows.Forms.PictureBox pictureBoxDoorGroupTab;
+        private System.Windows.Forms.Button buttonDoorGroupTabDelete;
     }
 }

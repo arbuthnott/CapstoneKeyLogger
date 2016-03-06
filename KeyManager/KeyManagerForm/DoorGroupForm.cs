@@ -23,6 +23,9 @@ namespace KeyManagerForm
             initializeDoorGroupTab();
         }
 
+        /// <summary>
+        /// Clear and populate listboxes etc from the OOP.
+        /// </summary>
         private void initializeDoorGroupTab()
         {
             groupBoxDoorGroupManage.Enabled = false;
@@ -37,6 +40,11 @@ namespace KeyManagerForm
             }
         }
 
+        /// <summary>
+        /// View details (and enable editing) of the selected door group
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxDoorGroupTabGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             groupBoxDoorGroupManage.Enabled = true;
@@ -48,7 +56,7 @@ namespace KeyManagerForm
             {
                 if (loc.Name == (string)listBoxDoorGroupTabGroups.SelectedItem)
                 {
-                    labelDoorGroupTabGroupTitle.Text = "Door Group: " + loc.Name;
+                    labelDoorGroupTabGroupTitle.Text = loc.Name;
                     // populate the door lists
                     foreach (Door door in objects.doors)
                     {
@@ -63,61 +71,65 @@ namespace KeyManagerForm
             }
         }
 
+        /// <summary>
+        /// Enable a door-in-group's removal if selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxDoorGroupTabInGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             buttonDoorGroupTabRemoveDoor.Enabled = listBoxDoorGroupTabInGroup.SelectedIndex != -1;
         }
 
+        /// <summary>
+        /// Enable a door-not-in-group's addition to the group if selected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxDoorGroupTabNotInGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             buttonDoorGroupTabAddDoor.Enabled = listBoxDoorGroupTabNotInGroup.SelectedIndex != -1;
         }
 
+        /// <summary>
+        /// Removed selected door from the group
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDoorGroupTabRemoveDoor_Click(object sender, EventArgs e)
         {
-            foreach (Location loc in objects.locations)
-            {
-                if (loc.Name == (string)listBoxDoorGroupTabGroups.SelectedItem)
-                {
-                    Door door = null;
-                    foreach (Door dr in loc.doors)
-                    {
-                        if (dr.RoomNumber == (string)listBoxDoorGroupTabInGroup.SelectedItem)
-                        {
-                            door = dr;
-                        }
-                    }
-                    // update the OOP
-                    loc.RemoveDoor(door);
+            Location loc = objects.getLocationByName((string)listBoxDoorGroupTabGroups.SelectedItem);
+            Door door = objects.getDoorByRoomNumber((string)listBoxDoorGroupTabInGroup.SelectedItem);
 
-                    // update the UI
-                    initializeDoorGroupTab();
-                    listBoxDoorGroupTabGroups.SelectedItem = loc.Name;
-                }
+            if (loc != null && door != null)
+            {
+                // update the OOP and database
+                loc.RemoveDoor(door);
+
+                // update the UI
+                initializeDoorGroupTab();
+                listBoxDoorGroupTabGroups.SelectedItem = loc.Name;
             }
         }
 
+        /// <summary>
+        /// Add selected door to the group
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDoorGroupTabAddDoor_Click(object sender, EventArgs e)
         {
-            foreach (Location loc in objects.locations)
-            {
-                if (loc.Name == (string)listBoxDoorGroupTabGroups.SelectedItem)
-                {
-                    Door door = null;
-                    foreach (Door dr in objects.doors)
-                    {
-                        if (dr.RoomNumber == (string)listBoxDoorGroupTabNotInGroup.SelectedItem)
-                        {
-                            door = dr;
-                        }
-                    }
-                    // update the OOP
-                    loc.AddDoor(door);
+            Location loc = objects.getLocationByName((string)listBoxDoorGroupTabGroups.SelectedItem);
+            Door door = objects.getDoorByRoomNumber((string)listBoxDoorGroupTabNotInGroup.SelectedItem);
 
-                    // update the UI
-                    initializeDoorGroupTab();
-                    listBoxDoorGroupTabGroups.SelectedItem = loc.Name;
-                }
+            if (loc != null && door != null)
+            {
+                // update the OOP and database
+                loc.AddDoor(door);
+
+                // update the UI
+                initializeDoorGroupTab();
+                listBoxDoorGroupTabGroups.SelectedItem = loc.Name;
             }
         }
 
@@ -140,29 +152,39 @@ namespace KeyManagerForm
 
         private void buttonDoorGroupTabEditGroup_Click(object sender, EventArgs e)
         {
-            /********************
-             This code broke when it was moved out of Mainform.cs due to listBoxKeysets element.
-             Will come back and fix.
-             - Jared
-            *********************/
-
-
-            //open a dialog to change the name or other details
-            foreach (Location loc in objects.locations)
+            Location loc = objects.getLocationByName((string)listBoxDoorGroupTabGroups.SelectedItem);
+            if (loc != null)
             {
-                if (loc.Name == (string)listBoxDoorGroupTabGroups.SelectedItem)
+                //open a dialog to change the name or other details
+                DoorGroupDialog dgd = new DoorGroupDialog(loc);
+                if (dgd.ShowDialog() == DialogResult.OK)
                 {
-                    DoorGroupDialog dgd = new DoorGroupDialog(loc);
-                    if (dgd.ShowDialog() == DialogResult.OK)
-                    {
-                        // update the Door Group - OOP and database.
-                        loc.Name = dgd.location.Name;
-                        loc.Save();
-                        // redisplay
-                        initializeDoorGroupTab();
-                        listBoxDoorGroupTabGroups.SelectedItem = loc.Name;
-                    }
-                    dgd.Close();
+                    // update the Door Group - OOP and database.
+                    loc.Name = dgd.location.Name;
+                    loc.Save();
+                    // redisplay
+                    initializeDoorGroupTab();
+                    listBoxDoorGroupTabGroups.SelectedItem = loc.Name;
+                }
+                dgd.Close();
+            }
+        }
+
+        private void buttonDoorGroupTabDelete_Click(object sender, EventArgs e)
+        {
+            Location loc = objects.getLocationByName((string)listBoxDoorGroupTabGroups.SelectedItem);
+            if (loc != null)
+            {
+                // confirm the delete
+                DialogResult result = MessageBox.Show("Really delete the group " + loc.Name + "?", "Confirm Delete", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    // update OOP and database
+                    loc.Delete();
+                    objects.locations.Remove(loc);
+
+                    // redisplay
+                    initializeDoorGroupTab();
                 }
             }
         }

@@ -88,6 +88,18 @@ namespace KeyManagerClassLib
             return null;
         }
 
+        public Location getLocationByName(string name)
+        {
+            foreach (Location loc in locations)
+            {
+                if (loc.Name == name)
+                {
+                    return loc;
+                }
+            }
+            return null;
+        }
+
         public Key getKeyById(int id)
         {
             if (keys != null)
@@ -140,6 +152,18 @@ namespace KeyManagerClassLib
                     {
                         return door;
                     }
+                }
+            }
+            return null;
+        }
+
+        public Door getDoorByRoomNumber(string room)
+        {
+            foreach (Door door in doors)
+            {
+                if (door.RoomNumber == room)
+                {
+                    return door;
                 }
             }
             return null;

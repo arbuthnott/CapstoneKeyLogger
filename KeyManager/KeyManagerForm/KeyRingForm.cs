@@ -146,7 +146,7 @@ namespace KeyManagerForm
         private void buttonKeysetDelete_Click(object sender, EventArgs e)
         {
             KeyRing ring = objects.getKeyRingByName((string)listBoxKeysets.SelectedItem);
-            DialogResult result = MessageBox.Show("Confirm Delete", "Really delete Key Ring " + ring.Name + "?", MessageBoxButtons.OKCancel);
+            DialogResult result = MessageBox.Show("Really delete Key Ring " + ring.Name + "?", "Confirm Delete", MessageBoxButtons.OKCancel);
             if (result == DialogResult.OK)
             {
                 ring.Delete();
