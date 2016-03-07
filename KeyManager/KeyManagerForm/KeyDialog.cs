@@ -35,6 +35,7 @@ namespace KeyManagerForm
             }
             else
             {
+                textBoxSerial.Text = key.Serial;
                 checkBoxBroken.Checked = key.Broken;
                 checkBoxMissing.Checked = key.Missing;
                 comboBoxType.SelectedItem = key.KeyType.Name;

@@ -39,6 +39,7 @@ namespace KeyManagerForm
             {
                 comboBoxKeyTabKeyType.Items.Add(type.Name);
             }
+            comboBoxKeyTabKey.Items.Clear();
             foreach (Key key in objects.keys)
             {
                 comboBoxKeyTabKey.Items.Add(key.Serial);
@@ -51,6 +52,10 @@ namespace KeyManagerForm
             labelKeyTabKeyTypeTitle.Text = "Key Type: " + type.Name;
             buttonKeyTabEditType.Enabled = true;
             buttonKeyTabDeleteType.Enabled = true;
+            if (type.Name != (string)comboBoxKeyTabKeyType.SelectedItem)
+            {
+                comboBoxKeyTabKeyType.SelectedItem = type.Name;
+            }
 
             // list of keys ui
             listBoxKeyTabKeys.Items.Clear();
@@ -153,7 +158,7 @@ namespace KeyManagerForm
 
                 // update the UI
                 comboBoxKeyTabKeyType.Items.Add(type.Name);
-                setKeytabKeytype(type);
+                comboBoxKeyTabKeyType.SelectedItem = type.Name;
             }
         }
 
@@ -170,7 +175,7 @@ namespace KeyManagerForm
 
                     // update the UI
                     initializeKeyTab();
-                    setKeytabKeytype(type);
+                    comboBoxKeyTabKeyType.SelectedItem = type.Name;
                 }
             }
         }
