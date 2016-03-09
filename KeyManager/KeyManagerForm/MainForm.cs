@@ -24,17 +24,18 @@ namespace KeyManagerForm
         {
             InitializeComponent();
             objects = new ObjectHolder();
-            initializeLookupTab();            
+            initializeLookupTab();   
+         
             if (admin)
             {
                 lblAdmin.Text = "Hello, Administrator";
-
                 isAdmin = true;
                 initializeKeyTab();
                 initializeKeySetTab();
                 initializeDoorGroupTab();
                 initializePersonnelTab();
             }  
+
             else
             {
                 lblAdmin.Text = "Hello User";
@@ -43,6 +44,7 @@ namespace KeyManagerForm
                 tabControl.TabPages.Remove(tabPageDoorgroups);
                 tabControl.TabPages.Remove(tabPagePersonnel);
             }
+
             this.loginForm = lgnForm;
             initializeCheckoutTab();//Depends on admin value. Must be placed after it's determined. 
         }
@@ -87,10 +89,7 @@ namespace KeyManagerForm
             listBoxCheckoutCheckouts.Items.Clear();
 
             //Populate listbox with current checkouts.
-            foreach(Checkout checkout in objects.checkouts)
-            {
-                listBoxCheckoutCheckouts.Items.Add(checkout.Id);                
-            }
+            FillCheckoutList();            
             
             //Populate personnel comboboxes. 
             listBoxCheckoutPersonnel.Items.Clear();
@@ -110,27 +109,41 @@ namespace KeyManagerForm
             }
         }
 
+        private void FillCheckoutList()
+        {
+            listBoxCheckoutCheckouts.Items.Clear();
+            foreach (Checkout checkout in objects.checkouts)
+            {
+                
+                listBoxCheckoutCheckouts.Items.Add(checkout.Id);
+            }
+        }
 
         private void buttonCheckoutDeleteCheckout_Click(object sender, EventArgs e)
         {
 
+            Checkout deleteCheckout = new Checkout();
+
             if(listBoxCheckoutCheckouts.SelectedIndex != -1)
             {
-                //Remove from listbox
+                //Remove selected checkout from listbox
                 int selectedItem = (int)listBoxCheckoutCheckouts.SelectedItem;                         
-                listBoxCheckoutCheckouts.Items.Remove(selectedItem);
+                listBoxCheckoutCheckouts.Items.Remove(selectedItem);                
 
-                ////Remove from Objects list
-                //foreach (Checkout checkout in objects.checkouts)
-                //{
-                //    if (checkout.Id == selectedItem)
-                //    {                        
-                //        objects.checkouts.Remove(checkout);
-                //    }
-                //}           
-                    
+                //Remove selected checkout from Objects list
+                foreach (Checkout checkout in objects.checkouts)
+                {
+                    if (checkout.Id == selectedItem)
+                    {
+                        deleteCheckout = checkout;   
+                    }
+                }
 
-                //Delete from database.
+                objects.checkouts.Remove(deleteCheckout);
+
+                //Delete selected checkout from Database.
+                deleteCheckout.Delete();
+                
 
             }   
       
@@ -175,6 +188,8 @@ namespace KeyManagerForm
             {
                 MessageBox.Show("Must select Key Ring to generate checkout", "Select Key Ring");
             }
+
+            FillCheckoutList();
 
            
         }
