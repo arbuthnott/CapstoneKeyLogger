@@ -139,7 +139,22 @@ namespace KeyManagerForm
             else
             {
                 MessageBox.Show("Must select Key Ring to generate checkout", "Select Key Ring");
-            }                  
+            }
+
+            Checkout checkout = new Checkout();
+            checkout.Id = -1;            
+            checkout.Person = objects.personnel.ElementAt(0);//Takes first record in personnel table - STUB.            
+
+            foreach (KeyRing keyring in objects.keyrings)
+            {
+                if (keyring.Name == listBoxCheckoutKeyRing.SelectedValue)
+                { 
+                    checkout.KeyRing = objects.getKeyRingByName(listBoxCheckoutKeyRing.SelectedValue.ToString());
+                }                
+            }            
+
+            objects.checkouts.Add(checkout);
+            checkout.Save();
             
         }
 
