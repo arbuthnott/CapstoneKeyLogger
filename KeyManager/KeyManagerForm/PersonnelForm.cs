@@ -144,6 +144,7 @@ namespace KeyManagerForm
                         person.IsAdmin = true;
                     else
                         person.IsAdmin = false;
+                    person.Save();
                 }
             }
             refreshPersonnelList();
