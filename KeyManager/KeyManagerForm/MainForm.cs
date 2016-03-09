@@ -130,9 +130,24 @@ namespace KeyManagerForm
         }
 
         private void buttonCheckoutNewCheckout_Click(object sender, EventArgs e)
-        {
+        {                       
+            
             if (comboBoxCheckoutNewCheckout.SelectedIndex != -1)
             {
+                Checkout checkout = new Checkout();
+                checkout.Id = -1;
+                checkout.Person = objects.personnel.ElementAt(0);//Takes first record in personnel table - STUB.            
+
+                foreach (KeyRing keyring in objects.keyrings)
+                {
+                    if (keyring.Name == (string)comboBoxCheckoutNewCheckout.SelectedItem)
+                    {
+                        checkout.KeyRing = objects.getKeyRingByName((string)comboBoxCheckoutNewCheckout.SelectedItem);
+                    }
+                }
+
+                objects.checkouts.Add(checkout);
+                checkout.Save();                
                 MessageBox.Show("New checkout generated.", "New Checkout Generated");
             }
 
@@ -141,22 +156,10 @@ namespace KeyManagerForm
                 MessageBox.Show("Must select Key Ring to generate checkout", "Select Key Ring");
             }
 
-            Checkout checkout = new Checkout();
-            checkout.Id = -1;            
-            checkout.Person = objects.personnel.ElementAt(0);//Takes first record in personnel table - STUB.            
-
-            foreach (KeyRing keyring in objects.keyrings)
-            {
-                if (keyring.Name == listBoxCheckoutKeyRing.SelectedValue)
-                { 
-                    checkout.KeyRing = objects.getKeyRingByName(listBoxCheckoutKeyRing.SelectedValue.ToString());
-                }                
-            }            
-
-            objects.checkouts.Add(checkout);
-            checkout.Save();
-            
+           
         }
+            
+        
 
         private void listBoxCheckoutCheckouts_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1115,6 +1118,11 @@ namespace KeyManagerForm
         }
 
         private void btnAddKey_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBoxCheckoutRegularUser_Enter(object sender, EventArgs e)
         {
 
         }
