@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.labelAdd = new System.Windows.Forms.ToolStripLabel();
+            this.cbDoors = new System.Windows.Forms.ToolStripComboBox();
             this.listFloors = new System.Windows.Forms.ListView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.listDoors = new System.Windows.Forms.ListView();
-            this.cbDoors = new System.Windows.Forms.ToolStripComboBox();
-            this.labelAdd = new System.Windows.Forms.ToolStripLabel();
+            this.listDoorGroups = new System.Windows.Forms.ListView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -49,6 +50,22 @@
             this.toolStrip1.Size = new System.Drawing.Size(748, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // labelAdd
+            // 
+            this.labelAdd.Name = "labelAdd";
+            this.labelAdd.Size = new System.Drawing.Size(131, 22);
+            this.labelAdd.Text = "Add Door to Floorplan: ";
+            // 
+            // cbDoors
+            // 
+            this.cbDoors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDoors.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.cbDoors.Name = "cbDoors";
+            this.cbDoors.Size = new System.Drawing.Size(121, 25);
+            this.cbDoors.ToolTipText = "Add Door";
+            this.cbDoors.SelectedIndexChanged += new System.EventHandler(this.cbDoors_SelectedIndexChanged);
+            this.cbDoors.Click += new System.EventHandler(this.cbDoors_Click);
             // 
             // listFloors
             // 
@@ -75,35 +92,31 @@
             // listDoors
             // 
             this.listDoors.BackColor = System.Drawing.Color.LightGray;
-            this.listDoors.Location = new System.Drawing.Point(12, 182);
+            this.listDoors.Location = new System.Drawing.Point(12, 472);
             this.listDoors.Name = "listDoors";
-            this.listDoors.Size = new System.Drawing.Size(133, 611);
+            this.listDoors.Size = new System.Drawing.Size(133, 321);
             this.listDoors.TabIndex = 4;
             this.listDoors.UseCompatibleStateImageBehavior = false;
             this.listDoors.SelectedIndexChanged += new System.EventHandler(this.listDoors_SelectedIndexChanged);
             this.listDoors.Leave += new System.EventHandler(this.listDoors_Leave);
             // 
-            // cbDoors
+            // listDoorGroups
             // 
-            this.cbDoors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDoors.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.cbDoors.Name = "cbDoors";
-            this.cbDoors.Size = new System.Drawing.Size(121, 25);
-            this.cbDoors.ToolTipText = "Add Door";
-            this.cbDoors.SelectedIndexChanged += new System.EventHandler(this.cbDoors_SelectedIndexChanged);
-            this.cbDoors.Click += new System.EventHandler(this.cbDoors_Click);
-            // 
-            // labelAdd
-            // 
-            this.labelAdd.Name = "labelAdd";
-            this.labelAdd.Size = new System.Drawing.Size(131, 22);
-            this.labelAdd.Text = "Add Door to Floorplan: ";
+            this.listDoorGroups.BackColor = System.Drawing.Color.LightGray;
+            this.listDoorGroups.Location = new System.Drawing.Point(12, 182);
+            this.listDoorGroups.Name = "listDoorGroups";
+            this.listDoorGroups.Size = new System.Drawing.Size(133, 284);
+            this.listDoorGroups.TabIndex = 5;
+            this.listDoorGroups.UseCompatibleStateImageBehavior = false;
+            this.listDoorGroups.SelectedIndexChanged += new System.EventHandler(this.listDoorGroups_SelectedIndexChanged);
+            this.listDoorGroups.Leave += new System.EventHandler(this.listDoorGroups_Leave);
             // 
             // FloorPlanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(748, 810);
+            this.Controls.Add(this.listDoorGroups);
             this.Controls.Add(this.listDoors);
             this.Controls.Add(this.listFloors);
             this.Controls.Add(this.toolStrip1);
@@ -126,5 +139,6 @@
         private System.Windows.Forms.ListView listDoors;
         private System.Windows.Forms.ToolStripComboBox cbDoors;
         private System.Windows.Forms.ToolStripLabel labelAdd;
+        private System.Windows.Forms.ListView listDoorGroups;
     }
 }

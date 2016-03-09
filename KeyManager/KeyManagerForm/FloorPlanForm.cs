@@ -35,6 +35,7 @@ namespace KeyManagerForm
             this.objects = objects;
             SetupListofFloors();
             SetupListofDoors();
+            SetupListofDoorGroups();
 
             foreach (Door door in objects.doors)
             {
@@ -83,6 +84,31 @@ namespace KeyManagerForm
             ImageList imgList = new ImageList();
             imgList.ImageSize = new Size(1, 20);
             listDoors.SmallImageList = imgList;
+        }
+
+        public void SetupListofDoorGroups()
+        {
+            listDoorGroups.View = View.Details;
+            listDoorGroups.FullRowSelect = true;
+
+            listDoorGroups.Columns.Add("Door Groups", 125);
+
+            ImageList imgList = new ImageList();
+            imgList.ImageSize = new Size(1, 20);
+            listDoorGroups.SmallImageList = imgList;
+
+            int count = 0;
+            foreach (Location loc in objects.locations)
+            {                
+                String[] args = { loc.Name };
+                ListViewItem row = new ListViewItem(args);
+                if (count % 2 == 0)
+                    row.BackColor = lightBlue;
+                else
+                    row.BackColor = evenLighterBlue;
+                count++;
+                listDoorGroups.Items.Add(row);
+            }
         }
 
         public void RefreshDoorLst()
@@ -317,6 +343,37 @@ namespace KeyManagerForm
             foreach (MapPoint point in dataPoints)
                 point.selected = false;
                 pictureBox1.Invalidate();
+        }
+
+        private void listDoorGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            foreach (MapPoint point in dataPoints)
+                point.selected = false;
+            foreach (Location loc in objects.locations)
+            {
+                if (listDoorGroups.SelectedItems.Count > 0)
+                if (loc.Name.Equals(listDoorGroups.SelectedItems[0].Text))
+                {
+                    foreach (Door door in loc.doors)
+                    {
+                        foreach (MapPoint point in dataPoints)
+                        {
+                            if (point.door.RoomNumber.Equals(door.RoomNumber))
+                            {
+                                point.selected = true;
+                            }
+                        }
+                    }
+                }
+            }
+            pictureBox1.Invalidate();
+        }
+
+        private void listDoorGroups_Leave(object sender, EventArgs e)
+        {
+            foreach (MapPoint point in dataPoints)
+                point.selected = false;
+            pictureBox1.Invalidate();
         }
     }
 }
