@@ -22,6 +22,7 @@ namespace KeyManagerClassLib
         public List<Location> locations = new List<Location>();
         public List<Personnel> personnel = new List<Personnel>();
         public List<Checkout> checkouts = new List<Checkout>();
+        public List<MapPoint> mappoints = new List<MapPoint>();
 
         public ObjectHolder()
         {
@@ -35,6 +36,7 @@ namespace KeyManagerClassLib
             loadLocations(conn);
             loadPersonnel(conn);
             loadCheckouts(conn);
+            loadMapPoints(conn);
 
             // sort the lists
             doors.Sort();
@@ -320,6 +322,24 @@ namespace KeyManagerClassLib
             }
         }
 
+        private void loadMapPoints(SQLiteConnection conn)
+        {
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Door, Map, x, y from mappoint", conn);
+            SQLiteDataReader reader = command.ExecuteReader();
+            MapPoint point;
+            while (reader.Read())
+            {
+                point = new MapPoint(
+                    reader.GetInt16(3),
+                    reader.GetInt16(4),
+                    getDoorById(reader.GetInt16(1)),
+                    reader.GetInt16(2),
+                    reader.GetInt16(0)
+                );
+                mappoints.Add(point);
+            }
+        }
+
         /*******************************************************************************
         * CONNECT FUNCTIONS to populate aggregation properties or lists
         *******************************************************************************/
@@ -385,9 +405,6 @@ namespace KeyManagerClassLib
                 }
             }
         }
-
-        
-
-        
+  
     }
 }
