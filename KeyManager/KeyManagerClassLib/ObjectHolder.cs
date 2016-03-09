@@ -60,6 +60,21 @@ namespace KeyManagerClassLib
         * HELPER FUNCTIONS to find objects by certain properties
         *********************************************************/
 
+        public Checkout getCheckoutById(int id)
+        {
+            if (checkouts != null)
+            {
+                foreach (Checkout checkout in checkouts)
+                {
+                    if (checkout.Id.Equals(id))
+                    {
+                        return checkout;
+                    }
+                }
+            }
+            return null;
+        }
+        
         public KeyRing getKeyRingByName(string name)
         {
             if (keyrings != null)

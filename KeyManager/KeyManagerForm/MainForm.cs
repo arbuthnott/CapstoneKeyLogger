@@ -85,6 +85,12 @@ namespace KeyManagerForm
             } 
 
             listBoxCheckoutCheckouts.Items.Clear();
+
+            //Populate listbox with current checkouts.
+            foreach(Checkout checkout in objects.checkouts)
+            {
+                listBoxCheckoutCheckouts.Items.Add(checkout.Id);                
+            }
             
             //Populate personnel comboboxes. 
             listBoxCheckoutPersonnel.Items.Clear();
@@ -110,8 +116,22 @@ namespace KeyManagerForm
 
             if(listBoxCheckoutCheckouts.SelectedIndex != -1)
             {
-                int selectedItem = listBoxCheckoutCheckouts.SelectedIndex;
-                listBoxCheckoutCheckouts.Items.RemoveAt(selectedItem);                
+                //Remove from listbox
+                int selectedItem = (int)listBoxCheckoutCheckouts.SelectedItem;                         
+                listBoxCheckoutCheckouts.Items.Remove(selectedItem);
+
+                ////Remove from Objects list
+                //foreach (Checkout checkout in objects.checkouts)
+                //{
+                //    if (checkout.Id == selectedItem)
+                //    {                        
+                //        objects.checkouts.Remove(checkout);
+                //    }
+                //}           
+                    
+
+                //Delete from database.
+
             }   
       
             //TODO remove selected items from checkout object when implemented. 
