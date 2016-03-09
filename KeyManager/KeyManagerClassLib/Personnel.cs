@@ -58,7 +58,7 @@ namespace KeyManagerClassLib
         //Default constructor
         public Personnel()
         {
-            Id = 0;
+            Id = -1;
             UserName = "username";
             Password = "password";
             FirstName = "New";

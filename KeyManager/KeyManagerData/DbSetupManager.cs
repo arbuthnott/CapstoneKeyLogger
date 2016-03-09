@@ -61,6 +61,7 @@ namespace KeyManagerData
                     String CREATE_DOORLOCATION_TABLE = "CREATE TABLE 'door_to_location' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Door' INTEGER NOT NULL,'Location' INTEGER NOT NULL,'X' INTEGER,'Y' INTEGER,'Width' INTEGER,'Height' INTEGER)";
                     String CREATE_KEYTYPELOCK_TABLE = "CREATE TABLE 'keytype_to_lock' ('Keytype' INTEGER NOT NULL,'Lock' INTEGER NOT NULL)";
                     String CREATE_CHECKOUT_TABLE = "CREATE TABLE 'checkout' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Person' INTEGER NOT NULL,'Key' INTEGER,'Keyring' INTEGER,'IsReturned' INTEGER,'Date' TEXT NOT NULL)";
+                    String CREATE_MAPPOINT_TABLE = "CREATE TABLE 'mappoint' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Door' INTEGER NOT NULL, 'Map' INTEGER NOT NULL, 'x' INTEGER NOT NULL, 'y' INTEGER NOT NULL)";
 
                     // connect, and execute the strings as commands.
                     SQLiteConnection conn = GetConnection();
@@ -94,6 +95,9 @@ namespace KeyManagerData
                     command.ExecuteNonQuery();
 
                     command = new SQLiteCommand(CREATE_CHECKOUT_TABLE, conn);
+                    command.ExecuteNonQuery();
+
+                    command = new SQLiteCommand(CREATE_MAPPOINT_TABLE, conn);
                     command.ExecuteNonQuery();
 
                     conn.Close();
