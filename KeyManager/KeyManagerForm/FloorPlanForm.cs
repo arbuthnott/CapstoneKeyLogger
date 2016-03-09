@@ -15,7 +15,7 @@ namespace KeyManagerForm
     public partial class FloorPlanForm : Form
     {
         ObjectHolder objects;
-        List<MapPoint> dataPoints = new List<MapPoint>();
+        //List<MapPoint> dataPoints = new List<MapPoint>(); // Jared - going to try using objects.mappoints instead.
 
         List<String> floors = new List<String>();
         Bitmap floor0 = new Bitmap(KeyManagerForm.Properties.Resources.map1);
@@ -115,7 +115,7 @@ namespace KeyManagerForm
         {
             listDoors.Items.Clear();
             int count = 0;
-            foreach (MapPoint point in dataPoints)
+            foreach (MapPoint point in objects.mappoints) // changed from dataPoints
             {
                 if (point.floor == currentFloor)
                 {
@@ -136,9 +136,15 @@ namespace KeyManagerForm
             if (addingMapPoint)
             {
                 foreach (Door door in objects.doors)
+                {
                     if (door.RoomNumber.Equals(cbDoors.SelectedItem))
-                        dataPoints.Add(new MapPoint(x-5, y-5, door, currentFloor));
-                
+                    {
+                        // Jared - making some changes here to save new point to the db.
+                        MapPoint point = new MapPoint(x - 5, y - 5, door, currentFloor);
+                        objects.mappoints.Add(point); // changed from dataPoints
+                        point.Save();
+                    }
+                }
                 this.Cursor = Cursors.Default;
                 pictureBox1.Invalidate();
                 RefreshDoorLst();
@@ -182,7 +188,7 @@ namespace KeyManagerForm
                 }
             }
 
-            foreach (MapPoint point in dataPoints)
+            foreach (MapPoint point in objects.mappoints) // changed from dataPoints
             {
                 if (point.floor == currentFloor)
                 {
@@ -305,7 +311,7 @@ namespace KeyManagerForm
 
         private void listDoors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (MapPoint point in dataPoints)
+            foreach (MapPoint point in objects.mappoints) // changed from dataPoints
             {
                 if (listDoors.SelectedItems.Count > 0)
                 {
@@ -340,14 +346,14 @@ namespace KeyManagerForm
 
         private void listDoors_Leave(object sender, EventArgs e)
         {
-            foreach (MapPoint point in dataPoints)
+            foreach (MapPoint point in objects.mappoints) // changed from dataPoints
                 point.selected = false;
                 pictureBox1.Invalidate();
         }
 
         private void listDoorGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (MapPoint point in dataPoints)
+            foreach (MapPoint point in objects.mappoints) // changed from dataPoints
                 point.selected = false;
             foreach (Location loc in objects.locations)
             {
@@ -356,8 +362,8 @@ namespace KeyManagerForm
                 {
                     foreach (Door door in loc.doors)
                     {
-                        foreach (MapPoint point in dataPoints)
-                        {
+                        foreach (MapPoint point in objects.mappoints) // changed from dataPoints
+                            {
                             if (point.door.RoomNumber.Equals(door.RoomNumber))
                             {
                                 point.selected = true;
@@ -371,7 +377,7 @@ namespace KeyManagerForm
 
         private void listDoorGroups_Leave(object sender, EventArgs e)
         {
-            foreach (MapPoint point in dataPoints)
+            foreach (MapPoint point in objects.mappoints) // changed from dataPoints
                 point.selected = false;
             pictureBox1.Invalidate();
         }
