@@ -80,12 +80,15 @@ namespace KeyManagerForm
 
         private void initializeCheckoutTab()
         {
+            
+            //If the user is an admin, show all the panels on the form. Otherwise, only show the standard user panel.
             if(isAdmin == false)
             {                           
                 groupBoxCheckoutsEditCheckout.Visible = false;
                 groupBoxCheckoutViewCheckouts.Visible = false;
             } 
 
+            //Clear the checkout listbox
             listBoxCheckoutCheckouts.Items.Clear();
 
             //Populate listbox with current checkouts.
@@ -109,16 +112,23 @@ namespace KeyManagerForm
             }
         }
 
+        /// <summary>
+        /// Fills checkout list with current list of checkouts.
+        /// </summary>
         private void FillCheckoutList()
         {
             listBoxCheckoutCheckouts.Items.Clear();
             foreach (Checkout checkout in objects.checkouts)
-            {
-                
+            {                
                 listBoxCheckoutCheckouts.Items.Add(checkout.Id);
             }
         }
 
+        /// <summary>
+        /// Deletes checkout currently selected in checkout listbox.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheckoutDeleteCheckout_Click(object sender, EventArgs e)
         {
 
@@ -128,7 +138,10 @@ namespace KeyManagerForm
             {
                 //Remove selected checkout from listbox
                 int selectedItem = (int)listBoxCheckoutCheckouts.SelectedItem;                         
-                listBoxCheckoutCheckouts.Items.Remove(selectedItem);                
+                listBoxCheckoutCheckouts.Items.Remove(selectedItem);
+
+                listBoxCheckoutPersonnel.Items.Clear();
+                listBoxCheckoutKeyRing.Items.Clear();
 
                 //Remove selected checkout from Objects list
                 foreach (Checkout checkout in objects.checkouts)
@@ -145,11 +158,18 @@ namespace KeyManagerForm
                 deleteCheckout.Delete();
                 
 
-            }   
+            }
+
+            listBoxCheckoutCheckouts.ClearSelected();
       
             //TODO remove selected items from checkout object when implemented. 
         }
 
+        /// <summary>
+        /// Opens up new checkout form. CURRENTLY NOT IMPLEMENTED
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheckoutAddCheckout_Click(object sender, EventArgs e)
         {
             listBoxCheckoutCheckouts.Items.Add(1);//Testing. 
@@ -162,15 +182,22 @@ namespace KeyManagerForm
             //TODO 
         }
 
+        /// <summary>
+        /// Creates new checkout based on current user. Currently assigns all checkouts to Brainy, since we aren't yet keeping track of the logged in user's details.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheckoutNewCheckout_Click(object sender, EventArgs e)
-        {                       
-            
+        {                    
+                        
             if (comboBoxCheckoutNewCheckout.SelectedIndex != -1)
             {
+                //Create new checkout object, assign it an ID of -1 (autoincrement), and set the personnel to a stub (for now).
                 Checkout checkout = new Checkout();
                 checkout.Id = -1;
-                checkout.Person = objects.personnel.ElementAt(0);//Takes first record in personnel table - STUB.            
+                checkout.Person = objects.personnel.ElementAt(0);//Takes first record in personnel table - STUB, needs reference to current user's name, which doesn't currently exist.            
 
+                //Get a keyring object to add to the checkout by searching all keyrings for the selected value in the checkout combo box.
                 foreach (KeyRing keyring in objects.keyrings)
                 {
                     if (keyring.Name == (string)comboBoxCheckoutNewCheckout.SelectedItem)
@@ -179,8 +206,13 @@ namespace KeyManagerForm
                     }
                 }
 
+                //Add checkout to list of checkouts in OOP. 
                 objects.checkouts.Add(checkout);
-                checkout.Save();                
+
+                //Save checkout to database.
+                checkout.Save();
+                
+                //Inform user that checkout has been created.
                 MessageBox.Show("New checkout generated.", "New Checkout Generated");
             }
 
@@ -189,30 +221,103 @@ namespace KeyManagerForm
                 MessageBox.Show("Must select Key Ring to generate checkout", "Select Key Ring");
             }
 
+            //Refill the checkout list. 
             FillCheckoutList();
 
            
         }
             
         
-
+        /// <summary>
+        /// Displays the list of checkout personnel and keyrings when a checkout is selected. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxCheckoutCheckouts_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO populate listBoxCheckoutPersonnel and listBoxCheckoutKeyRing with values depending on currently selected checkout. 
+            if(listBoxCheckoutCheckouts.SelectedIndex != -1)
+            {
+                //Clear list of personnel.
+                listBoxCheckoutPersonnel.Items.Clear();
+
+                //Iterate through checkouts, adding each personnel to the personnel listbox.
+                foreach (Checkout checkout in objects.checkouts)
+                {
+                    if (checkout.Id == (int)listBoxCheckoutCheckouts.SelectedItem)
+                    {
+                        if(checkout.Person != null)
+                        { 
+                            listBoxCheckoutPersonnel.Items.Add(checkout.Person.FirstName + " " + checkout.Person.LastName);
+                        }
+                    }
+                }
+
+                //Iterate through checkouts, adding each keyring to the keyring listbox.
+                listBoxCheckoutKeyRing.Items.Clear();
+                foreach (Checkout checkout in objects.checkouts)
+                {
+                    if (checkout.Id == (int)listBoxCheckoutCheckouts.SelectedItem)
+                    {
+                        listBoxCheckoutKeyRing.Items.Add(checkout.KeyRing.Name);
+                    }
+                } 
+            }
+                           
         }
 
+        /// <summary>
+        /// Updates checkout list whenever personnel combo box is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxCheckoutPersonnelFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //TODO change contents of listCheckoutCheckouts based on personnel selected. 
+        {     
+            
+            //Clear all items in checkout listbox.
+            listBoxCheckoutCheckouts.Items.Clear();
+
+            //Fill checkout listbox with filtered list of checkouts based on selected personnel.
+            foreach(Checkout checkout in objects.checkouts)
+            {
+                if (checkout.Person.FirstName + " " + checkout.Person.LastName == (string)comboBoxCheckoutPersonnelFilter.SelectedItem)
+                {
+                    listBoxCheckoutCheckouts.Items.Add(checkout.Id);
+                }
+            }  
+            
         }
 
+        /// <summary>
+        /// Updates checkout list whenever keyring combo box is changed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void comboBoxCheckoutKeyRingFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //TODO change contents of listCheckoutCheckouts based on keyring selected. 
+            //Clear all items in checkout listbox.
+            listBoxCheckoutCheckouts.Items.Clear();
+
+            //Fill checkout listbox with filtered list of checkouts based on selected keyring.
+            foreach(Checkout checkout in objects.checkouts)
+            {
+                if (checkout.KeyRing.Name == (string)comboBoxCheckoutKeyRingFilter.SelectedItem)
+                {
+                    listBoxCheckoutCheckouts.Items.Add(checkout.Id);
+                }
+            }           
         }
 
+        /// <summary>
+        /// Removes selected checkout filters and refills checkout list
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheckoutRemoveFilters_Click(object sender, EventArgs e)
         {
+
+            comboBoxCheckoutPersonnelFilter.SelectedItem = null;
+            comboBoxCheckoutKeyRingFilter.SelectedItem = null;
+            FillCheckoutList();
 
         }
 
@@ -226,26 +331,76 @@ namespace KeyManagerForm
 
         }
 
+        /// <summary>
+        /// Adds selected personnel to selected checkout. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheckoutAddPersonnel_Click(object sender, EventArgs e)
         {
+            //Create objects to hold selected checkout and selected personnel
+            Checkout selectedCheckout = new Checkout();
+            Personnel selectedPerson = new Personnel();
+
+            //Assign selected checkout
+            if (listBoxCheckoutCheckouts.SelectedIndex != -1)
+            {
+               foreach(Checkout checkout in objects.checkouts)
+               {
+                   if(checkout.Id == (int)listBoxCheckoutCheckouts.SelectedItem)
+                   {
+                       selectedCheckout = checkout;
+                   }
+               }
+            }    
+            
+            //If there is already an existing personnel in this checkout, inform the user. Otherwise, assign the selected personnel to the checkout. 
             if (comboBoxCheckoutAddPersonnel.SelectedIndex != -1)
             {
-                if (listBoxCheckoutPersonnel.FindString(comboBoxCheckoutAddPersonnel.SelectedItem.ToString(), -1) == -1)
+                
+                if(listBoxCheckoutPersonnel.Items.Count != 0)
                 {
-                    listBoxCheckoutPersonnel.Items.Add(comboBoxCheckoutAddPersonnel.SelectedItem);
+                    MessageBox.Show("Only one person can be assigned to a checkout");
                 }
 
                 else
                 {
-                    MessageBox.Show("Selected personnel already in checkout", "Selection Error");
+                    listBoxCheckoutPersonnel.Items.Add(selectedPerson.FirstName + " " + selectedPerson.LastName);
+                    foreach (Personnel person in objects.personnel)
+                    {
+                        if (person.FirstName + " " + person.LastName == (string)comboBoxCheckoutAddPersonnel.SelectedItem)
+                        {
+                            selectedPerson = person;
+                            selectedCheckout.Person = selectedPerson;
+                            selectedCheckout.Save();
+                            listBoxCheckoutPersonnel.Items.Clear();
+                            listBoxCheckoutPersonnel.Items.Add(selectedPerson.FirstName + " " + selectedPerson.LastName);                            
+                        }
+                    }
+
                 }
+                
+
+                
+                
+                ////Commenting out until confirming whether or not checkout should have more than one personnel.
+                //if (listBoxCheckoutPersonnel.FindString(comboBoxCheckoutAddPersonnel.SelectedItem.ToString(), -1) == -1)
+                //{
+                //    listBoxCheckoutPersonnel.Items.Add(comboBoxCheckoutAddPersonnel.SelectedItem);
+                //}
+
+                //else
+                //{
+                //    MessageBox.Show("Selected personnel already in checkout", "Selection Error");
+                //}
 
             }
 
             else
             {
                 MessageBox.Show("Must select Personnel to add", "Select Personnel");
-            }   
+            }
+
         }
 
         private void listBoxCheckoutKeyRing_SelectedIndexChanged(object sender, EventArgs e)
@@ -260,25 +415,72 @@ namespace KeyManagerForm
 
         private void buttonCheckoutAddKeyRing_Click(object sender, EventArgs e)
         {
-            
-            //If a value is selected from the combo box, check it against the current items in the list. If it doesn't exist, add it. 
-            if(comboBoxCheckoutAddKeyRing.SelectedIndex != -1)
+
+            //Create objects to hold selected checkout and selected keyring
+            Checkout selectedCheckout = new Checkout();
+            KeyRing selectedKeyRing = new KeyRing();
+
+            //Assign selected checkout
+            if (listBoxCheckoutCheckouts.SelectedIndex != -1)
             {
-                if (listBoxCheckoutKeyRing.FindString(comboBoxCheckoutAddKeyRing.SelectedItem.ToString(), -1) == -1)
+                foreach (Checkout checkout in objects.checkouts)
                 {
-                    listBoxCheckoutKeyRing.Items.Add(comboBoxCheckoutAddKeyRing.SelectedItem);
+                    if (checkout.Id == (int)listBoxCheckoutCheckouts.SelectedItem)
+                    {
+                        selectedCheckout = checkout;
+                    }
                 }
-                else
+            }
+
+            ////If a value is selected from the combo box, check it against the current items in the list. If it doesn't exist, add it. 
+            //if (comboBoxCheckoutAddKeyRing.SelectedIndex != -1)
+            //{
+            //    //if (listBoxCheckoutKeyRing.FindString(comboBoxCheckoutAddKeyRing.SelectedItem.ToString(), -1) == -1)
+            //    //{
+            //        listBoxCheckoutKeyRing.Items.Add(comboBoxCheckoutAddKeyRing.SelectedItem);
+            //    //}
+            //    //else
+            //    //{
+            //    //    MessageBox.Show("Selected keyring already in checkout", "Selection Error");
+            //    //}
+
+            //}
+
+            else
+            {
+                MessageBox.Show("Must select Key Ring to add", "Select Key Ring");
+            }   
+
+            //If there is already an existing keyring in this checkout, inform the user. Otherwise, assign the selected personnel to the checkout. 
+            if (comboBoxCheckoutAddKeyRing.SelectedIndex != -1)
+            {
+                if (listBoxCheckoutKeyRing.Items.Count != 0)
                 {
-                    MessageBox.Show("Selected keyring already in checkout", "Selection Error");
+                    MessageBox.Show("Only one keyring can be assigned to a checkout");
                 }
-                    
+
+                else 
+                { 
+                     //listBoxCheckoutKeyRing.Items.Add(selectedKeyRing.FirstName + " " + selectedPerson.LastName);
+                    foreach (KeyRing keyRing in objects.keyrings)
+                    {
+                        if (keyRing.Name == (string)comboBoxCheckoutAddKeyRing.SelectedItem)
+                        {
+                            selectedKeyRing = keyRing;
+                            selectedCheckout.KeyRing = selectedKeyRing;
+                            selectedCheckout.Save();
+                            listBoxCheckoutKeyRing.Items.Clear();
+                            listBoxCheckoutKeyRing.Items.Add(selectedKeyRing.Name);
+                        }
+                    }
+                }
             }
 
             else
             {
-                 MessageBox.Show("Must select Key Ring to add", "Select Key Ring");
-            }                  
+                MessageBox.Show("Must select KeyRing to add", "Select KeyRing");
+            }
+              
         }
 
         private void buttonCheckoutSaveChanges_Click(object sender, EventArgs e)
@@ -291,14 +493,72 @@ namespace KeyManagerForm
 
         }
 
+        /// <summary>
+        /// Removes selected personnel from selected checkout. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheckoutRemovePersonnel_Click(object sender, EventArgs e)
         {
+            Checkout selectedCheckout = new Checkout();
+            Personnel selectedPerson = new Personnel();
+
+            if (listBoxCheckoutCheckouts.SelectedIndex != -1)
+            {
+                foreach (Checkout checkout in objects.checkouts)
+                {
+                    if (checkout.Id == (int)listBoxCheckoutCheckouts.SelectedItem)
+                    {
+                        selectedCheckout = checkout;
+                    }
+                }
+            }
+
+            foreach(Personnel person in objects.personnel)
+            {
+                if (person.FirstName + " " + person.LastName == (string)listBoxCheckoutPersonnel.SelectedItem)
+                {
+                    selectedPerson = person;                                        
+                }
+            }
+
+            listBoxCheckoutPersonnel.Items.Clear();
+            selectedCheckout.Person = null;            
+            selectedCheckout.Save();           
             
         }
-
+        /// <summary>
+        /// Removes selected keyring from selected checkout. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCheckoutRemoveKeyRing_Click(object sender, EventArgs e)
         {
+            Checkout selectedCheckout = new Checkout();
+            KeyRing selectedKeyRing = new KeyRing();
 
+            if (listBoxCheckoutCheckouts.SelectedIndex != -1)
+            {
+                foreach (Checkout checkout in objects.checkouts)
+                {
+                    if (checkout.Id == (int)listBoxCheckoutCheckouts.SelectedItem)
+                    {
+                        selectedCheckout = checkout;
+                    }
+                }
+            }
+
+            foreach (KeyRing keyRing in objects.keyrings)
+            {
+                if (keyRing.Name == (string)listBoxCheckoutKeyRing.SelectedItem)
+                {
+                    selectedKeyRing = keyRing;
+                }
+            }
+
+            listBoxCheckoutKeyRing.Items.Clear();
+            selectedCheckout.KeyRing = null;
+            selectedCheckout.Save(); 
         }
 
         /*********************************************
