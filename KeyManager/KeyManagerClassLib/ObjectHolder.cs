@@ -32,9 +32,9 @@ namespace KeyManagerClassLib
             loadDoors(conn);
             loadKeyTypes(conn);
             loadKeys(conn);
+            loadPersonnel(conn);
             loadKeyrings(conn);
             loadLocations(conn);
-            loadPersonnel(conn);
             loadCheckouts(conn);
             loadMapPoints(conn);
 
@@ -284,12 +284,16 @@ namespace KeyManagerClassLib
 
         private void loadKeyrings(SQLiteConnection conn)
         {
-            SQLiteCommand command = new SQLiteCommand("SELECT ID, Name FROM keyring", conn);
+            SQLiteCommand command = new SQLiteCommand("SELECT ID, Name, owner FROM keyring", conn);
             SQLiteDataReader reader = command.ExecuteReader();
             KeyRing ring;
             while (reader.Read())
             {
                 ring = new KeyRing(reader.GetInt16(0), reader.GetString(1));
+                if (!reader.IsDBNull(2))
+                {
+                    ring.owner = GetPersonnelById(reader.GetInt16(2));
+                }
                 keyrings.Add(ring);
             }
         }

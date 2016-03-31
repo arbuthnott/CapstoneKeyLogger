@@ -11,6 +11,7 @@ namespace KeyManagerClassLib
     {
         // list property
         public List<Key> keys = new List<Key>(); // keys in this keyring
+        public Personnel owner;
         
         //Properties
         public int Id { get; set; }
@@ -43,6 +44,10 @@ namespace KeyManagerClassLib
         {
             DataLayer dl = new DataLayer();
             dl.AddValue("Name", Name);
+            if (owner != null)
+            {
+                dl.AddValue("owner", "" + owner.Id);
+            }
             if (Id == -1)
             {
                 Id = dl.AddRecord("keyring");

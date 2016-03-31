@@ -57,7 +57,7 @@ namespace KeyManagerData
                     String CREATE_KEYTYPE_TABLE = "CREATE TABLE 'keytype' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT, 'Name' TEXT,'PermitLevel' INTEGER NOT NULL DEFAULT (0))";
                     String CREATE_DOOR_TABLE = "CREATE TABLE 'door' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'room_number' TEXT,'lock' INTEGER NOT NULL,'door_image' TEXT)";
                     String CREATE_LOCATION_TABLE = "CREATE TABLE 'location' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Name' TEXT,'image' TEXT)";
-                    String CREATE_KEYRING_TABLE = "CREATE TABLE 'keyring' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Name' TEXT)";
+                    String CREATE_KEYRING_TABLE = "CREATE TABLE 'keyring' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Name' TEXT, 'owner' INTEGER)";
                     String CREATE_DOORLOCATION_TABLE = "CREATE TABLE 'door_to_location' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Door' INTEGER NOT NULL,'Location' INTEGER NOT NULL,'X' INTEGER,'Y' INTEGER,'Width' INTEGER,'Height' INTEGER)";
                     String CREATE_KEYTYPELOCK_TABLE = "CREATE TABLE 'keytype_to_lock' ('Keytype' INTEGER NOT NULL,'Lock' INTEGER NOT NULL)";
                     String CREATE_CHECKOUT_TABLE = "CREATE TABLE 'checkout' ('ID' INTEGER PRIMARY KEY AUTOINCREMENT,'Person' INTEGER NOT NULL,'Key' INTEGER,'Keyring' INTEGER,'IsReturned' INTEGER,'Date' TEXT NOT NULL)";
@@ -305,9 +305,9 @@ namespace KeyManagerData
                     "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (10, 7)",
 
                     // create some keyrings
-                    "INSERT INTO keyring ('Name') VALUES ('Master Set')",
-                    "INSERT INTO keyring ('Name') VALUES ('Janitor Set')",
-                    "INSERT INTO keyring ('Name') VALUES ('Prof Smurf Set')",
+                    "INSERT INTO keyring ('Name', 'owner') VALUES ('Master Set', 3)",
+                    "INSERT INTO keyring ('Name', 'owner') VALUES ('Janitor Set', 3)",
+                    "INSERT INTO keyring ('Name', 'owner') VALUES ('Prof Smurf Set', 1)",
 
                     // three copies of every key, some added to keyrings.
                     "INSERT INTO key ('Serial', 'Keytype', 'Keyring') VALUES ('A999a', 1, 1)",
