@@ -91,6 +91,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.treeViewSummary = new System.Windows.Forms.TreeView();
+            this.toolStripButtonCheckout = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -437,6 +438,7 @@
             this.toolStrip.AutoSize = false;
             this.toolStrip.BackColor = System.Drawing.SystemColors.ControlLight;
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonCheckout,
             this.toolStripButtonLookup,
             this.toolStripSeparator9,
             this.tsFloorPlans,
@@ -641,6 +643,17 @@
             this.treeViewSummary.TabIndex = 0;
             this.treeViewSummary.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSummary_AfterSelect);
             // 
+            // toolStripButtonCheckout
+            // 
+            this.toolStripButtonCheckout.AutoSize = false;
+            this.toolStripButtonCheckout.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonCheckout.ImageTransparentColor = System.Drawing.Color.Black;
+            this.toolStripButtonCheckout.Name = "toolStripButtonCheckout";
+            this.toolStripButtonCheckout.Size = new System.Drawing.Size(70, 50);
+            this.toolStripButtonCheckout.Text = "Checkout";
+            this.toolStripButtonCheckout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonCheckout.Click += new System.EventHandler(this.toolStripButtonCheckout_Click);
+            // 
             // MDI_ParentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -736,6 +749,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ToolStripButton toolStripButtonLogout;
+        private System.Windows.Forms.ToolStripButton toolStripButtonCheckout;
     }
 }
 

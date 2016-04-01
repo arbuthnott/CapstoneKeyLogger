@@ -30,6 +30,7 @@ namespace KeyManagerForm
         private KeysForm keys;  // what are naming conventions?
         private DoorGroupForm doorGroupForm;
         private DoorsForm doorsForm;
+        private CheckoutForm checkoutForm;
 
         public MDI_ParentForm(Login lgnForm, bool admin)
         {
@@ -227,6 +228,21 @@ namespace KeyManagerForm
             else
             {
                 doorsForm.Focus();
+            }
+        }
+
+        private void toolStripButtonCheckout_Click(object sender, EventArgs e)
+        {
+            if (checkoutForm == null || checkoutForm.IsDisposed)
+            {
+                checkoutForm = new CheckoutForm(objects);
+                checkoutForm.MdiParent = this;
+                checkoutForm.Text = "Doors";
+                checkoutForm.Show();
+            }
+            else
+            {
+                checkoutForm.Focus();
             }
         }
 

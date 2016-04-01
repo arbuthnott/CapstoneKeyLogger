@@ -342,7 +342,12 @@ namespace KeyManagerData
                     "INSERT INTO key ('Serial', 'Keytype') VALUES ('MSTRc', 10)",
 
                     // let papa smurf have his keys checked out
-                    "INSERT INTO checkout ('Person', 'Keyring', 'Date') VALUES (1, 3, '2016-01-01')"
+                    "INSERT INTO checkout ('Person', 'Keyring', 'Date') VALUES (1, 3, '2016-01-01')",
+
+                    "INSERT INTO checkout ('Person', 'Key', 'Date') VALUES (1, 2, '2016-01-01')",
+                    "INSERT INTO checkout ('Person', 'Key', 'Date') VALUES (1, 3, '2016-01-01')",
+                    "INSERT INTO checkout ('Person', 'Key', 'Date') VALUES (1, 5, '2016-01-01')",
+                    "INSERT INTO checkout ('Person', 'Key', 'Date') VALUES (1, 6, '2016-01-01')"
                 };
 
                 SQLiteCommand command;
