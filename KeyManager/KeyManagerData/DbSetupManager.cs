@@ -169,7 +169,8 @@ namespace KeyManagerData
                     "DELETE FROM keytype_to_lock",
                     "DELETE FROM location",
                     "DELETE FROM lock",
-                    "DELETE FROM personnel"
+                    "DELETE FROM personnel",
+                    "DELETE FROM mappoint"
                 };
 
                 SQLiteCommand command;
