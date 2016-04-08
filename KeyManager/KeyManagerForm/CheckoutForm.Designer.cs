@@ -28,29 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listPeople = new System.Windows.Forms.ListView();
+            this.treeViewPeople = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // listPeople
+            // treeViewPeople
             // 
-            this.listPeople.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listPeople.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listPeople.GridLines = true;
-            this.listPeople.HotTracking = true;
-            this.listPeople.HoverSelection = true;
-            this.listPeople.Location = new System.Drawing.Point(12, 130);
-            this.listPeople.Name = "listPeople";
-            this.listPeople.ShowItemToolTips = true;
-            this.listPeople.Size = new System.Drawing.Size(397, 374);
-            this.listPeople.TabIndex = 8;
-            this.listPeople.UseCompatibleStateImageBehavior = false;
+            this.treeViewPeople.FullRowSelect = true;
+            this.treeViewPeople.Location = new System.Drawing.Point(12, 57);
+            this.treeViewPeople.Name = "treeViewPeople";
+            this.treeViewPeople.ShowRootLines = false;
+            this.treeViewPeople.Size = new System.Drawing.Size(196, 329);
+            this.treeViewPeople.TabIndex = 0;
             // 
             // CheckoutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 516);
-            this.Controls.Add(this.listPeople);
+            this.ClientSize = new System.Drawing.Size(689, 398);
+            this.Controls.Add(this.treeViewPeople);
             this.Name = "CheckoutForm";
             this.Text = "Key Checkouts";
             this.ResumeLayout(false);
@@ -59,6 +54,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listPeople;
+        private System.Windows.Forms.TreeView treeViewPeople;
     }
 }

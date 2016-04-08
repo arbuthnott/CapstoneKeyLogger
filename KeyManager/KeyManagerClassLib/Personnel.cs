@@ -18,6 +18,10 @@ namespace KeyManagerClassLib
         public bool IsAdmin { get; set; }
         public int PermitLevel { get; set; }
 
+        //List Properties
+        public List<Key> Keys { get; set; }
+        public List<KeyRing> Keyrings { get; set; }
+
         /// <summary>
         /// Deletes this person from the db. No effect on OOP.
         /// </summary>
@@ -65,6 +69,8 @@ namespace KeyManagerClassLib
             LastName = "User";
             IsAdmin = false;
             PermitLevel = 0;
+            Keys = new List<Key>();
+            Keyrings = new List<KeyRing>();
         }
 
         //Constructor
@@ -77,6 +83,8 @@ namespace KeyManagerClassLib
             LastName = pLastName;
             IsAdmin = pIsAdmin;
             PermitLevel = pPermitLevel;
+            Keys = new List<Key>();
+            Keyrings = new List<KeyRing>();
         }
 
         public int CompareTo(Personnel other)
