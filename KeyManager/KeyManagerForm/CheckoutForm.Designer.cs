@@ -48,6 +48,8 @@
             this.treeViewPeople.ShowLines = false;
             this.treeViewPeople.Size = new System.Drawing.Size(178, 356);
             this.treeViewPeople.TabIndex = 0;
+            this.treeViewPeople.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeViewPeople_DragDrop);
+            this.treeViewPeople.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeViewPeople_DragEnter);
             // 
             // label1
             // 
@@ -71,6 +73,7 @@
             this.treeViewRings.ShowLines = false;
             this.treeViewRings.Size = new System.Drawing.Size(178, 150);
             this.treeViewRings.TabIndex = 2;
+            this.treeViewRings.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeViewRings_MouseDown);
             // 
             // treeViewKeys
             // 
@@ -84,6 +87,7 @@
             this.treeViewKeys.ShowLines = false;
             this.treeViewKeys.Size = new System.Drawing.Size(178, 150);
             this.treeViewKeys.TabIndex = 3;
+            this.treeViewKeys.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeViewKeys_MouseDown);
             // 
             // label2
             // 

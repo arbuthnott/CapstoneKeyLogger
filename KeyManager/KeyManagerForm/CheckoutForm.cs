@@ -127,5 +127,52 @@ namespace KeyManagerForm
 
             treeViewKeys.EndUpdate();
         }
+
+        private void treeViewKeys_MouseDown(object sender, MouseEventArgs e)
+        {
+            TreeNode nodeToDrag = treeViewKeys.GetNodeAt(e.Location);
+            if (nodeToDrag != null)
+            {
+                treeViewKeys.DoDragDrop(nodeToDrag, DragDropEffects.All);
+            }
+        }
+
+        private void treeViewRings_MouseDown(object sender, MouseEventArgs e)
+        {
+            TreeNode nodeToDrag = treeViewRings.GetNodeAt(e.Location);
+            if (nodeToDrag != null && nodeToDrag.Level == 0)
+            {
+                treeViewRings.DoDragDrop(nodeToDrag, DragDropEffects.All);
+            }
+        }
+
+        private void treeViewPeople_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void treeViewPeople_DragDrop(object sender, DragEventArgs e)
+        {
+            // it's all happening! Get the key from the event e somehow!
+            if (e.Data.GetDataPresent(typeof(TreeNode)))
+            {
+                TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+                
+                if (draggedNode.Tag.GetType() == typeof(Key))
+                {
+                    Key draggedKey = (Key)draggedNode.Tag;
+                    // do stuff
+                }
+                else if (draggedNode.Tag.GetType() == typeof(KeyRing))
+                {
+                    KeyRing draggedRing = (KeyRing)draggedNode.Tag;
+                    // do stuff
+                }
+            }
+            
+            
+        }
+
+        
     }
 }

@@ -237,7 +237,6 @@ namespace KeyManagerForm
             {
                 checkoutForm = new CheckoutForm(objects);
                 checkoutForm.MdiParent = this;
-                checkoutForm.Text = "Doors";
                 checkoutForm.Show();
             }
             else
