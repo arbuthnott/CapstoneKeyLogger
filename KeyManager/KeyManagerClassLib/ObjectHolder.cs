@@ -52,7 +52,6 @@ namespace KeyManagerClassLib
             connectKeyRings(conn); // also sets KeyRing and KeyType properties of Key objects
             connectKeyTypes(conn);
             connectLocations(conn);
-            connectCheckouts(conn); // connects keys and keyrings to people via checkouts.
 
             conn.Close();
         }
@@ -339,6 +338,21 @@ namespace KeyManagerClassLib
                     DateTime.Parse(reader.GetString(5))
                 );
                 checkouts.Add(checkout);
+
+                // now connect personnel with their checked out stuff
+                if (!checkout.IsReturned)
+                {
+                    if (checkout.KeyRing != null)
+                    {
+                        checkout.Person.Keyrings.Add(checkout.KeyRing);
+                        checkout.KeyRing.checkout = checkout;
+                    }
+                    if (checkout.Key != null)
+                    {
+                        checkout.Person.Keys.Add(checkout.Key);
+                        checkout.Key.checkout = checkout;
+                    }
+                }
             }
         }
 
@@ -422,29 +436,6 @@ namespace KeyManagerClassLib
                 {
                     door.keytypes.Add(type);
                     type.doors.Add(door);
-                }
-            }
-        }
-
-        private void connectCheckouts(SQLiteConnection conn)
-        {
-            SQLiteCommand command = new SQLiteCommand("SELECT Person, Key, Keyring FROM checkout WHERE IsReturned != 1", conn);
-            SQLiteDataReader reader = command.ExecuteReader();
-            Personnel person;
-            Key key;
-            KeyRing ring;
-            while (reader.Read())
-            {
-                person = GetPersonnelById(reader.GetInt16(0));
-                if (!reader.IsDBNull(1))
-                {
-                    key = getKeyById(reader.GetInt16(1));
-                    person.Keys.Add(key);
-                }
-                if (!reader.IsDBNull(2))
-                {
-                    ring = getKeyRingById(reader.GetInt16(2));
-                    person.Keyrings.Add(ring);
                 }
             }
         }

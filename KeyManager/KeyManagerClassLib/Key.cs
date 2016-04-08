@@ -17,6 +17,9 @@ namespace KeyManagerClassLib
         public bool Broken { get; set; }
         public bool Missing { get; set; }
 
+        // only set if checked out as a loose key, not part of a ring.
+        public Checkout checkout;
+
         /// <summary>
         /// Remove this key from the database. Does not update OOP.
         /// </summary>

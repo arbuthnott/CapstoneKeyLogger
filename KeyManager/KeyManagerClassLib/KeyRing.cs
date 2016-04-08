@@ -12,6 +12,7 @@ namespace KeyManagerClassLib
         // list property
         public List<Key> keys = new List<Key>(); // keys in this keyring
         public Personnel owner;
+        public Checkout checkout; // the current checkout if any
         
         //Properties
         public int Id { get; set; }
