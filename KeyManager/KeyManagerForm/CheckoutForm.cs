@@ -32,9 +32,11 @@ namespace KeyManagerForm
             PopulateKeys();
         }
 
+        // populate with all personnel
         private void PopulatePeople()
         {
             treeViewPeople.BeginUpdate();
+            treeViewPeople.Nodes.Clear();
 
             TreeNode node, ringNode, keyNode;
             bool isOdd = true;
@@ -76,9 +78,11 @@ namespace KeyManagerForm
             treeViewPeople.EndUpdate();
         }
 
+        // populate with checked-in keyrings from objects
         private void PopulateRings()
         {
             treeViewRings.BeginUpdate();
+            treeViewRings.Nodes.Clear();
 
             TreeNode ringNode, keyNode;
             bool isOdd = true;
@@ -103,9 +107,11 @@ namespace KeyManagerForm
             treeViewRings.EndUpdate();
         }
 
+        // populate with checked-in, loose keys from objects.
         private void PopulateKeys()
         {
             treeViewKeys.BeginUpdate();
+            treeViewKeys.Nodes.Clear();
 
             TreeNode keyNode;
             bool isOdd = true;
@@ -128,51 +134,178 @@ namespace KeyManagerForm
             treeViewKeys.EndUpdate();
         }
 
+        // key list - initiate drag
         private void treeViewKeys_MouseDown(object sender, MouseEventArgs e)
         {
             TreeNode nodeToDrag = treeViewKeys.GetNodeAt(e.Location);
-            if (nodeToDrag != null)
+            // only drag if on a node that is not checked out already.
+            if (nodeToDrag != null && ((Key)nodeToDrag.Tag).checkout == null)
             {
                 treeViewKeys.DoDragDrop(nodeToDrag, DragDropEffects.All);
             }
         }
 
+        // keyring list - initiate drag
         private void treeViewRings_MouseDown(object sender, MouseEventArgs e)
         {
             TreeNode nodeToDrag = treeViewRings.GetNodeAt(e.Location);
-            if (nodeToDrag != null && nodeToDrag.Level == 0)
+            // only drag if on a keyring node that is not checked out.
+            if (nodeToDrag != null && nodeToDrag.Level == 0 && ((KeyRing)nodeToDrag.Tag).checkout == null)
             {
                 treeViewRings.DoDragDrop(nodeToDrag, DragDropEffects.All);
             }
         }
 
+        // personnel list - dragenter effect
         private void treeViewPeople_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Move;
         }
 
+        // personnel list - conclude drag-in
         private void treeViewPeople_DragDrop(object sender, DragEventArgs e)
         {
-            // it's all happening! Get the key from the event e somehow!
-            if (e.Data.GetDataPresent(typeof(TreeNode)))
+            // check for some "do-not-proceed" conditions
+            if (!e.Data.GetDataPresent(typeof(TreeNode))) { return; }
+            Point dropLoc = ((TreeView)sender).PointToClient(new Point(e.X, e.Y));
+            TreeNode targetNode = treeViewPeople.GetNodeAt(dropLoc);
+            if (targetNode == null) { return; }
+
+            // find the root node (the person) for the node dropped into
+            while (targetNode.Level > 0) { targetNode = targetNode.Parent; }
+            Personnel person = (Personnel)targetNode.Tag;
+
+            TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+            // check for key or keyring
+            if (draggedNode.Tag.GetType() == typeof(Key))
             {
-                TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
-                
-                if (draggedNode.Tag.GetType() == typeof(Key))
-                {
-                    Key draggedKey = (Key)draggedNode.Tag;
-                    // do stuff
-                }
-                else if (draggedNode.Tag.GetType() == typeof(KeyRing))
-                {
-                    KeyRing draggedRing = (KeyRing)draggedNode.Tag;
-                    // do stuff
-                }
+                Key draggedKey = (Key)draggedNode.Tag;
+                // update OOP and database:
+                Checkout chk = new Checkout(person, draggedKey);
+                chk.Save();
+                // do the ui manually for now.
+                draggedNode.ForeColor = dimTextColor;
+                TreeNode newNode = targetNode.Nodes.Add(draggedKey.Serial);
+                newNode.Tag = draggedKey;
+                newNode.BackColor = evenLighterBlue;
+                newNode.NodeFont = normalFont;
+
+                targetNode.Expand();
             }
-            
-            
+            else if (draggedNode.Tag.GetType() == typeof(KeyRing))
+            {
+                KeyRing draggedRing = (KeyRing)draggedNode.Tag;
+                // update OOP and database:
+                Checkout chk = new Checkout(person, draggedRing);
+                chk.Save();
+                // do the ui manually for now.
+                draggedNode.ForeColor = dimTextColor;
+                TreeNode subNode, newNode = targetNode.Nodes.Add(draggedRing.Name);
+                newNode.Tag = draggedRing;
+                newNode.BackColor = evenLighterBlue;
+                newNode.NodeFont = normalFont;
+                foreach (Key key in draggedRing.keys)
+                {
+                    subNode = newNode.Nodes.Add(key.Serial);
+                    subNode.Tag = key;
+                    subNode.BackColor = evenLighterBlue;
+                    subNode.NodeFont = normalFont;
+                }
+
+                targetNode.Expand();
+            }            
         }
 
-        
+        // personnel list - check-in keys or keyrings
+        private void treeViewPeople_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                // double clicked a person.
+                Personnel person = (Personnel)e.Node.Tag;
+                DialogResult result = MessageBox.Show(
+                    "Has " + person.FirstName + " " + person.LastName + " returned all keys?",
+                    "Check in All?",
+                    MessageBoxButtons.OKCancel
+                );
+                if (result == DialogResult.OK)
+                {
+                    foreach(KeyRing ring in person.Keyrings.ToArray())
+                    {
+                        ring.checkout.Return();
+                    }
+                    foreach(Key key in person.Keys.ToArray())
+                    {
+                        key.checkout.Return();
+                    }
+                    PopulateKeys();
+                    PopulatePeople();
+                    PopulateRings();
+                }
+            }
+            else if (e.Node.Level == 1 && e.Node.Tag.GetType() == typeof(Key))
+            {
+                // a loose key
+                Key key = (Key)e.Node.Tag;
+                Personnel person = (Personnel)e.Node.Parent.Tag;
+                DialogResult result = MessageBox.Show(
+                    "Has " + person.FirstName + " " + person.LastName + " returned Key " + key.Serial + "?",
+                    "Check-in Key?",
+                    MessageBoxButtons.OKCancel
+                );
+
+                if (result == DialogResult.OK)
+                {
+                    key.checkout.Return();
+                    PopulateKeys();
+                    PopulatePeople();
+                }
+            }
+            else if (e.Node.Level == 1)
+            {
+                // a keyring
+                KeyRing ring = (KeyRing)e.Node.Tag;
+                Personnel person = (Personnel)e.Node.Parent.Tag;
+                DialogResult result = MessageBox.Show(
+                    "Has " + person.FirstName + " " + person.LastName + " returned Key Ring: " + ring.Name + "?",
+                    "Check-in Key Ring?",
+                    MessageBoxButtons.OKCancel
+                );
+
+                if (result == DialogResult.OK)
+                {
+                    ring.checkout.Return();
+                    PopulateRings();
+                    PopulatePeople();
+                }
+            }
+            else
+            {
+                // a key from a keyring
+                KeyRing ring = (KeyRing)e.Node.Parent.Tag;
+                Personnel person = (Personnel)e.Node.Parent.Parent.Tag;
+                DialogResult result = MessageBox.Show(
+                    "Has " + person.FirstName + " " + person.LastName + " returned Key Ring: " + ring.Name + "?",
+                    "Check-in Key Ring?",
+                    MessageBoxButtons.OKCancel
+                );
+
+                if (result == DialogResult.OK)
+                {
+                    ring.checkout.Return();
+                    PopulateRings();
+                    PopulatePeople();
+                }
+            }
+        }
+
+        private void treeViewPeople_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                // show a hover text?
+                // TODO look into adding a ToolTip control to the form?
+            }
+        }
     }
 }

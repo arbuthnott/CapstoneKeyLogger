@@ -29,6 +29,29 @@ namespace KeyManagerClassLib
         }
 
         /// <summary>
+        /// Updates this checkout to returned.  Updates connected OOP data,
+        /// and updates the db.
+        /// </summary>
+        public void Return()
+        {
+            if (!IsReturned)
+            {
+                IsReturned = true;
+                if (Key != null)
+                {
+                    Person.Keys.Remove(Key);
+                    Key.checkout = null;
+                }
+                if (KeyRing != null)
+                {
+                    Person.Keyrings.Remove(KeyRing);
+                    KeyRing.checkout = null;
+                }
+                Save();
+            }
+        }
+
+        /// <summary>
         /// Saves this checkout if new, or updates if it already exists.
         /// </summary>
         public void Save()
@@ -83,6 +106,42 @@ namespace KeyManagerClassLib
             KeyRing = pKeyRing;
             IsReturned = isRet;
             Date = pDate;
+        }
+
+        /// <summary>
+        /// This constructor updates the related OOP.  Does not save to db
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="key"></param>
+        public Checkout(Personnel person, Key key)
+        {
+            Id = -1;
+            this.Person = person;
+            this.Key = key;
+            this.KeyRing = null;
+            IsReturned = false;
+            Date = DateTime.Now;
+
+            person.Keys.Add(key);
+            key.checkout = this;
+        }
+
+        /// <summary>
+        /// This constructor updates the related OOP.  Does not save to db
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="ring"></param>
+        public Checkout(Personnel person, KeyRing ring)
+        {
+            Id = -1;
+            this.Person = person;
+            this.Key = null;
+            this.KeyRing = ring;
+            IsReturned = false;
+            Date = DateTime.Now;
+
+            person.Keyrings.Add(ring);
+            ring.checkout = this;
         }
 
         public int CompareTo(Checkout other)
