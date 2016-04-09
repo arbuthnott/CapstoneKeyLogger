@@ -299,12 +299,63 @@ namespace KeyManagerForm
             }
         }
 
+        // tooltip for personnel
         private void treeViewPeople_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
         {
-            if (e.Node.Level == 0)
+            toolTipCheckout.Hide(treeViewPeople);
+            if (e.Node.Level == 0 && !e.Node.IsExpanded)
             {
-                // show a hover text?
-                // TODO look into adding a ToolTip control to the form?
+                if (e.Node.Nodes.Count == 0)
+                {
+                    toolTipCheckout.Show("No keys currently checked out", treeViewPeople);
+                }
+                else
+                {
+                    toolTipCheckout.Show("Expand to see checked-out Keys and Key Rings", treeViewPeople);
+                }
+            }
+            else if (e.Node.Level == 0)
+            {
+                toolTipCheckout.Show("Double click to check-in all Keys and Key Rings", treeViewPeople);
+            }
+            else if (e.Node.Level == 1)
+            {
+                toolTipCheckout.Show("Double click to check-in", treeViewPeople);
+            }
+        }
+
+        // tooltip for keys
+        private void treeViewKeys_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            toolTipCheckout.Hide(treeViewKeys);
+            if (((Key)e.Node.Tag).checkout == null)
+            {
+                // this key is available
+                toolTipCheckout.Show("Drag onto a Person to check-out key", treeViewKeys);
+            }
+            else
+            {
+                // key is already checked out
+                Personnel person = ((Key)e.Node.Tag).checkout.Person;
+                toolTipCheckout.Show("Checked out to " + person.FirstName + " " + person.LastName, treeViewKeys);
+            }
+        }
+
+        // tooltip for keyrings
+        private void treeViewRings_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            if (e.Node.Level == 0 && ((KeyRing)e.Node.Tag).checkout == null)
+            {
+                // this ring is available
+                toolTipCheckout.Hide(treeViewRings);
+                toolTipCheckout.Show("Drag onto a Person to check-out Key Ring", treeViewRings);
+            }
+            else if (e.Node.Level == 0)
+            {
+                // keyring already checked out
+                toolTipCheckout.Hide(treeViewRings);
+                Personnel person = ((KeyRing)e.Node.Tag).checkout.Person;
+                toolTipCheckout.Show("Checked out to " + person.FirstName + " " + person.LastName, treeViewRings);
             }
         }
     }
