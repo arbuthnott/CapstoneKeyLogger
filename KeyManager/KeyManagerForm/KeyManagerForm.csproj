@@ -154,6 +154,12 @@
     <Compile Include="NewLookupForm.Designer.cs">
       <DependentUpon>NewLookupForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewPersonnelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewPersonnelForm.Designer.cs">
+      <DependentUpon>NewPersonnelForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PersonnelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewLookupForm.resx">
       <DependentUpon>NewLookupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewPersonnelForm.resx">
+      <DependentUpon>NewPersonnelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PersonnelForm.resx">
       <DependentUpon>PersonnelForm.cs</DependentUpon>
