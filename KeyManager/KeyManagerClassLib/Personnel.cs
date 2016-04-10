@@ -43,8 +43,8 @@ namespace KeyManagerClassLib
         public void Save()
         {
             DataLayer dl = new DataLayer();
-            dl.AddValue("Username", UserName == null ? "NULL" : UserName);
-            dl.AddValue("Password", Password == null ? "NULL" : Password);
+            dl.AddValue("Username", UserName);
+            dl.AddValue("Password", Password);
             dl.AddValue("First Name", FirstName);
             dl.AddValue("Last Name", LastName);
             dl.AddValue("IsAdministrator", IsAdmin ? "1" : "0");

@@ -79,8 +79,9 @@ namespace KeyManagerForm
             listViewResults.View = View.Details;
             listViewResults.GridLines = true;
             listViewResults.FullRowSelect = true;
+            listViewResults.LabelWrap = true;
 
-            listViewResults.Columns.Add("Username", 100);
+            listViewResults.Columns.Add("Username", 90);
             listViewResults.Columns.Add("Full Name", 100);
             listViewResults.Columns.Add("Permissions", 90);
             listViewResults.Columns.Add("Checked-out Rings", 150);

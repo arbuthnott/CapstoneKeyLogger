@@ -80,9 +80,9 @@ namespace KeyManagerForm
             person.FirstName = textBoxFirst.Text;
             person.LastName = textBoxLast.Text;
             person.IsAdmin = comboBoxType.SelectedIndex == 2;
+            person.UserName = textBoxUsername.Text.Length > 0 ? textBoxUsername.Text : null;
             if (groupBoxUser.Enabled)
             {
-                person.UserName = textBoxUsername.Text;
                 person.Password = (new Hash()).getHash(textBoxPassword.Text);
             }
 
@@ -92,6 +92,11 @@ namespace KeyManagerForm
         private void comboBoxType_SelectedIndexChanged(object sender, EventArgs e)
         {
             groupBoxUser.Enabled = comboBoxType.SelectedIndex != 0;
+            if (!groupBoxUser.Enabled)
+            {
+                textBoxUsername.Text = "";
+                textBoxPassword.Text = "";
+            }
             buttonCreate.Enabled = Validate();
         }
 
