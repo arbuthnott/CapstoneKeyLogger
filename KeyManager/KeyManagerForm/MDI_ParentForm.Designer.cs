@@ -71,6 +71,7 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonCheckout = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLookup = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.tsFloorPlans = new System.Windows.Forms.ToolStripButton();
@@ -91,7 +92,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.treeViewSummary = new System.Windows.Forms.TreeView();
-            this.toolStripButtonCheckout = new System.Windows.Forms.ToolStripButton();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -323,7 +323,7 @@
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsToolStripMenuItem});
             this.toolsMenu.Name = "toolsMenu";
-            this.toolsMenu.Size = new System.Drawing.Size(47, 20);
+            this.toolsMenu.Size = new System.Drawing.Size(48, 20);
             this.toolsMenu.Text = "&Tools";
             // 
             // optionsToolStripMenuItem
@@ -457,6 +457,18 @@
             this.toolStrip.Size = new System.Drawing.Size(972, 50);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
+            // 
+            // toolStripButtonCheckout
+            // 
+            this.toolStripButtonCheckout.AutoSize = false;
+            this.toolStripButtonCheckout.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCheckout.Image")));
+            this.toolStripButtonCheckout.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButtonCheckout.ImageTransparentColor = System.Drawing.Color.Black;
+            this.toolStripButtonCheckout.Name = "toolStripButtonCheckout";
+            this.toolStripButtonCheckout.Size = new System.Drawing.Size(70, 50);
+            this.toolStripButtonCheckout.Text = "Checkout";
+            this.toolStripButtonCheckout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButtonCheckout.Click += new System.EventHandler(this.toolStripButtonCheckout_Click);
             // 
             // toolStripButtonLookup
             // 
@@ -642,17 +654,6 @@
             this.treeViewSummary.Size = new System.Drawing.Size(191, 544);
             this.treeViewSummary.TabIndex = 0;
             this.treeViewSummary.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewSummary_AfterSelect);
-            // 
-            // toolStripButtonCheckout
-            // 
-            this.toolStripButtonCheckout.AutoSize = false;
-            this.toolStripButtonCheckout.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButtonCheckout.ImageTransparentColor = System.Drawing.Color.Black;
-            this.toolStripButtonCheckout.Name = "toolStripButtonCheckout";
-            this.toolStripButtonCheckout.Size = new System.Drawing.Size(70, 50);
-            this.toolStripButtonCheckout.Text = "Checkout";
-            this.toolStripButtonCheckout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.toolStripButtonCheckout.Click += new System.EventHandler(this.toolStripButtonCheckout_Click);
             // 
             // MDI_ParentForm
             // 
