@@ -63,8 +63,8 @@ namespace KeyManagerClassLib
         public Personnel()
         {
             Id = -1;
-            UserName = "username";
-            Password = "password";
+            UserName = null;
+            Password = null;
             FirstName = "New";
             LastName = "User";
             IsAdmin = false;

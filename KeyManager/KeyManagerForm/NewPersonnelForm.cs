@@ -34,11 +34,44 @@ namespace KeyManagerForm
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             // TODO: show a new personnel form.
+            PersonnelDialog pdialog = new PersonnelDialog();
+            DialogResult result = pdialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                Personnel person = pdialog.person;
+                objects.personnel.Add(person);
+                person.Save();
+
+                PopulateResults("");
+            }
         }
 
-        private void listViewResults_DoubleClick(object sender, EventArgs e)
+        private void listViewResults_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // TODO: if clicked a row, open edit form for that personnel.
+            // TODO: show a dialog to edit selected row.
+            ListViewItem item = listViewResults.GetItemAt(e.X, e.Y);
+            if (item != null)
+            {
+                Personnel person = (Personnel)item.Tag;
+                PersonnelDialog pdialog = new PersonnelDialog(person);
+                DialogResult result = pdialog.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // person already updated in place - just commit to the db
+                    person.Save();
+                    PopulateResults(textBoxSearch.Text);
+                }
+                else if (result == DialogResult.No)
+                {
+                    // a signal to delete this person.
+                    person.Delete();
+                    objects.personnel.Remove(person);
+                    PopulateResults(textBoxSearch.Text);
+                }
+                pdialog.Dispose();
+            }
         }
 
         private void SetupResultsView()
@@ -49,7 +82,7 @@ namespace KeyManagerForm
 
             listViewResults.Columns.Add("Username", 100);
             listViewResults.Columns.Add("Full Name", 100);
-            listViewResults.Columns.Add("Permissions", 80);
+            listViewResults.Columns.Add("Permissions", 90);
             listViewResults.Columns.Add("Checked-out Rings", 150);
             listViewResults.Columns.Add("Checked-out Keys", 150);
 
@@ -61,12 +94,17 @@ namespace KeyManagerForm
 
         private void PopulateResults(string searchTerm)
         {
+            PopulateResults(objects.personnel, searchTerm);
+        }
+
+        private void PopulateResults(List<Personnel> people, string searchTerm)
+        {
             listViewResults.Items.Clear();
             string userName, fullName, permission, ringList, keyList;
 
             bool isOdd = true;
             ListViewItem row;
-            foreach (Personnel person in objects.personnel)
+            foreach (Personnel person in people)
             {
                 userName = "" + person.UserName;
                 fullName = person.FirstName + " " + person.LastName;
@@ -98,6 +136,7 @@ namespace KeyManagerForm
                     // add the item.
                     string[] args = { userName, fullName, permission, ringList, keyList };
                     row = new ListViewItem(args);
+                    row.Tag = person;
                     row.BackColor = isOdd ? lightBlue : evenLighterBlue;
                     row.Font = normalFont;
 
@@ -110,6 +149,37 @@ namespace KeyManagerForm
         private void listViewResults_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             // TODO: enable sort-by on some columns?
+            List<Personnel> people = objects.personnel;
+            switch (e.Column)
+            {
+                case 0:
+                    // username
+                    people.Sort((x, y) => (x.UserName != null ? x.UserName : "zzz").CompareTo(y.UserName != null ? y.UserName : "zzz"));
+                    PopulateResults(people, textBoxSearch.Text);
+                    break;
+                case 1:
+                    // fullname
+                    people.Sort((x, y) => (x.FirstName + " " + x.LastName).CompareTo(y.FirstName + " " + y.LastName));
+                    PopulateResults(people, textBoxSearch.Text);
+                    break;
+                case 2:
+                    // permissions
+                    people.Sort((x, y) => (x.UserName == null ? "zzz" : "" + (!x.IsAdmin).ToString()).CompareTo(y.UserName == null ? "zzz" : "" + (!y.IsAdmin).ToString()));
+                    PopulateResults(people, textBoxSearch.Text);
+                    break;
+                case 3:
+                    // keyrings
+                    people.Sort((x, y) => -1 * x.Keyrings.Count.CompareTo(y.Keyrings.Count));
+                    PopulateResults(people, textBoxSearch.Text);
+                    break;
+                case 4:
+                    // keys
+                    people.Sort((x, y) => -1* x.Keys.Count.CompareTo(y.Keys.Count));
+                    PopulateResults(people, textBoxSearch.Text);
+                    break;
+                default:
+                    break;
+            }
         }
 
         
