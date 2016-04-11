@@ -11,7 +11,6 @@ using KeyManagerClassLib;
 
 namespace KeyManagerForm
 {
-    // NOTE TO SELF: NEXT ADD TOOLTIPS AND HINT TEXTS.
     public partial class NewDoorGroupForm : Form
     {
         private ObjectHolder objects;
@@ -118,7 +117,6 @@ namespace KeyManagerForm
 
         private void buttonMap_Click(object sender, EventArgs e)
         {
-            // TODO!!
             TreeNode selectedNode = treeViewDoorGroup.SelectedNode;
             if (selectedNode.Level > 0) { selectedNode = selectedNode.Parent; }
             Location loc = (Location)selectedNode.Tag;

@@ -70,6 +70,12 @@
     <Compile Include="CheckoutForm.Designer.cs">
       <DependentUpon>CheckoutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DoorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoorDialog.Designer.cs">
+      <DependentUpon>DoorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="DoorGroupDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CheckoutForm.resx">
       <DependentUpon>CheckoutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoorDialog.resx">
+      <DependentUpon>DoorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DoorGroupDialog.resx">
       <DependentUpon>DoorGroupDialog.cs</DependentUpon>

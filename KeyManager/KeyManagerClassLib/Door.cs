@@ -74,8 +74,8 @@ namespace KeyManagerClassLib
         //Default constructor
         public Door()
         {
-            Id = 0;
-            RoomNumber = "Room";
+            Id = -1;
+            RoomNumber = "";
             LockId = -1;
             DoorImage = "Image";
         }
