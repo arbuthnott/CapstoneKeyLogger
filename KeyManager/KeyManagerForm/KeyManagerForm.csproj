@@ -148,6 +148,12 @@
     <Compile Include="MDI_ParentForm.Designer.cs">
       <DependentUpon>MDI_ParentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewDoorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDoorForm.Designer.cs">
+      <DependentUpon>NewDoorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewDoorGroupForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MDI_ParentForm.resx">
       <DependentUpon>MDI_ParentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDoorForm.resx">
+      <DependentUpon>NewDoorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewDoorGroupForm.resx">
       <DependentUpon>NewDoorGroupForm.cs</DependentUpon>

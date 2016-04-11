@@ -31,7 +31,8 @@ namespace KeyManagerForm
         private KeysForm keys;  // what are naming conventions?
         //private DoorGroupForm doorGroupForm;
         private NewDoorGroupForm doorGroupForm;
-        private DoorsForm doorsForm;
+        //private DoorsForm doorsForm;
+        private NewDoorForm doorsForm;
         private CheckoutForm checkoutForm;
 
         public MDI_ParentForm(Login lgnForm, bool admin)
@@ -286,7 +287,7 @@ namespace KeyManagerForm
         {
             if (doorsForm == null || doorsForm.IsDisposed)
             {
-                doorsForm = new DoorsForm(objects);
+                doorsForm = new NewDoorForm(objects);
                 doorsForm.MdiParent = this;
                 doorsForm.Text = "Doors";
                 doorsForm.Show();
