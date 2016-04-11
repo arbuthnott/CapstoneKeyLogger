@@ -140,6 +140,13 @@ namespace KeyManagerForm
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             // TODO: open form to create new door
+            DoorDialog dd = new DoorDialog(objects, (MDI_ParentForm)MdiParent);
+            DialogResult result = dd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // create the door
+            }
+            dd.Dispose();
         }
 
         private void listViewResults_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -148,7 +155,23 @@ namespace KeyManagerForm
             ListViewItem item = listViewResults.GetItemAt(e.X, e.Y);
             if (item != null)
             {
-                //
+                Door door = (Door)item.Tag;
+                DoorDialog dd = new DoorDialog(objects, (MDI_ParentForm)MdiParent, door);
+                DialogResult result = dd.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    // update the door
+                }
+                else if (result == DialogResult.No) // sign to delete the door
+                {
+                    // delete it.
+                }
             }
+        }
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            PopulateResults(textBoxSearch.Text);
+        }
     }
 }
