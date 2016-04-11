@@ -22,6 +22,20 @@ namespace KeyManagerForm
         Font normalFont = new Font("sans-serif", 8.5f);
         Font bitBiggerFont = new Font("sans-serif", 11);
 
+        string personnelHint = 
+            "Expand (click the '+') to see keys and\n" +
+            "key rings checked-out by each person.\n\n" +
+            "Double-click a key or key ring to check-in\n" +
+            "that item.";
+        string keyringHint =
+            "Greyed-out key rings are checked out (hover\n" +
+            "to see who has them). Drag free key rings" +
+            "onto a Person to check-out.";
+        string keyHint =
+            "Greyed-out keys are checked out (hover to\n" +
+            "see who has them). Drag free keys onto a\n" +
+            "Person to check-out.";
+
         public CheckoutForm(ObjectHolder objects)
         {
             InitializeComponent();
@@ -357,6 +371,37 @@ namespace KeyManagerForm
                 Personnel person = ((KeyRing)e.Node.Tag).checkout.Person;
                 toolTipCheckout.Show("Checked out to " + person.FirstName + " " + person.LastName, treeViewRings);
             }
+        }
+
+        // methods to show help messages / instructions
+        private void buttonPersonnelHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipCheckout.Show(personnelHint, buttonPersonnelHint);
+        }
+
+        private void buttonPersonnelHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(personnelHint);
+        }
+
+        private void buttonKeyringHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipCheckout.Show(keyringHint, buttonKeyringHint);
+        }
+
+        private void buttonKeyringHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(keyringHint);
+        }
+
+        private void buttonKeyHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipCheckout.Show(keyHint, buttonKeyHint);
+        }
+
+        private void buttonKeyHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(keyHint);
         }
     }
 }

@@ -83,7 +83,6 @@
             this.txDoorGroups = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDoor = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLogout = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -323,7 +322,7 @@
             this.toolsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsToolStripMenuItem});
             this.toolsMenu.Name = "toolsMenu";
-            this.toolsMenu.Size = new System.Drawing.Size(48, 20);
+            this.toolsMenu.Size = new System.Drawing.Size(47, 20);
             this.toolsMenu.Text = "&Tools";
             // 
             // optionsToolStripMenuItem
@@ -450,7 +449,6 @@
             this.txDoorGroups,
             this.toolStripButtonDoor,
             this.toolStripSeparator10,
-            this.newToolStripButton,
             this.toolStripButtonLogout});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
@@ -573,18 +571,6 @@
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(6, 50);
-            // 
-            // newToolStripButton
-            // 
-            this.newToolStripButton.AutoSize = false;
-            this.newToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.newToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripButton.Image")));
-            this.newToolStripButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.newToolStripButton.ImageTransparentColor = System.Drawing.Color.Black;
-            this.newToolStripButton.Name = "newToolStripButton";
-            this.newToolStripButton.Size = new System.Drawing.Size(50, 50);
-            this.newToolStripButton.Text = "Old Tabs";
-            this.newToolStripButton.Click += new System.EventHandler(this.ShowNewForm);
             // 
             // toolStripButtonLogout
             // 
@@ -734,7 +720,6 @@
         private System.Windows.Forms.ToolStripMenuItem searchToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton tsFloorPlans;
         private System.Windows.Forms.ToolTip toolTip;
-        private System.Windows.Forms.ToolStripButton newToolStripButton;
         private System.Windows.Forms.ToolStripButton toolStripButtonLookup;
         private System.Windows.Forms.ToolStripButton tsPersonnel;
         private System.Windows.Forms.ToolStripButton toolStripButtonKeyRing;
