@@ -11,6 +11,7 @@ using KeyManagerClassLib;
 
 namespace KeyManagerForm
 {
+    // NOTE TO SELF: NEXT ADD TOOLTIPS AND HINT TEXTS.
     public partial class NewDoorGroupForm : Form
     {
         private ObjectHolder objects;
@@ -23,14 +24,16 @@ namespace KeyManagerForm
         Font bitBiggerFont = new Font("sans-serif", 11);
 
         string groupHint =
-            "Expand (click the '+') to see keys and\n" +
-            "key rings checked-out by each person.\n\n" +
-            "Double-click a key or key ring to check-in\n" +
-            "that item.";
+            "Door groups are made for user convenience, and can\n" +
+            "be grouped in any way: by key, by function, by\n" +
+            "location, etc. A door can be in none, one, or many\n" +
+            "door groups.\n\n" +
+            "Click '+' to see the doors in a door group. Double-\n" +
+            "click a door to remove it from the group.";
         string doorHint =
-            "Greyed-out key rings are checked out (hover\n" +
-            "to see who has them). Drag free key rings" +
-            "onto a Person to check-out.";
+            "To add doors to a group, drag the door onto\n" +
+            "the desired group. Doors can belong to none,\n" +
+            "one, or many groups.";
 
         public NewDoorGroupForm(ObjectHolder objects)
         {
@@ -90,7 +93,11 @@ namespace KeyManagerForm
                 Location loc = dgd.location;
                 objects.locations.Add(loc);
                 loc.Save();
-                PopulateGroupTree();
+                // update ui here
+                TreeNode newNode = treeViewDoorGroup.Nodes.Add(loc.Name);
+                bool isOdd = treeViewDoorGroup.Nodes.Count % 2 == 1;
+                newNode.Tag = loc;
+                newNode.BackColor = isOdd ? lightBlue : Color.White;
             }
             dgd.Dispose();
         }
@@ -104,13 +111,14 @@ namespace KeyManagerForm
             if (result == DialogResult.OK)
             {
                 loc.Save();
-                PopulateGroupTree();
+                // update ui here:
+                node.Text = loc.Name;
             }
         }
 
         private void buttonMap_Click(object sender, EventArgs e)
         {
-
+            // TODO!!
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
@@ -124,16 +132,6 @@ namespace KeyManagerForm
                 objects.locations.Remove(loc);
                 PopulateGroupTree();
             }
-        }
-
-        private void buttonDoorGroupHint_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void buttonDoorHint_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void treeViewDoorGroup_AfterSelect(object sender, TreeViewEventArgs e)
@@ -219,6 +217,49 @@ namespace KeyManagerForm
                 // now the ui here
                 clickedNode.Parent.Nodes.Remove(clickedNode);
             }
+        }
+
+        // tool-tip and help methods:
+
+        private void buttonDoorGroupHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipDoorGroup.Show(groupHint, buttonDoorGroupHint);
+        }
+
+        private void buttonDoorHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipDoorGroup.Show(doorHint, buttonDoorHint);
+        }
+
+        private void buttonDoorGroupHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(groupHint);
+        }
+
+        private void buttonDoorHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(doorHint);
+        }
+
+        private void treeViewDoorGroup_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            if (e.Node.Level > 0)
+            {
+                toolTipDoorGroup.Show("Double-click to remove a door from the group.", treeViewDoorGroup);
+            }
+            else if (e.Node.IsExpanded)
+            {
+                toolTipDoorGroup.Show("Double-click to empty this group.", treeViewDoorGroup);
+            }
+            else if (e.Node.Nodes.Count > 0)
+            {
+                toolTipDoorGroup.Show("Expand to show the doors in this group.", treeViewDoorGroup);
+            }
+        }
+
+        private void treeViewDoors_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            toolTipDoorGroup.Show("Drag door onto a group to add.", treeViewDoors);
         }
     }
 }

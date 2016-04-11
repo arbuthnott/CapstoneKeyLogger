@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonDoorGroupHint = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.treeViewDoorGroup = new System.Windows.Forms.TreeView();
@@ -39,6 +40,7 @@
             this.treeViewDoors = new System.Windows.Forms.TreeView();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonDoorHint = new System.Windows.Forms.Button();
+            this.toolTipDoorGroup = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +54,7 @@
             this.buttonDoorGroupHint.Text = "?";
             this.buttonDoorGroupHint.UseVisualStyleBackColor = true;
             this.buttonDoorGroupHint.Click += new System.EventHandler(this.buttonDoorGroupHint_Click);
+            this.buttonDoorGroupHint.MouseHover += new System.EventHandler(this.buttonDoorGroupHint_MouseHover);
             // 
             // label1
             // 
@@ -75,6 +78,7 @@
             this.treeViewDoorGroup.ShowLines = false;
             this.treeViewDoorGroup.Size = new System.Drawing.Size(236, 345);
             this.treeViewDoorGroup.TabIndex = 7;
+            this.treeViewDoorGroup.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.treeViewDoorGroup_NodeMouseHover);
             this.treeViewDoorGroup.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewDoorGroup_AfterSelect);
             this.treeViewDoorGroup.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewDoorGroup_NodeMouseDoubleClick);
             this.treeViewDoorGroup.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeViewDoorGroup_DragDrop);
@@ -151,6 +155,7 @@
             this.treeViewDoors.ShowLines = false;
             this.treeViewDoors.Size = new System.Drawing.Size(178, 457);
             this.treeViewDoors.TabIndex = 11;
+            this.treeViewDoors.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.treeViewDoors_NodeMouseHover);
             this.treeViewDoors.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeViewDoors_MouseDown);
             // 
             // label2
@@ -173,6 +178,12 @@
             this.buttonDoorHint.Text = "?";
             this.buttonDoorHint.UseVisualStyleBackColor = true;
             this.buttonDoorHint.Click += new System.EventHandler(this.buttonDoorHint_Click);
+            this.buttonDoorHint.MouseHover += new System.EventHandler(this.buttonDoorHint_MouseHover);
+            // 
+            // toolTipDoorGroup
+            // 
+            this.toolTipDoorGroup.UseAnimation = false;
+            this.toolTipDoorGroup.UseFading = false;
             // 
             // NewDoorGroupForm
             // 
@@ -207,5 +218,6 @@
         private System.Windows.Forms.TreeView treeViewDoors;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonDoorHint;
+        private System.Windows.Forms.ToolTip toolTipDoorGroup;
     }
 }
