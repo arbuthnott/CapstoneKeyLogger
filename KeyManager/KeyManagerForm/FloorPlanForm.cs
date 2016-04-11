@@ -35,12 +35,31 @@ namespace KeyManagerForm
             this.objects = objects;
             SetupListofFloors();
             SetupListofDoors();
+            RefreshDoorLst();
             SetupListofDoorGroups();
 
             foreach (Door door in objects.doors)
             {
                 cbDoors.Items.Add(door.RoomNumber);
             }
+        }
+
+        /// <summary>
+        /// Go to the right map and highlight the passed in points.
+        /// </summary>
+        /// <param name="points"></param>
+        public void ShowPoints(List<MapPoint> points)
+        {
+            currentFloor = points[0].floor;
+            foreach (MapPoint point in objects.mappoints)
+            {
+                point.selected = false;
+            }
+            foreach (MapPoint point in points)
+            {
+                point.selected = true;
+            }
+            Invalidate();
         }
 
         public void SetupListofFloors()

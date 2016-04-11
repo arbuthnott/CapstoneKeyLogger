@@ -96,6 +96,70 @@ namespace KeyManagerForm
 
         }
 
+        public bool ShowDoorGroupOnMap(Location location)
+        {
+            List<MapPoint> points = objects.GetMapPointsByGroup(location);
+            if (points.Count == 0)
+            {
+                // no mappoints for this group
+                return false;
+            }
+            if (floorPlanForm == null || floorPlanForm.IsDisposed)
+            {
+                floorPlanForm = new FloorPlanForm(objects);
+                floorPlanForm.MdiParent = this;
+                floorPlanForm.Text = "Floor Plans";
+                floorPlanForm.Show();
+            }
+            else
+            {
+                floorPlanForm.Focus();
+            }
+            // now show those points on the form?
+            int floor = points[0].floor; // we'll just show points from this floor for now.
+            foreach (MapPoint point in points.ToArray())
+            {
+                if (point.floor != floor)
+                {
+                    points.Remove(point);
+                }
+            }
+            floorPlanForm.ShowPoints(points);
+            return true;
+        }
+
+        public bool ShowDoorOnMap(Door door)
+        {
+            List<MapPoint> points = objects.GetMapPointsByDoor(door);
+            if (points.Count == 0)
+            {
+                // no mappoints for this door
+                return false;
+            }
+            if (floorPlanForm == null || floorPlanForm.IsDisposed)
+            {
+                floorPlanForm = new FloorPlanForm(objects);
+                floorPlanForm.MdiParent = this;
+                floorPlanForm.Text = "Floor Plans";
+                floorPlanForm.Show();
+            }
+            else
+            {
+                floorPlanForm.Focus();
+            }
+            // now show those points on the form?
+            int floor = points[0].floor; // we'll just show points from this floor for now.
+            foreach (MapPoint point in points.ToArray())
+            {
+                if (point.floor != floor)
+                {
+                    points.Remove(point);
+                }
+            }
+            floorPlanForm.ShowPoints(points);
+            return true;
+        }
+
      
 
         // Ribbon Menu Items

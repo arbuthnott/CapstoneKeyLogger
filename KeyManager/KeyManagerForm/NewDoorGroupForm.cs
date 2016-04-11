@@ -119,6 +119,14 @@ namespace KeyManagerForm
         private void buttonMap_Click(object sender, EventArgs e)
         {
             // TODO!!
+            TreeNode selectedNode = treeViewDoorGroup.SelectedNode;
+            if (selectedNode.Level > 0) { selectedNode = selectedNode.Parent; }
+            Location loc = (Location)selectedNode.Tag;
+            bool shown = ((MDI_ParentForm)MdiParent).ShowDoorGroupOnMap(loc);
+            if (!shown)
+            {
+                MessageBox.Show("No doors from this group are added to any maps", "No results");
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)

@@ -252,8 +252,8 @@ namespace KeyManagerForm
                     {
                         key.checkout.Return();
                     }
+                    e.Node.Nodes.Clear();
                     PopulateKeys();
-                    PopulatePeople();
                     PopulateRings();
                 }
             }
@@ -272,7 +272,7 @@ namespace KeyManagerForm
                 {
                     key.checkout.Return();
                     PopulateKeys();
-                    PopulatePeople();
+                    e.Node.Parent.Nodes.Remove(e.Node);
                 }
             }
             else if (e.Node.Level == 1)
@@ -290,7 +290,7 @@ namespace KeyManagerForm
                 {
                     ring.checkout.Return();
                     PopulateRings();
-                    PopulatePeople();
+                    e.Node.Parent.Nodes.Remove(e.Node);
                 }
             }
             else
@@ -308,7 +308,7 @@ namespace KeyManagerForm
                 {
                     ring.checkout.Return();
                     PopulateRings();
-                    PopulatePeople();
+                    e.Node.Parent.Parent.Nodes.Remove(e.Node.Parent);
                 }
             }
         }

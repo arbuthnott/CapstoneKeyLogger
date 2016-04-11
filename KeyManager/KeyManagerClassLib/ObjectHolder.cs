@@ -242,6 +242,32 @@ namespace KeyManagerClassLib
             return null;
         }
 
+        public List<MapPoint> GetMapPointsByDoor(Door door)
+        {
+            List<MapPoint> pointList = new List<MapPoint>();
+            foreach (MapPoint point in mappoints)
+            {
+                if (point.door == door)
+                {
+                    pointList.Add(point);
+                }
+            }
+            return pointList;
+        }
+
+        public List<MapPoint> GetMapPointsByGroup(Location loc)
+        {
+            List<MapPoint> pointList = new List<MapPoint>();
+            foreach (MapPoint point in mappoints)
+            {
+                if (loc.doors.Contains(point.door))
+                {
+                    pointList.Add(point);
+                }
+            }
+            return pointList;
+        }
+
         /*******************************************************************************
         * LOAD FUNCTIONS to load objects from database with their basic data properties
         *******************************************************************************/
