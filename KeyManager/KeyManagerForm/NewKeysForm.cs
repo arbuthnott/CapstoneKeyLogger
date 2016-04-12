@@ -39,7 +39,6 @@ namespace KeyManagerForm
             InitializeComponent();
             this.objects = objects;
 
-            listBoxKeys.DisplayMember = "Serial";
             listBoxKeys.BackColor = evenLighterBlue;
             PopulateTypes();
         }
@@ -80,9 +79,22 @@ namespace KeyManagerForm
         {
             selectedType = type;
             labelTypeTitle.Text = "Key Type: " + type.Name;
-            listBoxKeys.DataSource = selectedType.keys;
+            listBoxKeys.DataSource = new BindingList<Key>(selectedType.keys);
+            listBoxKeys.DisplayMember = "Serial";
             listBoxKeys.SelectedIndex = -1;
             PopulateDoors();
+        }
+
+        private void SelectAndExpand(KeyType type)
+        {
+            foreach (TreeNode node in treeViewTypes.Nodes)
+            {
+                if ((KeyType)node.Tag == type)
+                {
+                    treeViewTypes.SelectedNode = node;
+                    node.Expand();
+                }
+            }
         }
 
         private void PopulateDoors()
@@ -172,6 +184,121 @@ namespace KeyManagerForm
                 selectedType.Delete();
                 PopulateTypes();
                 groupBoxType.Enabled = false;
+            }
+        }
+
+        private void buttonCreateCopy_Click(object sender, EventArgs e)
+        {
+            // open a form to create a key
+            KeyDialog keyd = new KeyDialog(objects);
+            DialogResult result = keyd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // create the key
+                Key key = keyd.key;
+                key.KeyType.keys.Add(key);
+                objects.keys.Add(key);
+                key.Save();
+                PopulateTypes();
+                SelectAndExpand(key.KeyType);
+            }
+            keyd.Dispose();
+        }
+
+        private void buttonEditKey_Click(object sender, EventArgs e)
+        {
+            Key key = (Key)listBoxKeys.SelectedItem;
+            KeyDialog keyd = new KeyDialog(objects, key);
+            DialogResult result = keyd.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // update the key
+                selectedType.keys.Remove(key);
+                key.KeyType.keys.Add(key);
+                key.Save();
+                PopulateTypes();
+                SelectAndExpand(key.KeyType);
+            }
+            keyd.Dispose();
+        }
+
+        private void buttonDeleteKey_Click(object sender, EventArgs e)
+        {
+            Key key = (Key)listBoxKeys.SelectedItem;
+            DialogResult result = MessageBox.Show("Really delete the key: " + key.Serial + "?", "Confirm Delete", MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
+            {
+                selectedType.keys.Remove(key);
+                objects.keys.Remove(key);
+                key.Delete();
+                PopulateTypes();
+                SelectAndExpand(key.KeyType);
+            }
+        }
+
+        // initiate drag from doors
+        private void treeViewDoors_MouseDown(object sender, MouseEventArgs e)
+        {
+            TreeNode nodeToDrag = treeViewDoors.GetNodeAt(e.Location);
+            if (nodeToDrag != null)
+            {
+                treeViewDoors.DoDragDrop(nodeToDrag, DragDropEffects.All);
+            }
+        }
+
+        // drag enter graphic for unlockable list
+        private void treeViewUnlockable_DragEnter(object sender, DragEventArgs e)
+        {
+            // ensure the drag data didn't originate here.
+            if (e.Data.GetDataPresent(typeof(TreeNode)) && !treeViewUnlockable.Nodes.Contains((TreeNode)e.Data.GetData(typeof(TreeNode))))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+        }
+
+        // complete drag-drop into unlockable list
+        private void treeViewUnlockable_DragDrop(object sender, DragEventArgs e)
+        {
+            // ensure the drag data didn't originate here.
+            if (e.Data.GetDataPresent(typeof(TreeNode)) && !treeViewUnlockable.Nodes.Contains((TreeNode)e.Data.GetData(typeof(TreeNode))))
+            {
+                TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+                Door door = (Door)draggedNode.Tag;
+                selectedType.ConnectToDoor(door);
+                PopulateDoors();
+            }
+        }
+
+        // initiate drag from unlockable list
+        private void treeViewUnlockable_MouseDown(object sender, MouseEventArgs e)
+        {
+            TreeNode nodeToDrag = treeViewUnlockable.GetNodeAt(e.Location);
+            if (nodeToDrag != null)
+            {
+                treeViewUnlockable.DoDragDrop(nodeToDrag, DragDropEffects.All);
+            }
+        }
+
+        // graphic for drag into door list
+        private void treeViewDoors_DragEnter(object sender, DragEventArgs e)
+        {
+            // ensure the drag data didn't originate here.
+            if (e.Data.GetDataPresent(typeof(TreeNode)) && !treeViewDoors.Nodes.Contains((TreeNode)e.Data.GetData(typeof(TreeNode))))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+        }
+
+        // finish drag drop into door list
+        private void treeViewDoors_DragDrop(object sender, DragEventArgs e)
+        {
+            // ensure the drag data didn't originate here.
+            if (e.Data.GetDataPresent(typeof(TreeNode)) && !treeViewDoors.Nodes.Contains((TreeNode)e.Data.GetData(typeof(TreeNode))))
+            {
+                TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
+                Door door = (Door)draggedNode.Tag;
+                selectedType.DisconnectDoor(door);
+                PopulateDoors();
             }
         }
     }

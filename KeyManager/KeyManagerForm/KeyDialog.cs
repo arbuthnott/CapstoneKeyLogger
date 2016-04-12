@@ -25,13 +25,10 @@ namespace KeyManagerForm
             {
                 comboBoxType.Items.Add(type.Name);
             }
-            foreach (KeyRing ring in objects.keyrings)
-            {
-                comboBoxKeyring.Items.Add(ring.Name);
-            }
             if (key == null)
             {
                 key = new Key(-1, "", false, false);
+                this.Text = "New Key Copy";
             }
             else
             {
@@ -39,14 +36,6 @@ namespace KeyManagerForm
                 checkBoxBroken.Checked = key.Broken;
                 checkBoxMissing.Checked = key.Missing;
                 comboBoxType.SelectedItem = key.KeyType.Name;
-                if (key.KeyRing != null)
-                {
-                    comboBoxKeyring.SelectedItem = key.KeyRing.Name;
-                }
-            }
-            if (key.Id == -1)
-            {
-                Text = "New Key";
             }
             buttonSave.Enabled = false;
         }
@@ -59,24 +48,7 @@ namespace KeyManagerForm
         private void comboBoxType_SelectedIndexChanged(object sender, EventArgs e)
         {
             buttonSave.Enabled = true;
-            foreach (KeyType type in objects.keytypes)
-            {
-                if (type.Name == (string)comboBoxType.SelectedItem)
-                {
-                    key.KeyType = type;
-                }
-            }
-        }
-
-        private void comboBoxKeyring_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (KeyRing ring in objects.keyrings)
-            {
-                if (ring.Name == (string)comboBoxKeyring.SelectedItem)
-                {
-                    key.KeyRing = ring;
-                }
-            }
+            
         }
 
         private void checkBoxBroken_Click(object sender, EventArgs e)
@@ -107,6 +79,15 @@ namespace KeyManagerForm
             else
             {
                 key.Serial = textBoxSerial.Text;
+                key.Broken = checkBoxBroken.Checked;
+                key.Missing = checkBoxMissing.Checked;
+                foreach (KeyType type in objects.keytypes)
+                {
+                    if (type.Name == (string)comboBoxType.SelectedItem)
+                    {
+                        key.KeyType = type;
+                    }
+                }
                 this.DialogResult = DialogResult.OK;
             }
         }
