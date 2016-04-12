@@ -26,5 +26,14 @@ namespace KeyManagerHelper
             hashStream.Close();
             return returnHash;
         }
+
+        public Byte[] getBinaryHash(String plaintext)
+        {
+
+            hashStream = new MemoryStream((Encoding.UTF8.GetBytes(plaintext)));
+            Byte[] returnHash = hasher.ComputeHash(hashStream));
+            hashStream.Close();
+            return returnHash;
+        }
     }
 }
