@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonKeyHint = new System.Windows.Forms.Button();
             this.buttonRingHint = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonRename = new System.Windows.Forms.Button();
+            this.toolTipRing = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +52,8 @@
             this.buttonKeyHint.TabIndex = 14;
             this.buttonKeyHint.Text = "?";
             this.buttonKeyHint.UseVisualStyleBackColor = true;
+            this.buttonKeyHint.Click += new System.EventHandler(this.buttonKeyHint_Click);
+            this.buttonKeyHint.MouseHover += new System.EventHandler(this.buttonKeyHint_MouseHover);
             // 
             // buttonRingHint
             // 
@@ -60,6 +64,8 @@
             this.buttonRingHint.TabIndex = 13;
             this.buttonRingHint.Text = "?";
             this.buttonRingHint.UseVisualStyleBackColor = true;
+            this.buttonRingHint.Click += new System.EventHandler(this.buttonRingHint_Click);
+            this.buttonRingHint.MouseHover += new System.EventHandler(this.buttonRingHint_MouseHover);
             // 
             // label3
             // 
@@ -83,6 +89,8 @@
             this.treeViewKeys.ShowLines = false;
             this.treeViewKeys.Size = new System.Drawing.Size(178, 423);
             this.treeViewKeys.TabIndex = 11;
+            this.treeViewKeys.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.treeViewKeys_NodeMouseHover);
+            this.treeViewKeys.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeViewKeys_MouseDown);
             // 
             // label1
             // 
@@ -106,6 +114,11 @@
             this.treeViewRings.ShowLines = false;
             this.treeViewRings.Size = new System.Drawing.Size(178, 278);
             this.treeViewRings.TabIndex = 9;
+            this.treeViewRings.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.treeViewRings_NodeMouseHover);
+            this.treeViewRings.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRings_AfterSelect);
+            this.treeViewRings.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeViewRings_NodeMouseDoubleClick);
+            this.treeViewRings.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeViewRings_DragDrop);
+            this.treeViewRings.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeViewRings_DragEnter);
             // 
             // buttonCreate
             // 
@@ -139,6 +152,7 @@
             this.buttonDelete.TabIndex = 20;
             this.buttonDelete.Text = "Delete Selected";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonRename
             // 
@@ -150,6 +164,7 @@
             this.buttonRename.TabIndex = 19;
             this.buttonRename.Text = "Rename Selected";
             this.buttonRename.UseVisualStyleBackColor = true;
+            this.buttonRename.Click += new System.EventHandler(this.buttonRename_Click);
             // 
             // NewKeyringForm
             // 
@@ -183,5 +198,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonRename;
+        private System.Windows.Forms.ToolTip toolTipRing;
     }
 }

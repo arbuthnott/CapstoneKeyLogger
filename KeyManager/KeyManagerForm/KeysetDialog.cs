@@ -26,7 +26,7 @@ namespace KeyManagerForm
             }
             else
             {
-                Text = "New KeySet";
+                Text = "New Key Ring";
                 ring = new KeyRing(-1, "");
             }
             buttonSave.Enabled = false;

@@ -27,7 +27,8 @@ namespace KeyManagerForm
         private NewLookupForm lookupForm;
         //private PersonnelForm personnelForm;
         private NewPersonnelForm personnelForm;
-        private KeyRingForm keyRingForm;
+        //private KeyRingForm keyRingForm;
+        private NewKeyringForm keyRingForm;
         private KeysForm keys;  // what are naming conventions?
         //private DoorGroupForm doorGroupForm;
         private NewDoorGroupForm doorGroupForm;
@@ -242,7 +243,7 @@ namespace KeyManagerForm
         {
             if (keyRingForm == null || keyRingForm.IsDisposed)
             {
-                keyRingForm = new KeyRingForm(objects);
+                keyRingForm = new NewKeyringForm(objects);
                 keyRingForm.MdiParent = this;
                 keyRingForm.Text = "Key Rings";
                 keyRingForm.Show();
