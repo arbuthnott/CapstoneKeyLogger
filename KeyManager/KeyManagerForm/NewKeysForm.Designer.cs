@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonTypeHint = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.treeViewTypes = new System.Windows.Forms.TreeView();
@@ -47,6 +48,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.listBoxKeys = new System.Windows.Forms.ListBox();
             this.labelTypeTitle = new System.Windows.Forms.Label();
+            this.toolTipKey = new System.Windows.Forms.ToolTip(this.components);
             this.groupBoxType.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +61,8 @@
             this.buttonTypeHint.TabIndex = 17;
             this.buttonTypeHint.Text = "?";
             this.buttonTypeHint.UseVisualStyleBackColor = true;
+            this.buttonTypeHint.Click += new System.EventHandler(this.buttonTypeHint_Click);
+            this.buttonTypeHint.MouseHover += new System.EventHandler(this.buttonTypeHint_MouseHover);
             // 
             // label3
             // 
@@ -82,6 +86,7 @@
             this.treeViewTypes.ShowLines = false;
             this.treeViewTypes.Size = new System.Drawing.Size(178, 384);
             this.treeViewTypes.TabIndex = 15;
+            this.treeViewTypes.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.treeViewTypes_NodeMouseHover);
             this.treeViewTypes.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTypes_AfterSelect);
             // 
             // buttonCreateType
@@ -151,6 +156,8 @@
             this.buttonDoorHint.TabIndex = 28;
             this.buttonDoorHint.Text = "?";
             this.buttonDoorHint.UseVisualStyleBackColor = true;
+            this.buttonDoorHint.Click += new System.EventHandler(this.buttonDoorHint_Click);
+            this.buttonDoorHint.MouseHover += new System.EventHandler(this.buttonDoorHint_MouseHover);
             // 
             // buttonUnlockableHint
             // 
@@ -161,6 +168,8 @@
             this.buttonUnlockableHint.TabIndex = 27;
             this.buttonUnlockableHint.Text = "?";
             this.buttonUnlockableHint.UseVisualStyleBackColor = true;
+            this.buttonUnlockableHint.Click += new System.EventHandler(this.buttonUnlockableHint_Click);
+            this.buttonUnlockableHint.MouseHover += new System.EventHandler(this.buttonUnlockableHint_MouseHover);
             // 
             // label4
             // 
@@ -205,6 +214,7 @@
             this.treeViewDoors.ShowLines = false;
             this.treeViewDoors.Size = new System.Drawing.Size(178, 197);
             this.treeViewDoors.TabIndex = 23;
+            this.treeViewDoors.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.treeViewDoors_NodeMouseHover);
             this.treeViewDoors.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeViewDoors_DragDrop);
             this.treeViewDoors.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeViewDoors_DragEnter);
             this.treeViewDoors.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeViewDoors_MouseDown);
@@ -221,6 +231,7 @@
             this.treeViewUnlockable.ShowLines = false;
             this.treeViewUnlockable.Size = new System.Drawing.Size(178, 197);
             this.treeViewUnlockable.TabIndex = 22;
+            this.treeViewUnlockable.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.treeViewUnlockable_NodeMouseHover);
             this.treeViewUnlockable.DragDrop += new System.Windows.Forms.DragEventHandler(this.treeViewUnlockable_DragDrop);
             this.treeViewUnlockable.DragEnter += new System.Windows.Forms.DragEventHandler(this.treeViewUnlockable_DragEnter);
             this.treeViewUnlockable.MouseDown += new System.Windows.Forms.MouseEventHandler(this.treeViewUnlockable_MouseDown);
@@ -319,5 +330,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBoxKeys;
         private System.Windows.Forms.Label labelTypeTitle;
+        private System.Windows.Forms.ToolTip toolTipKey;
     }
 }

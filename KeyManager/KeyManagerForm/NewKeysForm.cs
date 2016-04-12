@@ -24,15 +24,14 @@ namespace KeyManagerForm
         Font bitBiggerFont = new Font("sans-serif", 11);
 
         string typeHint =
-            "Expand (click the '+') to see keys in each ring.\n" +
-            "Double-click to remove a key from a ring.";
+            "Click on a key type to see details on the right\n" +
+            "(Use '+' to expand to see the copies of each type)";
         string unlockableHint =
-            "Keys are grouped by type, and keys already in a\n" +
-            "key ring are greyed out (hover to see which ring\n" +
-            "they are in). Drag onto a key ring to add that key.";
+            "The doors that this key type can unlock. Drag doors\n" +
+            "between the two lists to change.";
         string doorHint =
-            "" +
-            "";
+            "The doors that this key type can't unlock.  Drag\n" +
+            "dors between the two lists to change.";
 
         public NewKeysForm(ObjectHolder objects)
         {
@@ -300,6 +299,52 @@ namespace KeyManagerForm
                 selectedType.DisconnectDoor(door);
                 PopulateDoors();
             }
+        }
+
+        // tooltip and help stuff
+        private void buttonTypeHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipKey.Show(typeHint, buttonTypeHint);
+        }
+
+        private void buttonTypeHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(typeHint);
+        }
+
+        private void buttonUnlockableHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipKey.Show(unlockableHint, buttonUnlockableHint);
+        }
+
+        private void buttonUnlockableHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(unlockableHint);
+        }
+
+        private void buttonDoorHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipKey.Show(doorHint, buttonDoorHint);
+        }
+
+        private void buttonDoorHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(doorHint);
+        }
+
+        private void treeViewTypes_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            toolTipKey.Show("Click to see details on the right", treeViewTypes);
+        }
+
+        private void treeViewUnlockable_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            toolTipKey.Show("Drag to door list to remove", treeViewUnlockable);
+        }
+
+        private void treeViewDoors_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            toolTipKey.Show("Drag to Unlockable list to add", treeViewDoors);
         }
     }
 }
