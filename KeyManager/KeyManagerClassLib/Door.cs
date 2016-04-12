@@ -31,6 +31,11 @@ namespace KeyManagerClassLib
             SQLiteCommand command = new SQLiteCommand(conn);
             command.CommandText = "DELETE FROM door_to_location WHERE Door=" + Id;
             command.ExecuteNonQuery();
+
+            // delete associate mappoints
+            command.CommandText = "DELETE FROM mappoint WHERE Door=" + Id;
+            command.ExecuteNonQuery();
+
             conn.Close();
 
             DataLayer dl = new DataLayer();
@@ -95,12 +100,16 @@ namespace KeyManagerClassLib
         /// <param name="type"></param>
         public void ConnectKeyType(KeyType type)
         {
-            keytypes.Add(type);
-            type.doors.Add(this);
+            if (!keytypes.Contains(type)) { keytypes.Add(type); }
+            if (!type.doors.Contains(this)) { type.doors.Add(this); }
             DataLayer dl = new DataLayer();
-            dl.AddValue("Keytype", "" + type.Id);
-            dl.AddValue("Lock", "" + LockId);
-            dl.AddRecord("keytype_to_lock");
+            List<int> typeIds = dl.GetJointRecord("keytype_to_lock", "Keytype", "Lock", LockId);
+            if (!typeIds.Contains(type.Id))
+            {
+                dl.AddValue("Keytype", "" + type.Id);
+                dl.AddValue("Lock", "" + LockId);
+                dl.AddRecord("keytype_to_lock");
+            }
         }
 
         /// <summary>

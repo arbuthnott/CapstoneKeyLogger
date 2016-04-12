@@ -268,6 +268,43 @@ namespace KeyManagerClassLib
             return pointList;
         }
 
+        public void UpdateLockData(Door guideDoor)
+        {
+            // reset all OOP associations based on input door's lock id, and keytype list.
+            // first handle lock data in db:
+            foreach (KeyType type in keytypes)
+            {
+                if (guideDoor.keytypes.Contains(type))
+                {
+                    guideDoor.ConnectKeyType(type);
+                }
+                else
+                {
+                    guideDoor.DisconnectKeyType(type);
+                }
+            }
+            // now update all the OOP:
+            foreach (Door door in doors)
+            {
+                if (door.LockId == guideDoor.LockId)
+                {
+                    foreach (KeyType type in keytypes)
+                    {
+                        if (guideDoor.keytypes.Contains(type))
+                        {
+                            if (!door.keytypes.Contains(type)) { door.keytypes.Add(type); }
+                            if (!type.doors.Contains(door)) { type.doors.Add(door); }
+                        }
+                        else
+                        {
+                            door.keytypes.Remove(type);
+                            type.doors.Remove(door);
+                        }
+                    }
+                }
+            }
+        }
+
         /*******************************************************************************
         * LOAD FUNCTIONS to load objects from database with their basic data properties
         *******************************************************************************/

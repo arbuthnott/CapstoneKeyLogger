@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelTitle = new System.Windows.Forms.Label();
             this.textBoxRoom = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,6 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.treeViewUnlocking = new System.Windows.Forms.TreeView();
             this.buttonLockHint = new System.Windows.Forms.Button();
+            this.toolTipDoor = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // labelTitle
@@ -150,6 +152,8 @@
             this.buttonKeyHint.TabIndex = 20;
             this.buttonKeyHint.Text = "?";
             this.buttonKeyHint.UseVisualStyleBackColor = true;
+            this.buttonKeyHint.Click += new System.EventHandler(this.buttonKeyHint_Click);
+            this.buttonKeyHint.MouseHover += new System.EventHandler(this.buttonKeyHint_MouseHover);
             // 
             // label3
             // 
@@ -186,6 +190,8 @@
             this.buttonUnlockingHint.TabIndex = 23;
             this.buttonUnlockingHint.Text = "?";
             this.buttonUnlockingHint.UseVisualStyleBackColor = true;
+            this.buttonUnlockingHint.Click += new System.EventHandler(this.buttonUnlockingHint_Click);
+            this.buttonUnlockingHint.MouseHover += new System.EventHandler(this.buttonUnlockingHint_MouseHover);
             // 
             // label4
             // 
@@ -222,6 +228,8 @@
             this.buttonLockHint.TabIndex = 24;
             this.buttonLockHint.Text = "?";
             this.buttonLockHint.UseVisualStyleBackColor = true;
+            this.buttonLockHint.Click += new System.EventHandler(this.buttonLockHint_Click);
+            this.buttonLockHint.MouseHover += new System.EventHandler(this.buttonLockHint_MouseHover);
             // 
             // DoorDialog
             // 
@@ -269,5 +277,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TreeView treeViewUnlocking;
         private System.Windows.Forms.Button buttonLockHint;
+        private System.Windows.Forms.ToolTip toolTipDoor;
     }
 }

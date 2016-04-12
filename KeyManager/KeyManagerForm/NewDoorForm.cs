@@ -144,7 +144,12 @@ namespace KeyManagerForm
             DialogResult result = dd.ShowDialog();
             if (result == DialogResult.OK)
             {
-                // create the door
+                Door door = dd.door;
+                objects.doors.Add(door);
+                door.Save();
+                objects.UpdateLockData(door);
+                // now update the ui.
+                PopulateResults("");
             }
             dd.Dispose();
         }
@@ -161,11 +166,24 @@ namespace KeyManagerForm
                 if (result == DialogResult.OK)
                 {
                     // update the door
+                    door.Save();
+                    objects.UpdateLockData(door);
+                    // now update the ui
+                    PopulateResults("");
                 }
                 else if (result == DialogResult.No) // sign to delete the door
                 {
                     // delete it.
+                    foreach(KeyType type in objects.keytypes)
+                    {
+                        type.doors.Remove(door);
+                    }
+                    objects.doors.Remove(door);
+                    door.Delete();
+                    // now the ui
+                    PopulateResults(textBoxSearch.Text);
                 }
+                dd.Dispose();
             }
         }
 

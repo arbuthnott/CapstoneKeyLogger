@@ -11,12 +11,11 @@ using KeyManagerClassLib;
 
 namespace KeyManagerForm
 {
-    // NOTE TO SELF: NOW UPDATE THE DOOR WHEN WHEN CREATEBUTTON IS PUSHED
     public partial class DoorDialog : Form
     {
         private ObjectHolder objects;
         private MDI_ParentForm parent;
-        private Door door;
+        public Door door;
 
         // some ui constants
         Color lightBlue = Color.FromArgb(166, 227, 247);
@@ -26,14 +25,17 @@ namespace KeyManagerForm
         Font bitBiggerFont = new Font("sans-serif", 11);
 
         string unlockingHint =
-            "Expand (click the '+') to see keys and\n" +
-            "key rings checked-out by each person.\n\n" +
-            "Double-click a key or key ring to check-in\n" +
-            "that item.";
+            "These are the keys that unlock this door.\n" +
+            "You can drag in or out from the other list\n" +
+            "to update.";
         string keyHint =
-            "Greyed-out key rings are checked out (hover\n" +
-            "to see who has them). Drag free key rings" +
-            "onto a Person to check-out.";
+            "These are the keys that do not unlock this\n" +
+            "door. You can drag in or out from the other\n" +
+            "list to update.";
+        string lockHint =
+            "Only use this if the door's lock is identical to\n" +
+            "another door's lock. This will make updates to\n" +
+            "one door affect all others with the same lock.";
 
         // Constructor to setup for a new door.
         public DoorDialog(ObjectHolder objects, MDI_ParentForm parent)
@@ -127,7 +129,23 @@ namespace KeyManagerForm
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             // update the door first!
-            //this.DialogResult = DialogResult.OK;
+            door.RoomNumber = textBoxRoom.Text;
+            if (comboBoxLock.SelectedIndex > 0)
+            {
+                door.LockId = ((Door)comboBoxLock.SelectedItem).LockId;
+                door.keytypes.Clear();
+                door.keytypes.AddRange(((Door)comboBoxLock.SelectedItem).keytypes);
+            }
+            else
+            {
+                door.keytypes.Clear();
+                foreach(TreeNode node in treeViewUnlocking.Nodes)
+                {
+                    door.keytypes.Add((KeyType)node.Tag);
+                }
+            }
+
+            this.DialogResult = DialogResult.OK;
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
@@ -322,6 +340,37 @@ namespace KeyManagerForm
                     }
                 }
             }
+        }
+
+        // tooltip and help methods.
+        private void buttonLockHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipDoor.Show(lockHint, buttonLockHint);
+        }
+
+        private void buttonLockHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(lockHint);
+        }
+
+        private void buttonUnlockingHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipDoor.Show(unlockingHint, buttonUnlockingHint);
+        }
+
+        private void buttonUnlockingHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(unlockingHint);
+        }
+
+        private void buttonKeyHint_MouseHover(object sender, EventArgs e)
+        {
+            toolTipDoor.Show(keyHint, buttonKeyHint);
+        }
+
+        private void buttonKeyHint_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(keyHint);
         }
     }
 }
