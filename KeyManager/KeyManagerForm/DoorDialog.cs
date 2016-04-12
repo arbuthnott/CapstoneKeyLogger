@@ -168,7 +168,11 @@ namespace KeyManagerForm
 
         private void buttonMap_Click(object sender, EventArgs e)
         {
-            // TODO
+            bool shown = parent.ShowDoorOnMap(door);
+            if (!shown)
+            {
+                MessageBox.Show("This door has not been added to any maps.");
+            }
         }
 
         private void textBoxRoom_TextChanged(object sender, EventArgs e)

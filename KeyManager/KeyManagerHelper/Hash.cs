@@ -31,7 +31,7 @@ namespace KeyManagerHelper
         {
 
             hashStream = new MemoryStream((Encoding.UTF8.GetBytes(plaintext)));
-            Byte[] returnHash = hasher.ComputeHash(hashStream));
+            Byte[] returnHash = hasher.ComputeHash(hashStream);
             hashStream.Close();
             return returnHash;
         }
