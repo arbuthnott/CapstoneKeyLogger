@@ -23,6 +23,7 @@ namespace KeyManagerForm
             if (keytype != null)
             {
                 textBoxName.Text = keytype.Name;
+                this.Text = "Rename Key Type";
             }
             else
             {
