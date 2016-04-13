@@ -17,6 +17,7 @@ namespace KeyManagerForm
         private int childFormNumber = 0;
         private bool isAdmin = false;
         private Login loginForm;
+        private Personnel currentUser;
         private bool loggingOut = false;
         private ObjectHolder objects;
 
@@ -37,12 +38,13 @@ namespace KeyManagerForm
         private NewDoorForm doorsForm;
         private CheckoutForm checkoutForm;
 
-        public MDI_ParentForm(Login lgnForm, bool admin)
+        public MDI_ParentForm(Login lgnForm, int loginId)
         {
             InitializeComponent();
             objects = new ObjectHolder();
+            currentUser = objects.GetPersonnelById(loginId);
                       
-            if (admin)
+            if (currentUser.IsAdmin)
             {
                 isAdmin = true;
             }  

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KeyManagerData;
 using KeyManagerClassLib;
+using System.Data.SQLite;
 
 namespace KeyManagerForm
 {
@@ -21,19 +22,18 @@ namespace KeyManagerForm
         {
             InitializeComponent();
             this.AcceptButton = btnLogin;
+
+            DbSetupManager.CheckDBFolder(); // verifies db exits, creates if not.
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             String username = tbUsername.Text;
             String password = tbPassword.Text;
-            UserLogin userlogin = new UserLogin(username, password);
-            if (userlogin.LogIn())
+            int userId = GetUserID(username, password);
+            if (userId != -1)
             {
-
-                //mainForm = new MainForm(this, userlogin.IsAdmin);
-                //mainForm.Show();
-                parentForm = new MDI_ParentForm(this, userlogin.IsAdmin);
+                parentForm = new MDI_ParentForm(this, userId);
                 parentForm.Show();
                 this.Hide();
             }
@@ -41,6 +41,26 @@ namespace KeyManagerForm
             {
                 lblIncorrect.Visible = true;
             }
+        }
+
+        private int GetUserID(string username, string password)
+        {
+            KeyManagerHelper.Hash hasher = new KeyManagerHelper.Hash();
+            string hashed = hasher.getHash(password);
+            SQLiteConnection conn = DbSetupManager.GetConnection();
+            
+            SQLiteCommand command = new SQLiteCommand("SELECT ID FROM personnel WHERE Username=@username AND password=@hashed", conn);
+            command.Parameters.AddWithValue("username", username);
+            command.Parameters.AddWithValue("hashed", hashed);
+
+            SQLiteDataReader reader = command.ExecuteReader();
+            int retId = -1; // represents not found
+            if (reader.Read())
+            {
+                retId = reader.GetInt16(0);
+            }
+            conn.Close();
+            return retId;
         }
 
         /// <summary>

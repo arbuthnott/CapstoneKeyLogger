@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using KeyManagerHelper;
+using System.IO;
 
 namespace KeyManagerData
 {
@@ -18,13 +19,30 @@ namespace KeyManagerData
         /// <returns>The full path as a string</returns>
         public static String GetDBPath()
         {
-            String dir = System.Reflection.Assembly.GetExecutingAssembly().Location; // current working dir
-            // get parent several times to back out of <PROJECT>/bin/Debug/ to solution dir.
-            dir = System.IO.Directory.GetParent(dir).FullName;
-            dir = System.IO.Directory.GetParent(dir).FullName;
-            dir = System.IO.Directory.GetParent(dir).FullName;
-            dir = System.IO.Directory.GetParent(dir).FullName;
-            return dir + "\\" + DB_FILENAME;
+            string appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            return appdataPath + "\\KeyManager\\" + DB_FILENAME;
+        }
+
+        /// <summary>
+        /// Checks if folder and db exist in AppData.  If not, it creates with some
+        /// sample data.
+        /// </summary>
+        public static void CheckDBFolder()
+        {
+            string appdataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string keymanagerPath = appdataPath + "\\" + "KeyManager";
+            if (!Directory.Exists(keymanagerPath))
+            {
+                // create it
+                //System.Security.AccessControl.DirectorySecurity security = new System.Security.AccessControl.DirectorySecurity();
+                Directory.CreateDirectory(keymanagerPath);
+            }
+            if (!File.Exists(GetDBPath()))
+            {
+                // create it
+                CreateDatabase();
+                PopulateSampleData();
+            }
         }
 
         /// <summary>
@@ -35,7 +53,7 @@ namespace KeyManagerData
         {
             SQLiteConnection connection = new SQLiteConnection("Data Source=" + GetDBPath() +";Version=3;");
             connection.Open();
-            return connection; // stub
+            return connection;
         }
 
         /// <summary>
