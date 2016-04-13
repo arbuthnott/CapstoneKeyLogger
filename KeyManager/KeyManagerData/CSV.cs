@@ -15,7 +15,6 @@ namespace KeyManagerData
         public CSV()
         {
             dl = new DataLayer();
-            conn = DbSetupManager.GetConnection();
         }
 
         public string GetCSV()
@@ -55,6 +54,7 @@ namespace KeyManagerData
                     {
                         returnstring += str + Environment.NewLine;
                     }
+                    count++;
                 }
 
                 return returnstring;
@@ -63,7 +63,6 @@ namespace KeyManagerData
             {
                 return "";
             }
-
         }
 
         void Insertion(String table, String[] args)
@@ -119,6 +118,8 @@ namespace KeyManagerData
 
         public void InsertCSV(string csv)
         {
+
+            conn = DbSetupManager.GetConnection();
             try
             {
                 using (StreamReader reader = new StreamReader(csv))
@@ -145,8 +146,9 @@ namespace KeyManagerData
             }
             catch (Exception ex)
             {
-
+                conn.Close();
             }
+            conn.Close();
         }
     }
 }
