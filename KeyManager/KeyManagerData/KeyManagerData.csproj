@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSV.cs" />
     <Compile Include="DataLayer.cs" />
     <Compile Include="DbSetupManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

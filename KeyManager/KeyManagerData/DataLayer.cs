@@ -27,6 +27,7 @@ namespace KeyManagerData
             properties = new List<String>();
             values = new List<Object>();
         }
+
         /*
         public void AddColumn(string Column, string Datatype)
         {
@@ -34,6 +35,7 @@ namespace KeyManagerData
             this.Datatype.Add(Datatype);
         }
         */
+
         public void AddValue(string Column, string Value)
         {
             properties.Add(Column);
@@ -61,6 +63,33 @@ namespace KeyManagerData
             db.Close();
             return returnList;
         }
+
+        public List<string> GetAllRecords(string Type)
+        {
+            db = DbSetupManager.GetConnection();
+            List<string> returnList = new List<string>();
+            string AppendString = "";
+            using (command = new SQLiteCommand(db))
+            {
+                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "SELECT * FROM " + Type + "";
+                SQLiteDataReader reader = command.ExecuteReader();
+                // Should get only one record at a time
+                while (reader.Read())
+                {
+                    AppendString = "";
+                    for (int count = 0; count < reader.FieldCount; count++)
+                    {
+                        AppendString += reader.GetString(count);
+                        if (count < (reader.FieldCount - 1)) AppendString += ",";
+                    }
+                    returnList.Add(AppendString);
+                }
+            }
+            db.Close();
+            return returnList;
+        }
+
         public int AddRecord(string Type)
         {
             db = DbSetupManager.GetConnection();
