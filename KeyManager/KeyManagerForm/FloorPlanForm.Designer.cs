@@ -28,13 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FloorPlanForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.labelAdd = new System.Windows.Forms.ToolStripLabel();
             this.cbDoors = new System.Windows.Forms.ToolStripComboBox();
             this.listFloors = new System.Windows.Forms.ListView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.listDoors = new System.Windows.Forms.ListView();
             this.listDoorGroups = new System.Windows.Forms.ListView();
+            this.labelAdd = new System.Windows.Forms.ToolStripLabel();
+            this.btnDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -42,6 +44,7 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnDelete,
             this.labelAdd,
             this.cbDoors});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -50,12 +53,6 @@
             this.toolStrip1.Size = new System.Drawing.Size(748, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // labelAdd
-            // 
-            this.labelAdd.Name = "labelAdd";
-            this.labelAdd.Size = new System.Drawing.Size(131, 22);
-            this.labelAdd.Text = "Add Door to Floorplan: ";
             // 
             // cbDoors
             // 
@@ -111,6 +108,24 @@
             this.listDoorGroups.SelectedIndexChanged += new System.EventHandler(this.listDoorGroups_SelectedIndexChanged);
             this.listDoorGroups.Leave += new System.EventHandler(this.listDoorGroups_Leave);
             // 
+            // labelAdd
+            // 
+            this.labelAdd.AutoSize = false;
+            this.labelAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("labelAdd.BackgroundImage")));
+            this.labelAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.labelAdd.Name = "labelAdd";
+            this.labelAdd.Size = new System.Drawing.Size(20, 20);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
+            this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(23, 22);
+            this.btnDelete.Text = "toolStripButton1";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // FloorPlanForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,7 +153,8 @@
         private System.Windows.Forms.ListView listFloors;
         private System.Windows.Forms.ListView listDoors;
         private System.Windows.Forms.ToolStripComboBox cbDoors;
-        private System.Windows.Forms.ToolStripLabel labelAdd;
         private System.Windows.Forms.ListView listDoorGroups;
+        private System.Windows.Forms.ToolStripButton btnDelete;
+        private System.Windows.Forms.ToolStripLabel labelAdd;
     }
 }

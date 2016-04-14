@@ -26,6 +26,7 @@ namespace KeyManagerForm
         Color evenLighterBlue = Color.FromArgb(220, 241, 247);
 
         Boolean addingMapPoint = false;
+        Boolean deletingPoint = false;
         private int x = 0;
         private int y = 0;
 
@@ -42,6 +43,12 @@ namespace KeyManagerForm
             {
                 cbDoors.Items.Add(door.RoomNumber);
             }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.Cross;
+            deletingPoint = true;
         }
 
         /// <summary>
@@ -152,6 +159,7 @@ namespace KeyManagerForm
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            // Click when adding a point
             if (addingMapPoint)
             {
                 foreach (Door door in objects.doors)
@@ -170,6 +178,38 @@ namespace KeyManagerForm
                 addingMapPoint = false;
                 cbDoors.SelectionLength = 0;
             } 
+
+            // Click when deleting a point
+            if (deletingPoint)
+            {
+                MapPoint deleted = null;
+                foreach (MapPoint point in objects.mappoints)
+                {
+                    if (x >= point.x && x <= point.x + 10)
+                    {
+                        if (y >= point.y && y <= point.y + 10)
+                        {
+                            DialogResult dialogResult = MessageBox.Show("Remove " + point.door.RoomNumber + "?\n\nThis will remove just the map marker, not to door itself.", "Remote", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                deleted = point;
+                                point.Delete();
+                            }
+                           
+                        }
+                    }                        
+                }
+
+                if (deleted != null)
+                {
+                    objects.mappoints.Remove(deleted);
+                }
+
+                this.Cursor = Cursors.Default;
+                pictureBox1.Invalidate();
+                RefreshDoorLst();
+                deletingPoint = false;
+            }
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -400,5 +440,7 @@ namespace KeyManagerForm
                 point.selected = false;
             pictureBox1.Invalidate();
         }
+
+        
     }
 }
