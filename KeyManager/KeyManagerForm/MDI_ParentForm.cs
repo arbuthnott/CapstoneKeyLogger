@@ -109,7 +109,7 @@ namespace KeyManagerForm
 
         private void treeViewSummary_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Parent.Tag.Equals("rings"))
+            if (e.Node.Tag.Equals("rings"))
             {
                 if (keyRingForm == null || keyRingForm.IsDisposed)
                 {
@@ -124,7 +124,7 @@ namespace KeyManagerForm
                 }
             }
 
-            if (e.Node.Parent.Tag.Equals("groups"))
+            if (e.Node.Tag.Equals("groups"))
             {
                 if (doorGroupForm == null || doorGroupForm.IsDisposed)
                 {
@@ -139,7 +139,7 @@ namespace KeyManagerForm
                 }
             }
 
-            if (e.Node.Parent.Tag.Equals("people"))
+            if (e.Node.Tag.Equals("people"))
             {
                 if (personnelForm == null || personnelForm.IsDisposed)
                 {
