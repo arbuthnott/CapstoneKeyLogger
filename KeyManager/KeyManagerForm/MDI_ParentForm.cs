@@ -61,7 +61,7 @@ namespace KeyManagerForm
         private void SetupTreeView()
         {
             treeViewSummary.BeginUpdate();
-            //treeView2.Nodes.Clear();
+            treeViewSummary.Nodes.Clear();
 
             TreeNode n1 = treeViewSummary.Nodes.Add("Key Rings");
             foreach (KeyRing ring in objects.keyrings)
@@ -407,17 +407,62 @@ namespace KeyManagerForm
             saveFileDialog.AddExtension = true;
             saveFileDialog.DefaultExt = "csv";
             saveFileDialog.Filter = "CSV | *.csv";
+            saveFileDialog.Title = "Save to CSV";
             DialogResult result = saveFileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                Stream outStream = saveFileDialog.OpenFile();
-                StreamWriter writer = new StreamWriter(outStream);
-                writer.Write((new CSV()).GetCSV());
+                try
+                {
+                    Stream outStream = saveFileDialog.OpenFile();
+                    StreamWriter writer = new StreamWriter(outStream);
+                    writer.Write((new CSV()).GetCSV());
 
-                MessageBox.Show("CSV saved at " + saveFileDialog.FileName, "Export Complete");
-                writer.Flush();
-                writer.Close();
+                    MessageBox.Show("CSV saved at " + saveFileDialog.FileName, "Export Complete");
+                    writer.Flush();
+                    writer.Close();
+                }
+                catch (Exception excep)
+                {
+                    MessageBox.Show("Error writing to csv: " + excep.Message, "Error");
+                }
             }
+        }
+
+        private void importFromCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.Reset();
+            openFileDialog.AddExtension = true;
+            openFileDialog.DefaultExt = "csv";
+            openFileDialog.Filter = "CSV | *.csv";
+            openFileDialog.Title = "Import from CSV";
+            DialogResult result = openFileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                result = MessageBox.Show("Are you sure you wish to import? All current data will be overwritten", "Confirm Import", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    string status = (new CSV()).InsertCSV(openFileDialog.FileName);
+                    if (status == "refuse")
+                    {
+                        MessageBox.Show("Import Cancelled. Can only import from a CSV created using KeyManager.", "Import Cancelled");
+                    }
+                    else if (status == "error")
+                    {
+                        MessageBox.Show("Encountered an Error while importing");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Import Complete");
+
+                        // reset it all!
+                        objects = new ObjectHolder();
+                        currentUser = objects.GetPersonnelById(1);
+                        isAdmin = true;
+                        SetupTreeView();
+                    }
+                }
+            }
+            
         }
     }
 }

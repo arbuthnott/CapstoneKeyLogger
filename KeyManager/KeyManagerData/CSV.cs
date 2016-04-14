@@ -79,58 +79,68 @@ namespace KeyManagerData
 
         void Insertion(String table, String[] args)
         {
+            // replace black arguments with NULL
+            for (int idx = 0; idx < args.Length; idx++)
+            {
+                args[idx] = args[idx].Replace("COMMA", ",");
+                if (args[idx].Length == 0)
+                {
+                    args[idx] = "NULL";
+                }
+            }
+
             string command = "";
             if (table == "[key]")
             {
-                command = "INSERT INTO key ('ID', 'Serial', 'Keytype', 'Keyring') VALUES (" + escapeString(args[0]) + " '" + escapeString(args[1]) + "', " + escapeString(args[2]) + ", " + escapeString(args[3]) + ")";
+                command = "INSERT INTO key ('ID', 'Serial', 'Keytype', 'Keyring') VALUES (" + escapeString(args[0]) + ", '" + escapeString(args[1]) + "', " + escapeString(args[2]) + ", " + escapeString(args[3]) + ")";
             }
-            if (table == "[personnel])")
+            if (table == "[personnel]")
             {
                 command = "INSERT INTO personnel ('ID', 'Username', 'Password', 'First Name', 'Last Name', 'IsAdministrator') VALUES (" + escapeString(args[0]) + ", '" + escapeString(args[1]) + "', '" + escapeString(args[2]) + "', '" + escapeString(args[3]) + "', '" + escapeString(args[4]) + "', " + escapeString(args[5]) + ")";
             }
-            if (table == "[lock])")
+            if (table == "[lock]")
             {
                 command = "INSERT INTO lock ('ID') VALUES (" + escapeString(args[0]) + ")";
             }
-            if (table == "[keytype])")
+            if (table == "[keytype]")
             {
                 command = "INSERT INTO keytype ('ID', 'Name') VALUES (" + escapeString(args[0]) + ", '" + escapeString(args[1]) + "')";
             }
-            if (table == "[door])")
+            if (table == "[door]")
             {
                 command = "INSERT INTO door ('ID', 'room_number', 'lock') VALUES (" + escapeString(args[0]) + ", '" + escapeString(args[1]) + "', " + escapeString(args[2]) + ")";
             }
-            if (table == "[location])")
+            if (table == "[location]")
             {
-                command = "INSERT INTO location ('ID', 'Name') VALUES (" + escapeString(args[0]) + "'" + escapeString(args[1]) + "')";
+                command = "INSERT INTO location ('ID', 'Name') VALUES (" + escapeString(args[0]) + ", '" + escapeString(args[1]) + "')";
             }
-            if (table == "[keyring])")
+            if (table == "[keyring]")
             {
                 command = "INSERT INTO keyring ('ID', 'Name', 'owner') VALUES (" + escapeString(args[0]) + ", '" + escapeString(args[1]) + "', " + escapeString(args[2]) + ")";
             }
-            if (table == "[door_to_location])")
+            if (table == "[door_to_location]")
             {
-                command = "INSERT INTO door_to_location ('Door', 'Location') VALUES (" + escapeString(args[0]) + ", " + escapeString(args[1]) + ")";
+                command = "INSERT INTO door_to_location ('ID', 'Door', 'Location') VALUES (" + escapeString(args[0]) + ", " + escapeString(args[1]) + ", " + escapeString(args[2]) + ")";
             }
-            if (table == "[key_to_lock])")
+            if (table == "[keytype_to_lock]")
             {
                 command = "INSERT INTO keytype_to_lock ('Keytype', 'Lock') VALUES (" + escapeString(args[0]) + ", " + escapeString(args[1]) + ")";
             }
-            if (table == "[checkout])")
+            if (table == "[checkout]")
             {
-                command = "INSERT INTO checkout ('ID', 'Person', 'Key', 'Date') VALUES (" + escapeString(args[0]) + ", " + escapeString(args[1]) + ", " + escapeString(args[2]) + ", '" + escapeString(args[3]) + "')";
+                command = "INSERT INTO checkout ('ID', 'Person', 'Key', 'Keyring', 'IsReturned', 'Date') VALUES (" + escapeString(args[0]) + ", " + escapeString(args[1]) + ", " + escapeString(args[2]) + ", " + escapeString(args[3]) + ", " + escapeString(args[4]) + ", '" + escapeString(args[5]) + "')";
             }
 
             if (command != "")
             {
+                command = command.Replace("'NULL'", "NULL"); // don't insert the string 'NULL'
                 SQLiteCommand sqlcommand = new SQLiteCommand(command, conn);
                 sqlcommand.ExecuteNonQuery();
             }
         }
 
-        public void InsertCSV(string csv)
+        public string InsertCSV(string csv)
         {
-
             conn = DbSetupManager.GetConnection();
             try
             {
@@ -140,6 +150,14 @@ namespace KeyManagerData
 
                     string table = "[key]";
                     string line;
+
+                    // check for the recognizable header
+                    line = reader.ReadLine();
+                    if (!line.StartsWith(HEADER))
+                    {
+                        return "refuse"; // this is not the csv you are looking for!
+                    }
+
                     while ((line = reader.ReadLine()) != null)
                     {
                         if (line.StartsWith("//"))
@@ -159,8 +177,10 @@ namespace KeyManagerData
             catch (Exception ex)
             {
                 conn.Close();
+                return "error";
             }
             conn.Close();
+            return "complete";
         }
     }
 }
