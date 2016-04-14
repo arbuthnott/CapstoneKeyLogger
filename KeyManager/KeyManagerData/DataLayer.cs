@@ -69,6 +69,7 @@ namespace KeyManagerData
             db = DbSetupManager.GetConnection();
             List<string> returnList = new List<string>();
             string AppendString = "";
+            Type type;
             using (command = new SQLiteCommand(db))
             {
                 command.CommandType = System.Data.CommandType.Text;
@@ -80,7 +81,12 @@ namespace KeyManagerData
                     AppendString = "";
                     for (int count = 0; count < reader.FieldCount; count++)
                     {
-                        AppendString += reader.GetString(count);
+                        type = reader.GetFieldType(count);
+                        if (reader.IsDBNull(count)) { }
+                        else if (type == typeof(String)) { AppendString += reader.GetString(count).Replace(",", "COMMA"); }
+                        else if (type == typeof(Int64)) { AppendString += reader.GetInt16(count); }
+
+                        //AppendString += reader.GetString(count);
                         if (count < (reader.FieldCount - 1)) AppendString += ",";
                     }
                     returnList.Add(AppendString);

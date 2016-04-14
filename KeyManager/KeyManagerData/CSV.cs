@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace KeyManagerData
 {
-    class CSV
+    public class CSV
     {
         DataLayer dl;
         SQLiteConnection conn;
+        private string HEADER = "// KEYMANAGER CSV EXPORT";
+
         public CSV()
         {
             dl = new DataLayer();
@@ -22,6 +24,7 @@ namespace KeyManagerData
             try
             {
                 string returnstring = "";
+
                 string table = "";
                 int count = 0;
                 List<List<String>> ListForCSV = new List<List<string>>();
@@ -33,7 +36,7 @@ namespace KeyManagerData
                 ListForCSV.Add(dl.GetAllRecords("location"));
                 ListForCSV.Add(dl.GetAllRecords("keyring"));
                 ListForCSV.Add(dl.GetAllRecords("door_to_location"));
-                ListForCSV.Add(dl.GetAllRecords("key_to_lock"));
+                ListForCSV.Add(dl.GetAllRecords("keytype_to_lock"));
                 ListForCSV.Add(dl.GetAllRecords("checkout"));
                 foreach (List<String> list in ListForCSV)
                 {
@@ -46,7 +49,7 @@ namespace KeyManagerData
                     if (count == 5) table = "[location]";
                     if (count == 6) table = "[keyring]";
                     if (count == 7) table = "[door_to_location]";
-                    if (count == 8) table = "[key_to_lock]";
+                    if (count == 8) table = "[keytype_to_lock]";
                     if (count == 9) table = "[checkout]";
 
                     returnstring += table + Environment.NewLine;
@@ -56,8 +59,10 @@ namespace KeyManagerData
                     }
                     count++;
                 }
-
-                return returnstring;
+                
+                string headerstring = HEADER + Environment.NewLine;
+                headerstring += "// CREATED ON " + DateTime.Now.ToLongDateString() + Environment.NewLine;
+                return headerstring + returnstring;
             }
             catch (Exception ex)
             {

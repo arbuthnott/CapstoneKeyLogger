@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KeyManagerData;
 using KeyManagerClassLib;
+using System.IO;
 
 namespace KeyManagerForm
 {
@@ -316,11 +317,6 @@ namespace KeyManagerForm
             }
         }
 
-        private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -402,6 +398,25 @@ namespace KeyManagerForm
             if (!this.loggingOut)
             {
                 loginForm.Close();
+            }
+        }
+
+        private void exportToCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.Reset();
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.DefaultExt = "csv";
+            saveFileDialog.Filter = "CSV | *.csv";
+            DialogResult result = saveFileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                Stream outStream = saveFileDialog.OpenFile();
+                StreamWriter writer = new StreamWriter(outStream);
+                writer.Write((new CSV()).GetCSV());
+
+                MessageBox.Show("CSV saved at " + saveFileDialog.FileName, "Export Complete");
+                writer.Flush();
+                writer.Close();
             }
         }
     }
