@@ -48,13 +48,15 @@ namespace KeyManagerForm
             if (currentUser.IsAdmin)
             {
                 isAdmin = true;
+                lblUserName.Text = currentUser.FirstName + " " + currentUser.LastName + "  \n(Administrator)";
             }  
             else
             {
-
+                lblUserName.Text = currentUser.FirstName + " " + currentUser.LastName + "  \n(User)";
             }
             this.loginForm = lgnForm;
 
+            
             SetupTreeView();
         }
         

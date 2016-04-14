@@ -77,6 +77,8 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.lblUserName = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -93,7 +95,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(972, 24);
+            this.menuStrip.Size = new System.Drawing.Size(1133, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -297,10 +299,12 @@
             this.txDoorGroups,
             this.toolStripButtonDoor,
             this.toolStripSeparator10,
-            this.toolStripButtonLogout});
+            this.toolStripButtonLogout,
+            this.toolStripSeparator4,
+            this.lblUserName});
             this.toolStrip.Location = new System.Drawing.Point(0, 24);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(972, 50);
+            this.toolStrip.Size = new System.Drawing.Size(1133, 50);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "ToolStrip";
             // 
@@ -422,7 +426,9 @@
             // 
             // toolStripButtonLogout
             // 
+            this.toolStripButtonLogout.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripButtonLogout.AutoSize = false;
+            this.toolStripButtonLogout.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLogout.Image")));
             this.toolStripButtonLogout.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButtonLogout.ImageTransparentColor = System.Drawing.Color.Black;
             this.toolStripButtonLogout.Name = "toolStripButtonLogout";
@@ -437,7 +443,7 @@
             this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 690);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(972, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1133, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -493,13 +499,28 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
+            // lblUserName
+            // 
+            this.lblUserName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.lblUserName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(64, 47);
+            this.lblUserName.Text = "Username";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 50);
+            // 
             // MDI_ParentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(972, 712);
+            this.ClientSize = new System.Drawing.Size(1133, 712);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.toolStrip);
@@ -574,6 +595,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
+        private System.Windows.Forms.ToolStripLabel lblUserName;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 
