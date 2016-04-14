@@ -64,16 +64,19 @@ namespace KeyManagerForm
         {
             treeViewSummary.BeginUpdate();
             treeViewSummary.Nodes.Clear();
-
+             
             TreeNode n1 = treeViewSummary.Nodes.Add("Key Rings");
             foreach (KeyRing ring in objects.keyrings)
             {
                 TreeNode n = n1.Nodes.Add(ring.Name);
                 foreach (Key key in ring.keys)
                 {
-                    n.Nodes.Add(key.Serial);
-                }                
+                    TreeNode sub_n = n.Nodes.Add(key.Serial);
+                    sub_n.Tag = "rings";
+                }
+                n.Tag = "rings";
             }
+            n1.Tag = "rings";
             n1.Expand();
 
             TreeNode n2 = treeViewSummary.Nodes.Add("Door Groups");
@@ -82,9 +85,12 @@ namespace KeyManagerForm
                 TreeNode n = n2.Nodes.Add(loc.Name);
                 foreach (Door door in loc.doors)
                 {
-                    n.Nodes.Add(door.RoomNumber);
+                    TreeNode sub_n = n.Nodes.Add(door.RoomNumber);
+                    sub_n.Tag = "groups";
                 }
+                n.Tag = "groups";
             }
+            n2.Tag = "groups";
             n2.Expand();
 
             TreeNode n3 = treeViewSummary.Nodes.Add("People");
@@ -92,6 +98,7 @@ namespace KeyManagerForm
             {
                 n3.Nodes.Add(person.FirstName + " " + person.LastName);
             }
+            n3.Tag = "people";
             n3.Expand();
 
             treeViewSummary.EndUpdate();
@@ -101,7 +108,50 @@ namespace KeyManagerForm
 
         private void treeViewSummary_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            if (e.Node.Parent.Tag.Equals("rings"))
+            {
+                if (keyRingForm == null || keyRingForm.IsDisposed)
+                {
+                    keyRingForm = new NewKeyringForm(objects);
+                    keyRingForm.MdiParent = this;
+                    keyRingForm.Text = "Key Rings";
+                    keyRingForm.Show();
+                }
+                else
+                {
+                    keyRingForm.Focus();
+                }
+            }
 
+            if (e.Node.Parent.Tag.Equals("groups"))
+            {
+                if (doorGroupForm == null || doorGroupForm.IsDisposed)
+                {
+                    doorGroupForm = new NewDoorGroupForm(objects);
+                    doorGroupForm.MdiParent = this;
+                    doorGroupForm.Text = "Door Groups";
+                    doorGroupForm.Show();
+                }
+                else
+                {
+                    doorGroupForm.Focus();
+                }
+            }
+
+            if (e.Node.Parent.Tag.Equals("people"))
+            {
+                if (personnelForm == null || personnelForm.IsDisposed)
+                {
+                    personnelForm = new NewPersonnelForm(objects);
+                    personnelForm.MdiParent = this;
+                    personnelForm.Text = "Personnel";
+                    personnelForm.Show();
+                }
+                else
+                {
+                    personnelForm.Focus();
+                }
+            }
         }
 
         public bool ShowDoorGroupOnMap(Location location)
