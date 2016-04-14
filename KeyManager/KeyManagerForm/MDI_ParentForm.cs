@@ -322,16 +322,52 @@ namespace KeyManagerForm
             this.Close();
         }
 
+        private Control GetActiveControl()
+        {
+            IContainerControl container = this as IContainerControl;
+            Control control = null;
+            while (container != null)
+            {
+                control = container.ActiveControl;
+                container = control as IContainerControl;
+            }
+            return control;
+        }
+
         private void CutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Control control = this.GetActiveControl();
+            if (control != null)
+            {
+                if (typeof(TextBoxBase).IsAssignableFrom(control.GetType()))
+                {
+                    ((TextBoxBase)control).Cut();
+                }
+            }
         }
 
         private void CopyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Control control = this.GetActiveControl();
+            if (control != null)
+            {
+                if (typeof(TextBoxBase).IsAssignableFrom(control.GetType()))
+                {
+                    ((TextBoxBase)control).Copy();
+                }
+            }
         }
 
         private void PasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Control control = this.GetActiveControl();
+            if (control != null)
+            {
+                if (typeof(TextBoxBase).IsAssignableFrom(control.GetType()))
+                {
+                    ((TextBoxBase)control).Paste();
+                }
+            }
         }
 
         private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -357,11 +393,6 @@ namespace KeyManagerForm
         private void TileHorizontalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LayoutMdi(MdiLayout.TileHorizontal);
-        }
-
-        private void ArrangeIconsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LayoutMdi(MdiLayout.ArrangeIcons);
         }
 
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
