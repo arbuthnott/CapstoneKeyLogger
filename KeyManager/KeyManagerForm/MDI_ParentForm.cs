@@ -21,6 +21,7 @@ namespace KeyManagerForm
         private Personnel currentUser;
         private bool loggingOut = false;
         private ObjectHolder objects;
+        private Boolean treelaoded = false;
 
         // MDI Child Forms
         private MainForm mainForm;      // to be removed
@@ -109,49 +110,56 @@ namespace KeyManagerForm
 
         private void treeViewSummary_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Tag.Equals("rings"))
+            if (treelaoded)
             {
-                if (keyRingForm == null || keyRingForm.IsDisposed)
+                if (e.Node.Tag.Equals("rings"))
                 {
-                    keyRingForm = new NewKeyringForm(objects);
-                    keyRingForm.MdiParent = this;
-                    keyRingForm.Text = "Key Rings";
-                    keyRingForm.Show();
+                    if (keyRingForm == null || keyRingForm.IsDisposed)
+                    {
+                        keyRingForm = new NewKeyringForm(objects);
+                        keyRingForm.MdiParent = this;
+                        keyRingForm.Text = "Key Rings";
+                        keyRingForm.Show();
+                    }
+                    else
+                    {
+                        keyRingForm.Focus();
+                    }
                 }
-                else
+
+                if (e.Node.Tag.Equals("groups"))
                 {
-                    keyRingForm.Focus();
+                    if (doorGroupForm == null || doorGroupForm.IsDisposed)
+                    {
+                        doorGroupForm = new NewDoorGroupForm(objects);
+                        doorGroupForm.MdiParent = this;
+                        doorGroupForm.Text = "Door Groups";
+                        doorGroupForm.Show();
+                    }
+                    else
+                    {
+                        doorGroupForm.Focus();
+                    }
+                }
+
+                if (e.Node.Tag.Equals("people"))
+                {
+                    if (personnelForm == null || personnelForm.IsDisposed)
+                    {
+                        personnelForm = new NewPersonnelForm(objects);
+                        personnelForm.MdiParent = this;
+                        personnelForm.Text = "Personnel";
+                        personnelForm.Show();
+                    }
+                    else
+                    {
+                        personnelForm.Focus();
+                    }
                 }
             }
-
-            if (e.Node.Tag.Equals("groups"))
+            else
             {
-                if (doorGroupForm == null || doorGroupForm.IsDisposed)
-                {
-                    doorGroupForm = new NewDoorGroupForm(objects);
-                    doorGroupForm.MdiParent = this;
-                    doorGroupForm.Text = "Door Groups";
-                    doorGroupForm.Show();
-                }
-                else
-                {
-                    doorGroupForm.Focus();
-                }
-            }
-
-            if (e.Node.Tag.Equals("people"))
-            {
-                if (personnelForm == null || personnelForm.IsDisposed)
-                {
-                    personnelForm = new NewPersonnelForm(objects);
-                    personnelForm.MdiParent = this;
-                    personnelForm.Text = "Personnel";
-                    personnelForm.Show();
-                }
-                else
-                {
-                    personnelForm.Focus();
-                }
+                treelaoded = true;
             }
         }
 
