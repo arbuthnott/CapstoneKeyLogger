@@ -384,5 +384,42 @@ namespace KeyManagerData
                 return false;
             }
         }
+
+        /// <summary>
+        /// Evaluates an sqlite file to see if it matches the required format before replacing.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static bool EvaluateExternalDB(string path)
+        {
+            if (!path.ToUpper().EndsWith(".SQLITE")) { return false; }
+
+            try
+            {
+                string[] names = { "key", "personnel", "lock", "keytype", "door", "location", "keyring", "door_to_location", "keytype_to_lock", "checkout", "mappoint" };
+                List<String> unfoundTableNames = new List<String>(names);
+
+                SQLiteConnection connection = new SQLiteConnection("Data Source=" + path + ";Version=3;");
+                connection.Open();
+
+                string sql = "SELECT name FROM sqlite_master WHERE type='table'";
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                string name;
+                while (reader.Read())
+                {
+                    name = reader.GetString(0);
+                    if (unfoundTableNames.Contains(name)) { unfoundTableNames.Remove(name); }
+                }
+                connection.Close();
+
+                return (unfoundTableNames.Count == 0);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

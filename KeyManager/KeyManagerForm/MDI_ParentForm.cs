@@ -464,5 +464,70 @@ namespace KeyManagerForm
             }
             
         }
+
+        private void backupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            folderBrowserDialog.Reset();
+            folderBrowserDialog.Description = "Choose a folder to store your backup in:";
+            DialogResult result = folderBrowserDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string dbPath = DbSetupManager.GetDBPath();
+                string dirPath = folderBrowserDialog.SelectedPath;
+                string backupPath = dirPath + "\\" + "KEYMANAGER_BACKUP_" + (DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond) + ".sqlite";
+                File.Copy(dbPath, backupPath);
+
+                MessageBox.Show("Backup created at " + backupPath, "Backup Complete");
+            }
+        }
+
+        private void restoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openFileDialog.Reset();
+            openFileDialog.AddExtension = true;
+            openFileDialog.DefaultExt = ".sqlite";
+            openFileDialog.Filter = "SQLite files (*.sqlite) | *.sqlite";
+            openFileDialog.Title = "Select backup";
+            DialogResult result = openFileDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string path = openFileDialog.FileName;
+                if (!DbSetupManager.EvaluateExternalDB(path))
+                {
+                    // problem with selected database
+                    MessageBox.Show(
+                        "Cannot restore from the file you selected.\n" +
+                        "Only restore from backups created by KeyManager\n" +
+                        "usually name 'KEYMANAGER_BACKUP_###.sqlite'\n" +
+                        "with some number in place of the '###'.",
+                        "Restore Cancelled"
+                    );
+                }
+                else
+                {
+                    // looks good
+                    result = MessageBox.Show(
+                        "Are you sure you want to restore from backup?\n" +
+                        "All current data will be overwritten.",
+                        "Confirm Restore from Backup",
+                        MessageBoxButtons.OKCancel
+                    );
+                    if (result == DialogResult.OK)
+                    {
+                        string dbpath = DbSetupManager.GetDBPath();
+                        File.Delete(dbpath);
+                        File.Copy(path, dbpath);
+
+                        // reset it all!
+                        objects = new ObjectHolder();
+                        currentUser = objects.GetPersonnelById(1);
+                        isAdmin = true;
+                        SetupTreeView();
+
+                        MessageBox.Show("Restore complete.");
+                    }
+                }
+            }
+        }
     }
 }

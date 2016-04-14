@@ -231,16 +231,16 @@
   <data name="toolStripButtonCheckout.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAYAAACaq43EAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI0SURBVEhLY6AW+P//P1NjbW2ZlqbmPQF+gS+mBgaXFi9Y
-        EAKVph0ozM3vFBIU+tJQU1O4ZcMGu6y0jE5eHr4/a1as8IIqoT749+8ft6Cg4PdpU6bEQoXAIC46erqN
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI0SURBVEhLY6AW+P//P1NjbW2ZlqbmPX4+/i+mBgaXFi9Y
+        EAKVph0ozM3vFBQQ/NJQU1O4ZcMGu6y0jE5eHr4/a1as8IIqoT749+8ft4CAwPdpU6bEQoXAIC46erqN
         tfUxKJdysGn9emdzY+ML+vr6142NjK5O6u3NYmfj+L9s8eLIgry8lrt378qB1C2cO9dHVFTsE1gTpWDj
-        2rWuwDj8BrIIhuurq+vY2Tn+N9bX14H4ZSUltSC1EItFKbd4zYo17nx8/CiWgvCknp4EaWmZD7OmT48E
+        2rWuwDj8BrIIhuurq+vY2Tn+N9bX14H4ZSUltSC1EItFKbd4zYo17nx8fCiWgvCknp4EKSnpD7OmT48E
         BW1sRMQckPrmhoZsXQ2NO2DN5AJgInHn5+f/jm4pCC9ZuNC/KK+gDZioHAN8A1Z4urpuAekJ8PVdERIY
-        uBJsADlgLTB4sfkUhrXV1G/PmTkzuLayugyYkn9bm1meBCU4MTHxT8BQiIYaQxoA+RSfpdiwro7OrbaW
-        lgx5OfmXQAdwQo0iHhDyKS6srqb28Pjx43rbN292gBpFPMCVkIjBRkZGV6DGkAY2bdrkjCshEcLi4hIf
+        uBJsADlgLTB4sfkUhrXV1G7PmTkzuLayugyYkn9bm1meBCU4MTHxT8BQiIYaQxoA+RSfpdiwjo7OrbaW
+        lgw5WbmXQAdwQo0iHhDyKS6spqb28Pjx43rbN292gBpFPMCVkIjBRkZGV6DGkAY2bdrkjCshEcLi4hIf
         9+zZYwY1ijSgpKj0DJuhhDCwyPy8e9s2G6gxpAMbC4vj2AzGh8XExD5u20SBpSDw6sEDSV1tndvYLMCG
-        BYE+pdhSGLh37568jpb2A2wWIWNgXqXcp+jg0aNH0vp6etexWQjCwkLCX3Zs2WEFVU5d8AAY7Nra2jfR
-        LYUE7yZ7qDLaAJDloCoQZqm4uPjnrVu3OkGlaQtevnwpYWVufkpRQfHx3h17KQxeBgYAsShQvL2DM3kA
+        BYA+pdhSGLh37568jpb2A2wWIWNgXqXcp+jg0aNH0vp6etexWQjCQoJCX3Zs2WEFVU5d8AAY7Nra2jfR
+        LYUE7yZ7qDLaAJDloCoQZqm4uPjnrVu3OkGlaQtevnwpYWVufkpBXuHx3h17KQxeBgYA4RhQkyKDXAQA
         AAAASUVORK5CYII=
 </value>
   </data>
@@ -349,6 +349,9 @@
   </metadata>
   <metadata name="openFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>551, 17</value>
+  </metadata>
+  <metadata name="folderBrowserDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>120</value>
