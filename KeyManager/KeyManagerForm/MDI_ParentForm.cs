@@ -38,6 +38,7 @@ namespace KeyManagerForm
         //private DoorsForm doorsForm;
         private NewDoorForm doorsForm;
         private CheckoutForm checkoutForm;
+        private HelpForm helpForm;
 
         public MDI_ParentForm(Login lgnForm, int loginId)
         {
@@ -369,6 +370,20 @@ namespace KeyManagerForm
             }
         }
 
+        private void toolStripButtonHelp_Click(object sender, EventArgs e)
+        {
+            if (helpForm == null || helpForm.IsDisposed)
+            {
+                helpForm = new HelpForm();
+                helpForm.MdiParent = this;
+                helpForm.Show();
+            }
+            else
+            {
+                helpForm.Focus();
+            }
+        }
+
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -612,5 +627,7 @@ namespace KeyManagerForm
                 }
             }
         }
+
+        
     }
 }
