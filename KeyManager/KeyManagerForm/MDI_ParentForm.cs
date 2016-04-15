@@ -98,7 +98,9 @@ namespace KeyManagerForm
             TreeNode n3 = treeViewSummary.Nodes.Add("People");
             foreach (Personnel person in objects.personnel)
             {
-                n3.Nodes.Add(person.FirstName + " " + person.LastName);
+                TreeNode sub_node = n3.Nodes.Add(person.FirstName + " " + person.LastName);
+                sub_node.Tag = "people";
+
             }
             n3.Tag = "people";
             n3.Expand();
