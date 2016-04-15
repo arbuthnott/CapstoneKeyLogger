@@ -380,11 +380,6 @@ namespace KeyManagerForm
             }
         }
 
-        private void toolStripButtonHelp_Click(object sender, EventArgs e)
-        {
-            // TODO!
-        }
-
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
