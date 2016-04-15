@@ -57,7 +57,11 @@ namespace KeyManagerForm
         /// <param name="points"></param>
         public void ShowPoints(List<MapPoint> points)
         {
-            currentFloor = points[0].floor;
+            foreach (ListViewItem item in listFloors.Items)
+            {
+                item.Selected = false;
+            }
+            listFloors.Items[points[0].floor].Selected = true;
             foreach (MapPoint point in objects.mappoints)
             {
                 point.selected = false;
